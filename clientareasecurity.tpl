@@ -1,0 +1,97 @@
+{if $twofaavailable}
+
+    {if $twofaactivation}
+
+        <div id="twofaactivation">
+            {$twofaactivation}
+        </div>
+
+    {else}
+
+        <h2>{$LANG.twofactorauth}</h2>
+
+        {include file="$template/includes/alert.tpl" type="warning" msg="We strongly encourage you to enable Two-Factor Authentication for added security."}
+
+        <p>
+            {$LANG.twofaactivationintro}
+        </p>
+
+        <br />
+
+        <form method="post" action="clientarea.php?action=security">
+            <input type="hidden" name="2fasetup" value="1" />
+            <p align="center">
+                {if $twofastatus}
+                    <input type="submit" value="{$LANG.twofadisableclickhere}" class="btn btn-danger" />
+                {else}
+                    <input type="submit" value="{$LANG.twofaenableclickhere}" class="btn btn-success" />
+                {/if}
+            </p>
+        </form>
+
+        <br />
+        <br />
+
+    {/if}
+
+{/if}
+
+{if $securityquestionsenabled && !$twofaactivation}
+
+    <h2>{$LANG.clientareanavsecurityquestions}</h2>
+
+    {if $successful}
+        {include file="$template/includes/alert.tpl" type="success" msg=$LANG.changessavedsuccessfully textcenter=true}
+    {elseif $errormessage}
+        {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
+    {elseif $nocurrent}
+        {include file="$template/includes/alert.tpl" type="info" msg="Setting a security question and answer helps protect your account from unauthorized password resets and allows us to verify your identity when requesting account changes."}
+    {else $nocurrent}
+        {include file="$template/includes/alert.tpl" type="info" msg="The security question helps protect your account from unauthorized password resets and allows us to verify your identity when requesting account changes."}
+    {/if}
+
+    <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=security">
+
+        {if !$nocurrent}
+        <div class="form-group">
+            <label for="inputCurrentAns" class="control-label">{$currentquestion}</label>
+            <input type="password" name="currentsecurityqans" id="inputCurrentAns" class="form-control" />
+        </div>
+        {/if}
+
+        <div class="form-group">
+            <label for="inputSecurityQid" class="control-label">{$LANG.clientareasecurityquestion}</label>
+            <select name="securityqid" id="inputSecurityQid" class="form-control">
+                {foreach key=num item=question from=$securityquestions}
+                <option value={$question.id}>{$question.question}</option>
+                {/foreach}
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="inputSecurityAns1" class="control-label">{$LANG.clientareasecurityanswer}</label>
+                    <input type="password" name="securityqans" id="inputSecurityAns1" class="form-control" />
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="inputSecurityAns2" class="control-label">{$LANG.clientareasecurityconfanswer}</label>
+                    <input type="password" name="securityqans2" id="inputSecurityAns2" class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+        <p class="text-center">
+            <input class="btn btn-primary" type="submit" name="submit" value="{$LANG.clientareasavechanges}" />
+            <input class="btn btn-default" type="reset" value="{$LANG.cancel}" />
+        </p>
+
+    </form>
+
+{/if}

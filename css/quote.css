@@ -1,0 +1,131 @@
+/**
+ * WHMCS Quote Style Sheet
+ *
+ * This sheet contains the styles used on custom quotes.
+ *
+ * @project   WHMCS
+ * @cssdoc    version 1.0-pre
+ * @package   WHMCS
+ * @author    WHMCS Limited <development@whmcs.com>
+ * @copyright Copyright (c) WHMCS Limited 2005-2014
+ * @license   http://www.whmcs.com/license/
+ * @link      http://www.whmcs.com/
+*/
+
+body,td,input,select {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #000000;
+}
+
+form {
+    margin: 0px;
+}
+
+a {
+    color: #000000;
+}
+
+#wrapper {
+    width: 600px;
+}
+
+.invoice-top-tables {
+    width: 100%;
+    border-collapse: separate;
+}
+
+.invoice-content {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.unpaid {
+    font-size: 16px;
+    color: #cc0000;
+    font-weight: bold;
+}
+
+.paid {
+    font-size: 16px;
+    color: #779500;
+    font-weight: bold;
+}
+
+.refunded {
+    font-size: 16px;
+    color: #224488;
+    font-weight: bold;
+}
+
+.cancelled {
+    font-size: 16px;
+    color: #cccccc;
+    font-weight: bold;
+}
+
+.collections {
+    font-size: 16px;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+#invoiceitemstable {
+    width: 100%;
+    background-color: #cccccc;
+    border-collapse: separate;
+}
+
+td.invoice-items-heading {
+    background-color: #efefef;
+    color: #000000;
+    font-weight: bold;
+    text-align: center;
+}
+
+td.invoice-items-row {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.creditbox {
+    border: 1px dashed #cc0000;
+    font-weight: bold;
+    background-color: #FBEEEB;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    color: #cc0000;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/**
+ * -----------------
+ * @section Quotes
+ * -----------------
+ */
+
+.invoice-error {
+    color: #cc0000;
+}
+
+.inline-display {
+    display: inline;
+}
+
+.invoice-border {
+    border: 1px solid #cccccc;
+}
+
+.bottom-zero {
+    border-bottom: 0px;
+}
+
+.bottom-left-zero {
+    border-left: 0px;
+}
+
+#quoteAccept {
+    display: none;
+}
