@@ -1,5 +1,16 @@
 {include file="$template/includes/tablelist.tpl" tableName="EmailsList" noSortColumns="-1"}
-
+<script type="text/javascript">
+    jQuery(document).ready( function ()
+    {
+        var table = $('#tableEmailsList').DataTable();
+        {if $orderby == 'date'}
+            table.order(0, '{$sort}');
+        {elseif $orderby == 'subject'}
+            table.order(1, '{$sort}');
+        {/if}
+        table.draw();
+    });
+</script>
 <div class="table-container clearfix">
     <table id="tableEmailsList" class="table table-list">
         <thead>

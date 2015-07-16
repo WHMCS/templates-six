@@ -1,5 +1,20 @@
 {include file="$template/includes/tablelist.tpl" tableName="TicketsList" filterColumn="2"}
-
+<script type="text/javascript">
+    jQuery(document).ready( function ()
+    {
+        var table = $('#tableTicketsList').DataTable();
+        {if $orderby == 'did' || $orderby == 'dept'}
+            table.order(0, '{$sort}');
+        {elseif $orderby == 'subject' || $orderby == 'title'}
+            table.order(1, '{$sort}');
+        {elseif $orderby == 'status'}
+            table.order(2, '{$sort}');
+        {elseif $orderby == 'lastreply'}
+            table.order(3, '{$sort}');
+        {/if}
+        table.draw();
+    });
+</script>
 <div class="table-container clearfix">
     <table id="tableTicketsList" class="table table-list">
         <thead>

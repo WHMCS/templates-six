@@ -6,7 +6,11 @@
     </div>
 </div>
 
-{include file="$template/includes/alert.tpl" type="info" msg="{$LANG.passwordtips}"}
+{if file_exists("templates/$template/includes/alert.tpl")}
+    {include file="$template/includes/alert.tpl" type="info" msg="{$LANG.passwordtips}"}
+{elseif file_exists("templates/six/includes/alert.tpl")}
+    {include file="six/includes/alert.tpl" type="info" msg="{$LANG.passwordtips}"}
+{/if}
 
 {literal}
 <script type="text/javascript">

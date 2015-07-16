@@ -131,7 +131,7 @@
                     <div class="col-sm-8">
                     <select name="country" id="inputCountry" class="form-control">
                         {foreach from=$clientcountries item=thisCountryName key=thisCountryCode}
-                            <option value="{$thisCountryCode}" {if $thisCountryCode eq "US"}selected="selected"{/if}>{$thisCountryName}</option>
+                            <option value="{$thisCountryCode}" {if $thisCountryCode eq $country}selected="selected"{/if}>{$thisCountryName}</option>
                         {/foreach}
                     </select>
                     </div>

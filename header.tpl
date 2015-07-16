@@ -136,7 +136,7 @@
 {if $templatefile == 'homepage'}
     <section id="home-banner">
         <div class="container text-center">
-            {if $registerdomainenabled}
+            {if $registerdomainenabled || $transferdomainenabled}
                 <h2>{$LANG.homebegin}</h2>
                 <form method="post" action="domainchecker.php">
                     <div class="row">
@@ -144,7 +144,12 @@
                             <div class="input-group input-group-lg">
                                 <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" />
                                 <span class="input-group-btn">
-                                    <input type="submit" class="btn btn-warning" value="Search" />
+                                    {if $registerdomainenabled}
+                                        <input type="submit" class="btn btn-warning" value="Search" />
+                                    {/if}
+                                    {if $transferdomainenabled}
+                                        <input type="submit" name="transfer" class="btn btn-info" value="Transfer" />
+                                    {/if}
                                 </span>
                             </div>
                         </div>

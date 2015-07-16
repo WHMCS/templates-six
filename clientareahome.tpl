@@ -55,7 +55,7 @@
     </div>
 </div>
 
-<form role="form" method="post" action="{$systemNonSSLURL}knowledgebase.php?action=search">
+<form role="form" method="post" action="clientarea.php?action=kbsearch">
     <div class="row">
         <div class="col-md-12 home-kb-search">
             <input type="text" name="search" class="form-control input-lg" placeholder="{$LANG.clientHomeSearchKb}" />

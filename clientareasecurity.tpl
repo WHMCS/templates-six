@@ -10,7 +10,7 @@
 
         <h2>{$LANG.twofactorauth}</h2>
 
-        {include file="$template/includes/alert.tpl" type="warning" msg="We strongly encourage you to enable Two-Factor Authentication for added security."}
+        {include file="$template/includes/alert.tpl" type="warning" msg="{lang key="clientAreaSecurityTwoFactorAuthRecommendation"}"}
 
         <p>
             {$LANG.twofaactivationintro}
@@ -45,9 +45,9 @@
     {elseif $errormessage}
         {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
     {elseif $nocurrent}
-        {include file="$template/includes/alert.tpl" type="info" msg="Setting a security question and answer helps protect your account from unauthorized password resets and allows us to verify your identity when requesting account changes."}
-    {else $nocurrent}
-        {include file="$template/includes/alert.tpl" type="info" msg="The security question helps protect your account from unauthorized password resets and allows us to verify your identity when requesting account changes."}
+        {include file="$template/includes/alert.tpl" type="info" msg="{lang key="clientAreaSecurityNoSecurityQuestions"}"}
+    {else}
+        {include file="$template/includes/alert.tpl" type="info" msg="{lang key="clientAreaSecuritySecurityQuestionOtherError"}"}
     {/if}
 
     <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=security">

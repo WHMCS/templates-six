@@ -80,8 +80,10 @@
                 <div class="form-group">
                     <label for="country" class="control-label">{$LANG.clientareacountry}</label>
                     <select id="country" name="country" class="form-control">
-                        {foreach from=$clientcountries key=thisCountryCode item=thisCountryName}
-                            <option value="{$thisCountryCode}" {if $thisCountryCode eq "US"}selected="selected"{/if}>{$thisCountryName}</option>
+                        {foreach $clientcountries as $countryCode => $countryName}
+                            <option value="{$countryCode}"{if (!$clientcountry && $countryCode eq $defaultCountry) || ($countryCode eq $clientcountry)} selected="selected"{/if}>
+                                {$countryName}
+                            </option>
                         {/foreach}
                     </select>
                 </div>

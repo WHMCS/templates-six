@@ -1,6 +1,8 @@
 <h2>{$kbarticle.title}</h2>
 
-{if $kbarticle.voted}{include file="$template/includes/alert.tpl" type="success" msg="Thanks for rating the article for us" textcenter=true}{/if}
+{if $kbarticle.voted}
+    {include file="$template/includes/alert.tpl" type="success" msg="{lang key="knowledgebaseArticleRatingThanks"}" textcenter=true}
+{/if}
 
 <blockquote>
     {$kbarticle.text}
@@ -16,7 +18,7 @@
             {if $kbarticle.voted}
                 {$kbarticle.useful} {$LANG.knowledgebaseratingtext} ({$kbarticle.votes} {$LANG.knowledgebasevotes})
             {else}
-                <form action="knowledgebase.php?action=displayarticle&amp;id={$kbarticle.id}" method="post">
+                <form action="{if $seofriendlyurls}{$WEB_ROOT}/knowledgebase/{$kbarticle.id}/{$kbarticle.urlfriendlytitle}.html{else}knowledgebase.php?action=displayarticle&amp;id={$kbarticle.id}{/if}" method="post">
                     <input type="hidden" name="useful" value="vote">
                     <button type="submit" name="vote" value="yes" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i> {$LANG.knowledgebaseyes}</button>
                     <button type="submit" name="vote" value="no" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> {$LANG.knowledgebaseno}</button>

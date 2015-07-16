@@ -311,7 +311,7 @@
 
         <h3>{$LANG.downloadstitle}</h3>
 
-        {include file="$template/includes/alert.tpl" type="info" msg="The following download items are available for your product/service" textcenter=true}
+        {include file="$template/includes/alert.tpl" type="info" msg="{lang key="clientAreaProductDownloadsAvailable"}" textcenter=true}
 
         <div class="row">
             {foreach from=$downloads item=download}
@@ -333,7 +333,7 @@
         <h3>{$LANG.clientareahostingaddons}</h3>
 
         {if $addonsavailable}
-            {include file="$template/includes/alert.tpl" type="info" msg="Addons are available for your product/service. <a href='cart.php?gid=addons'>Click here to view &amp; order &raquo;</a>" textcenter=true}
+            {include file="$template/includes/alert.tpl" type="info" msg="{lang key="clientAreaProductAddonsAvailable"}" textcenter=true}
         {/if}
 
         <div class="row">

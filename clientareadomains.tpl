@@ -1,7 +1,27 @@
+{if $warnings}
+    {include file="$template/includes/alert.tpl" type="warning" msg=$warnings textcenter=true}
+{/if}
 <div class="tab-content">
     <div class="tab-pane fade in active" id="tabOverview">
         {include file="$template/includes/tablelist.tpl" tableName="DomainsList" noSortColumns="0, 6" startOrderCol="1" filterColumn="5"}
-
+        <script type="text/javascript">
+            jQuery(document).ready( function ()
+            {
+                var table = $('#tableDomainsList').DataTable();
+                {if $orderby == 'domain'}
+                    table.order(1, '{$sort}');
+                {elseif $orderby == 'regdate' || $orderby == 'registrationdate'}
+                    table.order(2, '{$sort}');
+                {elseif $orderby == 'nextduedate'}
+                    table.order(3, '{$sort}');
+                {elseif $orderby == 'price' || $orderby == 'recurringamount'}
+                    table.order(4, '{$sort}');
+                {elseif $orderby == 'status'}
+                    table.order(5, '{$sort}');
+                {/if}
+                table.draw();
+            });
+        </script>
         <form id="domainForm" method="post" action="clientarea.php?action=bulkdomain">
             <input id="bulkaction" name="update" type="hidden" />
 

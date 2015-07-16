@@ -1,5 +1,20 @@
-{include file="$template/includes/tablelist.tpl" tableName="QuotesList" filterColumn="4"}
-
+{include file="$template/includes/tablelist.tpl" tableName="QuotesList"  noSortColumns="5" filterColumn="4"}
+<script type="text/javascript">
+    jQuery(document).ready( function ()
+    {
+        var table = $('#tableQuotesList').DataTable();
+        {if $orderby == 'id'}
+            table.order(0, '{$sort}');
+        {elseif $orderby == 'date'}
+            table.order(2, '{$sort}');
+        {elseif $orderby == 'validuntil'}
+            table.order(3, '{$sort}');
+        {elseif $orderby == 'stage'}
+            table.order(4, '{$sort}');
+        {/if}
+        table.draw();
+    });
+</script>
 <div class="table-container clearfix">
     <table id="tableQuotesList" class="table table-list">
         <thead>
