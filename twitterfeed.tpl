@@ -10,5 +10,5 @@
 {/foreach}
 
 <p>
-    {$LANG.twitterfollowus} @ <a href="http://twitter.com/{$twitterusername}" target="_blank">http://twitter.com/{$twitterusername}</a> to be kept up to date with all our latest news &amp; offers
+    {$LANG.twitterfollowus} @ <a href="http://twitter.com/{$twitterusername}" target="_blank">http://twitter.com/{$twitterusername}</a> {$LANG.twitterfollowuswhy}
 </p>

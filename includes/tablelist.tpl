@@ -6,9 +6,10 @@
 
 {if isset($filterColumn) && $filterColumn}
 <script type="text/javascript">
-    jQuery(".view-filter-btns a").click(function() {ldelim}
+jQuery(".view-filter-btns a").click(function(e) {ldelim}
     var filterValue = jQuery(this).find("span").html().trim();
     var dataTable = jQuery('#table{$tableName}').DataTable();
+    var filterValueRegex;
     if (jQuery(this).hasClass('active')) {ldelim}
         {if !isset($dontControlActiveClass) || !$dontControlActiveClass}
             jQuery(this).removeClass('active');
@@ -22,8 +23,15 @@
             jQuery(this).addClass('active');
             jQuery(this).find(jQuery("i.fa.fa-circle-o")).switchClass('fa-circle-o', 'fa-dot-circle-o', 0);
         {/if}
-        dataTable.column({$filterColumn}).search(filterValue, false, false, false).draw();
+        filterValueRegex = "\\s*" + jQuery.fn.dataTable.util.escapeRegex(filterValue) + "\\s*";
+        dataTable.column({$filterColumn})
+            .search(filterValueRegex, true, false, false)
+            .draw();
     {rdelim}
+
+    // Prevent jumping to the top of the page 
+    // when no matching tag is found.
+    e.preventDefault();
 {rdelim});
 </script>
 {/if}

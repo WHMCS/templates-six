@@ -71,7 +71,7 @@
             <ul>
                 {if $managementoptions.nameservers}
                     <li>
-                        <a class="tabControlLink" href="#tabNameservers">
+                        <a class="tabControlLink" data-toggle="tab" href="#tabNameservers">
                             {$LANG.changeDomainNS}
                         </a>
                     </li>
@@ -85,7 +85,7 @@
                 {/if}
                 {if $managementoptions.locking}
                     <li>
-                        <a class="tabControlLink" href="#tabReglock">
+                        <a class="tabControlLink" data-toggle="tab" href="#tabReglock">
                             {$LANG.changeRegLock}
                         </a>
                     </li>

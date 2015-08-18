@@ -93,7 +93,7 @@
 
         </div>
 
-        <a href="index.php"><img src="{$WEB_ROOT}/templates/{$template}/img/logo.png" alt="{$companyname}" /></a>
+        <a href="{$WEB_ROOT}/index.php"><img src="{$WEB_ROOT}/templates/{$template}/img/logo.png" alt="{$companyname}" /></a>
 
     </div>
 </section>
@@ -145,10 +145,10 @@
                                 <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" />
                                 <span class="input-group-btn">
                                     {if $registerdomainenabled}
-                                        <input type="submit" class="btn btn-warning" value="Search" />
+                                        <input type="submit" class="btn btn-warning" value="{$LANG.search}" />
                                     {/if}
                                     {if $transferdomainenabled}
-                                        <input type="submit" name="transfer" class="btn btn-info" value="Transfer" />
+                                        <input type="submit" name="transfer" class="btn btn-info" value="{$LANG.domainstransfer}" />
                                     {/if}
                                 </span>
                             </div>

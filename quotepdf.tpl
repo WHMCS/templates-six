@@ -6,22 +6,22 @@ elseif (file_exists(ROOTDIR.'/assets/img/logo.jpg')) $pdf->Image(ROOTDIR.'/asset
 else $pdf->Image(ROOTDIR.'/assets/img/placeholder.png', 20, 25, 75);
 
 # Company Details
-$pdf->SetFont('freesans','',13);
+$pdf->SetFont($pdfFont,'',13);
 $pdf->Cell(0,6,trim($companyaddress[0]),0,1,'R');
-$pdf->SetFont('freesans','',9);
+$pdf->SetFont($pdfFont,'',9);
 for ( $i = 1; $i <= ((count($companyaddress)>6) ? count($companyaddress) : 6); $i += 1) {
     $pdf->Cell(0,4,trim($companyaddress[$i]),0,1,'R');
 }
 $pdf->Ln(5);
 
-$pdf->SetFont('freesans','B',10);
+$pdf->SetFont($pdfFont,'B',10);
 $pdf->SetX($pdf->GetX()+10);
 $pdf->Cell(20,6,$_LANG['quotenumber'],1,0,'C');
 $pdf->Cell(70,6,$_LANG['quotesubject'],1,0,'C');
 $pdf->Cell(35,6,$_LANG['quotedatecreated'],1,0,'C');
 $pdf->Cell(35,6,$_LANG['quotevaliduntil'],1,1,'C');
 
-$pdf->SetFont('freesans','',9);
+$pdf->SetFont($pdfFont,'',9);
 $pdf->SetX($pdf->GetX()+10);
 $rowcount = $pdf->getNumLines($subject, 60);
 $height = $rowcount * 5;
@@ -32,9 +32,9 @@ $pdf->MultiCell(35,$height,$validuntil,1,'C',0,1);
 
 $pdf->Ln(10);
 
-$pdf->SetFont('freesans','B',10);
+$pdf->SetFont($pdfFont,'B',10);
 $pdf->Cell(0,4,$_LANG['quoterecipient'],0,1);
-$pdf->SetFont('freesans','',9);
+$pdf->SetFont($pdfFont,'',9);
 if ($clientsdetails["companyname"]) {
     $pdf->Cell(0,4,$clientsdetails["companyname"],0,1,'L');
     $pdf->Cell(0,4,$_LANG["invoicesattn"].": ".$clientsdetails["firstname"]." ".$clientsdetails["lastname"],0,1,'L');
@@ -51,7 +51,7 @@ $pdf->Cell(0,4,$clientsdetails["country"],0,1,'L');
 $pdf->Ln(10);
 
 if ($proposal) {
-    $pdf->SetFont('freesans','',9);
+    $pdf->SetFont($pdfFont,'',9);
     $pdf->MultiCell(170,5,$proposal);
     $pdf->Ln(10);
 }
@@ -59,7 +59,7 @@ if ($proposal) {
 $pdf->SetDrawColor(200);
 $pdf->SetFillColor(239);
 
-$pdf->SetFont('freesans','',8);
+$pdf->SetFont($pdfFont,'',8);
 
 $tblhtml = '<table width="100%" bgcolor="#ccc" cellspacing="1" cellpadding="2" border="0">
     <tr height="30" bgcolor="#efefef" style="font-weight:bold;text-align:center;">
@@ -105,6 +105,6 @@ $pdf->writeHTML($tblhtml, true, false, false, false, '');
 
 if ($notes) {
     $pdf->Ln(6);
-    $pdf->SetFont('freesans','',8);
+    $pdf->SetFont($pdfFont,'',8);
     $pdf->MultiCell(170,5,$_LANG['invoicesnotes'].": $notes");
 }

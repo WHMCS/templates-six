@@ -229,21 +229,3 @@
     </div>
 
 </form>
-
-<script type="text/javascript">
-{literal}
-jQuery(document).ready(function(){
-    jQuery("#inputSubaccountActivate").click(function () {
-        if (jQuery("#inputSubaccountActivate:checked").val() != null) {
-            jQuery("#subacct-container").removeClass('hidden');
-        } else {
-            jQuery("#subacct-container").addClass('hidden');
-        }
-    });
-});
-{/literal}
-function deleteContact() {ldelim}
-if (confirm("{$LANG.clientareadeletecontactareyousure}")) {ldelim}
-window.location='clientarea.php?action=contacts&delete=true&id={$contactid}';
-{rdelim}{rdelim}
-</script>

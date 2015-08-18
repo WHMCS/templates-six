@@ -109,7 +109,7 @@ jQuery(document).ready(function() {
     });
 });
 
-function addToCart(clickedBtn, performAvailabilityCheck) {
+function addToCart(clickedBtn, performAvailabilityCheck, orderType) {
 
     var selectedDomain = jQuery(clickedBtn).closest('tr')
         .find('td:first strong')
@@ -120,7 +120,7 @@ function addToCart(clickedBtn, performAvailabilityCheck) {
 
     jQuery.post(
         "domainchecker.php",
-        "addtocart=1&check=" + performAvailabilityCheck + "&token=" + csrfToken + "&domain=" + selectedDomain,
+        "addtocart=1&check=" + performAvailabilityCheck + "&token=" + csrfToken + "&domain=" + selectedDomain + "&orderType=" + orderType,
         function(data) {
             if (data == 1) {
                 jQuery("#cartItemCount").html(((jQuery("#cartItemCount").html() * 1) + 1));

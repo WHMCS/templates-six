@@ -1,6 +1,6 @@
 {if $modulecustombuttonresult}
     {if $modulecustombuttonresult == "success"}
-        {include file="$template/includes/alert.tpl" type="success" msg=$moduleactionsuccess textcenter=true}
+        {include file="$template/includes/alert.tpl" type="success" msg=$LANG.moduleactionsuccess textcenter=true}
     {else}
         {include file="$template/includes/alert.tpl" type="error" msg=$LANG.moduleactionfailed|cat:' ':$modulecustombuttonresult textcenter=true}
     {/if}
@@ -363,7 +363,7 @@
 
         {if $modulechangepwresult}
             {if $modulechangepwresult == "success"}
-                {include file="$template/includes/alert.tpl" type="success" msg=$serverchangepasswordsuccessful textcenter=true}
+                {include file="$template/includes/alert.tpl" type="success" msg=$modulechangepasswordmessage textcenter=true}
             {elseif $modulechangepwresult == "error"}
                 {include file="$template/includes/alert.tpl" type="error" msg=$modulechangepasswordmessage|strip_tags textcenter=true}
             {/if}

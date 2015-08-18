@@ -35,7 +35,7 @@
                                 {$searchResults.shortestPeriod.register}
                             </td>
                             <td class="text-center">
-                                <button type="button" onclick="addToCart(this, false)" class="btn btn-primary btn-sm">
+                                <button type="button" onclick="addToCart(this, false, 'register')" class="btn btn-primary btn-sm">
                                     <span class="glyphicon glyphicon-shopping-cart"></span>
                                     {$LANG.addtocart}
                                 </button>
@@ -65,13 +65,20 @@
                                 {/if}
                             </td>
                             <td class="text-center">
-                                {if ($searchingFor == 'register' && $result.isAvailable) || ($searchingFor == 'transfer' && $result.isRegistered)}
+                                {if ($searchingFor == 'register' && $result.isAvailable)}
                                     {$result.shortestPeriod.register}
+                                {elseif ($searchingFor == 'transfer' && $result.isRegistered)}
+                                    {$result.shortestPeriod.transfer}
                                 {/if}
                             </td>
                             <td class="text-center">
-                                {if ($searchingFor == 'register' && $result.isAvailable) || ($searchingFor == 'transfer' && $result.isRegistered)}
-                                    <button type="button" onclick="addToCart(this, false)" class="btn btn-primary btn-sm">
+                                {if ($searchingFor == 'register' && $result.isAvailable)}
+                                    <button type="button" onclick="addToCart(this, false, 'register')" class="btn btn-primary btn-sm">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        {$LANG.addtocart}
+                                    </button>
+                                {elseif ($searchingFor == 'transfer' && $result.isRegistered)}
+                                    <button type="button" onclick="addToCart(this, false, 'transfer')" class="btn btn-primary btn-sm">
                                         <span class="glyphicon glyphicon-shopping-cart"></span>
                                         {$LANG.addtocart}
                                     </button>
@@ -105,7 +112,7 @@
                                     {$result.shortestPeriod.register}
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-default btn-sm" onclick="addToCart(this, true)">
+                                    <button type="button" class="btn btn-default btn-sm" onclick="addToCart(this, true, 'register')">
                                         <span class="glyphicon glyphicon-shopping-cart"></span>
                                         {$LANG.addtocart}
                                     </button>

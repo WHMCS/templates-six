@@ -11,7 +11,7 @@ $pdf->Image(ROOTDIR . '/assets/img/' . $logoFilename, 15, 25, 75);
 
 # Invoice Status
 $pdf->SetXY(0, 0);
-$pdf->SetFont('freesans', 'B', 28);
+$pdf->SetFont($pdfFont, 'B', 28);
 $pdf->SetTextColor(255);
 $pdf->SetLineWidth(0.75);
 $pdf->StartTransform();
@@ -38,18 +38,18 @@ $pdf->SetTextColor(0);
 
 # Company Details
 $pdf->SetXY(15, 42);
-$pdf->SetFont('freesans', '', 13);
+$pdf->SetFont($pdfFont, '', 13);
 foreach ($companyaddress as $addressLine) {
     $pdf->Cell(180, 4, trim($addressLine), 0, 1, 'R');
-    $pdf->SetFont('freesans', '', 9);
+    $pdf->SetFont($pdfFont, '', 9);
 }
 $pdf->Ln(5);
 
 # Header Bar
-$pdf->SetFont('freesans', 'B', 15);
+$pdf->SetFont($pdfFont, 'B', 15);
 $pdf->SetFillColor(239);
 $pdf->Cell(0, 8, $pagetitle, 0, 1, 'L', '1');
-$pdf->SetFont('freesans', '', 10);
+$pdf->SetFont($pdfFont, '', 10);
 $pdf->Cell(0, 6, Lang::trans('invoicesdatecreated') . ': ' . $datecreated, 0, 1, 'L', '1');
 $pdf->Cell(0, 6, Lang::trans('invoicesdatedue') . ': ' . $duedate, 0, 1, 'L', '1');
 $pdf->Ln(10);
@@ -58,9 +58,9 @@ $startpage = $pdf->GetPage();
 
 # Clients Details
 $addressypos = $pdf->GetY();
-$pdf->SetFont('freesans', 'B', 10);
+$pdf->SetFont($pdfFont, 'B', 10);
 $pdf->Cell(0, 4, Lang::trans('invoicesinvoicedto'), 0, 1);
-$pdf->SetFont('freesans', '', 9);
+$pdf->SetFont($pdfFont, '', 9);
 if ($clientsdetails["companyname"]) {
     $pdf->Cell(0, 4, $clientsdetails["companyname"], 0, 1, 'L');
     $pdf->Cell(0, 4, Lang::trans('invoicesattn') . ': ' . $clientsdetails["firstname"] . ' ' . $clientsdetails["lastname"], 0, 1, 'L');
@@ -129,12 +129,12 @@ $pdf->writeHTML($tblhtml, true, false, false, false, '');
 $pdf->Ln(5);
 
 # Transactions
-$pdf->SetFont('freesans', 'B', 12);
+$pdf->SetFont($pdfFont, 'B', 12);
 $pdf->Cell(0, 4, Lang::trans('invoicestransactions'), 0, 1);
 
 $pdf->Ln(5);
 
-$pdf->SetFont('freesans', '', 9);
+$pdf->SetFont($pdfFont, '', 9);
 
 $tblhtml = '<table width="100%" bgcolor="#ccc" cellspacing="1" cellpadding="2" border="0">
     <tr height="30" bgcolor="#efefef" style="font-weight:bold;text-align:center;">
@@ -172,11 +172,11 @@ $pdf->writeHTML($tblhtml, true, false, false, false, '');
 # Notes
 if ($notes) {
     $pdf->Ln(5);
-    $pdf->SetFont('freesans', '', 8);
+    $pdf->SetFont($pdfFont, '', 8);
     $pdf->MultiCell(170, 5, Lang::trans('invoicesnotes') . ': ' . $notes);
 }
 
 # Generation Date
-$pdf->SetFont('freesans', '', 8);
+$pdf->SetFont($pdfFont, '', 8);
 $pdf->Ln(5);
 $pdf->Cell(180, 4, Lang::trans('invoicepdfgenerated') . ' ' . getTodaysDate(1), '', '', 'C');
