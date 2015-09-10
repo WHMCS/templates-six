@@ -49,7 +49,7 @@
                 <div class="pull-right nav">
                     <a href="#" class="quick-nav" data-toggle="popover" id="loginOrRegister" data-placement="bottom"><i class="fa fa-user"></i> {$LANG.login}</a>
                     <div id="loginOrRegisterContent" class="hidden">
-                        <form action="dologin.php" method="post" role="form">
+                        <form action="{$systemsslurl}dologin.php" method="post" role="form">
                             <div class="form-group">
                                 <input type="email" name="username" class="form-control" placeholder="{$LANG.clientareaemail}" required />
                             </div>
@@ -228,6 +228,6 @@
         {/if}
         <!-- Container for main page display content -->
         <div class="{if $primarySidebar->hasChildren() || $secondarySidebar->hasChildren()}col-md-9 pull-md-right{else}col-xs-12{/if} main-content">
-            {if !$primarySidebar->hasChildren() && !$showingLoginPage && $templatefile != 'homepage'}
+            {if !$primarySidebar->hasChildren() && !$showingLoginPage && !$inShoppingCart && $templatefile != 'homepage'}
                 {include file="$template/includes/pageheader.tpl" title=$displayTitle desc=$tagline showbreadcrumb=true}
             {/if}

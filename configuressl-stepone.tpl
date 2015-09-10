@@ -65,21 +65,21 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputLastName">{$LANG.clientarealastname}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="lastname" id="inputLastName" value="{$lastname}" />
+                        <input type="text" class="form-control" name="lastname" id="inputLastName" value="{$lastname}" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputOrgName">{$LANG.organizationname}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="orgname" id="inputOrgName" value="{$orgname}" />
+                        <input type="text" class="form-control" name="orgname" id="inputOrgName" value="{$orgname}" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputJobTitle">{$LANG.jobtitle}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="jobtitle" id="inputJobTitle" value="{$jobtitle}" />
+                        <input type="text" class="form-control" name="jobtitle" id="inputJobTitle" value="{$jobtitle}" />
                         <p class="help-block">{$LANG.jobtitlereqforcompany}</p>
                     </div>
                 </div>
@@ -87,42 +87,42 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputEmail">{$LANG.clientareaemail}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="email" id="inputEmail" value="{$email}" />
+                        <input type="text" class="form-control" name="email" id="inputEmail" value="{$email}" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputAddress1">{$LANG.clientareaaddress1}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="address1" id="inputAddress1" value="{$address1}" />
+                        <input type="text" class="form-control" name="address1" id="inputAddress1" value="{$address1}" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputAddress2">{$LANG.clientareaaddress2}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="address2" id="inputAddress2" value="{$address2}" />
+                        <input type="text" class="form-control" name="address2" id="inputAddress2" value="{$address2}" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputCity">{$LANG.clientareacity}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="city" id="inputCity" value="{$city}" />
+                        <input type="text" class="form-control" name="city" id="inputCity" value="{$city}" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputState">{$LANG.clientareastate}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="state" id="inputState" value="{$state}" />
+                        <input type="text" class="form-control" name="state" id="inputState" value="{$state}" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputPostcode">{$LANG.clientareapostcode}</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"name="postcode" id="inputPostcode" value="{$postcode}" />
+                        <input type="text" class="form-control" name="postcode" id="inputPostcode" value="{$postcode}" />
                     </div>
                 </div>
 

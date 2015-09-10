@@ -631,7 +631,7 @@ div.tweet span {
 
 /* ===== Domain Checker ===== */
 
-div.domainresults div {
+div.domainresults div:not(.btn-group) {
     margin: 0;
     padding: 10px 25px;
     background-color: #ddd;
@@ -640,7 +640,7 @@ div.domainresults div {
     border-radius: 6px 6px 0 0;
 }
 
-div.domainresults div span {
+div.domainresults div:not(.btn-group) span {
     padding-left: 20px;
     font-size: 14px;
     color: #888;

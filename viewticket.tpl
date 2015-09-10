@@ -76,6 +76,29 @@
 
         </div>
     </div>
+    <div class="panel panel-info visible-print-block">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {$LANG.ticketinfo}
+            </h3>
+        </div>
+        <div class="panel-body container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-xs-6">
+                    <b>{$LANG.supportticketsticketid}</b><br />{$tid}
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <b>{$LANG.supportticketsticketsubject}</b><br />{$subject}
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <b>{$LANG.supportticketspriority}</b><br />{$urgency}
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <b>{$LANG.supportticketsdepartment}</b><br />{$department}
+                </div>
+            </div>
+        </div>
+    </div>
 
     {foreach from=$descreplies key=num item=reply}
         <div class="ticket-reply{if $reply.admin} staff{/if}">
