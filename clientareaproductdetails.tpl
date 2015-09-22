@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-6">
 
-                        <div class="product-status product-status-{$status|strtolower}">
+                        <div class="product-status product-status-{$rawstatus|strtolower}">
                             <div class="product-icon text-center">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>

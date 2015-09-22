@@ -1,6 +1,6 @@
 
         </div><!-- /.main-content -->
-        {if $secondarySidebar->hasChildren()}
+        {if !$inShoppingCart && $secondarySidebar->hasChildren()}
             <div class="col-md-3 pull-md-left sidebar">
                 {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
             </div>
