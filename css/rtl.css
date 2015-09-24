@@ -1,0 +1,71 @@
+/* *****************************************************
+
+    ** RTL Stylesheet **
+
+    RTL Hebrew and Arabic styling you want to apply should be
+    defined here.
+
+***************************************************** */
+
+body #top-nav { float: left; }
+body section#header a {float: right; }
+body #main-menu .navbar-nav {float: right; }
+body #main-menu .navbar-nav.navbar-right {float: left; }
+body .dropdown-menu { text-align: right; direction: rtl; left: auto; right: 0px; }
+body h1, body h2, body h3, body h4 { direction:rtl; }
+#default-captcha-domainchecker p { direction: rtl; }
+body .home-shortcuts li { float: right; direction: rtl; }
+body .sidebar .list-group { direction: rtl; text-align: right; }
+body div.header-lined .breadcrumb { direction: rtl; }
+body .form-group { text-align: right; }
+body .checkbox, .radio { text-align: right; }
+body p { direction: rtl; }
+body .alert-danger { direction: rtl; text-align: right; }
+body .pull-right { float: left !important; }
+body .home-kb-search .form-control { direction:rtl; }
+body .btn-block { direction: rtl; }
+body .panel-heading+.list-group .list-group-item .fa {float: left; }
+body .dataTables_wrapper table.table-list { direction: rtl; }
+body .dataTables_wrapper .dataTables_filter { float: left; }
+body .dataTables_wrapper .dataTables_info { text-align: right !important; }
+body .table { direction: rtl; }
+body th { text-align: right; }
+body .nav-tabs>li { float: right; }
+body .form-control { text-align: right; direction: rtl; }
+body .input-group-btn>.btn { direction: rtl; }
+body #order-modern form table { direction: rtl; }
+body a.list-group-item { text-align: right; }
+body .ticket-reply .user i { float: right;}
+body .ticket-reply .date { float: left; }
+body, body input, body button, body select, body textarea { text-align: right; }
+body .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1 { float: none; }
+body .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1 input { text-align: left; direction:ltr;  }
+body #order-modern .domain-checker-fieldcontainer input, body #order-modern .domain-checker-fieldcontainer select { direction:ltr; text-align: left; }
+body #top-nav a.quick-nav { direction: rtl; }
+
+#order-modern #btnCompleteOrder .fa {
+-moz-transform: scale(-1, 1);
+-webkit-transform: scale(-1, 1);
+-o-transform: scale(-1, 1);
+-ms-transform: scale(-1, 1);
+transform: scale(-1, 1);		
+}
+
+@media (min-width: 992px) {
+body .col-md-3 { float: left; }
+body .col-md-4 { float: right; direction: rtl; }
+body .pull-md-left { float: right; }
+body .pull-md-right { float: left; }
+}
+
+@media (min-width: 768px) {
+body .navbar-right { float: left !important; }
+body .navbar-nav>li { float: right; }
+body .col-sm-3 { float: right; }
+body .col-sm-4 { float: right; }
+body .col-sm-5 { float: right; }
+body .col-sm-10 { float: right; }
+body .panel.panel-default .col-sm-3 { float: left; }
+body .col-sm-offset-3 { margin-left: 0%; }
+body .form-horizontal .control-label { direction: rtl; }
+}
