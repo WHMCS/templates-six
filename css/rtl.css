@@ -44,6 +44,8 @@ body #order-modern .domain-checker-fieldcontainer input, body #order-modern .dom
 body #top-nav a.quick-nav { direction: rtl; }
 body .pull-md-right .row .tile .icon { right: auto; left:20px; }
 body .tiles .tile { border-right: 0; border-left: 1px solid #ccc; }
+body .domain-checker-container .input-group-box #inputDomain {text-align: left; }
+body #recaptcha_widget_div #recaptcha_area { margin:0px auto; }
 
 #order-modern #btnCompleteOrder .fa {
 -moz-transform: scale(-1, 1);
