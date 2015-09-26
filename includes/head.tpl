@@ -9,6 +9,11 @@
 <!-- jQuery -->
 <script src="{$BASE_PATH_JS}/jquery.min.js"></script>
 
+<!-- RTL Support -->
+{if $language eq "hebrew" || $language eq "Hebrew" || $language eq "arabic" || $language eq "Arabic"}
+<link rel="stylesheet" href="{$WEB_ROOT}/templates/{$template}/css/rtl.css">
+{/if}
+
 <!-- Custom Styling -->
 <link rel="stylesheet" href="{$WEB_ROOT}/templates/{$template}/css/custom.css">
 
