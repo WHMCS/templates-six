@@ -4,6 +4,32 @@
     <meta charset="{$charset}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="apple-touch-icon" sizes="57x57" href="https:/www.spryservers.net/apple-touch-icon-57x57.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="60x60" href="https:/www.spryservers.net/apple-touch-icon-60x60.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="72x72" href="https:/www.spryservers.net/apple-touch-icon-72x72.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="76x76" href="https:/www.spryservers.net/apple-touch-icon-76x76.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="114x114" href="https:/www.spryservers.net/apple-touch-icon-114x114.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="120x120" href="https:/www.spryservers.net/apple-touch-icon-120x120.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="144x144" href="https:/www.spryservers.net/apple-touch-icon-144x144.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="152x152" href="https:/www.spryservers.net/apple-touch-icon-152x152.png?v=wAAAMNMebW">
+<link rel="apple-touch-icon" sizes="180x180" href="https:/www.spryservers.net/apple-touch-icon-180x180.png?v=wAAAMNMebW">
+<link rel="icon" type="image/png" href="https:/www.spryservers.net/favicon-32x32.png?v=wAAAMNMebW" sizes="32x32">
+<link rel="icon" type="image/png" href="https:/www.spryservers.net/favicon-194x194.png?v=wAAAMNMebW" sizes="194x194">
+<link rel="icon" type="image/png" href="https:/www.spryservers.net/favicon-96x96.png?v=wAAAMNMebW" sizes="96x96">
+<link rel="icon" type="image/png" href="https:/www.spryservers.net/android-chrome-192x192.png?v=wAAAMNMebW" sizes="192x192">
+<link rel="icon" type="image/png" href="https:/www.spryservers.net/favicon-16x16.png?v=wAAAMNMebW" sizes="16x16">
+<link rel="manifest" href="https:/www.spryservers.net/manifest.json?v=wAAAMNMebW">
+<link rel="shortcut icon" href="https:/www.spryservers.net/favicon.ico?v=wAAAMNMebW">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="https:/www.spryservers.net/mstile-144x144.png?v=wAAAMNMebW">
+<meta name="theme-color" content="#a6ef1a">
+<meta name="wot-verification" content="d74d03d7042c27166874"/>
+<script type="text/javascript">
+    //<![CDATA[
+    var cotJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+    document.write(unescape("%3Cscript src='" + cotJsHost + "trustlogo/javascript/cot.js' type='text/javascript'%3E%3C/script%3E"));
+    //]]>
+</script>
     <title>{if $kbarticle.title}{$kbarticle.title} - {/if}{$pagetitle} - {$companyname}</title>
 
     {include file="$template/includes/head.tpl"}
@@ -14,7 +40,10 @@
 <body>
 
 {$headeroutput}
-
+<a href="http://www.instantssl.com" id="comodoTL">SSL</a>
+<script language="JavaScript" type="text/javascript">
+COT("https://www.spryservers.net/img/cot_evssl.gif", "SC3", "none");
+</script>
 <section id="header">
     <div class="container">
 
