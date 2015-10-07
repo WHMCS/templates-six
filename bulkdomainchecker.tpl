@@ -168,7 +168,7 @@ var langSearch = '{$LANG.search}';
 var langAdding = '{$LANG.domaincheckeradding}';
 var langAdded = '{$LANG.domaincheckeradded}';
 var langUnavailable = '{$LANG.domainunavailable}';
-var langBulkPlaceholder = '{$LANG.domaincheckerbulkplaceholder|replace:"\n":'\n'}';
+var langBulkPlaceholder = '{$LANG.domaincheckerbulkplaceholder|escape:'quotes'|replace:"\n":'\n'}';
 </script>
 <script src="templates/{$template}/js/domainchecker.js"></script>
 

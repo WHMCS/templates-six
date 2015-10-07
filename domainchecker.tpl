@@ -13,9 +13,11 @@
         <form id="frmDomainChecker">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
-                    <div class="domain-bulk-options-box hidden-xs">
-                        <a href="domainchecker.php?search=bulk" id="btnBulkOptions" class="btn btn-warning btn-sm" />{$LANG.bulkoptions}</a>
-                    </div>
+                    {if $bulkdomainsearchenabled}
+                        <div class="domain-bulk-options-box hidden-xs">
+                            <a href="domainchecker.php?search=bulk" id="btnBulkOptions" class="btn btn-warning btn-sm" />{$LANG.bulkoptions}</a>
+                        </div>
+                    {/if}
                     <div class="input-group input-group-lg input-group-box">
                         <input type="text" class="form-control" placeholder="{$LANG.findyourdomain}" value="{$domain}" id="inputDomain" />
                         <span class="input-group-btn">
@@ -156,7 +158,7 @@ var langSearch = '{$LANG.search}';
 var langAdding = '{$LANG.domaincheckeradding}';
 var langAdded = '{$LANG.domaincheckeradded}';
 var langUnavailable = '{$LANG.domainunavailable}';
-var langBulkPlaceholder = '{$LANG.domaincheckerbulkplaceholder|replace:"\n":'\n'}';
+var langBulkPlaceholder = '{$LANG.domaincheckerbulkplaceholder|escape:'quotes'|replace:"\n":'\n'}';
 </script>
 <script src="templates/{$template}/js/domainchecker.js"></script>
 
