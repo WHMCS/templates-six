@@ -7,7 +7,7 @@
 {/if}
 
 {if $pendingcancellation}
-    {include file="$template/includes/alert.tpl" type="error" msg=$LANG.cancellationrequestedexplanation textcenter=true}
+    {include file="$template/includes/alert.tpl" type="error" msg=$LANG.cancellationrequestedexplanation textcenter=true idname="alertpendingcancellation"}
 {/if}
 
 <div class="tab-content margin-bottom">
