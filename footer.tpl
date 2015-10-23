@@ -20,6 +20,7 @@
 <script type="text/javascript">
     var csrfToken = '{$token}';
 </script>
+
 <script src="{$WEB_ROOT}/templates/{$template}/js/whmcs.js"></script>
 
 {$footeroutput}
