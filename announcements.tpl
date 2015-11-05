@@ -1,4 +1,4 @@
-{foreach from=$announcements item=announcement}
+{foreach $announcements as $announcement}
 
     <div class="announcement-single">
 
