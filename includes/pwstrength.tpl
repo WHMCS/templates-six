@@ -12,7 +12,6 @@
     {include file="six/includes/alert.tpl" type="info" msg="{$LANG.passwordtips}"}
 {/if}
 
-{literal}
 <script type="text/javascript">
 jQuery("#inputNewPassword1").keyup(function() {
     var $newPassword1 = jQuery("#newPassword1");
@@ -64,14 +63,14 @@ function validatePassword2() {
         $newPassword2.removeClass('has-success')
             .addClass('has-error');
         jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-ok').addClass('glyphicon-remove');
-        jQuery("#inputNewPassword2Msg").html('<p class="help-block">The passwords entered do not match</p>');
-        {/literal}{if !isset($noDisable)}jQuery('input[type="submit"]').attr('disabled', 'disabled');{/if}{literal}
+        jQuery("#inputNewPassword2Msg").html('<p class="help-block">{$LANG.pwdoesnotmatch|escape}</p>');
+        {if !isset($noDisable)}jQuery('input[type="submit"]').attr('disabled', 'disabled');{/if}
     } else {
         if (password2) {
             $newPassword2.removeClass('has-error')
                 .addClass('has-success');
             jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-remove').addClass('glyphicon-ok');
-            {/literal}{if !isset($noDisable)}jQuery('.main-content input[type="submit"]').removeAttr('disabled');{/if}{literal}
+            {if !isset($noDisable)}jQuery('.main-content input[type="submit"]').removeAttr('disabled');{/if}
         } else {
             $newPassword2.removeClass('has-error has-success');
             jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-remove glyphicon-ok');
@@ -81,11 +80,10 @@ function validatePassword2() {
 }
 
 jQuery(document).ready(function(){
-    {/literal}{if !isset($noDisable)}jQuery('.using-password-strength input[type="submit"]').attr('disabled', 'disabled');{/if}{literal}
+    {if !isset($noDisable)}jQuery('.using-password-strength input[type="submit"]').attr('disabled', 'disabled');{/if}
     jQuery("#inputNewPassword2").keyup(function() {
         validatePassword2();
     });
 });
 
 </script>
-{/literal}

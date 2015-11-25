@@ -169,13 +169,13 @@
                                 </td>
                                 <td class="text-right">
                                     {if count($result.pricing) == 1}
-                                        <button type="button" onclick="addToCart(this, false, 'register')" class="btn btn-default btn-sm">
+                                        <button type="button" onclick="addToCart(this, true, 'register')" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-shopping-cart"></span>
                                             {$LANG.addtocart}
                                         </button>
                                     {else}
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-default btn-sm" onclick="addToCart(this, false, 'register')">
+                                            <button type="button" class="btn btn-default btn-sm" onclick="addToCart(this, true, 'register')">
                                                 <b class="glyphicon glyphicon-shopping-cart"></b>
                                                 {$LANG.addtocart}
                                             </button>
@@ -192,7 +192,7 @@
                                                         {continue}
                                                     {/if}
                                                     <li>
-                                                        <a onclick="addToCart(this, false, 'register', {$years});return false;">
+                                                        <a onclick="addToCart(this, true, 'register', {$years});return false;">
                                                             {$years} {$LANG.orderyears} @ {$price.register}
                                                         </a>
                                                     </li>

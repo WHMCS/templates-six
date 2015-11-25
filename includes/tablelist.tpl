@@ -37,6 +37,7 @@ jQuery(".view-filter-btns a").click(function(e) {ldelim}
 {/if}
 
 <script type="text/javascript">
+var alreadyReady = false; // The ready function is being called twice on page load.
 jQuery(document).ready( function () {ldelim}
     var table = jQuery("#table{$tableName}").DataTable({ldelim}
         "dom": '<"listtable"fit>pl',{if isset($noPagination) && $noPagination}
@@ -82,15 +83,16 @@ jQuery(document).ready( function () {ldelim}
     {if isset($filterColumn) && $filterColumn}
     // highlight remembered filter on page re-load
     var rememberedFilterTerm = table.state().columns[{$filterColumn}].search.search;
-    if (rememberedFilterTerm) {
+    if (rememberedFilterTerm && !alreadyReady) {
+        // This should only run on the first "ready" event.
         jQuery(".view-filter-btns a span").each(function(index) {
-            if (jQuery(this).text().trim() == rememberedFilterTerm) {
+            if (jQuery(this).text().trim() == rememberedFilterTerm.replace(/\\|s\*/g,'')) {
                 jQuery(this).parent('a').addClass('active');
                 jQuery(this).parent('a').find('i').switchClass('fa-circle-o', 'fa-dot-circle-o', 0);
             }
         });
     }
     {/if}
-
+alreadyReady = true;
 {rdelim} );
 </script>

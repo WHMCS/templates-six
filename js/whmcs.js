@@ -83,6 +83,13 @@ jQuery(document).ready(function() {
         }, 1);
     }
 
+    // Enable Switches for Checkboxes
+    if (jQuery.prototype.bootstrapSwitch) {
+        jQuery(".toggle-switch-success").bootstrapSwitch({
+            onColor: 'success'
+        });
+    }
+
     // Collapsable Panels
     jQuery(".panel-collapsable .panel-heading").click(function(e) {
         var $this = jQuery(this);
@@ -155,6 +162,18 @@ jQuery(document).ready(function() {
         var child = window.open();
         child.opener = null;
         child.location = e.target.href;
+    });
+
+    // Handle Single Sign-On Toggle Setting
+    jQuery("#inputAllowSso").on('switchChange.bootstrapSwitch', function(event, isChecked) {
+        if (isChecked) {
+            jQuery("#ssoStatusTextEnabled").removeClass('hidden').show();
+            jQuery("#ssoStatusTextDisabled").hide();
+        } else {
+            jQuery("#ssoStatusTextDisabled").removeClass('hidden').show();
+            jQuery("#ssoStatusTextEnabled").hide();
+        }
+        jQuery.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
     });
 });
 

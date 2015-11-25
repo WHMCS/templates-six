@@ -16,7 +16,10 @@ $pdf->SetTextColor(255);
 $pdf->SetLineWidth(0.75);
 $pdf->StartTransform();
 $pdf->Rotate(-35, 100, 225);
-if ($status == 'Paid') {
+if ($status == 'Draft') {
+    $pdf->SetFillColor(200);
+    $pdf->SetDrawColor(140);
+} elseif ($status == 'Paid') {
     $pdf->SetFillColor(151, 223, 74);
     $pdf->SetDrawColor(110, 192, 70);
 } elseif ($status == 'Cancelled') {

@@ -30,15 +30,17 @@
                     </label>
                 </div>
 
-                <div class="col-xs-offset-1 col-xs-10">
-                    <div class="form-group">
-                        <label for="{$contactdetail}3">{$LANG.domaincontactchoose}</label>
-                        <select class="form-control {$contactdetail}defaultwhois" name="sel[{$contactdetail}]" onclick="useDefaultWhois(this.id)" disabled>
-                            <option value="u{$clientsdetails.userid}">{$LANG.domaincontactprimary}</option>
-                            {foreach key=num item=contact from=$contacts}
-                                <option value="c{$contact.id}">{$contact.name}</option>
-                            {/foreach}
-                        </select>
+                <div class="row">
+                    <div class="col-xs-offset-1 col-xs-10">
+                        <div class="form-group">
+                            <label for="{$contactdetail}3">{$LANG.domaincontactchoose}</label>
+                            <select id="{$contactdetail}3" class="form-control {$contactdetail}defaultwhois" name="sel[{$contactdetail}]" disabled>
+                                <option value="u{$clientsdetails.userid}">{$LANG.domaincontactprimary}</option>
+                                {foreach key=num item=contact from=$contacts}
+                                    <option value="c{$contact.id}">{$contact.name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
                     </div>
                 </div>
 

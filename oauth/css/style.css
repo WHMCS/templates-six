@@ -1,0 +1,53 @@
+body {
+    background-color: #efefef;
+}
+
+section#header {
+    margin: 0;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.8em;
+}
+
+section#content {
+    margin: 30px;
+}
+
+section#footer {
+    margin: 40px 0 0 0;
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.content-container {
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 550px;
+    background-color: #fff;
+    border-radius: 6px;
+
+}
+
+.app-logo {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.content-padded {
+    margin: 0;
+    padding: 30px 50px;
+}
+
+.action-buttons {
+    margin: 10px 0 0 0;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #efefef;
+    text-align: right;
+    font-size: 0.9em;
+    border-radius: 0 0 6px 6px;
+}

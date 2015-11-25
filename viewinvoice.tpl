@@ -40,7 +40,9 @@
                 <div class="col-sm-5 text-center">
 
                     <div class="invoice-status">
-                        {if $status eq "Unpaid"}
+                        {if $status eq "Draft"}
+                            <span class="draft">{$LANG.invoicesdraft}</span>
+                        {elseif $status eq "Unpaid"}
                             <span class="unpaid">{$LANG.invoicesunpaid}</span>
                         {elseif $status eq "Paid"}
                             <span class="paid">{$LANG.invoicespaid}</span>
@@ -53,7 +55,7 @@
                         {/if}
                     </div>
 
-                    {if $status eq "Unpaid"}
+                    {if $status eq "Unpaid" || $status eq "Draft"}
                         <div class="small-text">
                             {$LANG.invoicesdatedue}: {$datedue}
                         </div>

@@ -2,7 +2,7 @@
 <script type="text/javascript">
     jQuery(document).ready( function ()
     {
-        var table = $('#tableServicesList').DataTable();
+        var table = jQuery('#tableServicesList').removeClass('hidden').DataTable();
         {if $orderby == 'product'}
             table.order([0, '{$sort}'], [3, 'asc']);
         {elseif $orderby == 'amount' || $orderby == 'billingcycle'}
@@ -13,10 +13,11 @@
             table.order(3, '{$sort}');
         {/if}
         table.draw();
+        jQuery('#tableLoading').addClass('hidden');
     });
 </script>
 <div class="table-container clearfix">
-    <table id="tableServicesList" class="table table-list">
+    <table id="tableServicesList" class="table table-list hidden">
         <thead>
             <tr>
                 <th>{$LANG.orderproduct}</th>
@@ -42,4 +43,7 @@
             {/foreach}
         </tbody>
     </table>
+    <div class="text-center" id="tableLoading">
+        <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+    </div>
 </div>

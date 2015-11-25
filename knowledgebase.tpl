@@ -1,4 +1,4 @@
-<form role="form" method="post" action="knowledgebase.php?action=search">
+<form role="form" method="post" action="{$WEB_ROOT}/knowledgebase.php?action=search">
     <div class="input-group">
         <input type="text" name="search" class="form-control" placeholder="{$LANG.kbsearchexplain}" />
         <span class="input-group-btn">
