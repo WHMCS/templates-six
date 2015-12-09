@@ -51,6 +51,9 @@ body {
 
 /* Invoice Status Colors */
 
+.draft {
+    color: #888;
+}
 .unpaid {
     color: #cc0000;
 }

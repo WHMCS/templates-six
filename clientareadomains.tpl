@@ -7,26 +7,27 @@
         <script type="text/javascript">
             jQuery(document).ready( function ()
             {
-                var table = $('#tableDomainsList').DataTable();
+                var table = jQuery('#tableDomainsList').removeClass('hidden').DataTable();
                 {if $orderby == 'domain'}
                     table.order(1, '{$sort}');
                 {elseif $orderby == 'regdate' || $orderby == 'registrationdate'}
                     table.order(2, '{$sort}');
                 {elseif $orderby == 'nextduedate'}
                     table.order(3, '{$sort}');
-                {elseif $orderby == 'price' || $orderby == 'recurringamount'}
+                {elseif $orderby == 'autorenew'}
                     table.order(4, '{$sort}');
                 {elseif $orderby == 'status'}
                     table.order(5, '{$sort}');
                 {/if}
                 table.draw();
+                jQuery('#tableLoading').addClass('hidden');
             });
         </script>
         <form id="domainForm" method="post" action="clientarea.php?action=bulkdomain">
             <input id="bulkaction" name="update" type="hidden" />
 
             <div class="table-container clearfix">
-                <table id="tableDomainsList" class="table table-list">
+                <table id="tableDomainsList" class="table table-list hidden">
                     <thead>
                         <tr>
                             <th width="20"></th>
@@ -47,7 +48,13 @@
                             <td><a href="http://{$domain.domain}" target="_blank">{$domain.domain}</a></td>
                             <td><span class="hidden">{$domain.normalisedRegistrationDate}</span>{$domain.registrationdate}</td>
                             <td><span class="hidden">{$domain.normalisedNextDueDate}</span>{$domain.nextduedate}</td>
-                            <td>{$domain.amount}</td>
+                            <td>
+                                {if $domain.autorenew}
+                                    <i class="fa fa-fw fa-check text-success"></i> {$LANG.domainsautorenewenabled}
+                                {else}
+                                    <i class="fa fa-fw fa-times text-danger"></i> {$LANG.domainsautorenewdisabled}
+                                {/if}
+                            </td>
                             <td>
                                 <span class="label status status-{$domain.statusClass}">{$domain.statustext}</span>
                                 <span class="hidden">
@@ -79,6 +86,9 @@
                     {/foreach}
                     </tbody>
                 </table>
+                <div class="text-center" id="tableLoading">
+                    <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+                </div>
             </div>
         </form>
 

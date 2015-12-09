@@ -2,6 +2,9 @@
     {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
 {/if}
 
+<script>
+var stateNotRequired = true;
+</script>
 <script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 
 <div class="alert alert-block alert-info text-center">
@@ -98,78 +101,16 @@
         <div class="form-group">
             <label class="full control-label">{$LANG.subaccountpermissions}</label>
             <div class="checkbox clearfix">
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" value="profile"{if in_array('profile', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsprofile}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permcontacts" value="contacts"{if in_array('contacts', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermscontacts}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permproducts" value="products"{if in_array('products', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsproducts}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permmanageproducts" value="manageproducts"{if in_array('manageproducts', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsmanageproducts}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permdomains" value="domains"{if in_array('domains', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsdomains}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permmanagedomains" value="managedomains"{if in_array('managedomains', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsmanagedomains}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="perminvoices" value="invoices"{if in_array('invoices', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsinvoices}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permquotes" value="quotes"{if in_array('quotes', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsquotes}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permtickets" value="tickets"{if in_array('tickets', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermstickets}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permaffiliates" value="affiliates"{if in_array('affiliates', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsaffiliates}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permemails" value="emails"{if in_array('emails', $permissions)} checked{/if} />
-                        <span>{$LANG.subaccountpermsemails}</span>
-                    </label>
-                </div>
-                <div class="col-sm-6">
-                    <label>
-                        <input type="checkbox" name="permissions[]" id="permorders" value="orders"{if in_array('orders', $permissions)} checked{/if} />
-                            {$LANG.subaccountpermsorders}
-                    </label>
-                </div>
+                {foreach $allPermissions as $permission}
+                    <div class="col-sm-6">
+                        <label>
+                            <input type="checkbox" name="permissions[]" value="{$permission}"{if in_array($permission, $permissions)} checked{/if} />
+                            <span>
+                                {assign var='langPermission' value='subaccountperms'|cat:$permission}{$LANG.$langPermission}
+                            </span>
+                        </label>
+                    </div>
+                {/foreach}
             </div>
         </div>
         <fieldset class="form-horizontal">
@@ -195,32 +136,33 @@
     </div>
 
     <div class="form-group">
-    <label class="control-label">{$LANG.clientareacontactsemails}</label>
-    <div class="controls checkbox">
-        <label>
-            <input type="checkbox" name="generalemails" id="generalemails" value="1"{if $generalemails} checked{/if} />
-            {$LANG.clientareacontactsemailsgeneral}
-        </label>
-        <br />
-        <label>
-            <input type="checkbox" name="productemails" id="productemails" value="1"{if $productemails} checked{/if} />
-            {$LANG.clientareacontactsemailsproduct}
-        </label>
-        <br />
-        <label>
-            <input type="checkbox" name="domainemails" id="domainemails" value="1"{if $domainemails} checked{/if} />
-            {$LANG.clientareacontactsemailsdomain}
-        </label>
-        <br />
-        <label>
-            <input type="checkbox" name="invoiceemails" id="invoiceemails" value="1"{if $invoiceemails} checked{/if} />
-            {$LANG.clientareacontactsemailsinvoice}
-        </label>
-        <br />
-        <label>
-            <input type="checkbox" name="supportemails" id="supportemails" value="1"{if $supportemails} checked{/if} />
-            {$LANG.clientareacontactsemailssupport}
-        </label>
+        <label class="control-label">{$LANG.clientareacontactsemails}</label>
+        <div class="controls checkbox">
+            <label>
+                <input type="checkbox" name="generalemails" id="generalemails" value="1"{if $generalemails} checked{/if} />
+                {$LANG.clientareacontactsemailsgeneral}
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="productemails" id="productemails" value="1"{if $productemails} checked{/if} />
+                {$LANG.clientareacontactsemailsproduct}
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="domainemails" id="domainemails" value="1"{if $domainemails} checked{/if} />
+                {$LANG.clientareacontactsemailsdomain}
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="invoiceemails" id="invoiceemails" value="1"{if $invoiceemails} checked{/if} />
+                {$LANG.clientareacontactsemailsinvoice}
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="supportemails" id="supportemails" value="1"{if $supportemails} checked{/if} />
+                {$LANG.clientareacontactsemailssupport}
+            </label>
+        </div>
     </div>
 
     <div class="form-group text-center">

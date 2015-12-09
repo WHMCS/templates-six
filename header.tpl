@@ -79,7 +79,7 @@ COT("https://www.spryservers.net/img/cot_evssl.gif", "SC3", "none");
                 <div class="pull-right nav">
                     <a href="#" class="quick-nav" data-toggle="popover" id="loginOrRegister" data-placement="bottom"><i class="fa fa-user"></i> {$LANG.login}</a>
                     <div id="loginOrRegisterContent" class="hidden">
-                        <form action="{$systemsslurl}dologin.php" method="post" role="form">
+                        <form action="{if $systemsslurl}{$systemsslurl}{else}{$systemurl}{/if}dologin.php" method="post" role="form">
                             <div class="form-group">
                                 <input type="email" name="username" class="form-control" placeholder="{$LANG.clientareaemail}" required />
                             </div>
@@ -92,32 +92,32 @@ COT("https://www.spryservers.net/img/cot_evssl.gif", "SC3", "none");
                                 </div>
                             </div>
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme} &bull; <a href="pwreset.php">{$LANG.forgotpw}</a>
+                                <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme} &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
                             </label>
                         </form>
                         {if $condlinks.allowClientRegistration}
                             <hr />
-                            {$LANG.newcustomersignup|sprintf2:'<a href="register.php">':'</a>'}
+                            {$LANG.newcustomersignup|sprintf2:"<a href=\"$WEB_ROOT/register.php\">":"</a>"}
                         {/if}
                     </div>
                 </div>
             {/if}
             <!-- Shopping Cart -->
             <div class="pull-right nav">
-                <a href="cart.php?a=view" class="quick-nav"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">{$LANG.viewcart} (</span><span id="cartItemCount">{$cartitemcount}</span><span class="hidden-xs">)</span></a>
+                <a href="{$WEB_ROOT}/cart.php?a=view" class="quick-nav"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">{$LANG.viewcart} (</span><span id="cartItemCount">{$cartitemcount}</span><span class="hidden-xs">)</span></a>
             </div>
 
             {if $adminMasqueradingAsClient}
                 <!-- Return to admin link -->
                 <div class="alert alert-danger admin-masquerade-notice">
                     {$LANG.adminmasqueradingasclient}<br />
-                    <a href="logout.php?returntoadmin=1" class="alert-link">{$LANG.logoutandreturntoadminarea}</a>
+                    <a href="{$WEB_ROOT}/logout.php?returntoadmin=1" class="alert-link">{$LANG.logoutandreturntoadminarea}</a>
                 </div>
             {elseif $adminLoggedIn}
                 <!-- Return to admin link -->
                 <div class="alert alert-danger admin-masquerade-notice">
                     {$LANG.adminloggedin}<br />
-                    <a href="logout.php?returntoadmin=1" class="alert-link">{$LANG.returntoadminarea}</a>
+                    <a href="{$WEB_ROOT}/logout.php?returntoadmin=1" class="alert-link">{$LANG.returntoadminarea}</a>
                 </div>
             {/if}
 

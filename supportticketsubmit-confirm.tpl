@@ -6,7 +6,7 @@
         <div class="alert alert-success text-center">
             <strong>
                 {$LANG.supportticketsticketcreated}
-                <a href="viewticket.php?tid={$tid}&amp;c={$c}" class="alert-link">#{$tid}</a>
+                <a id="ticket-number" href="viewticket.php?tid={$tid}&amp;c={$c}" class="alert-link">#{$tid}</a>
             </strong>
         </div>
 
