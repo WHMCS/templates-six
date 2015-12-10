@@ -24,6 +24,13 @@
 <meta name="msapplication-TileImage" content="https:/www.spryservers.net/mstile-144x144.png?v=wAAAMNMebW">
 <meta name="theme-color" content="#a6ef1a">
 <meta name="wot-verification" content="d74d03d7042c27166874"/>
+<!-- Start Alexa Certify Javascript -->
+<script type="text/javascript">
+_atrk_opts = { atrk_acct:"+riOk1ao6C52L7", domain:"spryservers.net",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+</script>
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=+riOk1ao6C52L7" style="display:none" height="1" width="1" alt="" /></noscript>
+<!-- End Alexa Certify Javascript -->  
 <script type="text/javascript">
     //<![CDATA[
     var cotJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
