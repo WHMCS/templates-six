@@ -20,7 +20,6 @@ button,
 select,
 textarea {
   font-family: "Open Sans", Verdana, Tahoma, serif;
-  font-size: 16px;
   line-height: 1.42857143;
   color: #333333;
 }
@@ -116,20 +115,8 @@ h6 {
     }
 }
 
-.panel {
-  font-size: 0.9em;
-}
-
-.list-group {
-  font-size: 0.9em;
-}
-
 a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
     background-color: #006687;
-}
-
-.pagination {
-    font-size: 0.8em;
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
@@ -158,14 +145,6 @@ input[type='file'].form-control {
 }
 .panel-body {
     padding: 10px 15px;
-}
-
-/* 
- * We use a larger font-size than the bootstrap default, which requires an increase 
- * in the top offset to maintain correct alignment in form control feedback. 
- */
-.has-feedback label ~ .form-control-feedback {
-    top: 27px !important;
 }
 
 .list-group-item > i.fa.fa-circle-o {
