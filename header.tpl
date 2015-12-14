@@ -31,11 +31,10 @@ _atrk_opts = { atrk_acct:"+riOk1ao6C52L7", domain:"spryservers.net",dynamic: tru
 </script>
 <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=+riOk1ao6C52L7" style="display:none" height="1" width="1" alt="" /></noscript>
 <!-- End Alexa Certify Javascript -->  
-<script type="text/javascript">
-    //<![CDATA[
-    var cotJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
-    document.write(unescape("%3Cscript src='" + cotJsHost + "trustlogo/javascript/cot.js' type='text/javascript'%3E%3C/script%3E"));
-    //]]>
+<script type="text/javascript">//<![CDATA[
+var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+//]]>
 </script>
     <title>{if $kbarticle.title}{$kbarticle.title} - {/if}{$pagetitle} - {$companyname}</title>
 
@@ -48,10 +47,6 @@ _atrk_opts = { atrk_acct:"+riOk1ao6C52L7", domain:"spryservers.net",dynamic: tru
 
 {$headeroutput}
 
-<a href="http://www.instantssl.com" id="comodoTL">SSL</a>
-<script language="JavaScript" type="text/javascript">
-COT("https://www.spryservers.net/img/cot_evssl.gif", "SC3", "none");
-</script>
 <section id="header">
     <div class="container">
 
