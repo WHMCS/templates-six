@@ -10,10 +10,7 @@
 
 <section id="footer">
 
-    <p>Copyright &copy; {$date_year} {$companyname}. All Rights Reserved.</p><center><script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?code=67b9e3e7d6c9474da5640164f079a2a5"></script> | <script language="JavaScript" type="text/javascript">
-TrustLogo("https://www.spryservers.net/img/comodo_secure_100x85_transp.png", "SC5", "none");
-</script>
-<a href="https://ssl.comodo.com/ev-ssl-certificates.php" id="comodoTL">EV SSL Certificate</a></center>
+    <p>Copyright &copy; {$date_year} {$companyname}. All Rights Reserved.</p>
 
 </section>
 
