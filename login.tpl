@@ -4,6 +4,8 @@
 
     {if $incorrect}
         {include file="$template/includes/alert.tpl" type="error" msg=$LANG.loginincorrect textcenter=true}
+    {elseif $ssoredirect}
+        {include file="$template/includes/alert.tpl" type="info" msg=$LANG.sso.redirectafterlogin textcenter=true}
     {/if}
 
     <form method="post" action="{$systemsslurl}dologin.php" role="form">

@@ -106,6 +106,16 @@
     </div>
     <div class="tab-pane fade in" id="tabRenew">
         {include file="$template/includes/tablelist.tpl" tableName="RenewalsList" noSortColumns="3, 4, 5" startOrderCol="0" filterColumn="1" dontControlActiveClass=true}
+        <script type="text/javascript">
+            var observer = new MutationObserver(function(mutations) {
+                jQuery('#Secondary_Sidebar-My_Domains_Actions-Renew_Domain').toggleClass('active')
+            });
+            var target = document.querySelector('#tabRenew');
+            observer.observe(target, {
+                attributes: true
+            });
+
+        </script>
         <div class="table-container clearfix">
             <table id="tableRenewalsList" class="table table-list">
                 <thead>
