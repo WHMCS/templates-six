@@ -175,6 +175,159 @@ jQuery(document).ready(function() {
         }
         jQuery.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
     });
+
+    /**
+     * Code will loop through each element that has the class markdown-editor and
+     * enable the Markdown editor.
+     */
+    var count = 0,
+        editorName = 'clientMDE',
+        counter = 0;
+    jQuery(".markdown-editor").each(function( index ) {
+        count++;
+        var autoSaveName = jQuery(this).data('auto-save-name'),
+            footerId = jQuery(this).attr('id') + '-footer';
+        if (typeof autoSaveName == "undefined") {
+            autoSaveName = 'client_area';
+        }
+        window[editorName + count.toString()] = jQuery(this).markdown(
+        {
+            footer: '<div id="' + footerId + '" class="markdown-editor-status"></div>',
+            autofocus: false,
+            savable: false,
+            resize: 'vertical',
+            iconlibrary: 'fa',
+            language: locale,
+            onShow: function(e){
+                var content = '',
+                    save_enabled = false;
+                if(typeof(Storage) !== "undefined") {
+                    // Code for localStorage/sessionStorage.
+                    content = localStorage.getItem(autoSaveName);
+                    save_enabled = true;
+                    if (content && typeof(content) !== "undefined") {
+                        e.setContent(content);
+                    }
+                }
+                jQuery("#" + footerId).html(parseMdeFooter(content, save_enabled, saved));
+            },
+            onChange: function(e){
+                var content = e.getContent(),
+                    save_enabled = false;
+                if(typeof(Storage) !== "undefined") {
+                    counter = 3;
+                    save_enabled = true;
+                    localStorage.setItem(autoSaveName, content);
+                    doCountdown();
+                }
+                jQuery("#" + footerId).html(parseMdeFooter(content, save_enabled));
+            },
+            onPreview: function(e){
+                var originalContent = e.getContent(),
+                    parsedContent;
+
+                jQuery.ajax({
+                    url: 'clientarea.php',
+                    async: false,
+                    data: {token: csrfToken, action: 'parseMarkdown', content: originalContent},
+                    success: function (data) {
+                        parsedContent = data;
+                    }
+                });
+
+                return parsedContent.body ? parsedContent.body : '';
+            },
+            additionalButtons: [
+                [{
+                    name: "groupCustom",
+                    data: [{
+                        name: "cmdHelp",
+                        title: "Help",
+                        hotkey: "Ctrl+F1",
+                        btnClass: "btn open-modal",
+                        href: "submitticket.php?action=markdown",
+                        icon: {
+                            glyph: 'glyphicons glyphicons-question-sign',
+                            fa: 'fa fa-question-circle',
+                            'fa-3': 'icon-question-sign'
+                        },
+                        callback: function(){},
+                        additionalAttr: [
+                            {
+                                name: 'data-modal-title',
+                                value: markdownGuide
+                            }
+                        ]
+                    }]
+                }]
+            ]
+        });
+
+        jQuery(this).closest("form").bind({
+            submit: function() {
+                if(typeof(Storage) !== "undefined") {
+                    localStorage.removeItem(autoSaveName);
+                }
+            }
+        });
+    });
+
+    // Email verification
+    jQuery('#btnResendVerificationEmail').click(function() {
+        jQuery.post('clientarea.php',
+            {
+                'token': csrfToken,
+                'action': 'resendVerificationEmail'
+            }).done(function(data) {
+                jQuery('#btnResendVerificationEmail').prop('disabled', true);
+            });
+    });
+
+    /**
+     * Parse the content to populate the markdown editor footer.
+     *
+     * @param {string} content
+     * @param {bool} auto_save
+     * @param {string} [saveText]
+     * @returns {string}
+     */
+    function parseMdeFooter(content, auto_save, saveText)
+    {
+        saveText = saveText || saving;
+        var pattern = /[a-zA-Z0-9_\u0392-\u03c9]+|[\u4E00-\u9FFF\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\uac00-\ud7af]+/g,
+            m = [],
+            word_count = 0,
+            line_count = 0;
+        if (content) {
+            m = content.match(pattern);
+            line_count = content.split(/\\r\\n|\\r|\\n/).length;
+        }
+        for(var i = 0; i < m.length; i++) {
+            if(m[i].charCodeAt(0) >= 0x4E00) {
+                word_count += m[i].length;
+            } else {
+                word_count += 1;
+            }
+        }
+        return '<div class="small-font">lines: ' + line_count
+            + '&nbsp;&nbsp;&nbsp;words: ' + word_count + ''
+            + (auto_save ? '&nbsp;&nbsp;&nbsp;<span class="markdown-save">' + saveText + '</span>' : '')
+            + '</div>';
+    }
+
+    /**
+     * Countdown the save timeout. When zero, the span will update to show saved.
+     */
+    function doCountdown()
+    {
+        if (counter >= 0) {
+            if (counter == 0) {
+                jQuery("span.markdown-save").html(saved);
+            }
+            counter--;
+            setTimeout(doCountdown, 1000);
+        }
+    }
 });
 
 /**

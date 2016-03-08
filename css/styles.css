@@ -1875,3 +1875,33 @@ tr.masspay-total td {
         -webkit-transform-origin: 0 0;
     }
 }
+
+/**
+ * -------------------------
+ * Email Verification
+ * -------------------------
+ */
+
+.email-verification {
+    margin: 0;
+    padding: 10px;
+    font-size: 0.9em;
+    line-height: 30px;
+}
+
+/**
+ * -------------------------
+ * Markdown Editor
+ * -------------------------
+ */
+.markdown-editor-status {
+    padding: 2px 10px;
+    font-size: 9pt;
+    color: #959694;
+    text-align: right;
+
+}
+
+.small-font {
+    font-size: 0.9em;
+}

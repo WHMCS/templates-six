@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                     <label for="inputMessage">{$LANG.contactmessage}</label>
-                    <textarea name="replymessage" id="inputMessage" rows="12" class="form-control">{$replymessage}</textarea>
+                    <textarea name="replymessage" id="inputMessage" rows="12" class="form-control markdown-editor" data-auto-save-name="client_ticket_reply_{$tid}">{$replymessage}</textarea>
                 </div>
 
                 <div class="row form-group">

@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="password" name="password" class="form-control" placeholder="{$LANG.loginpassword}" required />
+                                    <input type="password" name="password" class="form-control" placeholder="{$LANG.loginpassword}" autocomplete="off" required />
                                     <span class="input-group-btn">
                                         <input type="submit" class="btn btn-primary" value="{$LANG.login}" />
                                     </span>
@@ -142,7 +142,7 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" />
+                                <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" autocapitalize="none" />
                                 <span class="input-group-btn">
                                     {if $registerdomainenabled}
                                         <input type="submit" class="btn btn-warning" value="{$LANG.search}" />
@@ -212,6 +212,8 @@
         </div>
     </div>
 {/if}
+
+{include file="$template/includes/verifyemail.tpl"}
 
 <section id="main-body" class="container">
 

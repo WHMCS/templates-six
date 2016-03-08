@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label for="inputPassword">{$LANG.clientareapassword}</label>
-                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="{$LANG.clientareapassword}">
+                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="{$LANG.clientareapassword}" autocomplete="off" >
             </div>
 
         </div>
@@ -34,7 +34,7 @@
                         <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme}
                     </label>
                     &bull;
-                    <a href="#">Forgot password?</a>
+                    <a href="{$issuerurl}pwreset.php">Forgot password?</a>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" id="btnLogin">

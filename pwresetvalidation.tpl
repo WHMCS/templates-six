@@ -27,13 +27,13 @@
 
             <div id="newPassword1" class="form-group has-feedback">
                 <label class="control-label" for="inputNewPassword1">{$LANG.newpassword}</label>
-                <input type="password" name="newpw" id="inputNewPassword1" class="form-control" />
+                <input type="password" name="newpw" id="inputNewPassword1" class="form-control" autocomplete="off" />
                 <span class="form-control-feedback glyphicon glyphicon-password"></span>
             </div>
 
             <div id="newPassword2" class="form-group has-feedback">
                 <label class="control-label" for="inputNewPassword2">{$LANG.confirmnewpassword}</label>
-                <input type="password" name="confirmpw" id="inputNewPassword2" class="form-control" />
+                <input type="password" name="confirmpw" id="inputNewPassword2" class="form-control" autocomplete="off" />
                 <span class="form-control-feedback glyphicon glyphicon-password"></span>
                 <div id="inputNewPassword2Msg"></div>
             </div>

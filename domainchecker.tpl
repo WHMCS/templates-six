@@ -15,7 +15,7 @@
                 <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
                     {if $bulkdomainsearchenabled}
                         <div class="domain-bulk-options-box hidden-xs">
-                            <a href="domainchecker.php?search=bulk" id="btnBulkOptions" class="btn btn-warning btn-sm" />{$LANG.bulkoptions}</a>
+                            <a href="domainchecker.php?search=bulk" id="btnBulkOptions" class="btn btn-warning btn-sm">{$LANG.bulkoptions}</a>
                         </div>
                     {/if}
                     <div class="input-group input-group-lg input-group-box">

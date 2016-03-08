@@ -61,7 +61,7 @@
     </div>
     <div class="form-group">
         <label for="inputMessage">{$LANG.contactmessage}</label>
-        <textarea name="message" id="inputMessage" rows="12" class="form-control">{$message}</textarea>
+        <textarea name="message" id="inputMessage" rows="12" class="form-control markdown-editor" data-auto-save-name="client_ticket_open">{$message}</textarea>
     </div>
 
     <div class="row form-group">
@@ -91,7 +91,7 @@
     {include file="$template/includes/captcha.tpl"}
 
     <p class="text-center">
-        <input type="submit" value="{$LANG.supportticketsticketsubmit}" class="btn btn-primary" />
+        <input type="submit" id="openTicketSubmit" value="{$LANG.supportticketsticketsubmit}" class="btn btn-primary" />
         <a href="supporttickets.php" class="btn btn-default">{$LANG.cancel}</a>
     </p>
 

@@ -123,7 +123,7 @@
                 <div id="newPassword1" class="form-group has-feedback">
                     <label for="inputNewPassword1" class="col-sm-5 control-label">{$LANG.newpassword}</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="inputNewPassword1" name="password" />
+                        <input type="password" class="form-control" id="inputNewPassword1" name="password" autocomplete="off" />
                         <span class="form-control-feedback glyphicon"></span>
                         {include file="$template/includes/pwstrength.tpl" noDisable=true}
                     </div>
@@ -131,7 +131,7 @@
                 <div id="newPassword2" class="form-group has-feedback">
                     <label for="inputNewPassword2" class="col-sm-5 control-label">{$LANG.confirmnewpassword}</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" id="inputNewPassword2" name="password2" />
+                        <input type="password" class="form-control" id="inputNewPassword2" name="password2" autocomplete="off" />
                         <span class="form-control-feedback glyphicon"></span>
                         <div id="inputNewPassword2Msg">
                         </div>

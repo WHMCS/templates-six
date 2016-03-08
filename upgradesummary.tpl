@@ -86,11 +86,11 @@
                 {if $promocode}
                     <span class="input-group-btn">
                         <input type="submit" name="removepromo" value="{$LANG.orderdontusepromo}"
-                               class="btn btn-danger btn-block" />
+                               class="btn btn-danger" />
                     </span>
                 {else}
                     <span class="input-group-btn">
-                        <input type="submit" value="{$LANG.orderpromovalidatebutton}" class="btn btn-success btn-block" />
+                        <input type="submit" value="{$LANG.orderpromovalidatebutton}" class="btn btn-success" />
                     </span>
                 {/if}
             </div>
