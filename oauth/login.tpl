@@ -6,7 +6,7 @@
         </div>
     {/if}
 
-    <h2 class="text-center">Login to grant {$appName}<br />access to your account</h2>
+    <h2 class="text-center">{lang key='oauth.loginToGrantApp' appName=$appName}</h2>
 
     <form method="post" action="{$issuerurl}dologin.php" role="form">
         <div class="content-padded">
@@ -34,14 +34,14 @@
                         <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme}
                     </label>
                     &bull;
-                    <a href="{$issuerurl}pwreset.php">Forgot password?</a>
+                    <a href="{$issuerurl}pwreset.php">{lang key='forgotpw'}</a>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" id="btnLogin">
-                Login
+                {lang key='login'}
             </button>
             <button type="button" class="btn btn-default" id="btnCancel" onclick="jQuery('#frmCancelLogin').submit()">
-                Cancel
+                {lang key='cancel'}
             </button>
         </div>
 

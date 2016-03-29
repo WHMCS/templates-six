@@ -1894,6 +1894,7 @@ tr.masspay-total td {
  * Markdown Editor
  * -------------------------
  */
+
 .markdown-editor-status {
     padding: 2px 10px;
     font-size: 9pt;
@@ -1904,4 +1905,60 @@ tr.masspay-total td {
 
 .small-font {
     font-size: 0.9em;
+}
+
+/**
+ * -------------------------
+ * Markdown Content Formatting
+ * -------------------------
+ */
+
+.markdown-content h1 {
+    font-size: 1.6em;
+    color: #333;
+}
+.markdown-content h2 {
+    font-size: 1.4em;
+    color: #333;
+}
+.markdown-content h3 {
+    font-size: 1.2em;
+    color: #333;
+}
+.markdown-content h4 {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.markdown-content pre {
+    padding: 15px;
+    background-color: #444;
+    color: #f8f8f8;
+    border: 0;
+}
+.markdown-content pre code {
+    white-space: pre;
+    word-break: normal;
+    word-wrap: normal;
+}
+
+.markdown-content blockquote {
+    font-size: 1em;
+}
+
+.markdown-content table {
+    margin: 10px 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.markdown-content table > thead > tr > th {
+    padding: 4px 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    text-align: center;
+}
+.markdown-content table > tbody > tr > td {
+    padding: 3px 8px;
+    border: 1px solid #ddd;
 }

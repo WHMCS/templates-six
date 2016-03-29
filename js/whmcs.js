@@ -231,7 +231,7 @@ jQuery(document).ready(function() {
                     async: false,
                     data: {token: csrfToken, action: 'parseMarkdown', content: originalContent},
                     success: function (data) {
-                        parsedContent = data;
+                        parsedContent = JSON.parse(data);
                     }
                 });
 
@@ -251,7 +251,9 @@ jQuery(document).ready(function() {
                             fa: 'fa fa-question-circle',
                             'fa-3': 'icon-question-sign'
                         },
-                        callback: function(){},
+                        callback: function(e) {
+                            e.$editor.removeClass("md-fullscreen-mode");
+                        },
                         additionalAttr: [
                             {
                                 name: 'data-modal-title',

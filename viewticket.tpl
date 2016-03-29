@@ -101,7 +101,7 @@
     </div>
 
     {foreach from=$descreplies key=num item=reply}
-        <div class="ticket-reply{if $reply.admin} staff{/if}">
+        <div class="ticket-reply markdown-content{if $reply.admin} staff{/if}">
             <div class="date">
                 {$reply.date}
             </div>
