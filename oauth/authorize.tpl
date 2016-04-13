@@ -6,7 +6,7 @@
         </div>
     {/if}
 
-    <h2 class="text-center">{lang key='oauth.authoriseAppToAccess' appName: $appName}</h2>
+    <h2 class="text-center">{lang key='oauth.authoriseAppToAccess' appName=$appName}</h2>
 
     <div class="content-padded">
         <div class="permission-grants">

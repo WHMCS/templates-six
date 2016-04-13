@@ -296,7 +296,7 @@ jQuery(document).ready(function() {
     function parseMdeFooter(content, auto_save, saveText)
     {
         saveText = saveText || saving;
-        var pattern = /[a-zA-Z0-9_\u0392-\u03c9]+|[\u4E00-\u9FFF\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\uac00-\ud7af]+/g,
+        var pattern = /[^\s]+/g,
             m = [],
             word_count = 0,
             line_count = 0;
@@ -304,11 +304,13 @@ jQuery(document).ready(function() {
             m = content.match(pattern);
             line_count = content.split(/\\r\\n|\\r|\\n/).length;
         }
-        for(var i = 0; i < m.length; i++) {
-            if(m[i].charCodeAt(0) >= 0x4E00) {
-                word_count += m[i].length;
-            } else {
-                word_count += 1;
+        if (m) {
+            for (var i = 0; i < m.length; i++) {
+                if (m[i].charCodeAt(0) >= 0x4E00) {
+                    word_count += m[i].length;
+                } else {
+                    word_count += 1;
+                }
             }
         }
         return '<div class="small-font">lines: ' + line_count
@@ -330,6 +332,13 @@ jQuery(document).ready(function() {
             setTimeout(doCountdown, 1000);
         }
     }
+
+    // Two-Factor Activation Process Modal Handler.
+    var frmTwoFactorActivation = $('input[name=2fasetup]').parent('form');
+    frmTwoFactorActivation.submit(function(e) {
+        e.preventDefault();
+        openModal(frmTwoFactorActivation.attr('action'), frmTwoFactorActivation.serialize(), 'Loading...');
+    });
 });
 
 /**
@@ -445,17 +454,6 @@ function selectChangeNavigate(select) {
  */
 function extraTicketAttachment() {
     jQuery("#fileUploadsContainer").append('<input type="file" name="attachments[]" class="form-control" />');
-}
-
-/**
- * Two-Factor Authentication dialog submit handler.
- */
-function dialogSubmit() {
-    jQuery('div#twofaactivation form').attr('method', 'post');
-    jQuery('div#twofaactivation form').attr('action', 'clientarea.php?action=security');
-    jQuery('div#twofaactivation form').attr('onsubmit', '');
-    jQuery('div#twofaactivation form').submit();
-    return true;
 }
 
 /**
