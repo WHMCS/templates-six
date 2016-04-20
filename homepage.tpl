@@ -52,3 +52,20 @@
         {/if}
     {/foreach}
 {/if}
+<html>
+<body>
+<p style="box-sizing: border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: 'Open Sans', Verdana, Tahoma, serif; font-size: 16px; line-height: 22.8571px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px;">XYZulu have been in the hosting business for over 15 years. Unlike other hosts, we actually have access to all our customer servers.&nbsp;Our offerings are aimed at people who are proficient enough to manage their own website, but may also require some help with setting up DNS, Email, CDN etc.</span></p>
+
+<p style="box-sizing: border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: 'Open Sans', Verdana, Tahoma, serif; font-size: 16px; line-height: 22.8571px; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px;">We offer a number of free options to help optimize and manage your Joomla/Wordpress/Drupal&nbsp;website as well as any other scripts you may want to host with us.&nbsp;</span></p>
+
+<p style="box-sizing: border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: 'Open Sans', Verdana, Tahoma, serif; font-size: 16px; line-height: 22.8571px; background-color: rgb(255, 255, 255);">&nbsp;</p>
+
+<p style="box-sizing: border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: 'Open Sans', Verdana, Tahoma, serif; font-size: 16px; line-height: 22.8571px; text-align: center; background-color: rgb(255, 255, 255);"><span style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px;">You can read more about some of the services we offer on our&nbsp;<a href="https://www.facebook.com/xyzulu.host/" style="box-sizing: border-box; color: rgb(0, 85, 136); text-decoration: none; background-color: transparent;" target="_blank">Facebook page</a></span></p>
+</body>
+</html>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div align="center" style="background:#eee;border:1px solid #ccc;padding:5px 10px;"><span style="font-family:arial,helvetica,sans-serif;">We also offer: <a href="http://ontimemarketing.com.au" target="_blank">Design Services</a> | <a href="https://my.xyzulu.com/index.php" target="_blank">Domain Registration</a> | <a href="https://www.facebook.com/xyzulu.host" target="_blank">IT Consulting</a></span></div>
+</body>
+</html>
