@@ -22,7 +22,7 @@
         {foreach key=num item=upgrade from=$upgrades}
             {if $type eq "package"}
                 <tr>
-                    <td><input type="hidden" name="pid" value="{$upgrade.newproductid}" /><input type="hidden" name="billingcycle" value="{$upgrade.newproductbillingcycle}" />{$upgrade.oldproductname} => {$upgrade.newproductname}</td>
+                    <td><input type="hidden" name="pid" value="{$upgrade.newproductid}" title="newproductid"/><input type="hidden" name="billingcycle" value="{$upgrade.newproductbillingcycle}" title="billingcycle"/>{$upgrade.oldproductname} => {$upgrade.newproductname}</td>
                     <td class="text-center">{$upgrade.price}</td>
                 </tr>
             {elseif $type eq "configoptions"}
@@ -81,7 +81,7 @@
                 <input type="hidden" name="configoption[{$cid}]" value="{$value}" />
             {/foreach}
             <div class="input-group">
-                <input class="form-control" type="text" name="promocode" placeholder="{$LANG.orderpromotioncode}" width="40"
+                <input class="form-control" type="text" name="promocode" placeholder="{$LANG.orderpromotioncode}" width="40" title="Promotion Code"
                         {if $promocode}value="{$promocode} - {$promodesc}" disabled="disabled"{/if}>
                 {if $promocode}
                     <span class="input-group-btn">
@@ -110,7 +110,7 @@
             {foreach from=$configoptions key=cid item=value}
                 <input type="hidden" name="configoption[{$cid}]" value="{$value}" />
             {/foreach}
-            {if $promocode}<input type="hidden" name="promocode" value="{$promocode}">{/if}
+            {if $promocode}<input type="hidden" name="promocode" value="{$promocode}" title="Promotion Code">{/if}
 
             {include file="$template/includes/subheader.tpl" title=$LANG.orderpaymentmethod}
             <div class="form-group">

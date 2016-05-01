@@ -20,7 +20,7 @@
             <p class="text-center">{$LANG.twofabackupcodeexpl}</p>
             <p class="text-center"><input type="submit" value="{$LANG.continue} &raquo;" class="btn" /></p>
         {elseif $backupcode}
-            <input type="text" name="code" class="form-control" placeholder="{$LANG.twofabackupcodelogin}">
+            <input type="text" name="code" class="form-control" placeholder="{$LANG.twofabackupcodelogin}" title=placeholder="{$LANG.twofabackupcodelogin}">
             <br/>
             <input id="login" type="submit" class="btn btn-primary btn-block" value="{$LANG.loginbutton}" />
             <input type="hidden" name="backupcode" value="1" />

@@ -83,7 +83,7 @@
                         <tr>
                             <td>&nbsp;</td>
                             {foreach from=$ratings item=rating}
-                            <td><input type="radio" name="rate[{$staffid}]" value="{$rating}"{if $rate.$staffid eq $rating} checked{/if} /></td>
+                            <td><input type="radio" name="rate[{$staffid}]" value="{$rating}"{if $rate.$staffid eq $rating} checked{/if} title="rate" /></td>
                             {/foreach}
                             <td>&nbsp;</td>
                         </tr>
