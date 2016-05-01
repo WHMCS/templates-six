@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="rememberme" />{$LANG.loginrememberme} &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
+                                <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme} &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
                             </label>
                         </form>
                         {if $condlinks.allowClientRegistration}
