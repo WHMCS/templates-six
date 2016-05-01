@@ -51,7 +51,7 @@
                     <div id="loginOrRegisterContent" class="hidden">
                         <form action="{if $systemsslurl}{$systemsslurl}{else}{$systemurl}{/if}dologin.php" method="post" role="form">
                             <div class="form-group">
-                                <input type="email" name="username" class="form-control" placeholder="{$LANG.clientareaemail}" required title="{$LANG.clientareaemail}" title="{$LANG.clientareaemail}" />
+                                <input type="email" name="username" class="form-control" placeholder="{$LANG.clientareaemail}" required title="{$LANG.clientareaemail}" />
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="rememberme" id="inputRememberMe" /> <label for="inputRememberMe">{$LANG.loginrememberme}<label> &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
+                                <input type="checkbox" name="rememberme"/>{$LANG.loginrememberme} &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
                             </label>
                         </form>
                         {if $condlinks.allowClientRegistration}
