@@ -51,18 +51,18 @@
                     <div id="loginOrRegisterContent" class="hidden">
                         <form action="{if $systemsslurl}{$systemsslurl}{else}{$systemurl}{/if}dologin.php" method="post" role="form">
                             <div class="form-group">
-                                <input type="email" name="username" class="form-control" placeholder="{$LANG.clientareaemail}" required />
+                                <input type="email" name="username" class="form-control" placeholder="{$LANG.clientareaemail}" required title="{$LANG.clientareaemail}" title="{$LANG.clientareaemail}" />
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="password" name="password" class="form-control" placeholder="{$LANG.loginpassword}" autocomplete="off" required />
+                                    <input type="password" name="password" class="form-control" placeholder="{$LANG.loginpassword}" autocomplete="off" required title="{$LANG.loginpassword}" />
                                     <span class="input-group-btn">
                                         <input type="submit" class="btn btn-primary" value="{$LANG.login}" />
                                     </span>
                                 </div>
                             </div>
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme} &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
+                                <input type="checkbox" name="rememberme" id="inputRememberMe" /> <label for="inputRememberMe">{$LANG.loginrememberme}<label> &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
                             </label>
                         </form>
                         {if $condlinks.allowClientRegistration}
@@ -142,7 +142,7 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" autocapitalize="none" />
+                                <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" autocapitalize="none" title="{$LANG.exampledomain}" />
                                 <span class="input-group-btn">
                                     {if $registerdomainenabled}
                                         <input type="submit" class="btn btn-warning" value="{$LANG.search}" />
