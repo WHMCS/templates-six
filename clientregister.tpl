@@ -1,3 +1,9 @@
+{if in_array('state', $optionalFields)}
+    <script>
+        var stateNotRequired = true;
+    </script>
+{/if}
+
 <script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 
 {if $registrationDisabled}
@@ -18,12 +24,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="firstname" class="control-label">{$LANG.clientareafirstname}</label>
-                    <input type="text" name="firstname" id="firstname" value="{$clientfirstname}" class="form-control" required />
+                    <input type="text" name="firstname" id="firstname" value="{$clientfirstname}" class="form-control" {if !in_array('firstname', $optionalFields)}required{/if} />
                 </div>
 
                 <div class="form-group">
                     <label for="lastname" class="control-label">{$LANG.clientarealastname}</label>
-                    <input type="text" name="lastname" id="lastname" value="{$clientlastname}" class="form-control" required />
+                    <input type="text" name="lastname" id="lastname" value="{$clientlastname}" class="form-control" {if !in_array('lastname', $optionalFields)}required{/if} />
                 </div>
 
                 <div class="form-group">
@@ -38,13 +44,13 @@
 
                 <div id="newPassword1" class="form-group has-feedback">
                     <label for="inputNewPassword1" class="control-label">{$LANG.clientareapassword}</label>
-                    <input type="password" class="form-control" id="inputNewPassword1" name="password"/>
+                    <input type="password" class="form-control" id="inputNewPassword1" name="password" autocomplete="off" />
                     <span class="form-control-feedback glyphicon glyphicon-password"></span>
                     {include file="$template/includes/pwstrength.tpl"}
                 </div>
                 <div id="newPassword2" class="form-group has-feedback">
                     <label for="inputNewPassword2" class="control-label">{$LANG.clientareaconfirmpassword}</label>
-                    <input type="password" class="form-control" id="inputNewPassword2" name="password2"/>
+                    <input type="password" class="form-control" id="inputNewPassword2" name="password2" autocomplete="off" />
                     <span class="form-control-feedback glyphicon glyphicon-password"></span>
                     <div id="inputNewPassword2Msg">
                     </div>
@@ -54,7 +60,7 @@
 
                 <div class="form-group">
                     <label for="address1" class="control-label">{$LANG.clientareaaddress1}</label>
-                    <input type="text" name="address1" id="address1" value="{$clientaddress1}" class="form-control" required />
+                    <input type="text" name="address1" id="address1" value="{$clientaddress1}" class="form-control" {if !in_array('address1', $optionalFields)}required{/if} />
                 </div>
 
                 <div class="form-group">
@@ -64,17 +70,17 @@
 
                 <div class="form-group">
                     <label for="city" class="control-label">{$LANG.clientareacity}</label>
-                    <input type="text" name="city" id="city" value="{$clientcity}" class="form-control" required />
+                    <input type="text" name="city" id="city" value="{$clientcity}" class="form-control" {if !in_array('city', $optionalFields)}required{/if} />
                 </div>
 
                 <div class="form-group">
                     <label for="state" class="control-label">{$LANG.clientareastate}</label>
-                    <input type="text" name="state" id="state" value="{$clientstate}" class="form-control" required />
+                    <input type="text" name="state" id="state" value="{$clientstate}" class="form-control" {if !in_array('state', $optionalFields)}required{/if} />
                 </div>
 
                 <div class="form-group">
                     <label for="postcode" class="control-label">{$LANG.clientareapostcode}</label>
-                    <input type="text" name="postcode" id="postcode" value="{$clientpostcode}" class="form-control" required />
+                    <input type="text" name="postcode" id="postcode" value="{$clientpostcode}" class="form-control" {if !in_array('postcode', $optionalFields)}required{/if} />
                 </div>
 
                 <div class="form-group">
@@ -90,7 +96,7 @@
 
                 <div class="form-group">
                     <label for="phonenumber" class="control-label">{$LANG.clientareaphonenumber}</label>
-                    <input type="tel" name="phonenumber" id="phonenumber" value="{$clientphonenumber}" class="form-control" required />
+                    <input type="tel" name="phonenumber" id="phonenumber" value="{$clientphonenumber}" class="form-control" {if !in_array('phonenumber', $optionalFields)}required{/if} />
                 </div>
 
                 {if $customfields}
@@ -133,7 +139,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="securityqans">{$LANG.clientareasecurityanswer}</label>
                         <div class="col-sm-6">
-                            <input type="password" name="securityqans" id="securityqans" class="form-control"/>
+                            <input type="password" name="securityqans" id="securityqans" class="form-control" autocomplete="off" />
                         </div>
                     </div>
                 </div>

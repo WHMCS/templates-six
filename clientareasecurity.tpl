@@ -55,7 +55,7 @@
         {if !$nocurrent}
         <div class="form-group">
             <label for="inputCurrentAns" class="control-label">{$currentquestion}</label>
-            <input type="password" name="currentsecurityqans" id="inputCurrentAns" class="form-control" />
+            <input type="password" name="currentsecurityqans" id="inputCurrentAns" class="form-control" autocomplete="off" />
         </div>
         {/if}
 
@@ -73,7 +73,7 @@
 
                 <div class="form-group">
                     <label for="inputSecurityAns1" class="control-label">{$LANG.clientareasecurityanswer}</label>
-                    <input type="password" name="securityqans" id="inputSecurityAns1" class="form-control" />
+                    <input type="password" name="securityqans" id="inputSecurityAns1" class="form-control" autocomplete="off" />
                 </div>
 
             </div>
@@ -81,7 +81,7 @@
 
                 <div class="form-group">
                     <label for="inputSecurityAns2" class="control-label">{$LANG.clientareasecurityconfanswer}</label>
-                    <input type="password" name="securityqans2" id="inputSecurityAns2" class="form-control" />
+                    <input type="password" name="securityqans2" id="inputSecurityAns2" class="form-control" autocomplete="off" />
                 </div>
 
             </div>

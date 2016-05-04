@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                     <td>{$LANG.feedbackstaffinvolved}:</td>
-                    <td><strong>{foreach from=$staffinvolved item=staff}{$staff}, {foreachelse}{$LANG.none}{/foreach}</strong></td>
+                    <td><strong>{if $staffinvolvedtext}{$staffinvolvedtext}{else}{$LANG.none}{/if}</strong></td>
                 </tr>
                 <tr>
                     <td>{$LANG.feedbacktotalduration}:</td>

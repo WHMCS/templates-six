@@ -12,12 +12,12 @@
                 <input type="text" name="code" class="form-control">
                 <br />
                 <button type="submit" name="backupcode" value="1" class="btn btn-primary btn-block" id="btnLogin">
-                    Login &raquo;
+                    {lang key='login'} &raquo;
                 </button>
             </div>
             <div class="action-buttons">
                 <button type="button" class="btn btn-default" id="btnCancel" onclick="jQuery('#frmCancelLogin').submit()">
-                    Cancel
+                    {lang key='cancel'}
                 </button>
             </div>
         </div>
@@ -39,7 +39,7 @@
                     <a href="#" onclick="jQuery('#loginWithSecondFactor').hide();jQuery('#loginWithBackupCode').removeClass('hidden').show();">{$LANG.twofaloginusingbackupcode}</a>
                 </div>
                 <button type="button" class="btn btn-default" id="btnCancel" onclick="jQuery('#frmCancelLogin').submit()">
-                    Cancel
+                    {lang key='cancel'}
                 </button>
             </div>
         </div>
