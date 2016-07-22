@@ -23,7 +23,7 @@ jQuery(".view-filter-btns a").click(function(e) {ldelim}
             jQuery(this).addClass('active');
             jQuery(this).find(jQuery("i.fa.fa-circle-o")).switchClass('fa-circle-o', 'fa-dot-circle-o', 0);
         {/if}
-        filterValueRegex = "\\s*" + jQuery.fn.dataTable.util.escapeRegex(filterValue) + "\\s*";
+        filterValueRegex = '\\s*~' + jQuery.fn.dataTable.util.escapeRegex(filterValue) + '~\\s*';
         dataTable.column({$filterColumn})
             .search(filterValueRegex, true, false, false)
             .draw();

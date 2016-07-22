@@ -16,7 +16,6 @@
 </section>
 
 <script src="{$BASE_PATH_JS}/bootstrap.min.js"></script>
-<script src="{$BASE_PATH_JS}/jquery-ui.min.js"></script>
 <script type="text/javascript">
     var csrfToken = '{$token}',
         markdownGuide = '{lang key="markdown.title"}',

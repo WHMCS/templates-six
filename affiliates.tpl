@@ -111,7 +111,7 @@
                     <td>{$referral.service}</td>
                     <td>{$referral.amountdesc}</td>
                     <td>{$referral.commission}</td>
-                    <td><span class='label status status-{$referral.status|strtolower}'>{$referral.status}</span></td>
+                    <td><span class='label status status-{$referral.rawstatus|strtolower}'>{$referral.status}</span></td>
                 </tr>
             {/foreach}
             </tbody>
