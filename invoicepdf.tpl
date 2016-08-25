@@ -49,6 +49,14 @@ foreach ($companyaddress as $addressLine) {
 $pdf->Ln(5);
 
 # Header Bar
+
+/**
+ * Invoice header
+ *
+ * You can optionally define a header/footer in a way that is repeated across page breaks.
+ * For more information, see http://docs.whmcs.com/PDF_Invoice#Header.2FFooter
+ */
+
 $pdf->SetFont($pdfFont, 'B', 15);
 $pdf->SetFillColor(239);
 $pdf->Cell(0, 8, $pagetitle, 0, 1, 'L', '1');
@@ -183,3 +191,7 @@ if ($notes) {
 $pdf->SetFont($pdfFont, '', 8);
 $pdf->Ln(5);
 $pdf->Cell(180, 4, Lang::trans('invoicepdfgenerated') . ' ' . getTodaysDate(1), '', '', 'C');
+
+/**
+ * Invoice footer
+ */

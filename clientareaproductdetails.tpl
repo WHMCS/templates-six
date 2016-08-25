@@ -350,7 +350,7 @@
                         {$LANG.clientareahostingnextduedate}: {$addon.nextduedate}
                     </p>
                     <p>
-                        <span class="label status-{$addon.status|strtolower}">{$addon.status}</span>
+                        <span class="label status-{$addon.rawstatus|strtolower}">{$addon.status}</span>
                     </p>
                 </div>
             {/foreach}
