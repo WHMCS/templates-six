@@ -88,7 +88,9 @@
 
     <div id="autoAnswerSuggestions" class="well hidden"></div>
 
-    {include file="$template/includes/captcha.tpl"}
+    <div class="text-center margin-bottom">
+        {include file="$template/includes/captcha.tpl"}
+    </div>
 
     <p class="text-center">
         <input type="submit" id="openTicketSubmit" value="{$LANG.supportticketsticketsubmit}" class="btn btn-primary" />

@@ -35,10 +35,8 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-offset-3 col-sm-9">
-                    {include file="$template/includes/captcha.tpl"}
-                </div>
+            <div class="text-center margin-bottom">
+                {include file="$template/includes/captcha.tpl"}
             </div>
 
             <div class="form-group">

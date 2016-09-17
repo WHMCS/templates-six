@@ -1811,7 +1811,7 @@ tr.masspay-total td {
     width: 304px;
     height: 78px;
     margin-top: 15px;
-    margin-bottom: -66px;
+    margin-bottom: 15px;
 }
 
 #default-captcha-domainchecker {
@@ -1831,7 +1831,6 @@ tr.masspay-total td {
 @media (max-width: 991px) {
     #google-recaptcha-domainchecker {
         padding-left: 2.5%;
-        margin-bottom: -25px;
     }
 
     #default-captcha-domainchecker {
@@ -1841,7 +1840,6 @@ tr.masspay-total td {
 
 @media (max-width: 736px) {
     #google-recaptcha-domainchecker {
-        margin-bottom: -35px;
         transform: scale(0.935);
         transform-origin: 0 0;
         -webkit-transform: scale(0.935);
@@ -1851,7 +1849,6 @@ tr.masspay-total td {
 
 @media (max-width: 384px) {
     #google-recaptcha-domainchecker {
-        margin-bottom: -30px;
         transform: scale(0.96);
         transform-origin: 0 0;
     }
@@ -1859,7 +1856,6 @@ tr.masspay-total td {
 
 @media (max-width: 360px) {
     #google-recaptcha-domainchecker {
-        margin-bottom: -35px;
         transform: scale(0.89);
         transform-origin: 0 0;
     }
@@ -1868,7 +1864,6 @@ tr.masspay-total td {
 @media (max-width: 320px) {
     #google-recaptcha-domainchecker {
         padding-left: 13.5%;
-        margin-bottom: -45px;
         transform: scale(0.83);
         transform-origin: 0 0;
         -webkit-transform: scale(0.785);
