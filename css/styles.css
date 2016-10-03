@@ -713,7 +713,8 @@ div.domainresults table tr td {
 .domain-checker-available {
     color: #5cb85c;
 }
-.domain-checker-unavailable {
+.domain-checker-unavailable,
+.domain-checker-invalid {
     color: #d9534f;
 }
 
