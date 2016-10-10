@@ -11,7 +11,11 @@
 
 <section id="footer">
 
-    <p>Copyright &copy; {$date_year} {$companyname}. All Rights Reserved.</p>
+    <!-- c5footer -->
+    <script language="javascript" src="https://www.locuscloud.ch/kundenportal/feed/footer"></script>
+    <!-- /c5footer -->
+
+    <!-- <p>Copyright &copy; {$date_year} {$companyname}. All Rights Reserved.</p> -->
 
 </section>
 

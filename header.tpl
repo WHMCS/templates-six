@@ -15,6 +15,24 @@
 
 {$headeroutput}
 
+<!-- c5header -->
+<div class="c5header">
+    <div id="client-menu" class="row-fluid">
+        <div class="container">
+            <script language="javascript" src="https://www.locuscloud.ch/kundenportal/feed/quicknav"></script>
+        </div>
+    </div>
+    <div id="main-nav" class="row-fluid">
+        <div class="container">
+            <a href="http://www.locuscloud.ch/" class="brand pull-left">LocusCloud</a>
+            <div id="header-menu">
+                <script language="javascript" src="https://www.locuscloud.ch/kundenportal/feed/menu"></script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- c5header -->
+
 <section id="header">
     <div class="container">
 
@@ -73,9 +91,11 @@
                 </div>
             {/if}
             <!-- Shopping Cart -->
+            <!--
             <div class="pull-right nav">
                 <a href="{$WEB_ROOT}/cart.php?a=view" class="quick-nav"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">{$LANG.viewcart} (</span><span id="cartItemCount">{$cartitemcount}</span><span class="hidden-xs">)</span></a>
             </div>
+            -->
 
             {if $adminMasqueradingAsClient}
                 <!-- Return to admin link -->
@@ -93,7 +113,7 @@
 
         </div>
 
-        <a href="{$WEB_ROOT}/index.php"><img src="{$WEB_ROOT}/templates/{$template}/img/logo.png" alt="{$companyname}" /></a>
+        <!-- <a href="{$WEB_ROOT}/index.php"><img src="{$WEB_ROOT}/templates/{$template}/img/logo.png" alt="{$companyname}" /></a> -->
 
     </div>
 </section>
