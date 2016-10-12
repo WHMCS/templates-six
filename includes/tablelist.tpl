@@ -13,17 +13,17 @@ jQuery(".view-filter-btns a").click(function(e) {ldelim}
     if (jQuery(this).hasClass('active')) {ldelim}
         {if !isset($dontControlActiveClass) || !$dontControlActiveClass}
             jQuery(this).removeClass('active');
-            jQuery(this).find("i.fa.fa-dot-circle-o").removeClass('fa-dot-circle-o').addClass('fa-circle-o');
+            jQuery(this).find(jQuery("i.fa.fa-dot-circle-o")).switchClass('fa-dot-circle-o', 'fa-circle-o', 0);
         {/if}
         dataTable.column({$filterColumn}).search('').draw();
     {rdelim} else {ldelim}
         {if !isset($dontControlActiveClass) || !$dontControlActiveClass}
             jQuery('.view-filter-btns .list-group-item').removeClass('active');
-            jQuery('i.fa.fa-dot-circle-o').removeClass('fa-dot-circle-o').addClass('fa-circle-o');
+            jQuery('i.fa.fa-dot-circle-o').switchClass('fa-dot-circle-o', 'fa-circle-o', 0);
             jQuery(this).addClass('active');
-            jQuery(this).find(jQuery("i.fa.fa-circle-o")).removeClass('fa-circle-o').addClass('fa-dot-circle-o');
+            jQuery(this).find(jQuery("i.fa.fa-circle-o")).switchClass('fa-circle-o', 'fa-dot-circle-o', 0);
         {/if}
-        filterValueRegex = '\\s*~' + jQuery.fn.dataTable.util.escapeRegex(filterValue) + '~\\s*';
+        filterValueRegex = "\\s*" + jQuery.fn.dataTable.util.escapeRegex(filterValue) + "\\s*";
         dataTable.column({$filterColumn})
             .search(filterValueRegex, true, false, false)
             .draw();
@@ -88,7 +88,7 @@ jQuery(document).ready( function () {ldelim}
         jQuery(".view-filter-btns a span").each(function(index) {
             if (jQuery(this).text().trim() == rememberedFilterTerm.replace(/\\|s\*/g,'')) {
                 jQuery(this).parent('a').addClass('active');
-                jQuery(this).parent('a').find('i').removeClass('fa-circle-o').addClass('fa-dot-circle-o');
+                jQuery(this).parent('a').find('i').switchClass('fa-circle-o', 'fa-dot-circle-o', 0);
             }
         });
     }
