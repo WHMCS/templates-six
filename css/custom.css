@@ -6,3 +6,66 @@
     defined here.
 
 ***************************************************** */
+section#header {
+    margin: 0;
+    padding: 10px 0;
+    background: #000;
+    border-radius: 0px 0px 0 0;
+	background-image: url("https://www.spryservers.net/img/spry-theme/logo-background.png");
+    background-size: 100%;
+	}
+.navbar-main {
+	background-color: #C9C9C9;
+	border: 0px solid #D9D9D9;
+	border-radius: 0px 0px 0 0;
+	margin-bottom: 0px;
+	min-height: 30px;
+	font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 15px;
+	
+	}
+	.navbar-main .navbar-nav > li > a:hover, .navbar-main .navbar-nav > li > a:focus, .navbar-main .navbar-nav > .active > a, .navbar-main .navbar-nav > .active > a:hover, .navbar-main .navbar-nav > .active > a:focus, .navbar-main .navbar-nav > .open > a, .navbar-main .navbar-nav > .open > a:hover, .navbar-main .navbar-nav > .open > a:focus {
+    color: #A6EF1A;
+    background-color: #0A0000;
+	}
+	.navbar-main .navbar-nav > li > a {
+		padding-top: 9px;
+		padding-bottom: 9px;
+}
+.navbar-main .navbar-nav > li > a {
+    color: #0A0000;
+}
+	.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0px;
+    margin: 2px 0px 0px;
+    font-size: 14px;
+    text-align: left;
+    list-style: outside none none;
+    background-color: #0A0000;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+	}
+	.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857;
+    color: #C9C9C9;
+	background-color: #0A0000;
+    white-space: nowrap;
+	}
+.navbar-main .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    text-decoration: none;
+    color: #A6EF1A;
+    background-color: #0A0000;
+	}

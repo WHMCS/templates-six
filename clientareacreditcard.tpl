@@ -58,79 +58,51 @@
     {if $errormessage}
         {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
     {/if}
+    
+    {if $card_error}
+    <div class="alert alert-danger">
+     Your card could not be saved, please try again or contact support.
+    </div>
+    {/if}
 
-    <form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=creditcard">
-        <div class="form-group">
-            <label for="inputCardType" class="col-sm-4 control-label">{$LANG.creditcardcardtype}</label>
-            <div class="col-sm-4">
-                <select name="cctype" id="inputCardType" class="form-control">
-                    {foreach from=$acceptedcctypes item=fieldcardtype}
-                    <option {if $fieldcardtype eq $cardtype}selected{/if}>{$fieldcardtype}</option>
-                    {/foreach}
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
+    <div class="alert alert-danger payment-errors" style="display:none;"></div>    
+
+    <form class="form-horizontal" role="form" method="post" action="modules/gateways/stripe-php/stripesave.php" id="payment-form">
+    <div class="form-group">
             <label for="inputCardNumber" class="col-sm-4 control-label">{$LANG.creditcardcardnumber}</label>
             <div class="col-sm-6">
-                <input type="number" class="form-control" id="inputCardNumber" name="ccnumber" autocomplete="off" />
+                <input type="number" class="form-control card-number2" data-stripe="number" id="inputCardNumber"  autocomplete="off" />
             </div>
         </div>
-        {if $showccissuestart}
-            <div class="form-group">
-                <label for="inputCardStart" class="col-sm-4 control-label">{$LANG.creditcardcardstart}</label>
-                <div class="col-sm-6">
-                    <select name="ccstartmonth" id="inputCardStart" class="form-control select-inline">
-                        {foreach from=$months item=month}
-                        <option{if $ccstartmonth eq $month} selected{/if}>{$month}</option>
-                        {/foreach}
-                    </select>
-                    <select name="ccstartyear" class="form-control select-inline">
-                        {foreach from=$startyears item=year}
-                        <option{if $ccstartyear eq $year} selected{/if}>{$year}</option>
-                        {/foreach}
-                    </select>
-                </div>
-            </div>
-        {/if}
+        
         <div class="form-group">
             <label for="inputCardExpiry" class="col-sm-4 control-label">{$LANG.creditcardcardexpires}</label>
             <div class="col-sm-6">
-                <select name="ccexpirymonth" id="inputCardExpiry" class="form-control select-inline">
+                <select name="ccexpirymonth" id="inputCardExpiry" class="form-control select-inline card-expiry-month">
                     {foreach from=$months item=month}
                     <option{if $ccstartmonth eq $month} selected{/if}>{$month}</option>
                     {/foreach}
                 </select>
-                <select name="ccexpiryyear" class="form-control select-inline">
+                <select name="ccexpiryyear" class="form-control select-inline card-expiry-year">
                     {foreach from=$expiryyears item=year}
                     <option{if $ccstartyear eq $year} selected{/if}>{$year}</option>
                     {/foreach}
                 </select>
             </div>
         </div>
-        {if $showccissuestart}
-            <div class="form-group">
-                <label for="inputCardIssue" class="col-sm-4 col-xs-12 control-label">{$LANG.creditcardcardissuenum}</label>
-                <div class="col-sm-2 col-xs-4">
-                    <input type="number" class="form-control" id="inputCardIssue" name="ccissuenum" autocomplete="off" />
-                </div>
-            </div>
-        {/if}
         <div class="form-group">
             <label for="inputCardCVV" class="col-sm-4 col-xs-12 control-label">{$LANG.creditcardcvvnumber}</label>
-            <div class="col-sm-7">
-                <input type="number" class="form-control input-inline input-inline-100" id="inputCardCVV" name="cardcvv" autocomplete="off" />
-                <button type="button" class="btn btn-link" data-toggle="popover" data-content="<img src='{$BASE_PATH_IMG}/ccv.gif' width='210' />">
-                    {$LANG.creditcardcvvwhere}
-                </button>
+            <div class="col-sm-2 col-xs-4">
+                <input type="number" class="form-control card-cvc" id="inputCardCVV" autocomplete="off" />
             </div>
         </div>
         <div class="form-group">
             <div class="text-center">
-                <input class="btn btn-primary" type="submit" name="submit" value="{$LANG.clientareasavechanges}" />
+                <input class="btn btn-primary submit-button" type="submit" id="submit-button" value="{$LANG.clientareasavechanges}" />
                 <input class="btn btn-default" type="reset" value="{$LANG.cancel}" />
             </div>
         </div>
+
     </form>
 
 {/if}
