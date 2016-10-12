@@ -115,7 +115,9 @@
             {include file="$template/includes/subheader.tpl" title=$LANG.orderpaymentmethod}
             <div class="form-group">
                 <select name="paymentmethod" id="inputPaymentMethod" class="form-control">
-                    <option value="none">{$LANG.paymentmethoddefault}</option>
+                    {if $allowgatewayselection}
+                        <option value="none">{$LANG.paymentmethoddefault}</option>
+                    {/if}
                     {foreach key=num item=gateway from=$gateways}
                         <option value="{$gateway.sysname}"{if $gateway.sysname eq $selectedgateway} selected="selected"{/if}>{$gateway.name}</option>
                     {/foreach}

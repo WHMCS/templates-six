@@ -39,15 +39,15 @@
                         {if $showcancelbutton || $packagesupgrade}
                             <div class="row">
                                 {if $packagesupgrade}
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-{if $showcancelbutton}6{else}12{/if}">
                                         <a href="upgrade.php?type=package&amp;id={$id}" class="btn btn-block btn-success">{$LANG.upgrade}</a>
                                     </div>
-                                    <div class="col-xs-6">
-                                {else}
-                                    <div class="col-xs-12">
                                 {/if}
-                                    <a href="clientarea.php?action=cancel&amp;id={$id}" class="btn btn-block btn-danger {if $pendingcancellation}disabled{/if}">{if $pendingcancellation}{$LANG.cancellationrequested}{else}{$LANG.clientareacancelrequestbutton}{/if}</a>
-                                </div>
+                                {if $showcancelbutton}
+                                    <div class="col-xs-{if $packagesupgrade}6{else}12{/if}">
+                                        <a href="clientarea.php?action=cancel&amp;id={$id}" class="btn btn-block btn-danger {if $pendingcancellation}disabled{/if}">{if $pendingcancellation}{$LANG.cancellationrequested}{else}{$LANG.clientareacancelrequestbutton}{/if}</a>
+                                    </div>
+                                {/if}
                             </div>
                         {/if}
 
@@ -350,7 +350,7 @@
                         {$LANG.clientareahostingnextduedate}: {$addon.nextduedate}
                     </p>
                     <p>
-                        <span class="label status-{$addon.status|strtolower}">{$addon.status}</span>
+                        <span class="label status-{$addon.rawstatus|strtolower}">{$addon.status}</span>
                     </p>
                 </div>
             {/foreach}

@@ -64,7 +64,13 @@
 
         <br />
 
-        {if $systemStatus == 'Active'}
+        {if $systemStatus == 'Active'
+            and (
+                $managementoptions.nameservers or
+                $managementoptions.contacts or
+                $managementoptions.locking or
+                $renew)}
+                {* No reason to show this section if nothing can be done here! *}
 
             <h4>{$LANG.doToday}</h4>
 
@@ -90,11 +96,13 @@
                         </a>
                     </li>
                 {/if}
-                <li>
-                    <a href="cart.php?gid=renewals">
-                        {$LANG.renewYourDomain}
-                    </a>
-                </li>
+                {if $renew}
+                    <li>
+                        <a href="cart.php?gid=renewals">
+                            {$LANG.renewYourDomain}
+                        </a>
+                    </li>
+                {/if}
             </ul>
 
         {/if}

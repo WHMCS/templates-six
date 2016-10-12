@@ -171,3 +171,11 @@ input[type='file'].form-control {
 .list-group-item > i.fa.fa-circle-o {
     color: #808080;
 }
+
+/*
+ * Language strings which are too long to fit into buttons should be "chopped off" inside the div
+ * of that button, instead of "overflowing" outside of the button.  CORE-9272
+ */
+.btn {
+    overflow: hidden;
+}

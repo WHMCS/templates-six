@@ -58,10 +58,11 @@
                             <td>
                                 <span class="label status status-{$domain.statusClass}">{$domain.statustext}</span>
                                 <span class="hidden">
-                                    {if $domain.next30}{$LANG.domainsExpiringInTheNext30Days}<br />{/if}
-                                    {if $domain.next90}{$LANG.domainsExpiringInTheNext90Days}<br />{/if}
-                                    {if $domain.next180}{$LANG.domainsExpiringInTheNext180Days}<br />{/if}
-                                    {if $domain.after180}{$LANG.domainsExpiringInMoreThan180Days}{/if}
+                                    ~{$domain.statustext}~
+                                    {if $domain.next30}~{$LANG.domainsExpiringInTheNext30Days}~<br />{/if}
+                                    {if $domain.next90}~{$LANG.domainsExpiringInTheNext90Days}~<br />{/if}
+                                    {if $domain.next180}~{$LANG.domainsExpiringInTheNext180Days}~<br />{/if}
+                                    {if $domain.after180}~{$LANG.domainsExpiringInMoreThan180Days}~{/if}
                                 </span>
                             </td>
                             <td>
