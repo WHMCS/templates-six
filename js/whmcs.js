@@ -45,9 +45,6 @@ jQuery(document).ready(function() {
         html: true
     });
 
-    // Enable tooltips
-    jQuery('[data-toggle="tooltip"]').tooltip();
-
     // Logic to dismiss popovers on click outside
     jQuery('body').on('click', function (e) {
         jQuery('[data-toggle="popover"]').each(function () {
@@ -233,9 +230,8 @@ jQuery(document).ready(function() {
                     url: 'clientarea.php',
                     async: false,
                     data: {token: csrfToken, action: 'parseMarkdown', content: originalContent},
-                    dataType: 'json',
                     success: function (data) {
-                        parsedContent = data;
+                        parsedContent = JSON.parse(data);
                     }
                 });
 
@@ -338,7 +334,7 @@ jQuery(document).ready(function() {
     }
 
     // Two-Factor Activation Process Modal Handler.
-    var frmTwoFactorActivation = jQuery('input[name=2fasetup]').parent('form');
+    var frmTwoFactorActivation = $('input[name=2fasetup]').parent('form');
     frmTwoFactorActivation.submit(function(e) {
         e.preventDefault();
         openModal(frmTwoFactorActivation.attr('action'), frmTwoFactorActivation.serialize(), 'Loading...');
