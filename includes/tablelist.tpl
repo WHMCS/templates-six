@@ -6,6 +6,21 @@
 
 {if isset($filterColumn) && $filterColumn}
 <script type="text/javascript">
+
+if (typeof(buildFilterRegex) !== "function") {
+    function buildFilterRegex(filterValue) {
+
+        if (filterValue.indexOf('&') === -1) {
+            return '[~>]\\s*' + jQuery.fn.dataTable.util.escapeRegex(filterValue) + '\\s*[<~]';
+        } else {
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = filterValue;
+
+            return '\\s*' + jQuery.fn.dataTable.util.escapeRegex(tempDiv.innerText) + '\\s*';
+        }
+    }
+}
+
 jQuery(".view-filter-btns a").click(function(e) {ldelim}
     var filterValue = jQuery(this).find("span").html().trim();
     var dataTable = jQuery('#table{$tableName}').DataTable();
@@ -23,7 +38,7 @@ jQuery(".view-filter-btns a").click(function(e) {ldelim}
             jQuery(this).addClass('active');
             jQuery(this).find(jQuery("i.fa.fa-circle-o")).removeClass('fa-circle-o').addClass('fa-dot-circle-o');
         {/if}
-        filterValueRegex = '\\s*~' + jQuery.fn.dataTable.util.escapeRegex(filterValue) + '~\\s*';
+        filterValueRegex = buildFilterRegex(filterValue);
         dataTable.column({$filterColumn})
             .search(filterValueRegex, true, false, false)
             .draw();
@@ -71,11 +86,17 @@ jQuery(document).ready( function () {ldelim}
         "lengthMenu": [
             [10, 25, 50, -1],
             [10, 25, 50, "{$LANG.tableviewall}"]
-        ],{if isset($noSortColumns) && $noSortColumns !== ''}
-        "aoColumnDefs": [{ldelim}
-            "bSortable": false,
-            "aTargets": [ {$noSortColumns} ]
-        {rdelim}],{/if}
+        ],
+        "aoColumnDefs": [
+            {ldelim}
+                "bSortable": false,
+                "aTargets": [ {if isset($noSortColumns) && $noSortColumns !== ''}{$noSortColumns}{/if} ]
+            {rdelim},
+            {ldelim}
+                "sType": "string",
+                "aTargets": [ {if isset($filterColumn) && $filterColumn}{$filterColumn}{/if} ]
+            {rdelim}
+        ],
         "stateSave": true
     {rdelim});
     jQuery(".dataTables_filter input").attr("placeholder", "{$LANG.tableentersearchterm}");
@@ -86,7 +107,7 @@ jQuery(document).ready( function () {ldelim}
     if (rememberedFilterTerm && !alreadyReady) {
         // This should only run on the first "ready" event.
         jQuery(".view-filter-btns a span").each(function(index) {
-            if (jQuery(this).text().trim() == rememberedFilterTerm.replace(/\\|s\*/g,'')) {
+            if (buildFilterRegex(jQuery(this).text().trim()) == rememberedFilterTerm) {
                 jQuery(this).parent('a').addClass('active');
                 jQuery(this).parent('a').find('i').removeClass('fa-circle-o').addClass('fa-dot-circle-o');
             }
