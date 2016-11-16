@@ -109,8 +109,8 @@
                 <tr class="text-center">
                     <td><span class="hidden">{$referral.datets}</span>{$referral.date}</td>
                     <td>{$referral.service}</td>
-                    <td>{$referral.amountdesc}</td>
-                    <td>{$referral.commission}</td>
+                    <td data-order="{$referral.amountnum}">{$referral.amountdesc}</td>
+                    <td data-order="{$referral.commissionnum}">{$referral.commission}</td>
                     <td><span class='label status status-{$referral.rawstatus|strtolower}'>{$referral.status}</span></td>
                 </tr>
             {/foreach}

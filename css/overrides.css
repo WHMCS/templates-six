@@ -3,16 +3,10 @@
  *
  * These styles override Bootstrap's defaults.
  *
- * @project   WHMCS
- * @cssdoc    version 1.0-pre
- * @package   WHMCS
  * @author    WHMCS Limited <development@whmcs.com>
- * @copyright Copyright (c) WHMCS Limited 2005-2015
+ * @copyright Copyright (c) WHMCS Limited 2005-2016
  * @license   http://www.whmcs.com/license/
- * @link      http://www.whmcs.com/
-*/
-
-@import url("//fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway:400,700");
+ */
 
 body,
 input,
@@ -160,9 +154,9 @@ input[type='file'].form-control {
     padding: 10px 15px;
 }
 
-/* 
- * We use a larger font-size than the bootstrap default, which requires an increase 
- * in the top offset to maintain correct alignment in form control feedback. 
+/*
+ * We use a larger font-size than the bootstrap default, which requires an increase
+ * in the top offset to maintain correct alignment in form control feedback.
  */
 .has-feedback label ~ .form-control-feedback {
     top: 27px !important;

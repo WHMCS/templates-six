@@ -844,6 +844,7 @@ div.product-details-tab-container {
 .dataTables_wrapper table.table-list {
     margin-top: 0 !important;
     margin-bottom: 6px !important;
+    width: 100% !important;
 }
 
 .dataTables_wrapper .dataTables_filter {
@@ -984,7 +985,8 @@ table.dtr-inline.collapsed .responsive-edit-button {
     background-color: #A68500;
 }
 .status-active,
-.status-open {
+.status-open,
+.status.completed {
     background-color: #3fad46;
 }
 .status-suspended {
@@ -997,7 +999,8 @@ table.dtr-inline.collapsed .responsive-edit-button {
 .status-answered {
     background-color: #000000;
 }
-.status-expired {
+.status-expired,
+.status-transferred.away{
     background-color: #004258;
 }
 .status-cancelled {

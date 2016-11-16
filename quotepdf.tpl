@@ -15,20 +15,23 @@ for ( $i = 1; $i <= ((count($companyaddress)>6) ? count($companyaddress) : 6); $
 $pdf->Ln(5);
 
 $pdf->SetFont($pdfFont,'B',10);
-$pdf->SetX($pdf->GetX()+10);
-$pdf->Cell(20,6,$_LANG['quotenumber'],1,0,'C');
-$pdf->Cell(70,6,$_LANG['quotesubject'],1,0,'C');
-$pdf->Cell(35,6,$_LANG['quotedatecreated'],1,0,'C');
-$pdf->Cell(35,6,$_LANG['quotevaliduntil'],1,1,'C');
 
-$pdf->SetFont($pdfFont,'',9);
-$pdf->SetX($pdf->GetX()+10);
-$rowcount = $pdf->getNumLines($subject, 60);
-$height = $rowcount * 5;
-$pdf->MultiCell(20,$height,$quotenumber,1,'C',0,0);
-$pdf->MultiCell(70,$height,$subject,1,'C',0,0);
-$pdf->MultiCell(35,$height,$datecreated,1,'C',0,0);
-$pdf->MultiCell(35,$height,$validuntil,1,'C',0,1);
+$tblhtml = "
+<table width=\"100%\" bgcolor=\"#ccc\" cellspacing=\"1\" cellpadding=\"2\" border=\"0\">
+    <tr height=\"30\" bgcolor=\"#efefef\" style=\"font-weight:bold;text-align:center;\">
+        <td>{$_LANG['quotenumber']}</td>
+        <td>{$_LANG['quotesubject']}</td>
+        <td>{$_LANG['quotedatecreated']}</td>
+        <td>{$_LANG['quotevaliduntil']}</td>
+    </tr>
+    <tr bgcolor=\"#fff\">
+        <td align=\"center\">{$quotenumber}</td>
+        <td align=\"left\">{$subject}</td>
+        <td align=\"center\">{$datecreated}</td>
+        <td align=\"center\">{$validuntil}</td>
+    </tr>
+</table>";
+$pdf->writeHTML($tblhtml, true, false, false, false, '');
 
 $pdf->Ln(10);
 

@@ -6,14 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{$companyname} - {$LANG.quotenumber}{$id}</title>
 
-    <!-- Bootstrap -->
-    <link href="{$BASE_PATH_CSS}/bootstrap.min.css" rel="stylesheet">
-    <link href="{$BASE_PATH_CSS}/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Styling -->
-    <link href="templates/{$template}/css/overrides.css" rel="stylesheet">
-    <link href="templates/{$template}/css/styles.css" rel="stylesheet">
-    <link href="templates/{$template}/css/invoice.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/templates/{$template}/css/all.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/templates/{$template}/css/invoice.css" rel="stylesheet">
 
 </head>
 <body>

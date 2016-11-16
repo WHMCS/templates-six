@@ -59,7 +59,10 @@
         {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
     {/if}
 
-    <form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=creditcard">
+
+    <form id="frmNewCc" class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=creditcard">
+        <div class="alert alert-danger text-center gateway-errors hidden"></div>
+
         <div class="form-group">
             <label for="inputCardType" class="col-sm-4 control-label">{$LANG.creditcardcardtype}</label>
             <div class="col-sm-4">
@@ -73,7 +76,7 @@
         <div class="form-group">
             <label for="inputCardNumber" class="col-sm-4 control-label">{$LANG.creditcardcardnumber}</label>
             <div class="col-sm-6">
-                <input type="number" class="form-control" id="inputCardNumber" name="ccnumber" autocomplete="off" />
+                <input type="tel" class="form-control" id="inputCardNumber" name="ccnumber" autocomplete="off" />
             </div>
         </div>
         {if $showccissuestart}
@@ -112,14 +115,14 @@
             <div class="form-group">
                 <label for="inputCardIssue" class="col-sm-4 col-xs-12 control-label">{$LANG.creditcardcardissuenum}</label>
                 <div class="col-sm-2 col-xs-4">
-                    <input type="number" class="form-control" id="inputCardIssue" name="ccissuenum" autocomplete="off" />
+                    <input type="tel" class="form-control" id="inputCardIssue" name="ccissuenum" autocomplete="off" />
                 </div>
             </div>
         {/if}
         <div class="form-group">
             <label for="inputCardCVV" class="col-sm-4 col-xs-12 control-label">{$LANG.creditcardcvvnumber}</label>
             <div class="col-sm-7">
-                <input type="number" class="form-control input-inline input-inline-100" id="inputCardCVV" name="cardcvv" autocomplete="off" />
+                <input type="tel" class="form-control input-inline input-inline-100" id="inputCardCVV" name="cardcvv" autocomplete="off" />
                 <button type="button" class="btn btn-link" data-toggle="popover" data-content="<img src='{$BASE_PATH_IMG}/ccv.gif' width='210' />">
                     {$LANG.creditcardcvvwhere}
                 </button>
@@ -127,7 +130,7 @@
         </div>
         <div class="form-group">
             <div class="text-center">
-                <input class="btn btn-primary" type="submit" name="submit" value="{$LANG.clientareasavechanges}" />
+                <input class="btn btn-primary" id="btnSubmitNewCard" type="submit" name="submit" value="{$LANG.clientareasavechanges}" />
                 <input class="btn btn-default" type="reset" value="{$LANG.cancel}" />
             </div>
         </div>

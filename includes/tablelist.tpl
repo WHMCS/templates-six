@@ -22,7 +22,7 @@ if (typeof(buildFilterRegex) !== "function") {
 }
 
 jQuery(".view-filter-btns a").click(function(e) {ldelim}
-    var filterValue = jQuery(this).find("span").html().trim();
+    var filterValue = jQuery(this).find("span").not('.badge').html().trim();
     var dataTable = jQuery('#table{$tableName}').DataTable();
     var filterValueRegex;
     if (jQuery(this).hasClass('active')) {ldelim}

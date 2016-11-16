@@ -10,21 +10,8 @@
 </section>
 
 <section id="footer">
-
     <p>Copyright &copy; {$date_year} {$companyname}. All Rights Reserved.</p>
-
 </section>
-
-<script src="{$BASE_PATH_JS}/bootstrap.min.js"></script>
-<script type="text/javascript">
-    var csrfToken = '{$token}',
-        markdownGuide = '{lang key="markdown.title"}',
-        locale = '{if !empty($mdeLocale)}{lang key="locale"}{else}en_GB{/if}',
-        saved = '{lang key="markdown.saved"}',
-        saving = '{lang key="markdown.saving"}';
-</script>
-<script src="{$WEB_ROOT}/templates/{$template}/js/whmcs.js"></script>
-<script src="{$BASE_PATH_JS}/AjaxModal.js"></script>
 
 <div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">

@@ -15,7 +15,7 @@
 
 {else}
 
-    <form method="post" action="creditcard.php" class="form-horizontal" role="form">
+    <form id="frmPayment" method="post" action="creditcard.php" class="form-horizontal" role="form">
         <input type="hidden" name="action" value="submit" />
         <input type="hidden" name="invoiceid" value="{$invoiceid}" />
 
@@ -25,6 +25,8 @@
                 {if $errormessage}
                     {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
                 {/if}
+
+                <div class="alert alert-danger text-center hidden gateway-errors"></div>
 
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-4">
@@ -118,7 +120,7 @@
                 <div class="form-group cc-details{if !$addingNewCard} hidden{/if}">
                     <label for="inputCardNumber" class="col-sm-4 control-label">{$LANG.creditcardcardnumber}</label>
                     <div class="col-sm-7">
-                        <input type="number" name="ccnumber" id="inputCardNumber" size="30" value="{if $ccnumber}{$ccnumber}{/if}" autocomplete="off" class="form-control newccinfo" />
+                        <input type="tel" name="ccnumber" id="inputCardNumber" size="30" value="{if $ccnumber}{$ccnumber}{/if}" autocomplete="off" class="form-control newccinfo" />
                     </div>
                 </div>
                 {if $showccissuestart}
@@ -184,7 +186,10 @@
                 {/if}
                 <div class="form-group">
                     <div class="text-center">
-                        <input type="submit" class="btn btn-primary btn-lg" value="{$LANG.submitpayment}" onclick="this.value='{$LANG.pleasewait}'" id="btnSubmit" />
+                        <button type="submit" class="btn btn-primary btn-lg" id="btnSubmit" value="{$LANG.submitpayment}">
+                            <span class="pay-text">{$LANG.submitpayment}</span>
+                            <span class="click-text hidden">{$LANG.pleasewait}</span>
+                        </button>
                     </div>
                 </div>
 

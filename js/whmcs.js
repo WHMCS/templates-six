@@ -343,6 +343,11 @@ jQuery(document).ready(function() {
         e.preventDefault();
         openModal(frmTwoFactorActivation.attr('action'), frmTwoFactorActivation.serialize(), 'Loading...');
     });
+
+    jQuery('#frmPayment').find('#btnSubmit').on('click', function(){
+        jQuery(this).find('span').toggleClass('hidden');
+    })
+
 });
 
 /**
