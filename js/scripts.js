@@ -13636,7 +13636,6 @@ jQuery(document).ready(function() {
                         title: "Help",
                         hotkey: "Ctrl+F1",
                         btnClass: "btn open-modal",
-                        href: "submitticket.php?action=markdown",
                         icon: {
                             glyph: 'glyphicons glyphicons-question-sign',
                             fa: 'fa fa-question-circle',
@@ -13644,17 +13643,18 @@ jQuery(document).ready(function() {
                         },
                         callback: function(e) {
                             e.$editor.removeClass("md-fullscreen-mode");
-                        },
-                        additionalAttr: [
-                            {
-                                name: 'data-modal-title',
-                                value: markdownGuide
-                            }
-                        ]
+                        }
                     }]
                 }]
+            ],
+            hiddenButtons: [
+                'cmdImage'
             ]
         });
+
+        jQuery('button[data-handler="bootstrap-markdown-cmdHelp"]')
+            .attr('data-modal-title', markdownGuide)
+            .attr('href', 'submitticket.php?action=markdown');
 
         jQuery(this).closest("form").bind({
             submit: function() {
@@ -14011,7 +14011,7 @@ function deleteContact(confirmQuestion, contactId)
  * @license http://www.whmcs.com/license/ WHMCS Eula
  */
 jQuery(document).ready(function(){
-    jQuery('.open-modal').click(function(e) {
+    jQuery(document).on('click', '.open-modal', function(e) {
         e.preventDefault();
         var url = jQuery(this).attr('href'),
             modalSize = jQuery(this).data('modal-size'),
@@ -15586,6 +15586,447 @@ function dialogClose() {
     });
 
 }));
+
+/*
+ * Arabic translation for bootstrap-markdown
+ * George Ajam <george.ejaam@gmail.com>
+ */
+(function ($) {
+  $.fn.markdown.messages.nl = {
+    'Bold': "غامق",
+    'Italic': "مائل",
+    'Heading': "عنوان",
+    'URL/Link': "URL/رابط",
+    'Image': "صورة",
+    'List': "قائمة",
+    'Preview': "استعراض",
+    'strong text': "نص غامق",
+    'emphasized text': "نص هام",
+    'heading text': "العنوان",
+    'enter link description here': "ادخل وصف الرابط هنا",
+    'Insert Hyperlink': "ادخل الرابط هنا",
+    'enter image description here': "ادخل وصف الصورة هنا",
+    'Insert Image Hyperlink': "ادخل رابط الصورة هنا",
+    'enter image title here': "ادخل عنوان الصورة هنا",
+    'list text here': "اكتب النص هنا"
+  };
+}(jQuery));
+
+/**
+ * Czech translation for bootstrap-markdown
+ * Vít Kabele <vit@kabele.me>
+ */
+(function ($) {
+  $.fn.markdown.messages.cs = {
+    'Bold': "Tučně",
+    'Italic': "Kurzíva",
+    'Heading': "Nadpis",
+    'URL/Link': "URL/Odkaz",
+    'Image': "Obrázek",
+    'Unordered List': "Seznam",
+    'Ordered List': "Seřazený seznam",
+    'Code': "Úsek kódu",
+    'Quote': "Citace",
+    'Preview': "Náhled",
+    'strong text': "tučný text",
+    'emphasized text': "zdůrazněný text",
+    'heading text': "text nadpisu",
+    'enter link description here': "sem vlož popis odkazu",
+    'Insert Hyperlink': "Vložit Hyperlink",
+    'enter image description here': "sem vlož popis obrázku",
+    'Insert Image Hyperlink': "Vlož adresu obrázku",
+    'enter image title here': "sem vlož popis obrázku",
+    'list text here': "položka seznamu"
+  };
+}(jQuery));
+
+/**
+ * Danish translation for bootstrap-markdown
+ * Dan Storm <storm@catalystcode.net>
+ */
+(function ($) {
+  $.fn.markdown.messages.nb = {
+    'Bold': 'Fed',
+    'Italic': 'Kursiv',
+    'Heading': 'Overskrift',
+    'URL/Link': 'URL/Link',
+    'Image': 'Billede',
+    'List': 'Liste',
+    'Preview': 'Forhåndsvisning',
+    'strong text': 'stærk tekst',
+    'emphasized text': 'fremhævet tekst',
+    'heading text': 'overskrift tekst',
+    'enter link description here': 'Skriv link beskrivelse her',
+    'Insert Hyperlink': 'Indsæt link',
+    'enter image description here': 'Indsæt billede beskrivelse her',
+    'Insert Image Hyperlink': 'Indsæt billede link',
+    'enter image title here': 'Indsæt billede titel',
+    'list text here': 'Indsæt liste tekst her',
+    'quote here': 'Indsæt citat her',
+    'code text here': 'Indsæt kode her'
+  };
+}(jQuery));
+
+/**
+ * German translation for bootstrap-markdown
+ * Tobias Nitsche <tobias-nitsche@gmx.net>
+ */
+(function ($) {
+  $.fn.markdown.messages.de = {
+    'Bold': "Fett",
+    'Italic': "Kursiv",
+    'Heading': "Überschrift",
+    'URL/Link': "Link hinzufügen",
+    'Image': "Bild hinzufügen",
+    'Unordered List': "Unnummerierte Liste",
+    'Ordered List': "Nummerierte Liste",
+    'Code': "Quelltext",
+    'Quote': "Zitat",
+    'Preview': "Vorschau",
+    'strong text': "Sehr betonter Text",
+    'emphasized text': "Betonter Text",
+    'heading text': "Überschrift Text",
+    'enter link description here': "Linkbeschreibung",
+    'Insert Hyperlink': "URL",
+    'enter image description here': "Bildbeschreibung",
+    'Insert Image Hyperlink': "Bild-URL",
+    'enter image title here': "Titel des Bildes",
+    'list text here': "Aufzählungs-Text"
+  };
+}(jQuery));
+
+/**
+ * Spanish translation for bootstrap-markdown
+ * by Leandro Poblet <leandrodrhouse@gmail.com>
+ */
+;(function($){
+  $.fn.markdown.messages['es'] = {
+    'Bold': "Negrita",
+    'Italic': "Itálica",
+    'Heading': "Título",
+    'URL/Link': "Inserte un link",
+    'Image': "Inserte una imagen",
+    'List': "Lista de items",
+    'Preview': "Previsualizar",
+    'strong text': "texto importante",
+    'emphasized text': "texto con énfasis",
+    'heading text': "texto titular",
+    'enter link description here': "descripción del link",
+    'Insert Hyperlink': "Inserte un hipervínculo",
+    'enter image description here': "descripción de la imagen",
+    'Insert Image Hyperlink': "Inserte una imagen con un hipervínculo",
+    'enter image title here': "Inserte una imagen con título",
+    'list text here': "lista con texto"
+  };
+}(jQuery));
+
+/**
+ * Persian(Farsi) translation for bootstrap-markdown
+ * Sajad Dehshiri <Pelakweb.ir>
+ */
+(function ($) {
+  $.fn.markdown.messages.fa = {
+    'Bold': "توپر",
+    'Italic': "مورب",
+    'Heading': "عنوان",
+    'URL/Link': "پیوند",
+    'Image': "تصویر",
+    'List': "فهرست",
+    'Preview': "پیش نمایش",
+    'strong text': "متن ضخیم",
+    'emphasized text': "نوشته تاکیدی",
+    'heading text': "عنوان",
+    'enter link description here': "توضیحات پیوند را بنویسید.",
+    'Insert Hyperlink': "پیوند را درج نمایید:",
+    'enter image description here': "توضیحی برای تصوی بنویسید.",
+    'Insert Image Hyperlink': "آدرس تصویر را بنویسید.",
+    'enter image title here': "عنوان تصویر را اینجا بنویسید",
+    'list text here': "محل متن فهرست"
+  };
+}(jQuery));
+
+/**
+ * French translation for bootstrap-markdown
+ * Benoît Bourgeois <bierdok@gmail.com>
+ */
+(function ($) {
+  $.fn.markdown.messages.fr = {
+    'Bold': "Gras",
+    'Italic': "Italique",
+    'Heading': "Titre",
+    'URL/Link': "Insérer un lien HTTP",
+    'Image': "Insérer une image",
+    'List': "Liste à puces",
+    'Preview': "Prévisualiser",
+    'strong text': "texte important",
+    'emphasized text': "texte en italique",
+    'heading text': "texte d'entête",
+    'enter link description here': "entrez la description du lien ici",
+    'Insert Hyperlink': "Insérez le lien hypertexte",
+    'enter image description here': "entrez la description de l'image ici",
+    'Insert Image Hyperlink': "Insérez le lien hypertexte de l'image",
+    'enter image title here': "entrez le titre de l'image ici",
+    'list text here': "texte à puce ici",
+    'Save': "Sauvegarder",
+    'Ordered List': "Liste ordonnée",
+    'Unordered List': "Liste désordonnée",
+    'Quote': "Citation",
+    'quote here': "Votre citation",
+    'Code': "Code",
+    'code text here': "écrire du code ici"
+  };
+}(jQuery));
+
+/**
+ * Japanese translation for bootstrap-markdown
+ * Kenta Murakami <kntmrkm@gmail.com>
+ */
+(function ($) {
+  $.fn.markdown.messages['ja'] = {
+    'Bold': "太字",
+    'Italic': "斜体",
+    'Heading': "見出し",
+    'URL/Link': "リンク",
+    'Image': "画像",
+    'Unordered List': "リスト",
+    'Ordered List': "数字リスト",
+    'Code': "コード",
+    'Quote': "引用",
+    'Preview': "プレビュー",
+    'strong text': "太字",
+    'emphasized text': "強調",
+    'heading text': "見出し",
+    'enter link description here': "リンク説明",
+    'Insert Hyperlink': "リンク挿入",
+    'enter image description here': "画像説明",
+    'Insert Image Hyperlink': "画像挿入",
+    'enter image title here': "画像タイトル",
+    'list text here': "リスト挿入",
+    'code text here': "コード",
+    'quote here': "引用挿入"
+  };
+}(jQuery));
+
+/**
+ + * Korean translation for bootstrap-markdown
+ + * WoongBi Kim <ssinss@gmail.com>
+ + */
+;(function($){
+  $.fn.markdown.messages['kr'] = {
+    'Bold': "진하게",
+    'Italic': "이탤릭체",
+    'Heading': "머리글",
+    'URL/Link': "링크주소",
+    'Image': "이미지",
+    'List': "리스트",
+    'Preview': "미리보기",
+    'strong text': "강한 강조 텍스트",
+    'emphasized text': "강조 텍스트",
+    'heading text': "머리글 텍스트",
+    'enter link description here': "여기에 링크의 설명을 적으세요",
+    'Insert Hyperlink': "하이퍼링크 삽입",
+    'enter image description here': "여기세 이미지 설명을 적으세요",
+    'Insert Image Hyperlink': "이미지 링크 삽입",
+    'enter image title here': "여기에 이미지 제목을 적으세요",
+    'list text here': "리스트 텍스트"
+  };
+}(jQuery));
+
+/**
+ * Norwegian bokmål translation for bootstrap-markdown
+ * Tobias Bohwalli <hi@futhr.io>
+ */
+(function ($) {
+  $.fn.markdown.messages.nb = {
+    'Bold': 'Fet',
+    'Italic': 'Kursiv',
+    'Heading': 'Overskrift',
+    'URL/Link': 'URL/Lenke',
+    'Image': 'Bilde',
+    'List': 'Liste',
+    'Preview': 'Forhåndsvisning',
+    'strong text': 'sterk tekst',
+    'emphasized text': 'streket tekst',
+    'heading text': 'overskriften tekst',
+    'enter link description here': 'Skriv linken beskrivelse her',
+    'Insert Hyperlink': 'Sett inn lenke',
+    'enter image description here': 'Angi bildebeskrivelse her',
+    'Insert Image Hyperlink': 'Sett inn lenke for bilde',
+    'enter image title here': 'Angi bildetittel her',
+    'list text here': 'liste tekst her'
+  };
+}(jQuery));
+
+/**
+ * Dutch translation for bootstrap-markdown
+ * Jeroen Thora <jeroenthora@gmail.com>
+ */
+(function ($) {
+  $.fn.markdown.messages.nl = {
+    'Bold': "Vet",
+    'Italic': "Cursief",
+    'Heading': "Titel",
+    'URL/Link': "URL/Link",
+    'Image': "Afbeelding",
+    'List': "Lijst",
+    'Preview': "Voorbeeld",
+    'strong text': "vet gedrukte tekst",
+    'emphasized text': "schuin gedrukte tekst",
+    'heading text': "Titel",
+    'enter link description here': "Voer een link beschrijving in",
+    'Insert Hyperlink': "Voer een http link in",
+    'enter image description here': "Voer een afbeelding beschrijving in",
+    'Insert Image Hyperlink': "Voer een afbeelding link in",
+    'enter image title here': "Voer de afbeelding titel in",
+    'list text here': "lijst item"
+  };
+}(jQuery));
+
+/**
+ * Polish translation for bootstrap-markdown
+ * Marek Kaput
+ */
+(function ($) {
+  $.fn.markdown.messages.pl = {
+    'Bold': "Pogrubienie",
+    'Italic': "Kursywa",
+    'Heading': "Nagłówek",
+    'URL/Link': "Wstaw link",
+    'Image': "Wstaw obrazek",
+    'Unordered List': "Lista punktowana",
+    'Ordered List': "Lista numerowana",
+    'Code': "Kod źródłowy",
+    'Quote': "Cytat",
+    'Preview': "Podgląd",
+    'strong text': "pogrubiony tekst",
+    'emphasized text': "pochylony tekst",
+    'heading text': "nagłówek",
+    'enter link description here': "opis linka",
+    'Insert Hyperlink': "Wstaw link",
+    'enter image description here': "opis obrazka",
+    'Insert Image Hyperlink': "Wstaw obrazek",
+    'enter image title here': "tytuł obrazka",
+    'list text here': "lista"
+  };
+}(jQuery));
+
+/**
+ * Slovenian translation for bootstrap-markdown
+ * Davor Padovan <davor.padovan@gmail.com>
+ */
+(function ($) {
+  $.fn.markdown.messages.sl = {
+    'Bold': "Odebeljeno",
+    'Italic': "Poševno",
+    'Heading': "Naslov",
+    'URL/Link': "Povezava",
+    'Image': "Slika",
+    'Unordered List': "Neurejen seznam",
+    'Ordered List': "Urejen seznam",
+    'Code': "Koda",
+    'Quote': "Citat",
+    'Preview': "Predogled",
+    'strong text': "odebeljeno besedilo",
+    'emphasized text': "poševno besedilo",
+    'heading text': "naslov",
+    'enter link description here': "opis povezave",
+    'Insert Hyperlink': "Vstavi povezavo",
+    'enter image description here': "opis slike",
+    'Insert Image Hyperlink': "Vstavi povezavo do slike",
+    'enter image title here': "naslov slike",
+    'list text here': "seznam"
+  };
+}(jQuery));
+
+/**
+ * Swedish translation for bootstrap-markdown
+ * Tobias Bohwalli <hi@futhr.io>
+ */
+(function ($) {
+  $.fn.markdown.messages.sv = {
+    'Bold': 'Fet',
+    'Italic': 'Kursiv',
+    'Heading': 'Rubrik',
+    'URL/Link': 'URL/Länk',
+    'Image': 'Bild',
+    'List': 'Lista',
+    'Preview': 'Förhandsgranska',
+    'strong text': 'fet text',
+    'emphasized text': 'överstruken text',
+    'heading text': 'Rubrik',
+    'enter link description here': 'Ange länk beskrivning här',
+    'Insert Hyperlink': 'Sätt in länk',
+    'enter image description here': 'Ange bild beskrivning här',
+    'Insert Image Hyperlink': 'Sätt in länk för bild',
+    'enter image title here': 'Ange bild rubrik här',
+    'list text here': 'list text'
+  };
+}(jQuery));
+
+/**
+ * Turkish translation for bootstrap-markdown
+ * Serkan Algur <info@wpadami.com>
+ */
+(function ($) {
+  $.fn.markdown.messages.tr = {
+    'Bold': "Kalın",
+    'Italic': "İtalik",
+    'Heading': "Başlık",
+    'URL/Link': "Link ekle",
+    'Image': "Resim ekle",
+    'List': "Liste Oluşturun",
+    'Preview': "Önizleme",
+    'strong text': "kalın yazı",
+    'emphasized text': "italik yazı",
+    'heading text': "Başlık Yazısı",
+    'enter link description here': "Link açıklamasını buraya girin",
+    'Insert Hyperlink': "İnternet adresi girin",
+    'enter image description here': "resim açıklamasını buraya ekleyin",
+    'Insert Image Hyperlink': "Resim linkini ekleyin",
+    'enter image title here': "resim başlığını buraya ekleyin",
+    'list text here': "liste yazısı",
+    'Save' : "Kaydet",
+    'Ordered List' : "Numaralı Liste",
+    'Unordered List' : "Madde imli liste",
+    'Quote' : "Alıntı",
+    'quote here' : "alıntıyı buraya ekleyin",
+    'Code' : "Kod",
+    'code text here' : "kodu buraya ekleyin"
+  };
+}(jQuery));
+
+/**
+ * Chinese translation for bootstrap-markdown
+ * benhaile <denghaier@163.com>
+ */
+(function ($) {
+  $.fn.markdown.messages.zh = {
+    'Bold': "粗体",
+    'Italic': "斜体",
+    'Heading': "标题",
+    'URL/Link': "链接",
+    'Image': "图片",
+    'List': "列表",
+    'Unordered List': "无序列表",
+    'Ordered List': "有序列表",
+    'Code': "代码",
+    'Quote': "引用",
+    'Preview': "预览",
+    'strong text': "粗体",
+    'emphasized text': "强调",
+    'heading text': "标题",
+    'enter link description here': "输入链接说明",
+    'Insert Hyperlink': "URL地址",
+    'enter image description here': "输入图片说明",
+    'Insert Image Hyperlink': "图片URL地址",
+    'enter image title here': "在这里输入图片标题",
+    'list text here': "这里是列表文本",
+    'code text here': "这里输入代码",
+    'quote here': "这里输入引用文本"
+
+
+  };
+}(jQuery));
 
 /*! DataTables 1.10.12
  * ©2008-2015 SpryMedia Ltd - datatables.net/license

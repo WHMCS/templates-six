@@ -26,7 +26,7 @@
                     {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
                 {/if}
 
-                <div class="alert alert-danger text-center hidden gateway-errors"></div>
+                <div class="alert alert-danger text-center gateway-errors hidden"></div>
 
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-4">

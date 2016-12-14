@@ -13,16 +13,11 @@
 <script type="text/javascript">
     var csrfToken = '{$token}',
         markdownGuide = '{lang key="markdown.title"}',
-        locale = '{if !empty($mdeLocale)}{lang key="locale"}{else}en_GB{/if}',
+        locale = '{if !empty($mdeLocale)}{$mdeLocale}{else}en{/if}',
         saved = '{lang key="markdown.saved"}',
         saving = '{lang key="markdown.saving"}';
 </script>
 <script src="{$WEB_ROOT}/templates/{$template}/js/scripts.min.js?v={$versionHash}"></script>
-{if !empty($loadMarkdownEditor)}
-    {if !empty($mdeLocale)}
-        {$mdeLocale}
-    {/if}
-{/if}
 
 {if $templatefile == "viewticket" && !$loggedin}
   <meta name="robots" content="noindex" />
