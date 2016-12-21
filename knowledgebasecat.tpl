@@ -1,6 +1,6 @@
 <form role="form" method="post" action="{$WEB_ROOT}/knowledgebase.php?action=search">
     <div class="input-group">
-        <input type="text" name="search" class="form-control" placeholder="{$LANG.kbsearchexplain}" value="{$searchterm}" />
+        <input type="text" name="search" class="form-control" placeholder="{$LANG.kbsearchexplain}" value="{$searchterm}" title="{$LANG.search}"/>
         <span class="input-group-btn">
             <input type="submit" class="btn btn-primary btn-input-padded-responsive" value="{$LANG.search}" />
         </span>

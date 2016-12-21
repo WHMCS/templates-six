@@ -11,7 +11,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                {if $kbarticle.voted}{$LANG.knowledgebaserating}{else}{$LANG.knowledgebasehelpful}{/if}
+                {if $kbarticle.voted}{$LANG.knowledgebaserating}{else}<label for="knowledgebasehelpful">{$LANG.knowledgebasehelpful}</label>{/if}
             </h3>
         </div>
         <div class="panel-body">
@@ -19,7 +19,7 @@
                 {$kbarticle.useful} {$LANG.knowledgebaseratingtext} ({$kbarticle.votes} {$LANG.knowledgebasevotes})
             {else}
                 <form action="{if $seofriendlyurls}{$WEB_ROOT}/knowledgebase/{$kbarticle.id}/{$kbarticle.urlfriendlytitle}.html{else}knowledgebase.php?action=displayarticle&amp;id={$kbarticle.id}{/if}" method="post">
-                    <input type="hidden" name="useful" value="vote">
+                    <input id="knowledgebasehelpful" type="hidden" name="useful" value="vote">
                     <button type="submit" name="vote" value="yes" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i> {$LANG.knowledgebaseyes}</button>
                     <button type="submit" name="vote" value="no" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> {$LANG.knowledgebaseno}</button>
                 </form>

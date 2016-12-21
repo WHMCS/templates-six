@@ -43,9 +43,9 @@
                     {foreach key=num item=domain from=$domains}
                         <tr onclick="clickableSafeRedirect(event, 'clientarea.php?action=domaindetails&amp;id={$domain.id}', false)">
                             <td>
-                                <input type="checkbox" name="domids[]" class="domids stopEventBubble" value="{$domain.id}" />
+                                <input type="checkbox" name="domids[]" class="domids stopEventBubble" value="{$domain.id}" id="{$domain.id}" />
                             </td>
-                            <td><a href="http://{$domain.domain}" target="_blank">{$domain.domain}</a></td>
+                            <td><label for="{$domain.id}"><a href="http://{$domain.domain}" target="_blank">{$domain.domain}</a></label></td>
                             <td><span class="hidden">{$domain.normalisedRegistrationDate}</span>{$domain.registrationdate}</td>
                             <td><span class="hidden">{$domain.normalisedNextDueDate}</span>{$domain.nextduedate}</td>
                             <td>

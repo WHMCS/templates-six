@@ -23,7 +23,7 @@
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme}
+                <input type="checkbox" name="rememberme" id="inputRememberMe" /> <label for="inputRememberMe">{$LANG.loginrememberme}</label>
             </label>
         </div>
 

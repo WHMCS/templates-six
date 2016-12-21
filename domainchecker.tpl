@@ -19,7 +19,7 @@
                         </div>
                     {/if}
                     <div class="input-group input-group-lg input-group-box">
-                        <input type="text" class="form-control" placeholder="{$LANG.findyourdomain}" value="{$domain}" id="inputDomain" />
+                        <input type="text" class="form-control" placeholder="{$LANG.findyourdomain}" title="{$LANG.findyourdomain}" value="{$domain}" id="inputDomain" />
                         <span class="input-group-btn">
                             <button type="submit" id="btnCheckAvailability" class="btn btn-primary domain-check-availability">{$LANG.search}</button>
                         </span>
