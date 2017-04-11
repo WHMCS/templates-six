@@ -15,18 +15,22 @@
 
     <div class="announcement-single">
 
-        <h2>
-            <span class="label label-default">
-                {"M jS"|date:$announcement.timestamp}
-            </span>
-            <a href="{if $seofriendlyurls}{$WEB_ROOT}/announcements/{$announcement.id}/{$announcement.urlfriendlytitle}.html{else}{$smarty.server.PHP_SELF}?id={$announcement.id}{/if}">{$announcement.title}</a>
-        </h2>
+        <a href="{if $seofriendlyurls}{$WEB_ROOT}/announcements/{$announcement.id}/{$announcement.urlfriendlytitle}.html{else}{$smarty.server.PHP_SELF}?id={$announcement.id}{/if}" class="title">
+            {$announcement.title}
+        </a>
 
-        <blockquote>
-            <p>{if $announcement.text|strip_tags|strlen < 350}{$announcement.text}{else}{$announcement.summary}
+        {if $announcement.text|strip_tags|strlen < 350}
+            <p>{$announcement.text}</p>
+        {else}
+            <p>{$announcement.summary}
             <a href="{if $seofriendlyurls}{$WEB_ROOT}/announcements/{$announcement.id}/{$announcement.urlfriendlytitle}.html{else}{$smarty.server.PHP_SELF}?id={$announcement.id}{/if}" class="label label-warning">{$LANG.readmore} &raquo;</a>
-            {/if}</p>
-        </blockquote>
+            </p>
+        {/if}
+
+        <div class="article-items">
+            <i class="fa fa-calendar"></i> {"jS M Y"|date:$announcement.timestamp}
+        </div>
+
 
         {if $announcementsFbRecommend}
             <div class="fb-like hidden-sm hidden-xs" data-layout="standard" data-href="{$systemurl}{if $seofriendlyurls}announcements/{$announcement.id}/{$announcement.urlfriendlytitle}.html{else}announcements.php?id={$announcement.id}{/if}" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>

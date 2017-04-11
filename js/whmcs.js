@@ -71,6 +71,24 @@ jQuery(document).ready(function() {
         }
     });
 
+    // Sidebar minimise/maximise
+    jQuery('.panel-minimise').click(function(e) {
+        e.preventDefault();
+        if (jQuery(this).hasClass('minimised')) {
+            jQuery(this).parents('.panel').find('.panel-body, .list-group').slideDown();
+            jQuery(this).removeClass('minimised');
+        } else {
+            jQuery(this).parents('.panel').find('.panel-body, .list-group').slideUp();
+            jQuery(this).addClass('minimised');
+        }
+    });
+
+    // Minimise sidebar panels by default on small devices
+    if (jQuery('.container').width() <= 720) {
+        jQuery('.panel-sidebar').find('.panel-body, .list-group').hide();
+        jQuery('.panel-sidebar').find('.panel-minimise').addClass('minimised');
+    }
+
     // Internal page tab selection handling via location hash
     if (jQuery(location).attr('hash').substr(1) != "") {
         var activeTab = jQuery(location).attr('hash');
@@ -179,6 +197,46 @@ jQuery(document).ready(function() {
         jQuery.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
     });
 
+    // Single Sign-On call for Product/Service
+    jQuery('.btn-service-sso').on('click', function(e) {
+        e.preventDefault();
+        var button = jQuery(this);
+        button.find('.loading').removeClass('hidden').show().end()
+            .attr('disabled', 'disabled');
+        jQuery.post(
+            window.location.href,
+            button.parents('form').serialize(),
+            function (data) {
+                button.find('.loading').hide().end().removeAttr('disabled');
+                button.parents('form').find('.login-feedback').html('');
+                if (data.error) {
+                    button.parents('form').find('.login-feedback').html(data.error);
+                }
+                if (data.redirect !== undefined && data.redirect.substr(0, 7) === 'window|') {
+                    window.open(data.redirect.substr(7), '_blank');
+                }
+            },
+            'json'
+        );
+    });
+
+    // Email verification close
+    jQuery('.email-verification .btn.close').click(function(e) {
+        e.preventDefault();
+        jQuery('.email-verification').hide();
+    });
+
+    // Back to top animated scroll
+    jQuery('.back-to-top').click(function(e) {
+        e.preventDefault();
+        jQuery('body,html').animate({scrollTop: 0}, 500);
+    });
+
+    // Prevent page scroll on language choose click
+    jQuery('.choose-language').click(function(e) {
+        e.preventDefault();
+    });
+
     /**
      * Code will loop through each element that has the class markdown-editor and
      * enable the Markdown editor.
@@ -285,7 +343,7 @@ jQuery(document).ready(function() {
                 'token': csrfToken,
                 'action': 'resendVerificationEmail'
             }).done(function(data) {
-                jQuery('#btnResendVerificationEmail').prop('disabled', true);
+                jQuery('#btnResendVerificationEmail').html('Email Sent').prop('disabled', true);
             });
     });
 
@@ -346,8 +404,7 @@ jQuery(document).ready(function() {
 
     jQuery('#frmPayment').find('#btnSubmit').on('click', function(){
         jQuery(this).find('span').toggleClass('hidden');
-    })
-
+    });
 });
 
 /**

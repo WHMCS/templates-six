@@ -1,16 +1,21 @@
 
-        </div><!-- /.main-content -->
-        {if !$inShoppingCart && $secondarySidebar->hasChildren()}
-            <div class="col-md-3 pull-md-left sidebar">
-                {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
+                </div><!-- /.main-content -->
+                {if !$inShoppingCart && $secondarySidebar->hasChildren()}
+                    <div class="col-md-3 pull-md-left sidebar">
+                        {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
+                    </div>
+                {/if}
             </div>
-        {/if}
+            <div class="clearfix"></div>
+        </div>
     </div>
-    <div class="clearfix"></div>
 </section>
 
 <section id="footer">
-    <p>Copyright &copy; {$date_year} {$companyname}. All Rights Reserved.</p>
+    <div class="container">
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        <p>Copyright &copy; {$date_year} {$companyname}. All Rights Reserved.</p>
+    </div>
 </section>
 
 <div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">

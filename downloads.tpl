@@ -2,68 +2,57 @@
     {include file="$template/includes/alert.tpl" type="info" msg=$LANG.downloadsnone textcenter=true}
 {else}
     <form role="form" method="post" action="downloads.php?action=search">
-        <div class="input-group margin-bottom">
-            <input type="text" name="search" class="form-control" placeholder="{$LANG.downloadssearch}" />
+        <div class="input-group input-group-lg kb-search margin-bottom">
+            <input type="text" name="search" id="inputDownloadsSearch" class="form-control" placeholder="{$LANG.downloadssearch}" />
             <span class="input-group-btn">
-                <input type="submit" class="btn btn-primary btn-input-padded-responsive" value="{$LANG.search}" />
+                <input type="submit" id="btnDownloadsSearch" class="btn btn-primary btn-input-padded-responsive" value="{$LANG.search}" />
             </span>
         </div>
     </form>
 
     <p>{$LANG.downloadsintrotext}</p>
 
+    <h2>{$LANG.downloadscategories}</h2>
+
     <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-folder-open"></i> {$LANG.downloadscategories}</h3>
-                </div>
-                <div class="list-group">
-                    {foreach from=$dlcats item=dlcat}
-                        <span class="list-group-item">
-                            <a href="{if $seofriendlyurls}{$WEB_ROOT}/downloads/{$dlcat.id}/{$dlcat.urlfriendlyname}{else}downloads.php?action=displaycat&amp;catid={$dlcat.id}{/if}">
-                                <i class="fa fa-folder-open-o"></i>
-                                <strong>{$dlcat.name}</strong>
-                            </a>
-                            ({$dlcat.numarticles})
-                            <br />
-                            {$dlcat.description}
-                        </span>
-                    {foreachelse}
-                        <span class="list-group-item">
-                            <p class="text-center fontsize3">{$LANG.downloadsnone}</p>
-                        </span>
-                    {/foreach}
-                </div>
+        {foreach $dlcats as $dlcat}
+            <div class="col-sm-6">
+                <a href="{if $seofriendlyurls}{$WEB_ROOT}/downloads/{$dlcat.id}/{$dlcat.urlfriendlyname}{else}downloads.php?action=displaycat&amp;catid={$dlcat.id}{/if}">
+                    <i class="fa fa-folder-open-o"></i>
+                    <strong>{$dlcat.name}</strong>
+                </a>
+                ({$dlcat.numarticles})
+                <br>
+                {$dlcat.description}
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-star"></i> {$LANG.downloadspopular}</h3>
-                </div>
-                <div class="list-group">
-                    {foreach from=$mostdownloads item=download}
-                        <div class="list-group-item">
-                            <a href="{$download.link}">
-                                <i class="fa fa-file-o"></i>
-                                <strong>
-                                    {$download.title}
-                                    {if $download.clientsonly}
-                                        <i class="fa fa-lock"></i>
-                                    {/if}
-                                </strong>
-                            </a><br />
-                            {$download.description}
-                            <div><span class="text-muted">{$LANG.downloadsfilesize}: {$download.filesize}</span></div>
-                        </div>
-                        {foreachelse}
-                        <span class="list-group-item">
-                            {$LANG.downloadsnone}
-                        </span>
-                    {/foreach}
-                </div>
+        {foreachelse}
+            <div class="col-sm-12">
+                <p class="text-center fontsize3">{$LANG.downloadsnone}</p>
             </div>
-        </div>
+        {/foreach}
+    </div>
+
+    <h2>{$LANG.downloadspopular}</h2>
+
+    <div class="list-group">
+        {foreach $mostdownloads as $download}
+            <a href="{$download.link}" class="list-group-item">
+                <strong>
+                    <i class="fa fa-download"></i>
+                    {$download.title}
+                    {if $download.clientsonly}
+                        <i class="fa fa-lock text-muted"></i>
+                    {/if}
+                </strong>
+                <br>
+                {$download.description}
+                <br>
+                <small>{$LANG.downloadsfilesize}: {$download.filesize}</small>
+            </a>
+        {foreachelse}
+            <span class="list-group-item text-center">
+                {$LANG.downloadsnone}
+            </span>
+        {/foreach}
     </div>
 {/if}

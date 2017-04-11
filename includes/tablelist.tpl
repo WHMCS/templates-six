@@ -44,7 +44,7 @@ jQuery(".view-filter-btns a").click(function(e) {ldelim}
             .draw();
     {rdelim}
 
-    // Prevent jumping to the top of the page 
+    // Prevent jumping to the top of the page
     // when no matching tag is found.
     e.preventDefault();
 {rdelim});
@@ -99,7 +99,6 @@ jQuery(document).ready( function () {ldelim}
         ],
         "stateSave": true
     {rdelim});
-    jQuery(".dataTables_filter input").attr("placeholder", "{$LANG.tableentersearchterm}");
 
     {if isset($filterColumn) && $filterColumn}
     // highlight remembered filter on page re-load

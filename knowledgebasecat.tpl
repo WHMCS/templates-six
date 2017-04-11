@@ -1,8 +1,8 @@
-<form role="form" method="post" action="{$WEB_ROOT}/knowledgebase.php?action=search">
-    <div class="input-group">
-        <input type="text" name="search" class="form-control" placeholder="{$LANG.kbsearchexplain}" value="{$searchterm}" />
+<form role="form" method="post" action="{routePath('knowledgebase-search')}">
+    <div class="input-group input-group-lg kb-search">
+        <input type="text"  id="inputKnowledgebaseSearch" name="search" class="form-control" placeholder="What can we help you with?" value="{$searchterm}" />
         <span class="input-group-btn">
-            <input type="submit" class="btn btn-primary btn-input-padded-responsive" value="{$LANG.search}" />
+            <input type="submit" id="btnKnowledgebaseSearch" class="btn btn-primary btn-input-padded-responsive" value="{$LANG.search}" />
         </span>
     </div>
 </form>
@@ -13,7 +13,7 @@
     <div class="row kbcategories">
         {foreach name=kbasecats from=$kbcats item=kbcat}
             <div class="col-sm-4">
-                <a href="{if $seofriendlyurls}{$WEB_ROOT}/knowledgebase/{$kbcat.id}/{$kbcat.urlfriendlyname}{else}knowledgebase.php?action=displaycat&amp;catid={$kbcat.id}{/if}">
+                <a href="{routePath('knowledgebase-category-view',{$kbcat.id},{$kbcat.urlfriendlyname})}">
                     <span class="glyphicon glyphicon-folder-close"></span> {$kbcat.name} <span class="badge badge-info">{$kbcat.numarticles}</span>
                 </a>
                 <p>{$kbcat.description}</p>
@@ -31,7 +31,7 @@
 
     <div class="kbarticles">
         {foreach from=$kbarticles item=kbarticle}
-            <a href="{if $seofriendlyurls}{$WEB_ROOT}/knowledgebase/{$kbarticle.id}/{$kbarticle.urlfriendlytitle}.html{else}knowledgebase.php?action=displayarticle&amp;id={$kbarticle.id}{/if}">
+            <a href="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}">
                 <span class="glyphicon glyphicon-file"></span>&nbsp;{$kbarticle.title}
             </a>
             <p>{$kbarticle.article|truncate:100:"..."}</p>
