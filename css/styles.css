@@ -2655,12 +2655,16 @@ div.md-editor.active {
     text-decoration: none;
 }
 
-.store-order-container .payment-term {
-    float: right;
-    margin-left: 200px;
-}
 .store-order-container .payment-term h4 {
-    margin-top: 0;
+    margin-top: 25px;
+}
+@media (min-width: 768px) {
+    .store-order-container .payment-term {
+        float: right;
+    }
+    .store-order-container .payment-term h4 {
+        margin-top: 0;
+    }
 }
 
 .store-order-container .domain-validation {

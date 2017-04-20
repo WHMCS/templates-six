@@ -223,6 +223,7 @@ jQuery(document).ready(function() {
     // Email verification close
     jQuery('.email-verification .btn.close').click(function(e) {
         e.preventDefault();
+        jQuery.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
         jQuery('.email-verification').hide();
     });
 

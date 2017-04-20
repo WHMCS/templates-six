@@ -5,24 +5,31 @@
             <input type="hidden" name="pid" value="{$product->id}">
             <input type="hidden" name="domain_type" value="" id="inputDomainType">
 
-            <div class="payment-term">
-                <h4>Choose Payment Term</h4>
-                <select name="billingcycle" class="form-control">
-                    {foreach $product->pricing()->allAvailableCycles() as $pricing}
-                        <option value="{$pricing->cycle()}">
-                            {if $pricing->isYearly()}
-                                {$pricing->cycleInYears()} - {$pricing->yearlyPrice()}
-                            {else}
-                                {$pricing->cycleInMonths()} - {$pricing->monthlyPrice()}
-                            {/if}
-                        </option>
-                    {/foreach}
-                </select>
+            <div class="row">
+                <div class="col-sm-7">
+                    <h2>{$product->name}</h2>
+
+                    <p>{$product->description}</p>
+                </div>
+                <div class="col-sm-5">
+
+                    <div class="payment-term">
+                        <h4>Choose Payment Term</h4>
+                        <select name="billingcycle" class="form-control">
+                            {foreach $product->pricing()->allAvailableCycles() as $pricing}
+                                <option value="{$pricing->cycle()}">
+                                    {if $pricing->isYearly()}
+                                        {$pricing->cycleInYears()} - {$pricing->yearlyPrice()}
+                                    {else}
+                                        {$pricing->cycleInMonths()} - {$pricing->monthlyPrice()}
+                                    {/if}
+                                </option>
+                            {/foreach}
+                        </select>
+                    </div>
+
+                </div>
             </div>
-
-            <h2>{$product->name}</h2>
-
-            <p>{$product->description}</p>
 
             <br>
 
@@ -191,16 +198,25 @@ jQuery(document).ready(function(){
         var tab = $(e.target).attr('aria-controls');
         $('#inputDomainType').val(tab);
         if (tab == 'custom-domain') {
-            if ($('.domain-input-validation').html() != '<i class="fa fa-check"></i> Valid') {
+            if ($('.domain-input-validation').html() == '<i class="fa fa-check"></i> Valid') {
+                $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+            } else {
                 $('#frmAddToCart button[type="submit"]').prop('disabled', true);
             }
         } else {
-            $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+            {if $loggedin}
+                $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+            {else}
+                $('#frmAddToCart button[type="submit"]').prop('disabled', true);
+            {/if}
         }
     });
 
     $('.store-domain-tabs li').removeClass('active');
     $('.store-domain-tabs li:first-child a').click();
+    {if !$loggedin}
+        $('#frmAddToCart button[type="submit"]').prop('disabled', true);
+    {/if}
 
 });
 </script>

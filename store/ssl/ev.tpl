@@ -14,11 +14,23 @@
     <div class="content-block">
         <div class="container">
 
-            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-subs.png" class="right-icon"><h3>
+            <div class="row">
+                <div class="col-sm-4 col-sm-push-8 text-right hidden-xs">
+                    <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-multi.png">
+                </div>
+                <div class="col-sm-8 col-sm-pull-4">
 
-            {lang key="store.ssl.ev.descriptionTitle"}</h3>
+                    <h3>{lang key="store.ssl.ev.descriptionTitle"}</h3>
 
-            {lang key="store.ssl.ev.descriptionContent"}
+                    <div class="text-center visible-xs">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-multi.png">
+                        <br><br>
+                    </div>
+
+                    {lang key="store.ssl.ev.descriptionContent"}
+
+                </div>
+            </div>
 
         </div>
     </div>

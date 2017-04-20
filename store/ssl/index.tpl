@@ -50,15 +50,28 @@
     <div class="content-block">
         <div class="container">
 
-            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png" class="right-icon">
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-sm-push-8 col-md-push-9 text-right hidden-xs">
+                    <br><br>
+                    <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png">
+                </div>
+                <div class="col-sm-8 col-md-9 col-sm-pull-4 col-md-pull-3">
 
-            <h3>What is SSL?</h3>
+                    <h3>What is SSL?</h3>
 
-            <p>SSL Certificates enable data encryption on the internet and allow data to be transmitted securely from a web server to a browser. With SSL, your website can use the https protocol and will display a padlock in end users web browsers to indicate the connection is secure.</p>
+                    <div class="text-center visible-xs">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png">
+                        <br><br>
+                    </div>
 
-            <p>Although all SSL certificates use similar methods to protect and validate your data, the level of trust and assertion they provide varies. <a href="{routePath('store-ssl-certificates-dv')}">Standard SSL (Domain Validated)</a> Certificates are the easiest and most common type of SSL certificate. <a href="{routePath('store-ssl-certificates-ov')}">OV</a> and <a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> also authenticate the identity of the company or organization that holds the certificate providing more trust to end users.</p>
+                    <p>SSL Certificates enable data encryption on the internet and allow data to be transmitted securely from a web server to a browser. With SSL, your website can use the https protocol and will display a padlock in end users web browsers to indicate the connection is secure.</p>
 
-            <p><a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> offer the highest level of validation and trust, and will show the name of the company or organization in green in the address bar. This is an immediate, visual way that viewers can know that extra steps were taken to confirm the site they’re visiting – which is why most large companies and organizations choose EV certificates.</p>
+                    <p>Although all SSL certificates use similar methods to protect and validate your data, the level of trust and assertion they provide varies. <a href="{routePath('store-ssl-certificates-dv')}">Standard SSL (Domain Validated)</a> Certificates are the easiest and most common type of SSL certificate. <a href="{routePath('store-ssl-certificates-ov')}">OV</a> and <a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> also authenticate the identity of the company or organization that holds the certificate providing more trust to end users.</p>
+
+                    <p><a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> offer the highest level of validation and trust, and will show the name of the company or organization in green in the address bar. This is an immediate, visual way that viewers can know that extra steps were taken to confirm the site they’re visiting – which is why most large companies and organizations choose EV certificates.</p>
+
+                </div>
+            </div>
 
         </div>
     </div>

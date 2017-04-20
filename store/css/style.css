@@ -354,11 +354,6 @@ section#main-body {
     margin-top: 0;
 }
 
-.landing-page .content-block .right-icon {
-    float: right;
-    padding: 30px 0 0 30px;
-}
-
 .landing-page.ssl .content-block h1,
 .landing-page.ssl .content-block h2,
 .landing-page.ssl .content-block h3,
