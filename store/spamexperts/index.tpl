@@ -136,7 +136,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
-                                    Full Inbox protection at unmatched prices
+                                    Full Inbox protection at competitive prices
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
@@ -170,15 +170,15 @@
                         </div>
 
                         <h3>Why Choose SpamExperts Incoming Filter?</h3>
-                        <p>Incoming Email Filtering is a gateway solution which filters all inbound email and eliminates spam & viruses before these threats reach your network. Our filtering solutions achieve a nearly 100% accuracy rate.</p>
+                        <p>Incoming Email Filtering filters all inbound email and eliminates spam & viruses before these threats reach your network at a nearly 100% accuracy rate. The extensive control-panel allows you to remain in full control. Moreover, in case your email server is down, your email will be queued. Queued email can be accessed, read, and replied to via the web-interface adding to your inbound email continuity!</p>
 
                         <h3>Why do you need a professional Incoming Filter?</h3>
 
-                        <p>Stop running the risk of IT network threats! If your Inbox is crowded with unsolicited bulk mail every day, then that’s a sign you need a professional Incoming Filter solution. Get full protection for your Inbox and say goodbye to spam, virus and malware threats!</p>
+                        <p>Stop running the risk of IT network threats. If your Inbox is crowded with unsolicited bulk mail every day, then that's a sign you need a professional Incoming Filter solution. Get full protection for your Inbox and say goodbye to spam, virus and malware threats!</p>
 
                         <h3>How it works</h3>
 
-                        <p>Incoming emails are securely analyzed and scanned by the cluster in real time. The unique, self-learning filtering mechanisms quickly understand the emailing behavior so they only get better with time. Any message detected as spam is moved to the quarantine, which you can monitor in the user-friendly SpamPanel, through email-reports or even directly in your email client! No more wasted time in dealing with spam, simply focus your energy on business tasks, while still in full control.</p>
+                        <p>Once your domain is (automatically) deployed to the Incoming Filter, and filtering is activated, email will pass through the SpamExperts filtering cloud. Incoming emails are securely analyzed and scanned in real time. No training or configurations are required and everything works out of the box. Any message detected as spam is moved to the quarantine, while non-spam is sent to your email server. The quarantine can be monitored in the user-friendly SpamPanel, through email-reports, or even directly in your email client! No more wasted time in dealing with spam, simply focus your energy on business tasks, while you remain in full control.</p>
 
                     </div>
                     <div role="tabpanel" class="tab-pane" id="outgoing">
@@ -215,11 +215,11 @@
 
                         <h3>What is outgoing filtering?</h3>
 
-                        <p>Outgoing Email Filtering is vital to safeguard your IT infrastructure reputation and assure all your outgoing email always safely arrives where it should. This professional solution will block spam & viruses from leaving your network and prevent your IP(s) from being blacklisted, ever again.</p>
+                        <p>Outgoing Email Filtering is vital to safeguard your IT infrastructure reputation and ensure all your outgoing email arrives safely where it should. This professional solution will block spam & viruses from leaving your network and prevent your IP(s) from being blacklisted ever again. Moreover, the SpamExperts Outgoing Filter gives you the reporting and tools to detect compromised accounts and lock-down spamming users.</p>
 
                         <h3>Why you need it?</h3>
 
-                        <p>Has your network ever sent out malicious email without your knowledge? Due to network weaknesses such as unsecured wireless connection or firewalls allowing any device to transmit outbound SMTP, your IT security may be compromised, allowing spam or malware to be sent out from your network without you even knowing it! Therefore, it’s critical you invest in a professional Outgoing Filter solution. Maintain your company’s good reputation, stop spam from leaving your network and prevent being blacklisted so that your email always arrives where it is meant to go.</p>
+                        <p>Has your network ever sent out spam email without your knowledge? Due to network weaknesses almost any device can be compromised to transmit outbound SMTP, allowing spam or malware to be sent out from your network without you even knowing it! Therefore, it's critical you invest in a professional Outgoing Filter solution. Maintain your company’s good reputation, stop spam from leaving your network and prevent being blacklisted so that your email always arrives where it is meant to go.</p>
 
                     </div>
                     <div role="tabpanel" class="tab-pane" id="archiving">
@@ -241,11 +241,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
-                                    Simplified management
+                                    User friendly data-protection management
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
-                                    Option to export archived messages
+                                    Added email continuity, journaling support, and easy re-delivery
+                                </div>
+                                <div class="col-md-6">
+                                    <i class="fa fa-check"></i>
+                                    Compressed, encrypted and secure archive
                                 </div>
                             </div>
                         </div>
@@ -353,18 +357,18 @@
                 </div>
                 <div class="col-md-4">
                 <h4>Can I recover messages that get blocked?</h4>
-                <p>Yes, a comprehensive control panel and log-search tool allows you to check the status of any email which passed through the system and retrieve it.</p>
+                <p>Yes, a comprehensive control panel with log-search, quarantine, and many other tools allows you to check the status of any email which passed through the system.</p>
                 <hr>
-                <h4>How long goes it take to setup?</h4>
+                <h4>How long does it take to setup?</h4>
                 <p>Setup is fast, automated and it will be up and running protecting your email in minutes.</p>
                 <div class="hidden-md hidden-lg"><hr></div>
                 </div>
                 <div class="col-md-4">
                 <h4>What is Email Archiving?</h4>
-                <p>Email is so important nowadays, with archiving email is protected and stored forever, giving you confidence and peace of mind.</p>
+                <p>Email is so important nowadays, with archiving email is securely stored, giving you extra confidence and peace of mind.</p>
                 <hr>
                 <h4>How much email can I store?</h4>
-                <p>Email Archiving includes 10GB of storage as standard, enough for many millions of email messages.</p>
+                <p>Email Archiving includes 10GB of compressed email storage by default. If you need more storage, additional 10GB licenses can be added.</p>
                 </div>
             </div>
         </div>

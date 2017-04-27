@@ -148,7 +148,7 @@
                         <div class="pricing-item">
                             <div class="header">
                                 <h4>{$product->name}</h4>
-                                <h5>Ideal for Personal Use</h5>
+                                <h5>Ideal for {$product->idealFor}</h5>
                             </div>
                             <div class="price">
                                 {foreach $product->pricing()->allAvailableCycles() as $pricing}
@@ -229,7 +229,7 @@
                     <img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/logo.png">
                 </div>
                 <div class="col-sm-7 text-right">
-                    Trusted by over 30,000,000 people worldwide
+                    Trusted by over 40,000,000 people worldwide
                 </div>
             </div>
         </div>

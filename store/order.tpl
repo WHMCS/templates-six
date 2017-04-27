@@ -70,12 +70,12 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <div style="display:inline-block;width:47%;">
-                                <input type="text" class="form-control subdomain-input" placeholder="Your desired subdomain"></div>
+                                <input type="text" class="form-control subdomain-input" name="sub_domain" placeholder="Your desired subdomain"></div>
                             <div style="display:inline-block;width:2%;text-align:center;">
                                 .
                             </div>
                             <div style="display:inline-block;width:47%;">
-                                <select class="form-control">
+                                <select class="form-control" name="existing_sld_for_subdomain" id="existing_sld_for_subdomain">
                                     {foreach $domains as $domain}
                                         <option value="{$domain}">{$domain}</option>
                                     {/foreach}
@@ -167,7 +167,21 @@ jQuery(document).ready(function(){
 
     $('.store-order-container .subdomain-input').keyup(function() {
         delay(function(){
-          $('.subdomain-validation').html('<i class="fa fa-spinner fa-spin"></i> Validating...');
+          $('.subdomain-validation').html('<i class="fa fa-spinner fa-spin"></i> Validating...').removeClass('ok');
+
+          $('#frmAddToCart button[type="submit"]').prop('disabled', true);
+
+          var domainName = $('.subdomain-input').val() + '.' + $('#existing_sld_for_subdomain').val();
+
+          $.post('{routePath('store-order-validate')}', 'domain=' + domainName, function(data) {
+              if (data.valid) {
+                  $('.subdomain-validation').html('<i class="fa fa-check"></i> Valid').addClass('ok');
+                  $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+              } else {
+                  $('.subdomain-validation').html('<i class="fa fa-times"></i> Invalid domain');
+              }
+          }, 'json');
+
         }, 1000 );
     });
 
@@ -197,8 +211,11 @@ jQuery(document).ready(function(){
     $('.store-domain-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = $(e.target).attr('aria-controls');
         $('#inputDomainType').val(tab);
-        if (tab == 'custom-domain') {
-            if ($('.domain-input-validation').html() == '<i class="fa fa-check"></i> Valid') {
+        if (tab == 'custom-domain' || tab == 'sub-domain') {
+            var validationBlockSelector = tab == 'custom-domain' ? '.domain-input-validation' : '.subdomain-validation';
+            var validationHtml = $(validationBlockSelector).html();
+
+            if (validationHtml == '<i class="fa fa-check"></i> Valid') {
                 $('#frmAddToCart button[type="submit"]').removeProp('disabled');
             } else {
                 $('#frmAddToCart button[type="submit"]').prop('disabled', true);

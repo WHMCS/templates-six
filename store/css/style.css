@@ -38,7 +38,7 @@ section#main-body {
 }
 
 .landing-page.mail-services .product-options {
-    background-color: #67a3b3;
+    background-color: #00acd4;
 }
 
 .landing-page .product-options h2 {
@@ -98,13 +98,13 @@ section#main-body {
     background-color: #f0fcff;
 }
 .landing-page.mail-services .product-options .icon {
-    color: #67a3b3;
+    color: #00acd4;
 }
 .landing-page.mail-services .product-options .btn-buy {
-    background-color: #67a3b3;
+    background-color: #00acd4;
 }
 .landing-page.mail-services .product-options .price {
-    color: #67a3b3;
+    color: #00acd4;
 }
 
 .landing-page .product-options .powered-by {
@@ -166,7 +166,7 @@ section#main-body {
     color: #222;
 }
 .landing-page .get-started {
-    background-color: #67a3b3;
+    background-color: #00acd4;
     color: #fff;
 }
 
