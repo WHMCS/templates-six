@@ -1,34 +1,52 @@
-<div class="panel panel-default promo-banner {$promotion->getClass()}">
+<div class="promo-banner promo-banner-rounded {$promotion->getClass()}">
     <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="icon">
-                    <img src="{$promotion->getImagePath()}">
-                </div>
-            </div>
-            <div class="col-sm-9">
+        <div class="icon-left">
+            <a href="{routePath($promotion->getLearnMoreRoute())}">
+                <img src="{$promotion->getImagePath()}">
+            </a>
+        </div>
 
-                <h3>{$promotion->getHeadline()}</h3>
-                <h4>{$promotion->getTagline()}</h4>
-                {if $promotion->getDescription()}
-                    <p>{$promotion->getDescription()}</p>
+        <div class="content">
+
+            <h3>
+                {$promotion->getHeadline()}
+                {if $promotion->getLearnMoreRoute()}
+                    <small><a href="{routePath($promotion->getLearnMoreRoute())}">Learn more...</a></small>
                 {/if}
+            </h3>
+            <h4>{$promotion->getTagline()}</h4>
+
+            {if $promotion->getDescription()}
+                <p>{$promotion->getDescription()}</p>
+            {/if}
+
+            {if $promotion->hasHighlights()}
                 <ul>
                     {foreach $promotion->getHighlights() as $highlight}
-                        <li>{$highlight}</li>
+                        <li><i class="fa fa-check-circle-o"></i> {$highlight}</li>
                     {/foreach}
                 </ul>
-                {if $promotion->getLearnMoreRoute()}
-                    <p class="pull-left"><a href="{routePath($promotion->getLearnMoreRoute())}">Learn more...</a></p>
-                {/if}
-                <form method="post" action="{routePath('store-order')}">
-                    <input type="hidden" name="pid" value="{$product->id}">
-                    <button type="submit" class="btn btn-success pull-right">
-                        {$promotion->getCta()} {$product->pricing()->best()->breakdownPrice()}
-                    </button>
-                </form>
+            {/if}
 
-            </div>
+            {if $promotion->hasFeatures()}
+                <ul>
+                    {foreach $promotion->getFeatures() as $feature}
+                        <li><i class="fa fa-check-circle-o"></i> {$feature}</li>
+                    {/foreach}
+                </ul>
+            {/if}
+
+            <form method="post" action="{routePath('store-order')}">
+                <input type="hidden" name="pid" value="{$product->id}">
+                {if $serviceId}
+                    <input type="hidden" name="serviceid" value="{$serviceId}">
+                {/if}
+                <button type="submit" class="btn btn-success">
+                    {$promotion->getCta()} {$product->name} from just {$product->pricing()->best()->breakdownPrice()}
+                </button>
+            </form>
+
         </div>
+
     </div>
 </div>

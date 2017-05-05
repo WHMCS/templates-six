@@ -339,19 +339,28 @@
         <div class="row">
             {foreach from=$addons item=addon}
                 <div class="col-xs-10 col-xs-offset-1">
-                    <h4>{$addon.name}</h4>
-                    <p>
-                        {$addon.pricing}
-                    </p>
-                    <p>
-                        {$LANG.registered}: {$addon.regdate}
-                    </p>
-                    <p>
-                        {$LANG.clientareahostingnextduedate}: {$addon.nextduedate}
-                    </p>
-                    <p>
-                        <span class="label status-{$addon.rawstatus|strtolower}">{$addon.status}</span>
-                    </p>
+                    <div class="panel panel-default panel-accent-blue">
+                        <div class="panel-heading">
+                            {$addon.name}
+                            <div class="pull-right status-{$addon.rawstatus|strtolower}">{$addon.status}</div>
+                        </div>
+                        <div class="row panel-body">
+                            <div class="col-md-6">
+                                <p>
+                                    {$addon.pricing}
+                                </p>
+                                <p>
+                                    {$LANG.registered}: {$addon.regdate}
+                                </p>
+                                <p>
+                                    {$LANG.clientareahostingnextduedate}: {$addon.nextduedate}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            {$addon.managementActions}
+                        </div>
+                    </div>
                 </div>
             {/foreach}
         </div>

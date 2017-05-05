@@ -201,16 +201,23 @@ jQuery(document).ready(function() {
     jQuery('.btn-service-sso').on('click', function(e) {
         e.preventDefault();
         var button = jQuery(this);
+
+        var form = button.parents('form');
+
+        if (form.length == 0) {
+            form = button.find('form');
+        }
+
         button.find('.loading').removeClass('hidden').show().end()
             .attr('disabled', 'disabled');
         jQuery.post(
             window.location.href,
-            button.parents('form').serialize(),
+            form.serialize(),
             function (data) {
                 button.find('.loading').hide().end().removeAttr('disabled');
-                button.parents('form').find('.login-feedback').html('');
+                form.find('.login-feedback').html('');
                 if (data.error) {
-                    button.parents('form').find('.login-feedback').html(data.error);
+                    form.find('.login-feedback').html(data.error);
                 }
                 if (data.redirect !== undefined && data.redirect.substr(0, 7) === 'window|') {
                     window.open(data.redirect.substr(7), '_blank');
@@ -405,6 +412,24 @@ jQuery(document).ready(function() {
 
     jQuery('#frmPayment').find('#btnSubmit').on('click', function(){
         jQuery(this).find('span').toggleClass('hidden');
+    });
+
+    // SSL Manage Action Button.
+    jQuery('.btn-resend-approver-email').click(function () {
+        jQuery.post(
+            jQuery(this).data('url'),
+            {
+                addonId: jQuery(this).data('addonid'),
+                serviceId: jQuery(this).data('serviceid'),
+            },
+            function(data) {
+                if (data.success == true) {
+                    jQuery('.alert-table-ssl-manage').addClass('alert-success').text('Approver Email Resent').removeClass('hidden');
+                } else {
+                    jQuery('.alert-table-ssl-manage').addClass('alert-danger').text('Error: ' + data.message).removeClass('hidden');
+                }
+            }
+        );
     });
 });
 

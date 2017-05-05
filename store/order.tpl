@@ -17,7 +17,7 @@
                         <h4>Choose Payment Term</h4>
                         <select name="billingcycle" class="form-control">
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
-                                <option value="{$pricing->cycle()}">
+                                <option value="{$pricing->cycle()}"{if $requestedCycle == $pricing->cycle()} selected{/if}>
                                     {if $pricing->isYearly()}
                                         {$pricing->cycleInYears()} - {$pricing->yearlyPrice()}
                                     {else}
@@ -51,7 +51,9 @@
                             <div class="col-sm-8">
                                 <select class="form-control" name="existing_domain">
                                     {foreach $domains as $domain}
-                                        <option value="{$domain}">{$domain}</option>
+                                        <option value="{$domain}"{if $domain == $selectedDomain} selected="selected"{/if}>
+                                            {$domain}
+                                        </option>
                                     {/foreach}
                                 </select>
                             </div>
@@ -136,18 +138,34 @@
                     {if $promotion->getDescription()}
                         <p>{$promotion->getDescription()}</p>
                     {/if}
-                    <ul>
-                        {foreach $promotion->getHighlights() as $highlight}
-                            <li>{$highlight}</li>
-                        {/foreach}
-                    </ul>
+                    {if $promotion->hasHighlights()}
+                        <ul>
+                            {foreach $promotion->getHighlights() as $highlight}
+                                <li>{$highlight}</li>
+                            {/foreach}
+                        </ul>
+                    {/if}
+                    {if $promotion->hasFeatures()}
+                        <ul class="features">
+                            {foreach $promotion->getFeatures() as $highlight}
+                                <li><i class="fa fa-check-circle-o"></i> {$highlight}</li>
+                            {/foreach}
+                        </ul>
+                    {/if}
                     <form method="post" action="{routePath('store-order')}">
                         <input type="hidden" name="pid" value="{$upsellProduct->id}">
                         <button type="submit" class="btn btn-success">
-                            {$promotion->getCta()} {$upsellProduct->pricing()->best()->breakdownPrice()}
+                            {foreach $product->pricing()->allAvailableCycles() as $pricing}
+                                <span class="span-upsell span-upsell-{$pricing->cycle()}">
+                                    {if is_null($upsellComparison->diff({$pricing->cycle()}))}
+                                        {$promotion->getCta()} {$upsellProduct->name} from just {$upsellProduct->pricing()->best()->breakdownPrice()}
+                                    {else}
+                                        {$promotion->getCta()} {$upsellProduct->name} for just {$upsellComparison->diff({$pricing->cycle()})->breakdownPrice()} more
+                                    {/if}
+                                </span>
+                            {/foreach}
                         </button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -165,20 +183,20 @@ jQuery(document).ready(function(){
       };
     })();
 
-    $('.store-order-container .subdomain-input').keyup(function() {
+    jQuery('.store-order-container .subdomain-input').keyup(function() {
         delay(function(){
-          $('.subdomain-validation').html('<i class="fa fa-spinner fa-spin"></i> Validating...').removeClass('ok');
+          jQuery('.subdomain-validation').html('<i class="fa fa-spinner fa-spin"></i> Validating...').removeClass('ok');
 
-          $('#frmAddToCart button[type="submit"]').prop('disabled', true);
+          jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
 
-          var domainName = $('.subdomain-input').val() + '.' + $('#existing_sld_for_subdomain').val();
+          var domainName = jQuery('.subdomain-input').val() + '.' + jQuery('#existing_sld_for_subdomain').val();
 
           $.post('{routePath('store-order-validate')}', 'domain=' + domainName, function(data) {
               if (data.valid) {
-                  $('.subdomain-validation').html('<i class="fa fa-check"></i> Valid').addClass('ok');
-                  $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+                  jQuery('.subdomain-validation').html('<i class="fa fa-check"></i> Valid').addClass('ok');
+                  jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
               } else {
-                  $('.subdomain-validation').html('<i class="fa fa-times"></i> Invalid domain');
+                  jQuery('.subdomain-validation').html('<i class="fa fa-times"></i> Invalid domain');
               }
           }, 'json');
 
@@ -193,47 +211,57 @@ jQuery(document).ready(function(){
       };
     })();
 
-    $('.store-order-container .domain-input').keyup(function() {
+    jQuery('.store-order-container .domain-input').keyup(function() {
         delay2(function(){
-          $('.domain-input-validation').html('<i class="fa fa-spinner fa-spin"></i> Validating...').removeClass('ok');
-          $('#frmAddToCart button[type="submit"]').prop('disabled', true);
-          $.post('{routePath('store-order-validate')}', 'domain=' + $('.domain-input').val(), function(data) {
+          jQuery('.domain-input-validation').html('<i class="fa fa-spinner fa-spin"></i> Validating...').removeClass('ok');
+          jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
+          $.post('{routePath('store-order-validate')}', 'domain=' + jQuery('.domain-input').val(), function(data) {
             if (data.valid) {
-                $('.domain-input-validation').html('<i class="fa fa-check"></i> Valid').addClass('ok');
-                $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+                jQuery('.domain-input-validation').html('<i class="fa fa-check"></i> Valid').addClass('ok');
+                jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
             } else {
-                $('.domain-input-validation').html('<i class="fa fa-times"></i> Invalid domain');
+                jQuery('.domain-input-validation').html('<i class="fa fa-times"></i> Invalid domain');
             }
           }, 'json');
         }, 1000 );
     });
 
-    $('.store-domain-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var tab = $(e.target).attr('aria-controls');
-        $('#inputDomainType').val(tab);
+    jQuery('.store-domain-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var tab = jQuery(e.target).attr('aria-controls');
+        jQuery('#inputDomainType').val(tab);
         if (tab == 'custom-domain' || tab == 'sub-domain') {
             var validationBlockSelector = tab == 'custom-domain' ? '.domain-input-validation' : '.subdomain-validation';
-            var validationHtml = $(validationBlockSelector).html();
+            var validationHtml = jQuery(validationBlockSelector).html();
 
             if (validationHtml == '<i class="fa fa-check"></i> Valid') {
-                $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+                jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
             } else {
-                $('#frmAddToCart button[type="submit"]').prop('disabled', true);
+                jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
             }
         } else {
             {if $loggedin}
-                $('#frmAddToCart button[type="submit"]').removeProp('disabled');
+                jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
             {else}
-                $('#frmAddToCart button[type="submit"]').prop('disabled', true);
+                jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
             {/if}
         }
     });
 
-    $('.store-domain-tabs li').removeClass('active');
-    $('.store-domain-tabs li:first-child a').click();
+    jQuery('.store-domain-tabs li').removeClass('active');
+    jQuery('.store-domain-tabs li:first-child a').click();
     {if !$loggedin}
-        $('#frmAddToCart button[type="submit"]').prop('disabled', true);
+        jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
     {/if}
 
+    jQuery('.payment-term').find('select').change(function() {
+        var cycle = jQuery('.payment-term').find('option:selected').val();
+        updateUpsellDetailsOnBillingCycleChange(cycle);
+    });
+    updateUpsellDetailsOnBillingCycleChange(jQuery('.payment-term').find('option:selected').val());
 });
+
+function updateUpsellDetailsOnBillingCycleChange(cycle) {
+    jQuery('.span-upsell').hide();
+    jQuery('.span-upsell-' + cycle).show();
+}
 </script>

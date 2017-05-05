@@ -1,4 +1,4 @@
-<div class="content-block">
+<div class="content-block standout-features">
     <div class="container">
         <div class="row text-center">
             {if $type == 'ev'}

@@ -117,13 +117,10 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="btn-group" role="group">
-                        {foreach $products as $product}
-                            {foreach $product->pricing()->allAvailableCycles() as $cycles}
-                                <button type="button" class="btn btn-default cycle-change{if $cycles@first} active{/if}" data-cycle="{$cycles->cycle()}">
-                                    {lang key={'orderpaymentterm'|cat:$cycles->cycle()}}
-                                </button>
-                            {/foreach}
-                            {break}
+                        {foreach $billingCycles as $cycle}
+                            <button type="button" class="btn btn-default cycle-change{if $cycle@first} active{/if}" data-cycle="{$cycle}">
+                                {lang key={'orderpaymentterm'|cat:$cycle}}
+                            </button>
                         {/foreach}
                     </div>
                     <br><br>
@@ -142,7 +139,7 @@
                 {/if}
             </div>
 
-            <div class="row">
+            <div class="row weebly-plans">
                 {foreach $products as $key => $product}
                     <div class="{if count($products) == 1}col-sm-6 col-sm-offset-3{elseif count($products) == 2}col-sm-5{if $key == 0} col-sm-offset-1{/if}{else}col-sm-4{/if}">
                         <div class="pricing-item">
@@ -156,6 +153,9 @@
                                         {$pricing->toPrefixedString()}
                                     </span>
                                 {/foreach}
+                                <span class="pricing-text not-available hidden">
+                                    -
+                                </span>
                             </div>
                             <div class="feature-heading">Site Features</div>
                             <ul class="site-features">
@@ -176,7 +176,8 @@
                         </div>
                         <form method="post" action="{routePath('store-order')}">
                             <input type="hidden" name="pid" value="{$product->id}">
-                            <button type="submit" class="btn btn-primary btn-block">Signup</button>
+                            <input type="hidden" name="billingcycle" value="">
+                            <button type="submit" class="btn btn-primary btn-block btn-signup">Signup</button>
                         </form>
                     </div>
                 {/foreach}

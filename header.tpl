@@ -56,21 +56,21 @@
                     </div>
                 </li>
                 <li class="primary-action">
-                    <a href="logout.php" class="btn btn-action">
+                    <a href="{$WEB_ROOT}/logout.php" class="btn btn-action">
                         {$LANG.clientareanavlogout}
                     </a>
                 </li>
             {else}
                 <li>
-                    <a href="clientarea.php">{$LANG.login}</a>
+                    <a href="{$WEB_ROOT}/clientarea.php">{$LANG.login}</a>
                 </li>
                 {if $condlinks.allowClientRegistration}
                     <li>
-                        <a href="register.php">{$LANG.register}</a>
+                        <a href="{$WEB_ROOT}/register.php">{$LANG.register}</a>
                     </li>
                 {/if}
                 <li class="primary-action">
-                    <a href="cart.php?a=view" class="btn btn-action">
+                    <a href="{$WEB_ROOT}/cart.php?a=view" class="btn btn-action">
                         {$LANG.viewcart}
                     </a>
                 </li>
