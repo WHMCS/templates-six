@@ -67,9 +67,9 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
-                    <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/mobileapps.png"></div>
-                    <h4>Mobile Apps</h4>
-                    <p>Build, edit and manage your website from a mobile device</p>
+                    <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/forms.png"></div>
+                    <h4>Forms</h4>
+                    <p>Create custom contact forms, RSVP lists and surveys</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
@@ -81,16 +81,16 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
-                    <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/blogging.png"></div>
-                    <h4>Blogging</h4>
-                    <p>Make an amazing blog in minutes</p>
+                    <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/gallery.png"></div>
+                    <h4>Photos</h4>
+                    <p>Create your own galleries, slideshows and custom backgrounds</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
-                    <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/forms.png"></div>
-                    <h4>Forms</h4>
-                    <p>Create custom contact forms, RSVP lists and surveys</p>
+                    <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/blogging.png"></div>
+                    <h4>Blogging</h4>
+                    <p>Make an amazing blog in minutes</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
@@ -150,7 +150,7 @@
                             <div class="price">
                                 {foreach $product->pricing()->allAvailableCycles() as $pricing}
                                     <span class="pricing-text {$pricing->cycle()}{if !$pricing@first} hidden{/if}">
-                                        {$pricing->toPrefixedString()}
+                                        {$pricing->toFullString()}
                                     </span>
                                 {/foreach}
                                 <span class="pricing-text not-available hidden">
@@ -198,7 +198,7 @@
                     <p>Yes all websites created with the Weebly site builder are optimised for mobile.</p>
                     <hr>
                     <h4>Can I add photos to my website?</h4>
-                    <p>Yes you can add photos and videos to your site and create galleries.</p>
+                    <p>Yes, you can add photos to your site, but HD Video and Audio are only available on Pro & Business plans.</p>
                     <div class="hidden-md hidden-lg"><hr></div>
                     </div>
                     <div class="col-md-4">

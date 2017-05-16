@@ -43,7 +43,7 @@
                             <span>Protect your network</span>
                             <p>Eliminate Spam & Viruses from email before they ever reach your network</p>
                             {if $products.incoming->pricing()->best()}
-                                <div class="price">From {$products.incoming->pricing()->best()->toPrefixedString()}/domain</div>
+                                <div class="price">From {$products.incoming->pricing()->best()->toFullString()}/domain</div>
                             {/if}
                             <a href="#" class="btn btn-learn-more" data-target="incoming">
                                 Learn more
@@ -64,7 +64,7 @@
                             <span>Safeguard your reputation</span>
                             <p>Prevent Spam & Viruses from ever unknowingly leaving your network</p>
                             {if $products.outgoing->pricing()->best()}
-                                <div class="price">From {$products.outgoing->pricing()->best()->toPrefixedString()}/domain</div>
+                                <div class="price">From {$products.outgoing->pricing()->best()->toFullString()}/domain</div>
                             {/if}
                             <a href="#" class="btn btn-learn-more" data-target="outgoing">
                                 Learn more
@@ -85,7 +85,7 @@
                             <span>Backup and Compliance</span>
                             <p>Never lose an email again and ensure email data integrity for legal compliance</p>
                             {if $products.archiving->pricing()->best()}
-                                <div class="price">From {$products.archiving->pricing()->best()->toPrefixedString()}/domain</div>
+                                <div class="price">From {$products.archiving->pricing()->best()->toFullString()}/domain</div>
                             {/if}
                             <a href="#" class="btn btn-learn-more" data-target="archiving">
                                 Learn more
@@ -295,7 +295,7 @@
                                     {foreach $options as $option}
                                         <label class="checkbox-inline">
                                             <input type="checkbox" name="options" value="{$option.product}">
-                                            {$option.description} for <span>just {$option.pricing->toPrefixed()} more per month</span>
+                                            {$option.description} for <span>just {$option.pricing->toFullString()} more</span>
                                         </label><br>
                                     {foreachelse}
                                         None available
@@ -306,19 +306,19 @@
                     </div>
                     <div class="col-sm-4 text-right">
                         {if $products.incoming && $products.incoming->pricing()->best()}
-                            <span class="price price-incoming">{$products.incoming->pricing()->best()->toPrefixedString()}</span>
+                            <span class="price price-incoming">{$products.incoming->pricing()->best()->toFullString()}</span>
                         {/if}
                         {if $products.outgoing && $products.outgoing->pricing()->best()}
-                            <span class="price price-outgoing">{$products.outgoing->pricing()->best()->toPrefixedString()}</span>
+                            <span class="price price-outgoing">{$products.outgoing->pricing()->best()->toFullString()}</span>
                         {/if}
                         {if $products.archiving && $products.archiving->pricing()->best()}
-                            <span class="price price-archiving">{$products.archiving->pricing()->best()->toPrefixedString()}</span>
+                            <span class="price price-archiving">{$products.archiving->pricing()->best()->toFullString()}</span>
                         {/if}
                         {if $products.incomingoutgoing && $products.incomingoutgoing->pricing()->best()}
-                            <span class="price price-incomingoutgoing">{$products.incomingoutgoing->pricing()->best()->toPrefixedString()}</span>
+                            <span class="price price-incomingoutgoing">{$products.incomingoutgoing->pricing()->best()->toFullString()}</span>
                         {/if}
                         {if $products.incomingoutgoingarchiving && $products.incomingoutgoingarchiving->pricing()->best()}
-                            <span class="price price-incomingoutgoingarchiving">{$products.incomingoutgoingarchiving->pricing()->best()->toPrefixedString()}</span>
+                            <span class="price price-incomingoutgoingarchiving">{$products.incomingoutgoingarchiving->pricing()->best()->toFullString()}</span>
                         {/if}
                         <br><br><br><br><br>
                         <button type="submit" class="btn btn-order-now btn-lg">

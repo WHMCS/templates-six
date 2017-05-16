@@ -40,6 +40,12 @@ jQuery(document).ready(function() {
         },
     });
 
+    jQuery('.truncate').each(function () {
+        jQuery(this).attr('title', jQuery(this).text())
+            .attr('data-toggle', 'tooltip')
+            .attr('data-placement', 'bottom');
+    });
+
     // Default catch for all other popovers
     jQuery('[data-toggle="popover"]').popover({
         html: true
@@ -207,6 +213,9 @@ jQuery(document).ready(function() {
         if (form.length == 0) {
             form = button.find('form');
         }
+        if (form.hasClass('disabled')) {
+            return;
+        }
 
         button.find('.loading').removeClass('hidden').show().end()
             .attr('disabled', 'disabled');
@@ -225,6 +234,23 @@ jQuery(document).ready(function() {
             },
             'json'
         );
+    });
+    jQuery('.btn-sidebar-form-submit').on('click', function(e) {
+        e.preventDefault();
+        jQuery(this).find('.loading').removeClass('hidden').show().end()
+            .attr('disabled', 'disabled');
+
+        var form = jQuery(this).parents('form');
+
+        if (form.length == 0) {
+            form = jQuery(this).find('form');
+        }
+
+        if (form.length !== 0 && form.hasClass('disabled') === false) {
+            form.submit();
+        } else {
+            jQuery(this).find('.loading').hide().end().removeAttr('disabled');
+        }
     });
 
     // Email verification close
