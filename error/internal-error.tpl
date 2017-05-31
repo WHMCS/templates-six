@@ -36,6 +36,11 @@
             font-family: "Courier New", Courier, monospace, serif;
             font-size: 14px;
         }
+        .info {
+            border: solid 1px #999;
+            padding: 5px;
+            background-color: #d9edf7;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +50,8 @@
     <p>Please go back to the previous page and try again.</p>
     <p>If the problem persists, please <a href="mailto:{{email}}">contact us</a>.</p>
     <p class="back-to-home"><a href="{{systemurl}}">&laquo; Back to Homepage</a></p>
-    <p class="debug">{{stacktrace}}</p>
+    {{environmentIssues}}
+    <p class="debug">{{adminHelp}}<br/>{{stacktrace}}</p>
 </div>
 </body>
 </html>

@@ -18,19 +18,23 @@
 <section id="header">
     <div class="container">
         <ul class="top-nav">
-            <li>
-                <a href="#" class="choose-language" data-toggle="popover" id="languageChooser">
-                    {$activeLocale.localisedName}
-                    <b class="caret"></b>
-                </a>
-                <div id="languageChooserContent" class="hidden">
-                    <ul>
-                        {foreach $locales as $locale}
-                            <li><a href="{$currentpagelinkback}language={$locale.language}">{$locale.localisedName}</a></li>
-                        {/foreach}
-                    </ul>
-                </div>
-            </li>
+            {if $languagechangeenabled && count($locales) > 1}
+                <li>
+                    <a href="#" class="choose-language" data-toggle="popover" id="languageChooser">
+                        {$activeLocale.localisedName}
+                        <b class="caret"></b>
+                    </a>
+                    <div id="languageChooserContent" class="hidden">
+                        <ul>
+                            {foreach $locales as $locale}
+                                <li>
+                                    <a href="{$currentpagelinkback}language={$locale.language}">{$locale.localisedName}</a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </li>
+            {/if}
             {if $loggedin}
                 <li>
                     <a href="#" data-toggle="popover" id="accountNotifications" data-placement="bottom">

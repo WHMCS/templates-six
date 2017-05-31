@@ -140,47 +140,53 @@
             </div>
 
             <div class="row weebly-plans">
-                {foreach $products as $key => $product}
-                    <div class="{if count($products) == 1}col-sm-6 col-sm-offset-3{elseif count($products) == 2}col-sm-5{if $key == 0} col-sm-offset-1{/if}{else}col-sm-4{/if}">
-                        <div class="pricing-item">
-                            <div class="header">
-                                <h4>{$product->name}</h4>
-                                <h5>Ideal for {$product->idealFor}</h5>
-                            </div>
-                            <div class="price">
-                                {foreach $product->pricing()->allAvailableCycles() as $pricing}
-                                    <span class="pricing-text {$pricing->cycle()}{if !$pricing@first} hidden{/if}">
-                                        {$pricing->toFullString()}
+                {if count($products) > 0}
+                    {foreach $products as $key => $product}
+                        <div class="{if count($products) == 1}col-sm-6 col-sm-offset-3{elseif count($products) == 2}col-sm-5{if $key == 0} col-sm-offset-1{/if}{else}col-sm-4{/if}">
+                            <div class="pricing-item">
+                                <div class="header">
+                                    <h4>{$product->name}</h4>
+                                    <h5>Ideal for {$product->idealFor}</h5>
+                                </div>
+                                <div class="price">
+                                    {foreach $product->pricing()->allAvailableCycles() as $pricing}
+                                        <span class="pricing-text {$pricing->cycle()}{if !$pricing@first} hidden{/if}">
+                                            {$pricing->toFullString()}
+                                        </span>
+                                    {/foreach}
+                                    <span class="pricing-text not-available hidden">
+                                        -
                                     </span>
-                                {/foreach}
-                                <span class="pricing-text not-available hidden">
-                                    -
-                                </span>
+                                </div>
+                                <div class="feature-heading">Site Features</div>
+                                <ul class="site-features">
+                                    {foreach $product->siteFeatures as $feature}
+                                        <li>
+                                            {$feature}
+                                        </li>
+                                    {/foreach}
+                                </ul>
+                                <div class="feature-heading">eCommerce Features</div>
+                                <ul class="ecommerce-features">
+                                    {foreach $product->ecommerceFeatures as $feature}
+                                        <li>
+                                            {$feature}
+                                        </li>
+                                    {/foreach}
+                                </ul>
                             </div>
-                            <div class="feature-heading">Site Features</div>
-                            <ul class="site-features">
-                                {foreach $product->siteFeatures as $feature}
-                                    <li>
-                                        {$feature}
-                                    </li>
-                                {/foreach}
-                            </ul>
-                            <div class="feature-heading">eCommerce Features</div>
-                            <ul class="ecommerce-features">
-                                {foreach $product->ecommerceFeatures as $feature}
-                                    <li>
-                                        {$feature}
-                                    </li>
-                                {/foreach}
-                            </ul>
+                            <form method="post" action="{routePath('store-order')}">
+                                <input type="hidden" name="pid" value="{$product->id}">
+                                <input type="hidden" name="billingcycle" value="">
+                                <button type="submit" class="btn btn-primary btn-block btn-signup">Signup</button>
+                            </form>
                         </div>
-                        <form method="post" action="{routePath('store-order')}">
-                            <input type="hidden" name="pid" value="{$product->id}">
-                            <input type="hidden" name="billingcycle" value="">
-                            <button type="submit" class="btn btn-primary btn-block btn-signup">Signup</button>
-                        </form>
+                    {/foreach}
+                {elseif $inPreview}
+                    <div class="col-xs-12 lead text-center">
+                        Weebly plans you activate will be displayed here
                     </div>
-                {/foreach}
+                {/if}
             </div>
 
         </div>

@@ -41,6 +41,11 @@ section#main-body {
     background-color: #00acd4;
 }
 
+.landing-page.mail-services .product-options .preview-text {
+    padding: 50px;
+    color: #fff;
+}
+
 .landing-page .product-options h2 {
     margin: 0;
     padding: 0;
@@ -722,6 +727,11 @@ section#main-body {
 .landing-page.ssl .certificate-options .btn {
     background-color: #fff;
     color: #444;
+}
+
+.landing-page.ssl .certificate-options .preview-text {
+    padding: 180px 0 0;
+    text-align: center;
 }
 
 .landing-page.ssl .dashed-border {

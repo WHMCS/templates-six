@@ -118,33 +118,39 @@
                     {include file="$template/store/ssl/shared/currency-chooser.tpl"}
 
                     <ul class="ssl-certs-all">
-                        {foreach $certificates as $type => $products}
-                            {foreach $products as $product}
-                                <li>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <h4>{$product->name}</h4>
-                                            <p>{$product->description}</p>
-                                        </div>
-                                        <div class="col-sm-3 col-sm-offset-1">
-                                            <div class="padded-cell price">
-                                                from<br>
-                                                <strong>{$product->pricing()->best()->yearlyPrice()}</strong>
+                        {if count($certificates) > 0}
+                            {foreach $certificates as $type => $products}
+                                {foreach $products as $product}
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h4>{$product->name}</h4>
+                                                <p>{$product->description}</p>
+                                            </div>
+                                            <div class="col-sm-3 col-sm-offset-1">
+                                                <div class="padded-cell price">
+                                                    from<br>
+                                                    <strong>{$product->pricing()->best()->yearlyPrice()}</strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="padded-cell">
+                                                    <form method="post" action="{routePath('store-order')}">
+                                                        <input type="hidden" name="pid" value="{$product->id}">
+                                                        <button type="submit" class="btn btn-success btn-block">Buy Now</button>
+                                                    </form>
+                                                    <a href="{routePath("store-ssl-certificates-$type")}">Learn more</a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <div class="padded-cell">
-                                                <form method="post" action="{routePath('store-order')}">
-                                                    <input type="hidden" name="pid" value="{$product->id}">
-                                                    <button type="submit" class="btn btn-success btn-block">Buy Now</button>
-                                                </form>
-                                                <a href="{routePath("store-ssl-certificates-$type")}">Learn more</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                {/foreach}
                             {/foreach}
-                        {/foreach}
+                        {elseif $inPreview}
+                            <div class="lead text-center">
+                                SSL products you activate will be displayed here
+                            </div>
+                        {/if}
                     </ul>
 
                 </div>

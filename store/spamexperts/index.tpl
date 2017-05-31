@@ -32,71 +32,75 @@
 
     <div class="product-options" id="overview">
         <div class="container">
-            <div class="row">
-                {if $products.incoming}
-                    <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
-                        <div class="item">
-                            <h4>Incoming Email Filtering</h4>
-                            <div class="icon">
-                                <i class="fa fa-envelope-open-o"></i>
+            {if $numberOfFeaturedProducts > 0}
+                <div class="row">
+                    {if $products.incoming}
+                        <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
+                            <div class="item">
+                                <h4>Incoming Email Filtering</h4>
+                                <div class="icon">
+                                    <i class="fa fa-envelope-open-o"></i>
+                                </div>
+                                <span>Protect your network</span>
+                                <p>Eliminate Spam & Viruses from email before they ever reach your network</p>
+                                {if $products.incoming->pricing()->best()}
+                                    <div class="price">From {$products.incoming->pricing()->best()->toFullString()}/domain</div>
+                                {/if}
+                                <a href="#" class="btn btn-learn-more" data-target="incoming">
+                                    Learn more
+                                </a>
+                                <a href="#" class="btn btn-buy" data-target="incoming">
+                                    Buy
+                                </a>
                             </div>
-                            <span>Protect your network</span>
-                            <p>Eliminate Spam & Viruses from email before they ever reach your network</p>
-                            {if $products.incoming->pricing()->best()}
-                                <div class="price">From {$products.incoming->pricing()->best()->toFullString()}/domain</div>
-                            {/if}
-                            <a href="#" class="btn btn-learn-more" data-target="incoming">
-                                Learn more
-                            </a>
-                            <a href="#" class="btn btn-buy" data-target="incoming">
-                                Buy
-                            </a>
                         </div>
-                    </div>
-                {/if}
-                {if $products.outgoing}
-                    <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
-                        <div class="item">
-                            <h4>Outgoing Email Filtering</h4>
-                            <div class="icon">
-                                <i class="fa fa-envelope-open"></i>
+                    {/if}
+                    {if $products.outgoing}
+                        <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
+                            <div class="item">
+                                <h4>Outgoing Email Filtering</h4>
+                                <div class="icon">
+                                    <i class="fa fa-envelope-open"></i>
+                                </div>
+                                <span>Safeguard your reputation</span>
+                                <p>Prevent Spam & Viruses from ever unknowingly leaving your network</p>
+                                {if $products.outgoing->pricing()->best()}
+                                    <div class="price">From {$products.outgoing->pricing()->best()->toFullString()}/domain</div>
+                                {/if}
+                                <a href="#" class="btn btn-learn-more" data-target="outgoing">
+                                    Learn more
+                                </a>
+                                <a href="#" class="btn btn-buy" data-target="outgoing">
+                                    Buy
+                                </a>
                             </div>
-                            <span>Safeguard your reputation</span>
-                            <p>Prevent Spam & Viruses from ever unknowingly leaving your network</p>
-                            {if $products.outgoing->pricing()->best()}
-                                <div class="price">From {$products.outgoing->pricing()->best()->toFullString()}/domain</div>
-                            {/if}
-                            <a href="#" class="btn btn-learn-more" data-target="outgoing">
-                                Learn more
-                            </a>
-                            <a href="#" class="btn btn-buy" data-target="outgoing">
-                                Buy
-                            </a>
                         </div>
-                    </div>
-                {/if}
-                {if $products.archiving}
-                    <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
-                        <div class="item">
-                            <h4>Email Archiving</h4>
-                            <div class="icon">
-                                <i class="fa fa-cube"></i>
+                    {/if}
+                    {if $products.archiving}
+                        <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
+                            <div class="item">
+                                <h4>Email Archiving</h4>
+                                <div class="icon">
+                                    <i class="fa fa-cube"></i>
+                                </div>
+                                <span>Backup and Compliance</span>
+                                <p>Never lose an email again and ensure email data integrity for legal compliance</p>
+                                {if $products.archiving->pricing()->best()}
+                                    <div class="price">From {$products.archiving->pricing()->best()->toFullString()}/domain</div>
+                                {/if}
+                                <a href="#" class="btn btn-learn-more" data-target="archiving">
+                                    Learn more
+                                </a>
+                                <a href="#" class="btn btn-buy" data-target="archiving">
+                                    Buy
+                                </a>
                             </div>
-                            <span>Backup and Compliance</span>
-                            <p>Never lose an email again and ensure email data integrity for legal compliance</p>
-                            {if $products.archiving->pricing()->best()}
-                                <div class="price">From {$products.archiving->pricing()->best()->toFullString()}/domain</div>
-                            {/if}
-                            <a href="#" class="btn btn-learn-more" data-target="archiving">
-                                Learn more
-                            </a>
-                            <a href="#" class="btn btn-buy" data-target="archiving">
-                                Buy
-                            </a>
                         </div>
-                    </div>
-                {/if}
-            </div>
+                    {/if}
+                </div>
+            {elseif $inPreview}
+                <div class="text-center lead preview-text">Email service products you activate will be displayed here</div>
+            {/if}
             <div class="powered-by">
                 Powered by <img src="{$WEB_ROOT}/assets/img/marketconnect/spamexperts/logo_white.png">
             </div>
@@ -112,17 +116,17 @@
     <div class="content-block tabs light-grey-bg" id="howitworks">
         <div class="container">
                 <ul class="nav nav-tabs" role="tablist">
-                    {if $products.incoming}
+                    {if $products.incoming || $inPreview}
                         <li role="presentation" class="active">
                             <a href="#incoming" aria-controls="incoming" role="tab" data-toggle="tab">Incoming Email Filtering</a>
                         </li>
                     {/if}
-                    {if $products.outgoing}
+                    {if $products.outgoing || $inPreview}
                         <li role="presentation">
                             <a href="#outgoing" aria-controls="outgoing" role="tab" data-toggle="tab">Outgoing Email Filtering</a>
                         </li>
                     {/if}
-                    {if $products.archiving}
+                    {if $products.archiving || $inPreview}
                         <li role="presentation">
                             <a href="#archiving" aria-controls="archiving" role="tab" data-toggle="tab">Email Archiving</a>
                         </li>
@@ -276,17 +280,21 @@
                     <div class="col-sm-8">
                         <h2>Signup and Get Started</h2>
                         <h4>Choose Product</h4>
-                        <div class="btn-group choose-product" role="group">
-                            {if $products.incoming}
-                                <button type="button" class="btn btn-default active" data-product="incoming">Incoming Filtering</button>
-                            {/if}
-                            {if $products.outgoing}
-                                <button type="button" class="btn btn-default" data-product="outgoing">Outgoing Filtering</button>
-                            {/if}
-                            {if $products.archiving}
-                                <button type="button" class="btn btn-default" data-product="archiving">Email Archiving</button>
-                            {/if}
-                        </div>
+                        {if $numberOfFeaturedProducts > 0}
+                            <div class="btn-group choose-product" role="group">
+                                {if $products.incoming}
+                                    <button type="button" class="btn btn-default active" data-product="incoming">Incoming Filtering</button>
+                                {/if}
+                                {if $products.outgoing}
+                                    <button type="button" class="btn btn-default" data-product="outgoing">Outgoing Filtering</button>
+                                {/if}
+                                {if $products.archiving}
+                                    <button type="button" class="btn btn-default" data-product="archiving">Email Archiving</button>
+                                {/if}
+                            </div>
+                        {elseif $inPreview}
+                            Email service products you activate will display here
+                        {/if}
                         <br><br>
                         <h4>Additional Options</h4>
                         <div class="additional-options">

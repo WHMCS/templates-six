@@ -2564,10 +2564,6 @@ div.md-editor.active {
     background-color: #f5f5f5;
     border-top: 0;
 }
-.panel-sidebar.panel-danger>.panel-heading {
-    background-color: #;
-}
-
 .panel-sidebar .list-group-item {
     line-height: 24px;
 }
