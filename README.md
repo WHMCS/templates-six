@@ -1,6 +1,6 @@
 # WHMCS Six Client Area Template Theme
 
-Welcome to the WHMCS “Six” template repository!  This repository is dedicated to providing version-by-version changes of the “Six” template as published in [WHMCS](https://downloads.whmcs.com/).  Sharing these changes through GitHub as a read-only repository enables you to quick inspect and import these changes for your custom theme.
+Welcome to the WHMCS “Six” template repository!  This repository is dedicated to providing version-by-version changes of the “Six” template as published in [WHMCS](https://download.whmcs.com/).  Sharing these changes through GitHub as a read-only repository enables you to quick inspect and import these changes for your custom theme.
 
 ## Compatibility
 
