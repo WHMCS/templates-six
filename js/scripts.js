@@ -13427,12 +13427,6 @@ jQuery(document).ready(function() {
         },
     });
 
-    jQuery('.truncate').each(function () {
-        jQuery(this).attr('title', jQuery(this).text())
-            .attr('data-toggle', 'tooltip')
-            .attr('data-placement', 'bottom');
-    });
-
     // Default catch for all other popovers
     jQuery('[data-toggle="popover"]').popover({
         html: true
@@ -13594,56 +13588,28 @@ jQuery(document).ready(function() {
     jQuery('.btn-service-sso').on('click', function(e) {
         e.preventDefault();
         var button = jQuery(this);
-
-        var form = button.parents('form');
-
-        if (form.length == 0) {
-            form = button.find('form');
-        }
-        if (form.hasClass('disabled')) {
-            return;
-        }
-
-        button.find('.loading').removeClass('hidden').show().end()
+        button.find('.loading').hide().removeClass('hidden').fadeIn('fast').end()
             .attr('disabled', 'disabled');
         jQuery.post(
             window.location.href,
-            form.serialize(),
+            jQuery(this).parents('form').serialize(),
             function (data) {
-                button.find('.loading').hide().end().removeAttr('disabled');
-                form.find('.login-feedback').html('');
-                if (data.error) {
-                    form.find('.login-feedback').html(data.error);
+                if (data.body !== undefined && data.body.substr(0, 7) === 'window|') {
+                    window.open(data.body.substr(7), '_blank');
                 }
-                if (data.redirect !== undefined && data.redirect.substr(0, 7) === 'window|') {
-                    window.open(data.redirect.substr(7), '_blank');
+                if (data.error !== undefined) {
+                    //show error?
                 }
+                button.find('.loading').fadeOut('fast').end()
+                    .removeAttr('disabled');
             },
             'json'
         );
-    });
-    jQuery('.btn-sidebar-form-submit').on('click', function(e) {
-        e.preventDefault();
-        jQuery(this).find('.loading').removeClass('hidden').show().end()
-            .attr('disabled', 'disabled');
-
-        var form = jQuery(this).parents('form');
-
-        if (form.length == 0) {
-            form = jQuery(this).find('form');
-        }
-
-        if (form.length !== 0 && form.hasClass('disabled') === false) {
-            form.submit();
-        } else {
-            jQuery(this).find('.loading').hide().end().removeAttr('disabled');
-        }
     });
 
     // Email verification close
     jQuery('.email-verification .btn.close').click(function(e) {
         e.preventDefault();
-        jQuery.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
         jQuery('.email-verification').hide();
     });
 
@@ -13651,11 +13617,6 @@ jQuery(document).ready(function() {
     jQuery('.back-to-top').click(function(e) {
         e.preventDefault();
         jQuery('body,html').animate({scrollTop: 0}, 500);
-    });
-
-    // Prevent page scroll on language choose click
-    jQuery('.choose-language').click(function(e) {
-        e.preventDefault();
     });
 
     /**
@@ -13825,24 +13786,6 @@ jQuery(document).ready(function() {
 
     jQuery('#frmPayment').find('#btnSubmit').on('click', function(){
         jQuery(this).find('span').toggleClass('hidden');
-    });
-
-    // SSL Manage Action Button.
-    jQuery('.btn-resend-approver-email').click(function () {
-        jQuery.post(
-            jQuery(this).data('url'),
-            {
-                addonId: jQuery(this).data('addonid'),
-                serviceId: jQuery(this).data('serviceid'),
-            },
-            function(data) {
-                if (data.success == true) {
-                    jQuery('.alert-table-ssl-manage').addClass('alert-success').text('Approver Email Resent').removeClass('hidden');
-                } else {
-                    jQuery('.alert-table-ssl-manage').addClass('alert-danger').text('Error: ' + data.message).removeClass('hidden');
-                }
-            }
-        );
     });
 });
 
@@ -14128,12 +14071,9 @@ jQuery(document).ready(function(){
             modalTitle = jQuery(this).data('modal-title'),
             submitId = jQuery(this).data('btn-submit-id'),
             submitLabel = jQuery(this).data('btn-submit-label'),
-            hideClose = jQuery(this).data('btn-close-hide'),
-            disabled = jQuery(this).attr('disabled');
+            hideClose = jQuery(this).data('btn-close-hide');
 
-        if (!disabled) {
-            openModal(url, '', modalTitle, modalSize, modalClass, submitLabel, submitId, hideClose);
-        }
+        openModal(url, '', modalTitle, modalSize, modalClass, submitLabel, submitId, hideClose);
     });
 
     // define modal close reset action
@@ -14146,10 +14086,18 @@ jQuery(document).ready(function(){
                     dataType: 'json'
                 }
             );
+
+            jQuery(this).find('.modal-header').removeAttr('style');
+            jQuery(this).find('.modal-header').css('border-color', '');
+            jQuery(this).find('.modal-body').removeAttr('style');
+            jQuery(this).find('.feature-highlights-feature').removeAttr('style');
+            jQuery(this).find('.modal-footer').removeAttr('style');
+            jQuery(this).find('.btn-manage').removeAttr('style');
+            jQuery(this).find('.btn-docs').removeAttr('style');
         }
 
         jQuery('#modalAjax').find('.modal-body').empty();
-        jQuery('#modalAjax').children('div.modal-dialog').removeClass('modal-lg');
+        jQuery('#modalAjax').children('div[class="modal-dialog"]').removeClass('modal-lg');
         jQuery('#modalAjax').removeClass().addClass('modal whmcs-modal fade');
         jQuery('#modalAjax .modal-title').html('Title');
         jQuery('#modalAjax .modal-submit').html('Submit')

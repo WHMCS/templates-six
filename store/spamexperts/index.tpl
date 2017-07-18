@@ -4,8 +4,8 @@
 
     <div class="hero">
         <div class="container">
-            <h2>{lang key="store.emailServices.headline"}</h2>
-            <h3>{lang key="store.emailServices.tagline"}</h3>
+            <h2>Email Anti-Spam, Built for You</h2>
+            <h3>Take back control of your inbox</h3>
         </div>
     </div>
 
@@ -32,75 +32,71 @@
 
     <div class="product-options" id="overview">
         <div class="container">
-            {if $numberOfFeaturedProducts > 0}
-                <div class="row">
-                    {if $products.incoming}
-                        <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
-                            <div class="item">
-                                <h4>Incoming Email Filtering</h4>
-                                <div class="icon">
-                                    <i class="fa fa-envelope-open-o"></i>
-                                </div>
-                                <span>Protect your network</span>
-                                <p>Eliminate Spam & Viruses from email before they ever reach your network</p>
-                                {if $products.incoming->pricing()->best()}
-                                    <div class="price">From {$products.incoming->pricing()->best()->toFullString()}/domain</div>
-                                {/if}
-                                <a href="#" class="btn btn-learn-more" data-target="incoming">
-                                    Learn more
-                                </a>
-                                <a href="#" class="btn btn-buy" data-target="incoming">
-                                    Buy
-                                </a>
+            <div class="row">
+                {if $products.incoming}
+                    <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
+                        <div class="item">
+                            <h4>Incoming Email Filtering</h4>
+                            <div class="icon">
+                                <i class="fa fa-envelope-open-o"></i>
                             </div>
+                            <span>Protect your network</span>
+                            <p>Eliminate Spam & Viruses from email before they ever reach your network</p>
+                            {if $products.incoming->pricing()->best()}
+                                <div class="price">From {$products.incoming->pricing()->best()->toPrefixedString()}/domain</div>
+                            {/if}
+                            <a href="#" class="btn btn-learn-more" data-target="incoming">
+                                Learn more
+                            </a>
+                            <a href="#" class="btn btn-buy" data-target="incoming">
+                                Buy
+                            </a>
                         </div>
-                    {/if}
-                    {if $products.outgoing}
-                        <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
-                            <div class="item">
-                                <h4>Outgoing Email Filtering</h4>
-                                <div class="icon">
-                                    <i class="fa fa-envelope-open"></i>
-                                </div>
-                                <span>Safeguard your reputation</span>
-                                <p>Prevent Spam & Viruses from ever unknowingly leaving your network</p>
-                                {if $products.outgoing->pricing()->best()}
-                                    <div class="price">From {$products.outgoing->pricing()->best()->toFullString()}/domain</div>
-                                {/if}
-                                <a href="#" class="btn btn-learn-more" data-target="outgoing">
-                                    Learn more
-                                </a>
-                                <a href="#" class="btn btn-buy" data-target="outgoing">
-                                    Buy
-                                </a>
+                    </div>
+                {/if}
+                {if $products.outgoing}
+                    <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
+                        <div class="item">
+                            <h4>Outgoing Email Filtering</h4>
+                            <div class="icon">
+                                <i class="fa fa-envelope-open"></i>
                             </div>
+                            <span>Safeguard your reputation</span>
+                            <p>Prevent Spam & Viruses from ever unknowingly leaving your network</p>
+                            {if $products.outgoing->pricing()->best()}
+                                <div class="price">From {$products.outgoing->pricing()->best()->toPrefixedString()}/domain</div>
+                            {/if}
+                            <a href="#" class="btn btn-learn-more" data-target="outgoing">
+                                Learn more
+                            </a>
+                            <a href="#" class="btn btn-buy" data-target="outgoing">
+                                Buy
+                            </a>
                         </div>
-                    {/if}
-                    {if $products.archiving}
-                        <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
-                            <div class="item">
-                                <h4>Email Archiving</h4>
-                                <div class="icon">
-                                    <i class="fa fa-cube"></i>
-                                </div>
-                                <span>Backup and Compliance</span>
-                                <p>Never lose an email again and ensure email data integrity for legal compliance</p>
-                                {if $products.archiving->pricing()->best()}
-                                    <div class="price">From {$products.archiving->pricing()->best()->toFullString()}/domain</div>
-                                {/if}
-                                <a href="#" class="btn btn-learn-more" data-target="archiving">
-                                    Learn more
-                                </a>
-                                <a href="#" class="btn btn-buy" data-target="archiving">
-                                    Buy
-                                </a>
+                    </div>
+                {/if}
+                {if $products.archiving}
+                    <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
+                        <div class="item">
+                            <h4>Email Archiving</h4>
+                            <div class="icon">
+                                <i class="fa fa-cube"></i>
                             </div>
+                            <span>Backup and Compliance</span>
+                            <p>Never lose an email again and ensure email data integrity for legal compliance</p>
+                            {if $products.archiving->pricing()->best()}
+                                <div class="price">From {$products.archiving->pricing()->best()->toPrefixedString()}/domain</div>
+                            {/if}
+                            <a href="#" class="btn btn-learn-more" data-target="archiving">
+                                Learn more
+                            </a>
+                            <a href="#" class="btn btn-buy" data-target="archiving">
+                                Buy
+                            </a>
                         </div>
-                    {/if}
-                </div>
-            {elseif $inPreview}
-                <div class="text-center lead preview-text">Email service products you activate will be displayed here</div>
-            {/if}
+                    </div>
+                {/if}
+            </div>
             <div class="powered-by">
                 Powered by <img src="{$WEB_ROOT}/assets/img/marketconnect/spamexperts/logo_white.png">
             </div>
@@ -109,24 +105,24 @@
 
     <div class="content-block text20 text-center">
         <div class="container">
-            <h2>{lang key="store.emailServices.blockSpamHeadline"}</h2>
+            <h2>Block over 99.9% of viruses, malware and spam before they ever reach your inbox</h2>
         </div>
     </div>
 
     <div class="content-block tabs light-grey-bg" id="howitworks">
         <div class="container">
                 <ul class="nav nav-tabs" role="tablist">
-                    {if $products.incoming || $inPreview}
+                    {if $products.incoming}
                         <li role="presentation" class="active">
                             <a href="#incoming" aria-controls="incoming" role="tab" data-toggle="tab">Incoming Email Filtering</a>
                         </li>
                     {/if}
-                    {if $products.outgoing || $inPreview}
+                    {if $products.outgoing}
                         <li role="presentation">
                             <a href="#outgoing" aria-controls="outgoing" role="tab" data-toggle="tab">Outgoing Email Filtering</a>
                         </li>
                     {/if}
-                    {if $products.archiving || $inPreview}
+                    {if $products.archiving}
                         <li role="presentation">
                             <a href="#archiving" aria-controls="archiving" role="tab" data-toggle="tab">Email Archiving</a>
                         </li>
@@ -140,7 +136,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
-                                    Full Inbox protection at competitive prices
+                                    Full Inbox protection at unmatched prices
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
@@ -174,15 +170,15 @@
                         </div>
 
                         <h3>Why Choose SpamExperts Incoming Filter?</h3>
-                        <p>Incoming Email Filtering filters all inbound email and eliminates spam & viruses before these threats reach your network at a nearly 100% accuracy rate. The extensive control-panel allows you to remain in full control. Moreover, in case your email server is down, your email will be queued. Queued email can be accessed, read, and replied to via the web-interface adding to your inbound email continuity!</p>
+                        <p>Incoming Email Filtering is a gateway solution which filters all inbound email and eliminates spam & viruses before these threats reach your network. Our filtering solutions achieve a nearly 100% accuracy rate.</p>
 
                         <h3>Why do you need a professional Incoming Filter?</h3>
 
-                        <p>Stop running the risk of IT network threats. If your Inbox is crowded with unsolicited bulk mail every day, then that's a sign you need a professional Incoming Filter solution. Get full protection for your Inbox and say goodbye to spam, virus and malware threats!</p>
+                        <p>Stop running the risk of IT network threats! If your Inbox is crowded with unsolicited bulk mail every day, then that’s a sign you need a professional Incoming Filter solution. Get full protection for your Inbox and say goodbye to spam, virus and malware threats!</p>
 
                         <h3>How it works</h3>
 
-                        <p>Once your domain is (automatically) deployed to the Incoming Filter, and filtering is activated, email will pass through the SpamExperts filtering cloud. Incoming emails are securely analyzed and scanned in real time. No training or configurations are required and everything works out of the box. Any message detected as spam is moved to the quarantine, while non-spam is sent to your email server. The quarantine can be monitored in the user-friendly SpamPanel, through email-reports, or even directly in your email client! No more wasted time in dealing with spam, simply focus your energy on business tasks, while you remain in full control.</p>
+                        <p>Incoming emails are securely analyzed and scanned by the cluster in real time. The unique, self-learning filtering mechanisms quickly understand the emailing behavior so they only get better with time. Any message detected as spam is moved to the quarantine, which you can monitor in the user-friendly SpamPanel, through email-reports or even directly in your email client! No more wasted time in dealing with spam, simply focus your energy on business tasks, while still in full control.</p>
 
                     </div>
                     <div role="tabpanel" class="tab-pane" id="outgoing">
@@ -219,11 +215,11 @@
 
                         <h3>What is outgoing filtering?</h3>
 
-                        <p>Outgoing Email Filtering is vital to safeguard your IT infrastructure reputation and ensure all your outgoing email arrives safely where it should. This professional solution will block spam & viruses from leaving your network and prevent your IP(s) from being blacklisted ever again. Moreover, the SpamExperts Outgoing Filter gives you the reporting and tools to detect compromised accounts and lock-down spamming users.</p>
+                        <p>Outgoing Email Filtering is vital to safeguard your IT infrastructure reputation and assure all your outgoing email always safely arrives where it should. This professional solution will block spam & viruses from leaving your network and prevent your IP(s) from being blacklisted, ever again.</p>
 
                         <h3>Why you need it?</h3>
 
-                        <p>Has your network ever sent out spam email without your knowledge? Due to network weaknesses almost any device can be compromised to transmit outbound SMTP, allowing spam or malware to be sent out from your network without you even knowing it! Therefore, it's critical you invest in a professional Outgoing Filter solution. Maintain your company’s good reputation, stop spam from leaving your network and prevent being blacklisted so that your email always arrives where it is meant to go.</p>
+                        <p>Has your network ever sent out malicious email without your knowledge? Due to network weaknesses such as unsecured wireless connection or firewalls allowing any device to transmit outbound SMTP, your IT security may be compromised, allowing spam or malware to be sent out from your network without you even knowing it! Therefore, it’s critical you invest in a professional Outgoing Filter solution. Maintain your company’s good reputation, stop spam from leaving your network and prevent being blacklisted so that your email always arrives where it is meant to go.</p>
 
                     </div>
                     <div role="tabpanel" class="tab-pane" id="archiving">
@@ -245,15 +241,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
-                                    User friendly data-protection management
+                                    Simplified management
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
-                                    Added email continuity, journaling support, and easy re-delivery
-                                </div>
-                                <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
-                                    Compressed, encrypted and secure archive
+                                    Option to export archived messages
                                 </div>
                             </div>
                         </div>
@@ -275,26 +267,22 @@
     <div class="content-block get-started" id="pricing">
         <div class="container">
             <form method="post" action="{routePath('store-order')}">
-                <input type="hidden" name="productkey" value="{$products.incoming->productKey}" id="productKey">
+                <input type="hidden" name="pid" value="{$products.incoming->id}">
                 <div class="row">
                     <div class="col-sm-8">
                         <h2>Signup and Get Started</h2>
                         <h4>Choose Product</h4>
-                        {if $numberOfFeaturedProducts > 0}
-                            <div class="btn-group choose-product" role="group">
-                                {if $products.incoming}
-                                    <button type="button" class="btn btn-default active" data-product="incoming">Incoming Filtering</button>
-                                {/if}
-                                {if $products.outgoing}
-                                    <button type="button" class="btn btn-default" data-product="outgoing">Outgoing Filtering</button>
-                                {/if}
-                                {if $products.archiving}
-                                    <button type="button" class="btn btn-default" data-product="archiving">Email Archiving</button>
-                                {/if}
-                            </div>
-                        {elseif $inPreview}
-                            Email service products you activate will display here
-                        {/if}
+                        <div class="btn-group choose-product" role="group">
+                            {if $products.incoming}
+                                <button type="button" class="btn btn-default active" data-product="incoming">Incoming Filtering</button>
+                            {/if}
+                            {if $products.outgoing}
+                                <button type="button" class="btn btn-default" data-product="outgoing">Outgoing Filtering</button>
+                            {/if}
+                            {if $products.archiving}
+                                <button type="button" class="btn btn-default" data-product="archiving">Email Archiving</button>
+                            {/if}
+                        </div>
                         <br><br>
                         <h4>Additional Options</h4>
                         <div class="additional-options">
@@ -303,7 +291,7 @@
                                     {foreach $options as $option}
                                         <label class="checkbox-inline">
                                             <input type="checkbox" name="options" value="{$option.product}">
-                                            {$option.description} for <span>just {$option.pricing->toFullString()} more</span>
+                                            {$option.description} for <span>just {$option.pricing->toPrefixed()} more per month</span>
                                         </label><br>
                                     {foreachelse}
                                         None available
@@ -314,19 +302,19 @@
                     </div>
                     <div class="col-sm-4 text-right">
                         {if $products.incoming && $products.incoming->pricing()->best()}
-                            <span class="price price-incoming">{$products.incoming->pricing()->best()->toFullString()}</span>
+                            <span class="price price-incoming">{$products.incoming->pricing()->best()->toPrefixedString()}</span>
                         {/if}
                         {if $products.outgoing && $products.outgoing->pricing()->best()}
-                            <span class="price price-outgoing">{$products.outgoing->pricing()->best()->toFullString()}</span>
+                            <span class="price price-outgoing">{$products.outgoing->pricing()->best()->toPrefixedString()}</span>
                         {/if}
                         {if $products.archiving && $products.archiving->pricing()->best()}
-                            <span class="price price-archiving">{$products.archiving->pricing()->best()->toFullString()}</span>
+                            <span class="price price-archiving">{$products.archiving->pricing()->best()->toPrefixedString()}</span>
                         {/if}
                         {if $products.incomingoutgoing && $products.incomingoutgoing->pricing()->best()}
-                            <span class="price price-incomingoutgoing">{$products.incomingoutgoing->pricing()->best()->toFullString()}</span>
+                            <span class="price price-incomingoutgoing">{$products.incomingoutgoing->pricing()->best()->toPrefixedString()}</span>
                         {/if}
                         {if $products.incomingoutgoingarchiving && $products.incomingoutgoingarchiving->pricing()->best()}
-                            <span class="price price-incomingoutgoingarchiving">{$products.incomingoutgoingarchiving->pricing()->best()->toFullString()}</span>
+                            <span class="price price-incomingoutgoingarchiving">{$products.incomingoutgoingarchiving->pricing()->best()->toPrefixedString()}</span>
                         {/if}
                         <br><br><br><br><br>
                         <button type="submit" class="btn btn-order-now btn-lg">
@@ -356,27 +344,36 @@
             <h3 class="text-center">Frequently Asked Questions</h3>
             <div class="row">
                 <div class="col-md-4">
-                <h4>How does it work?</h4>
-                <p>Email is routed through SpamExperts intelligent self-learning servers that will detect and block spam before it ever reaches you.</p>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
                 <hr>
-                <h4>How accurate is the filtering?</h4>
-                <p>Thanks to processing millions of emails every day, our email filters have an industry leading rate with close to 100% accuracy.</p>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
+                <hr>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
                 <div class="hidden-md hidden-lg"><hr></div>
                 </div>
                 <div class="col-md-4">
-                <h4>Can I recover messages that get blocked?</h4>
-                <p>Yes, a comprehensive control panel with log-search, quarantine, and many other tools allows you to check the status of any email which passed through the system.</p>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
                 <hr>
-                <h4>How long does it take to setup?</h4>
-                <p>Setup is fast, automated and it will be up and running protecting your email in minutes.</p>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
+                <hr>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
                 <div class="hidden-md hidden-lg"><hr></div>
                 </div>
                 <div class="col-md-4">
-                <h4>What is Email Archiving?</h4>
-                <p>Email is so important nowadays, with archiving email is securely stored, giving you extra confidence and peace of mind.</p>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
                 <hr>
-                <h4>How much email can I store?</h4>
-                <p>Email Archiving includes 10GB of compressed email storage by default. If you need more storage, additional 10GB licenses can be added.</p>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
+                <hr>
+                <h4>Question goes here</h4>
+                <p>Answer to the question goes here, we probably want no more than two lines at most.</p>
                 </div>
             </div>
         </div>

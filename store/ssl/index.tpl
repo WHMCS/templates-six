@@ -50,50 +50,30 @@
     <div class="content-block">
         <div class="container">
 
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-sm-push-8 col-md-push-9 text-right hidden-xs">
-                    <br><br>
-                    <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png">
-                </div>
-                <div class="col-sm-8 col-md-9 col-sm-pull-4 col-md-pull-3">
+            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png" class="right-icon">
 
-                    <h3>What is SSL?</h3>
+            <h3>What is SSL?</h3>
 
-                    <div class="text-center visible-xs">
-                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png">
-                        <br><br>
-                    </div>
+            <p>SSL Certificates enable data encryption on the internet and allow data to be transmitted securely from a web server to a browser. With SSL, your website can use the https protocol and will display a padlock in end users web browsers to indicate the connection is secure.</p>
 
-                    <p>SSL Certificates enable data encryption on the internet and allow data to be transmitted securely from a web server to a browser. With SSL, your website can use the https protocol and will display a padlock in end users web browsers to indicate the connection is secure.</p>
-
-                    <p>Although all SSL certificates use similar methods to protect and validate your data, the level of trust and assertion they provide varies. <a href="{routePath('store-ssl-certificates-dv')}">Standard SSL (Domain Validated)</a> Certificates are the easiest and most common type of SSL certificate. <a href="{routePath('store-ssl-certificates-ov')}">OV</a> and <a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> also authenticate the identity of the company or organization that holds the certificate providing more trust to end users.</p>
-
-                    <p><a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> offer the highest level of validation and trust, and will show the name of the company or organization in green in the address bar. This is an immediate, visual way that viewers can know that extra steps were taken to confirm the site they’re visiting – which is why most large companies and organizations choose EV certificates.</p>
-
-                </div>
-            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula urna nec risus posuere, sed auctor turpis scelerisque. Donec ut maximus turpis. Praesent efficitur gravida odio maximus aliquam. Suspendisse auctor id ligula eget gravida. Curabitur vitae hendrerit diam. Donec fringilla enim eget vehicula pulvinar.</p>
 
         </div>
     </div>
 
     <div class="standout-1">
-        <div class="container browser">
+        <div class="container" style="max-height:400px;overflow:hidden;">
             <h3>Browsers are changing, are you prepared?</h3>
-            <div class="browser-image">
-                <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/browser-warning.jpg">
-            </div>
+            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/browser-warning.jpg">
         </div>
         <div class="browser-notice">
-            <div class="wrapper-container">
-                <div class="wrapper">
-                    <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/padlock-x.png">
-                    Web pages not served via HTTPS will be marked ‘not secure’ in <strong>Google Chrome</strong>
-                    and <strong>Mozilla Firefox</strong>. Could your website be one of them?
-                </div>
+            <div class="wrapper">
+                <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/padlock-x.png">
+                Web pages not served via HTTPS will be marked ‘not secure’ in <strong>Google Chrome</strong>
+                and <strong>Mozilla Firefox</strong>. Could your website be one of them?
             </div>
         </div>
     </div>
-    <div class="clearfix"></div>
 
     <div class="content-block browser-msg">
         <div class="container">
@@ -118,39 +98,33 @@
                     {include file="$template/store/ssl/shared/currency-chooser.tpl"}
 
                     <ul class="ssl-certs-all">
-                        {if count($certificates) > 0}
-                            {foreach $certificates as $type => $products}
-                                {foreach $products as $product}
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h4>{$product->name}</h4>
-                                                <p>{$product->description}</p>
-                                            </div>
-                                            <div class="col-sm-3 col-sm-offset-1">
-                                                <div class="padded-cell price">
-                                                    from<br>
-                                                    <strong>{$product->pricing()->best()->yearlyPrice()}</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <div class="padded-cell">
-                                                    <form method="post" action="{routePath('store-order')}">
-                                                        <input type="hidden" name="pid" value="{$product->id}">
-                                                        <button type="submit" class="btn btn-success btn-block">Buy Now</button>
-                                                    </form>
-                                                    <a href="{routePath("store-ssl-certificates-$type")}">Learn more</a>
-                                                </div>
+                        {foreach $certificates as $type => $products}
+                            {foreach $products as $product}
+                                <li>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4>{$product->name}</h4>
+                                            <p>{$product->description}</p>
+                                        </div>
+                                        <div class="col-sm-3 col-sm-offset-1">
+                                            <div class="padded-cell price">
+                                                from<br>
+                                                <strong>{$product->pricing()->best()->yearlyPrice()}</strong>
                                             </div>
                                         </div>
-                                    </li>
-                                {/foreach}
+                                        <div class="col-sm-2">
+                                            <div class="padded-cell">
+                                                <form method="post" action="{routePath('store-order')}">
+                                                    <input type="hidden" name="pid" value="{$product->id}">
+                                                    <button type="submit" class="btn btn-success btn-block">Buy Now</button>
+                                                </form>
+                                                <a href="{routePath("store-ssl-certificates-$type")}">Learn more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                             {/foreach}
-                        {elseif $inPreview}
-                            <div class="lead text-center">
-                                SSL products you activate will be displayed here
-                            </div>
-                        {/if}
+                        {/foreach}
                     </ul>
 
                 </div>

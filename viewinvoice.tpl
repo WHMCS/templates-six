@@ -46,8 +46,6 @@
                             <span class="cancelled">{$LANG.invoicescancelled}</span>
                         {elseif $status eq "Collections"}
                             <span class="collections">{$LANG.invoicescollections}</span>
-                        {elseif $status eq "Payment Pending"}
-                            <span class="paid">{$LANG.invoicesPaymentPending}</span>
                         {/if}
                     </div>
 

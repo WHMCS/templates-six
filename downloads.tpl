@@ -1,7 +1,7 @@
 {if empty($dlcats) }
     {include file="$template/includes/alert.tpl" type="info" msg=$LANG.downloadsnone textcenter=true}
 {else}
-    <form role="form" method="post" action="{routePath('download-search')}">
+    <form role="form" method="post" action="downloads.php?action=search">
         <div class="input-group input-group-lg kb-search margin-bottom">
             <input type="text" name="search" id="inputDownloadsSearch" class="form-control" placeholder="{$LANG.downloadssearch}" />
             <span class="input-group-btn">
@@ -17,7 +17,7 @@
     <div class="row">
         {foreach $dlcats as $dlcat}
             <div class="col-sm-6">
-                <a href="{routePath('download-by-cat', $dlcat.id, $dlcat.urlfriendlyname)}">
+                <a href="{if $seofriendlyurls}{$WEB_ROOT}/downloads/{$dlcat.id}/{$dlcat.urlfriendlyname}{else}downloads.php?action=displaycat&amp;catid={$dlcat.id}{/if}">
                     <i class="fa fa-folder-open-o"></i>
                     <strong>{$dlcat.name}</strong>
                 </a>

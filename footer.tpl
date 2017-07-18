@@ -1,14 +1,15 @@
 
-                </div><!-- /.main-content -->
-                {if !$inShoppingCart && $secondarySidebar->hasChildren()}
-                    <div class="col-md-3 pull-md-left sidebar">
-                        {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
-                    </div>
-                {/if}
-            </div>
-            <div class="clearfix"></div>
+            </div><!-- /.main-content -->
+            {if !$inShoppingCart && $secondarySidebar->hasChildren()}
+                <div class="col-md-3 pull-md-left sidebar">
+                    {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
+                </div>
+            {/if}
         </div>
-    </div>
+        <div class="clearfix"></div>
+    {if !$skipMainBodyContainer}
+        </div>
+    {/if}
 </section>
 
 <section id="footer">

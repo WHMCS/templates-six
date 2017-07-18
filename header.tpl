@@ -17,82 +17,97 @@
 
 <section id="header">
     <div class="container">
-        <ul class="top-nav">
+
+        <!-- Top Bar -->
+        <ul id="top-nav">
+            <!-- Language -->
             {if $languagechangeenabled && count($locales) > 1}
                 <li>
-                    <a href="#" class="choose-language" data-toggle="popover" id="languageChooser">
-                        {$activeLocale.localisedName}
-                        <b class="caret"></b>
-                    </a>
+                    <a href="#" class="quick-nav" data-toggle="popover" id="languageChooser"><i class="fa fa-language"></i> {$LANG.chooselanguage} <span class="caret"></span></a>
                     <div id="languageChooserContent" class="hidden">
                         <ul>
-                            {foreach $locales as $locale}
-                                <li>
-                                    <a href="{$currentpagelinkback}language={$locale.language}">{$locale.localisedName}</a>
-                                </li>
+                            {foreach from=$locales item=locale}
+                                <li><a href="{$currentpagelinkback}language={$locale.language}">{$locale.localisedName}</a></li>
                             {/foreach}
                         </ul>
                     </div>
                 </li>
             {/if}
+            <!-- Login/Account Notifications -->
             {if $loggedin}
                 <li>
-                    <a href="#" data-toggle="popover" id="accountNotifications" data-placement="bottom">
+                    <a href="#" class="quick-nav" data-toggle="popover" id="accountNotifications" data-placement="bottom" title="{lang key="notifications"}">
+                        <i class="fa fa-info"></i>
                         {$LANG.notifications}
-                        {if count($clientAlerts) > 0}<span class="label label-info">NEW</span>{/if}
-                        <b class="caret"></b>
+                        <span class="count notifications">{$clientAlerts|count}</span>
                     </a>
                     <div id="accountNotificationsContent" class="hidden">
-                        <ul class="client-alerts">
                         {foreach $clientAlerts as $alert}
-                            <li>
-                                <a href="{$alert->getLink()}">
-                                    <i class="fa fa-fw fa-{if $alert->getSeverity() == 'danger'}exclamation-circle{elseif $alert->getSeverity() == 'warning'}warning{elseif $alert->getSeverity() == 'info'}info-circle{else}check-circle{/if}"></i>
-                                    <div class="message">{$alert->getMessage()}</div>
-                                </a>
-                            </li>
+                            <div class="clientalert text-{$alert->getSeverity()}">{$alert->getMessage()}{if $alert->getLinkText()} <a href="{$alert->getLink()}" class="btn btn-xs btn-{$alert->getSeverity()}">{$alert->getLinkText()}</a>{/if}</div>
                         {foreachelse}
-                            <li class="none">
-                                {$LANG.notificationsnone}
-                            </li>
+                            <div class="clientalert text-success"><i class="fa fa-check-square-o"></i> {$LANG.notificationsnone}</div>
                         {/foreach}
-                        </ul>
                     </div>
-                </li>
-                <li class="primary-action">
-                    <a href="{$WEB_ROOT}/logout.php" class="btn btn-action">
-                        {$LANG.clientareanavlogout}
-                    </a>
                 </li>
             {else}
                 <li>
-                    <a href="{$WEB_ROOT}/clientarea.php">{$LANG.login}</a>
-                </li>
-                {if $condlinks.allowClientRegistration}
-                    <li>
-                        <a href="{$WEB_ROOT}/register.php">{$LANG.register}</a>
-                    </li>
-                {/if}
-                <li class="primary-action">
-                    <a href="{$WEB_ROOT}/cart.php?a=view" class="btn btn-action">
-                        {$LANG.viewcart}
+                    <a href="#" class="quick-nav" data-toggle="popover" id="loginOrRegister" data-placement="bottom">
+                        <i class="fa fa-user"></i>
+                        {$LANG.login}
                     </a>
+                    <div id="loginOrRegisterContent" class="hidden">
+                        <form action="{if $systemsslurl}{$systemsslurl}{else}{$systemurl}{/if}dologin.php" method="post" role="form">
+                            <div class="form-group">
+                                <input type="email" name="username" class="form-control" placeholder="{$LANG.clientareaemail}" required />
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control" placeholder="{$LANG.loginpassword}" autocomplete="off" required />
+                                    <span class="input-group-btn">
+                                        <input type="submit" class="btn btn-primary" value="{$LANG.login}" />
+                                    </span>
+                                </div>
+                            </div>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme} &bull; <a href="{$WEB_ROOT}/pwreset.php">{$LANG.forgotpw}</a>
+                            </label>
+                        </form>
+                        {if $condlinks.allowClientRegistration}
+                            <hr />
+                            {$LANG.newcustomersignup|sprintf2:"<a href=\"$WEB_ROOT/register.php\">":"</a>"}
+                        {/if}
+                    </div>
                 </li>
             {/if}
-            {if $adminMasqueradingAsClient || $adminLoggedIn}
-                <li>
-                    <a href="{$WEB_ROOT}/logout.php?returntoadmin=1" class="btn btn-logged-in-admin" data-toggle="tooltip" data-placement="bottom" title="{if $adminMasqueradingAsClient}{$LANG.adminmasqueradingasclient} {$LANG.logoutandreturntoadminarea}{else}{$LANG.adminloggedin} {$LANG.returntoadminarea}{/if}">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
-                </li>
-            {/if}
+            <!-- Shopping Cart -->
+            <li>
+                <a href="{$WEB_ROOT}/cart.php?a=view" class="quick-nav">
+                    <i class="fa fa-shopping-cart"></i>
+                    {$LANG.viewcart}
+                    <span class="count"><span id="cartItemCount">{$cartitemcount}</span></span>
+                </a>
+            </li>
         </ul>
 
-        {if $assetLogoPath}
-            <a href="{$WEB_ROOT}/index.php" class="logo"><img src="{$assetLogoPath}" alt="{$companyname}"></a>
-        {else}
-            <a href="{$WEB_ROOT}/index.php" class="logo logo-text">{$companyname}</a>
-        {/if}
+        <div class="row">
+            <div class="col-sm-7 col-lg-8">
+
+                <a href="{$WEB_ROOT}/index.php" class="logo">Demo Company</a>
+
+            </div>
+            <div class="col-sm-5 col-lg-4 hidden-xs">
+
+                <form method="post" action="knowledgebase.php?action=search">
+                    <div class="input-group search">
+                      <input type="text" name="search" class="form-control" placeholder="Search our knowledgebase">
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </span>
+                    </div>
+                </form>
+
+            </div>
+        </div>
 
     </div>
 </section>
@@ -215,9 +230,11 @@
 {include file="$template/includes/verifyemail.tpl"}
 
 <section id="main-body">
-    <div class="container{if $skipMainBodyContainer}-fluid without-padding{/if}">
-        <div class="row">
+    {if !$skipMainBodyContainer}
+        <div class="container">
+    {/if}
 
+    <div class="row">
         {if !$inShoppingCart && ($primarySidebar->hasChildren() || $secondarySidebar->hasChildren())}
             {if $primarySidebar->hasChildren() && !$skipMainBodyContainer}
                 <div class="col-md-9 pull-md-right">
