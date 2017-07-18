@@ -12170,7 +12170,7 @@ div.md-editor.active {
 @media (min-width: 768px) and (max-width: 991px), (min-width: 1200px) {
     .promo-cart .pricing {
         float: right;
-        margin-top: -50px;
+        margin-top: -10px;
     }
 }
 .promo-cart .pricing h3 {
