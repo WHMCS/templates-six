@@ -27,6 +27,12 @@ h6 {
     font-weight: 700;
 }
 
+.container-fluid.without-padding {
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: hidden;
+}
+
 .navbar-main {
     margin-bottom: 0;
     background-color: #0e5077;
@@ -82,7 +88,7 @@ h6 {
     background-color: #eee;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .navbar-main .navbar-nav .open .dropdown-menu > li > a {
         color: #ddd;
     }
@@ -125,6 +131,7 @@ h6 {
     }
     .collapse.in{
         display:block !important;
+        margin-bottom: 10px;
     }
 }
 

@@ -10,7 +10,7 @@
         {include file="$template/includes/alert.tpl" type="info" msg=$LANG.sso.redirectafterlogin textcenter=true}
     {/if}
 
-    <form method="post" action="{$systemsslurl}dologin.php" role="form">
+    <form method="post" action="{$systemurl}dologin.php" role="form">
         <div class="form-group">
             <label for="inputEmail">{$LANG.clientareaemail}</label>
             <input type="email" name="username" class="form-control" id="inputEmail" placeholder="{$LANG.enteremail}" autofocus>

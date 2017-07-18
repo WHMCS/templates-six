@@ -4,8 +4,8 @@
 
     <div class="hero">
         <div class="container">
-            <h2>Organization Validation SSL</h2>
-            <h3>High assurance SSL shows website visitors your authenticated identity</h3>
+            <h2>{lang key="store.ssl.ov.title"}</h2>
+            <h3>{lang key="store.ssl.ov.tagline"}</h3>
         </div>
     </div>
 
@@ -14,13 +14,23 @@
     <div class="content-block">
         <div class="container">
 
-            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-subs.png" class="right-icon">
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-sm-push-8 col-md-push-9 text-right hidden-xs">
+                    <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-subs.png">
+                </div>
+                <div class="col-sm-8 col-md-9 col-sm-pull-4 col-md-pull-3">
 
-            <h3>What is Organization Validation SSL?</h3>
+                    <h3>{lang key="store.ssl.ov.descriptionTitle"}</h3>
 
-            <p>Organization Validated SSL Certificates provide instant identity confirmation and strong SSL protection for your website and business.</p>
+                    <div class="text-center visible-xs">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-subs.png">
+                        <br><br>
+                    </div>
 
-            <p>OV SSL is an organization validated certificate that gives your website a step up in credibility over domain validated SSL Certificates. It activates the browser padlock and https, shows your corporate identity, and assures your customers that you take security very seriously. Site visitors can verify that the website is operated by a legitimate company and is not an imposter site.</p>
+                    {lang key="store.ssl.ov.descriptionContent"}
+
+                </div>
+            </div>
 
         </div>
     </div>
@@ -42,68 +52,7 @@
         </div>
     </div>
 
-    <div class="content-block">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-sm-4">
-                    <h4>Delivered in Minutes for Instant Protection</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula urna nec risus posuere, sed auctor turpis scelerisque.</p>
-                </div>
-                <div class="col-sm-4">
-                    <h4>Boost your Google Ranking</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula urna nec risus posuere, sed auctor turpis scelerisque.</p>
-                </div>
-                <div class="col-sm-4">
-                    <h4>Increase Customer Conversions by Displaying a Site Seal</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula urna nec risus posuere, sed auctor turpis scelerisque.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-block features">
-        <div class="container">
-            <h3>Certificate Features</h3>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="feature">
-                        <i class="fa fa-certificate"></i>
-                        <h4>Strongest & Fastest SSL</h4>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="feature">
-                        <i class="fa fa-window-maximize"></i>
-                        <h4>99.9% Browser Compatability</h4>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="feature">
-                        <i class="fa fa-trophy"></i>
-                        <h4>Market Leading Security</h4>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="feature">
-                        <i class="fa fa-lock"></i>
-                        <h4>Recognised & Trusted Brand</h4>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="feature">
-                        <i class="fa fa-clock-o"></i>
-                        <h4>Instant Issuance</h4>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="feature">
-                        <i class="fa fa-refresh"></i>
-                        <h4>Free Reissues</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {include file="$template/store/ssl/shared/features.tpl" type="ov"}
 
     {include file="$template/store/ssl/shared/logos.tpl"}
 
