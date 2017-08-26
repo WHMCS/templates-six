@@ -1,4 +1,4 @@
-<link href="{$WEB_ROOT}/templates/six/store/css/style.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/templates/{$template}/store/css/style.css" rel="stylesheet">
 
 <div class="landing-page mail-services">
 
@@ -390,4 +390,4 @@
 
 </div>
 
-<script src="{$WEB_ROOT}/templates/six/store/spamexperts/master.js"></script>
+<script src="{$WEB_ROOT}/templates/{$template}/store/spamexperts/master.js"></script>

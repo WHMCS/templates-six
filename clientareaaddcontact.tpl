@@ -140,7 +140,7 @@ var stateNotRequired = true;
     </div>
 
     <div class="form-group">
-        <label class="control-label">{$LANG.clientareacontactsemails}</label>
+        <h3>{$LANG.clientareacontactsemails}</h3>
         <div class="controls checkbox">
             <label>
                 <input type="checkbox" name="generalemails" id="generalemails" value="1"{if $generalemails} checked{/if} />

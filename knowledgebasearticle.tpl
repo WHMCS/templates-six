@@ -12,7 +12,9 @@
 </div>
 
 <ul class="kb-article-details">
-    <li><i class="fa fa-tag"></i> Email, SSL</li>
+    {if $kbarticle.tags }
+        <li><i class="fa fa-tag"></i> {$kbarticle.tags}</li>
+    {/if}
     <li><i class="fa fa-star"></i> {$kbarticle.useful} {$LANG.knowledgebaseratingtext}</li>
 </ul>
 <div class="clearfix"></div>

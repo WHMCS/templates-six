@@ -1,4 +1,4 @@
-<link href="{$WEB_ROOT}/templates/six/store/css/style.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/templates/{$template}/store/css/style.css" rel="stylesheet">
 
 <div class="landing-page ssl">
 

@@ -17,6 +17,12 @@ body {
 
 /* Container Responsive Behaviour */
 
+@media print {
+    html, body {
+        width: 750px;
+    }
+}
+
 .invoice-container {
     margin: 15px auto;
     padding: 70px;
@@ -37,6 +43,30 @@ body {
 @media (max-width: 767px) {
     .invoice-container {
         padding: 45px 45px 70px 45px;
+    }
+}
+
+@media (max-width: 499px) {
+    .invoice-header {
+        text-align: center;
+    }
+}
+
+.invoice-col {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 500px) {
+    .invoice-col {
+        float: left;
+        width: 50%;
+    }
+    .invoice-col.right {
+        float: right;
+        text-align: right;
     }
 }
 

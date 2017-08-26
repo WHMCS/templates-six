@@ -60,7 +60,7 @@
                     </div>
                 </li>
                 <li class="primary-action">
-                    <a href="{$WEB_ROOT}/logout.php" class="btn btn-action">
+                    <a href="{$WEB_ROOT}/logout.php" class="btn">
                         {$LANG.clientareanavlogout}
                     </a>
                 </li>
@@ -74,7 +74,7 @@
                     </li>
                 {/if}
                 <li class="primary-action">
-                    <a href="{$WEB_ROOT}/cart.php?a=view" class="btn btn-action">
+                    <a href="{$WEB_ROOT}/cart.php?a=view" class="btn">
                         {$LANG.viewcart}
                     </a>
                 </li>

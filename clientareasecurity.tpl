@@ -1,3 +1,17 @@
+{if $linkableProviders }
+    <h2>
+        {lang key='remoteAuthn.titleLinkedAccounts'}
+    </h2>
+
+    {include file="$template/includes/linkedaccounts.tpl" linkContext="clientsecurity" }
+
+    <br>
+
+    {include file="$template/includes/linkedaccounts.tpl" linkContext="linktable" }
+
+    <br>
+{/if}
+
 {if $twofaavailable}
 
     {if $twofaactivation}

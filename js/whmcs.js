@@ -457,6 +457,12 @@ jQuery(document).ready(function() {
             }
         );
     });
+
+    // DataTable data-driven auto object registration
+    WHMCS.ui.dataTable.register();
+
+    // Bootstrap Confirmation popup auto object registration
+    WHMCS.ui.confirmation.register();
 });
 
 /**

@@ -20,8 +20,8 @@
 
         {else}
 
-            <div class="row">
-                <div class="col-sm-7">
+            <div class="row invoice-header">
+                <div class="invoice-col">
 
                     {if $logo}
                         <p><img src="{$logo}" title="{$companyname}" /></p>
@@ -31,7 +31,7 @@
                     <h3>{$pagetitle}</h3>
 
                 </div>
-                <div class="col-sm-5 text-center">
+                <div class="invoice-col text-center">
 
                     <div class="invoice-status">
                         {if $status eq "Draft"}
@@ -55,7 +55,7 @@
                         <div class="small-text">
                             {$LANG.invoicesdatedue}: {$datedue}
                         </div>
-                        <div class="payment-btn-container" align="center">
+                        <div class="payment-btn-container hidden-print" align="center">
                             {$paymentbutton}
                         </div>
                     {/if}
@@ -65,7 +65,9 @@
 
             <hr>
 
-            {if $paymentSuccess}
+            {if $paymentSuccessAwaitingNotification}
+                {include file="$template/includes/panel.tpl" type="success" headerTitle=$LANG.success bodyContent=$LANG.invoicePaymentSuccessAwaitingNotify bodyTextCenter=true}
+            {elseif $paymentSuccess}
                 {include file="$template/includes/panel.tpl" type="success" headerTitle=$LANG.success bodyContent=$LANG.invoicepaymentsuccessconfirmation bodyTextCenter=true}
             {elseif $pendingReview}
                 {include file="$template/includes/panel.tpl" type="info" headerTitle=$LANG.success bodyContent=$LANG.invoicepaymentpendingreview bodyTextCenter=true}
@@ -76,14 +78,14 @@
             {/if}
 
             <div class="row">
-                <div class="col-sm-6 pull-sm-right text-right-sm">
-                    <strong>{$LANG.invoicespayto}:</strong>
+                <div class="invoice-col right">
+                    <strong>{$LANG.invoicespayto}</strong>
                     <address class="small-text">
                         {$payto}
                     </address>
                 </div>
-                <div class="col-sm-6">
-                    <strong>{$LANG.invoicesinvoicedto}:</strong>
+                <div class="invoice-col">
+                    <strong>{$LANG.invoicesinvoicedto}</strong>
                     <address class="small-text">
                         {if $clientsdetails.companyname}{$clientsdetails.companyname}<br />{/if}
                         {$clientsdetails.firstname} {$clientsdetails.lastname}<br />
@@ -101,8 +103,8 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
-                    <strong>{$LANG.paymentmethod}:</strong><br>
+                <div class="invoice-col right">
+                    <strong>{$LANG.paymentmethod}</strong><br>
                     <span class="small-text">
                         {if $status eq "Unpaid" && $allowchangegateway}
                             <form method="post" action="{$smarty.server.PHP_SELF}?id={$invoiceid}" class="form-inline">
@@ -114,8 +116,8 @@
                     </span>
                     <br /><br />
                 </div>
-                <div class="col-sm-6 text-right-sm">
-                    <strong>{$LANG.invoicesdatecreated}:</strong><br>
+                <div class="invoice-col">
+                    <strong>{$LANG.invoicesdatecreated}</strong><br>
                     <span class="small-text">
                         {$date}<br><br>
                     </span>

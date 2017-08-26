@@ -1,4 +1,4 @@
-<link href="{$WEB_ROOT}/templates/six/store/css/style.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/templates/{$template}/store/css/style.css" rel="stylesheet">
 
 <div class="landing-page weebly">
 
@@ -244,4 +244,4 @@
 
 </div>
 
-<script src="{$WEB_ROOT}/templates/six/store/weebly/master.js"></script>
+<script src="{$WEB_ROOT}/templates/{$template}/store/weebly/master.js"></script>

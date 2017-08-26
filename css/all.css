@@ -9619,9 +9619,35 @@ div.header-lined small {
     max-width: 500px;
 }
 
+.logincontainer.with-social {
+    max-width: 650px;
+}
+
+.logincontainer .social-signin-btns {
+    padding: 23px 0;
+}
+
+@media (max-width: 500px) {
+    .logincontainer .social-signin-btns .btn {
+        display: block;
+        width: 100%;
+    }
+}
+
 @media (max-width: 600px) {
     .logincontainer {
         margin: 0 auto 30px auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .logincontainer.with-social .login-form {
+        padding-right: 29px;
+        border-right: 1px solid #ddd;
+    }
+    .logincontainer .social-signin-btns .btn {
+        display: block;
+        width: 100%;
     }
 }
 
@@ -12252,6 +12278,239 @@ div.md-editor.active {
 .panel-mc-sso .icon-container img {
     max-width: 100%;
     max-height: 175px;
+}
+
+/**
+ * -------------------------
+ * Social buttons
+ * -------------------------
+ */
+
+.social-signin-btns {
+    text-align: center;
+}
+.social-signin-btns .btn {
+    margin-bottom: 5px;
+}
+
+.btn-social {
+    position: relative;
+    padding-left: 44px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-social i.fa {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    line-height: 34px;
+    font-size: 1.6em;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+.btn-facebook {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active, .btn-facebook.active, .open .dropdown-toggle.btn-facebook {
+    color: #fff;
+    background-color: #30487b;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-facebook:active, .btn-facebook.active, .open .dropdown-toggle.btn-facebook {
+    background-image: none
+}
+.btn-facebook.disabled, .btn-facebook[disabled], fieldset[disabled] .btn-facebook, .btn-facebook.disabled:hover, .btn-facebook[disabled]:hover, fieldset[disabled] .btn-facebook:hover, .btn-facebook.disabled:focus, .btn-facebook[disabled]:focus, fieldset[disabled] .btn-facebook:focus, .btn-facebook.disabled:active, .btn-facebook[disabled]:active, fieldset[disabled] .btn-facebook:active, .btn-facebook.disabled.active, .btn-facebook[disabled].active, fieldset[disabled] .btn-facebook.active {
+    background-color: #3b5998;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-google {
+    color: #fff;
+    background-color: #dd4b39;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-google:hover, .btn-google:focus, .btn-google:active, .btn-google.active, .open .dropdown-toggle.btn-google {
+    color: #fff;
+    background-color: #ca3523;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-google:active, .btn-google.active, .open .dropdown-toggle.btn-google {
+    background-image: none
+}
+.btn-google.disabled, .btn-google[disabled], fieldset[disabled] .btn-google, .btn-google.disabled:hover, .btn-google-plus[disabled]:hover, fieldset[disabled] .btn-google-plus:hover, .btn-google-plus.disabled:focus, .btn-google-plus[disabled]:focus, fieldset[disabled] .btn-google-plus:focus, .btn-google-plus.disabled:active, .btn-google-plus[disabled]:active, fieldset[disabled] .btn-google-plus:active, .btn-google-plus.disabled.active, .btn-google-plus[disabled].active, fieldset[disabled] .btn-google-plus.active {
+    background-color: #dd4b39;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-twitter {
+    color: #fff;
+    background-color: #2ba9e1;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-twitter:hover, .btn-twitter:focus, .btn-twitter:active, .btn-twitter.active, .open .dropdown-toggle.btn-twitter {
+    color: #fff;
+    background-color: #1c92c7;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+.btn-twitter:active, .btn-twitter.active, .open .dropdown-toggle.btn-twitter {
+    background-image: none
+}
+.btn-twitter.disabled, .btn-twitter[disabled], fieldset[disabled] .btn-twitter, .btn-twitter.disabled:hover, .btn-twitter[disabled]:hover, fieldset[disabled] .btn-twitter:hover, .btn-twitter.disabled:focus, .btn-twitter[disabled]:focus, fieldset[disabled] .btn-twitter:focus, .btn-twitter.disabled:active, .btn-twitter[disabled]:active, fieldset[disabled] .btn-twitter:active, .btn-twitter.disabled.active, .btn-twitter[disabled].active, fieldset[disabled] .btn-twitter.active {
+    background-color: #2ba9e1;
+    border-color: rgba(0, 0, 0, 0.2)
+}
+
+.providerPreLinking {
+    min-height: 52px;
+}
+.providerLinkingFeedback {
+    display: none;
+}
+
+/**
+ * -------------------------
+ * Registration page
+ * -------------------------
+ */
+
+#registration {
+    margin: 0;
+    padding: 0 0 40px 0;
+}
+
+#registration .field-container {
+    margin: 0 0 30px 0;
+}
+
+#registration label {
+    font-weight: 300;
+    color: #666;
+    font-size: 13px;
+}
+
+#registration .info-text-sm {
+    font-size: 0.85em;
+    text-align: center;
+}
+
+/*
+ * Section Dividers
+ */
+
+#registration .sub-heading {
+    height: 0;
+    border-top: 1px solid #DDD;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+#registration .sub-heading span {
+    display: inline-block;
+    position: relative;
+    padding: 0 17px;
+    top: -11px;
+    font-size: 16px;
+    color: #058;
+    background-color: #fff;
+}
+
+
+/**
+ * Form fields
+ */
+
+#registration .prepend-icon {
+    top: 0;
+    left: 0;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 100%;
+    font-weight: normal;
+}
+#registration .field,
+#registration .form-control {
+    position: relative;
+    vertical-align: top;
+    border: 1px solid #DDD;
+    display: -moz-inline-stack;
+    display: inline-block;
+    color: #626262;
+    outline: none;
+    background: #fff;
+    height: 36px;
+    width: 100%;
+    border-radius: 3px;
+    font-size: 13px;
+}
+#registration .input-group-lg > .form-control {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px 0 0 6px;
+}
+#registration .form-control-qty {
+    width: 70px;
+    text-align: center;
+}
+#registration .form-control-static-inline {
+    display: inline-block;
+}
+#registration .form-control:focus {
+    border-color: #ddd;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#registration textarea.field {
+    height: auto;
+}
+#registration .prepend-icon .field {
+    -webkit-appearance: none;
+    padding-left: 36px;
+}
+#registration .prepend-icon .field-icon i {
+    position: relative;
+    font-size: 14px;
+}
+#registration .prepend-icon .field-icon {
+    top: 0;
+    z-index: 4;
+    width: 42px;
+    height: 36px;
+    color: inherit;
+    line-height: 36px;
+    position: absolute;
+    text-align: center;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    pointer-events: none;
+}
+#registration .field-icon i {
+    color: #bbb;
+}
+
+#registration .field[disabled],
+#registration .field[readonly] {
+    background-color: #f8f8f8;
+    opacity: 1;
+}
+
+#registration .field-help-text {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 12px;
 }
 
 .md-editor{display:block;border:1px solid #ddd}.md-editor .md-footer,.md-editor>.md-header{display:block;padding:6px 4px;background:#f5f5f5}.md-editor>.md-header{margin:0}.md-editor>.md-preview{background:#fff;border-top:1px dashed #ddd;border-bottom:1px dashed #ddd;min-height:10px;overflow:auto}.md-editor>textarea{font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:14px;outline:0;margin:0;display:block;padding:0;width:100%;border:0;border-top:1px dashed #ddd;border-bottom:1px dashed #ddd;border-radius:0;box-shadow:none;background:#eee}.md-editor>textarea:focus{box-shadow:none;background:#fff}.md-editor.active{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}.md-editor .md-controls{float:right;padding:3px}.md-editor .md-controls .md-control{right:5px;color:#bebebe;padding:3px 3px 3px 10px}.md-editor .md-controls .md-control:hover{color:#333}.md-editor.md-fullscreen-mode{width:100%;height:100%;position:fixed;top:0;left:0;z-index:99999;padding:60px 30px 15px;background:#fff!important;border:0!important}.md-editor.md-fullscreen-mode .md-footer{display:none}.md-editor.md-fullscreen-mode .md-input,.md-editor.md-fullscreen-mode .md-preview{margin:0 auto!important;height:100%!important;font-size:20px!important;padding:20px!important;color:#999;line-height:1.6em!important;resize:none!important;box-shadow:none!important;background:#fff!important;border:0!important}.md-editor.md-fullscreen-mode .md-preview{color:#333;overflow:auto}.md-editor.md-fullscreen-mode .md-input:focus,.md-editor.md-fullscreen-mode .md-input:hover{color:#333;background:#fff!important}.md-editor.md-fullscreen-mode .md-header{background:0 0;text-align:center;position:fixed;width:100%;top:20px}.md-editor.md-fullscreen-mode .btn-group{float:none}.md-editor.md-fullscreen-mode .btn{border:0;background:0 0;color:#b3b3b3}.md-editor.md-fullscreen-mode .btn.active,.md-editor.md-fullscreen-mode .btn:active,.md-editor.md-fullscreen-mode .btn:focus,.md-editor.md-fullscreen-mode .btn:hover{box-shadow:none;color:#333}.md-editor.md-fullscreen-mode .md-fullscreen-controls{position:absolute;top:20px;right:20px;text-align:right;z-index:1002;display:block}.md-editor.md-fullscreen-mode .md-fullscreen-controls a{color:#b3b3b3;clear:right;margin:10px;width:30px;height:30px;text-align:center}.md-editor.md-fullscreen-mode .md-fullscreen-controls a:hover{color:#333;text-decoration:none}.md-editor.md-fullscreen-mode .md-editor{height:100%!important;position:relative}.md-editor .md-fullscreen-controls{display:none}.md-nooverflow{overflow:hidden;position:fixed;width:100%}
