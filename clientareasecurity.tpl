@@ -137,9 +137,6 @@
 
     <p>{$LANG.sso.disablenotice}</p>
 
-    <link href="{$BASE_PATH_CSS}/bootstrap-switch.min.css" rel="stylesheet">
-    <script src="{$BASE_PATH_JS}/bootstrap-switch.min.js"></script>
-
     <br />
     <br />
 

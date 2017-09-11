@@ -2407,55 +2407,81 @@ tr.masspay-total td {
 .email-verification {
     margin: 0;
     padding: 10px;
-    font-size: 0.9em;
-    line-height: 30px;
-}
-.email-verification {
-    background-color: #fdf8e3;
-    border-bottom: 1px solid #f7f3d0;
-    color: #b3a879;
-    font-size: 1.03em;
     font-weight: 300;
-    font-style: italic;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    color: #333;
 }
-.email-verification .fa {
-    float: left;
-    padding-top: 9px;
-    padding-right: 20px;
-    font-size: 2.4em;
-    color: #e3d385;
+.email-verification .text {
+    display: block;
+    padding: 6px 0;
 }
 .email-verification .btn {
-    float: right;
-    margin: 6px 0 0 15px;
-    padding: 9px 25px;
+    margin: 3px 0;
+    padding: 3px 10px;
     background-color: #50525f;
     border-color: #50525f;
     color: #fff;
     font-style: normal;
-    font-weight: bold;
-    font-size: 0.8em;
-}
-.email-verification .btn.close {
-    margin: 14px 0;
-    padding: 0 0 0 20px;
-    background-color: transparent;
-    color: #e3d284;
-    font-size: 22px;
-    opacity: 1;
-}
-.email-verification .text {
-    display: block;
-}
-.email-verification .text span {
-    display: block;
-    padding-top: 11px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.email-verification .button {
-    float: right;
+.email-verification .btn:active,
+.email-verification .btn[disabled]:hover {
+    background-color: #50525f;
+    border-color: #50525f;
+    color: #fff;
+}
+.email-verification .btn.close {
+    margin-left: 10px;
+    background-color: transparent;
+    color: rgba(55, 55, 55, 0.5);
+    font-size: 22px;
+    opacity: 1;
+}
+.email-verification .btn.close:hover {
+    color: rgba(55, 55, 55, 0.8);
+}
+.email-verification .fa {
+    color: #666;
+    float: left;
+    padding: 2px 10px 0 0;
+    font-size: 24px;
+}
+
+@media (min-width: 768px) {
+    .email-verification .text {
+        padding-top: 9px;
+        padding-bottom: 0;
+    }
+    .email-verification .btn {
+        margin: 0;
+        padding: 9px 25px;
+    }
+    .email-verification .button {
+        float: right;
+    }
+    .email-verification .fa {
+        font-size: 36px;
+    }
+}
+
+.email-verification.success {
+    background-color: #ebfde4;
+    border-bottom: 1px solid #e3f7d5;
+    color: #5cb85c;
+}
+.email-verification.success .fa {
+    color: #6fbb51;
+}
+.email-verification.failed {
+    background-color: #fdf8e3;
+    border-bottom: 1px solid #f7f3d0;
+    color: #b3a879;
+}
+.email-verification.failed .fa {
+    color: #b3a879;
 }
 
 /**

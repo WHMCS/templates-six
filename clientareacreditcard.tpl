@@ -42,7 +42,7 @@
         <form method="post" action="clientarea.php?action=creditcard">
             <input type="hidden" name="remove" value="1" />
             <p class="text-center">
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-danger" data-toggle="confirmation" data-btn-ok-label="{lang key='yes'}" data-btn-ok-icon="fa fa-check" data-btn-ok-class="btn-success" data-btn-cancel-label="{lang key='no'}" data-btn-cancel-icon="fa fa-ban" data-btn-cancel-class="btn-default" data-title="{lang key='creditcarddelete'}" data-content="{lang key='creditCard.removeDescription'}" data-popout="true">
                     {$LANG.creditcarddelete}
                 </button>
             </p>

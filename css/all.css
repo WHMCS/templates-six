@@ -11714,55 +11714,81 @@ tr.masspay-total td {
 .email-verification {
     margin: 0;
     padding: 10px;
-    font-size: 0.9em;
-    line-height: 30px;
-}
-.email-verification {
-    background-color: #fdf8e3;
-    border-bottom: 1px solid #f7f3d0;
-    color: #b3a879;
-    font-size: 1.03em;
     font-weight: 300;
-    font-style: italic;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    color: #333;
 }
-.email-verification .fa {
-    float: left;
-    padding-top: 9px;
-    padding-right: 20px;
-    font-size: 2.4em;
-    color: #e3d385;
+.email-verification .text {
+    display: block;
+    padding: 6px 0;
 }
 .email-verification .btn {
-    float: right;
-    margin: 6px 0 0 15px;
-    padding: 9px 25px;
+    margin: 3px 0;
+    padding: 3px 10px;
     background-color: #50525f;
     border-color: #50525f;
     color: #fff;
     font-style: normal;
-    font-weight: bold;
-    font-size: 0.8em;
-}
-.email-verification .btn.close {
-    margin: 14px 0;
-    padding: 0 0 0 20px;
-    background-color: transparent;
-    color: #e3d284;
-    font-size: 22px;
-    opacity: 1;
-}
-.email-verification .text {
-    display: block;
-}
-.email-verification .text span {
-    display: block;
-    padding-top: 11px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.email-verification .button {
-    float: right;
+.email-verification .btn:active,
+.email-verification .btn[disabled]:hover {
+    background-color: #50525f;
+    border-color: #50525f;
+    color: #fff;
+}
+.email-verification .btn.close {
+    margin-left: 10px;
+    background-color: transparent;
+    color: rgba(55, 55, 55, 0.5);
+    font-size: 22px;
+    opacity: 1;
+}
+.email-verification .btn.close:hover {
+    color: rgba(55, 55, 55, 0.8);
+}
+.email-verification .fa {
+    color: #666;
+    float: left;
+    padding: 2px 10px 0 0;
+    font-size: 24px;
+}
+
+@media (min-width: 768px) {
+    .email-verification .text {
+        padding-top: 9px;
+        padding-bottom: 0;
+    }
+    .email-verification .btn {
+        margin: 0;
+        padding: 9px 25px;
+    }
+    .email-verification .button {
+        float: right;
+    }
+    .email-verification .fa {
+        font-size: 36px;
+    }
+}
+
+.email-verification.success {
+    background-color: #ebfde4;
+    border-bottom: 1px solid #e3f7d5;
+    color: #5cb85c;
+}
+.email-verification.success .fa {
+    color: #6fbb51;
+}
+.email-verification.failed {
+    background-color: #fdf8e3;
+    border-bottom: 1px solid #f7f3d0;
+    color: #b3a879;
+}
+.email-verification.failed .fa {
+    color: #b3a879;
 }
 
 /**
@@ -12511,6 +12537,203 @@ div.md-editor.active {
     margin-bottom: 10px;
     color: #888;
     font-size: 12px;
+}
+
+/* ========================================================================
+ * bootstrap-switch - v3.3.2
+ * http://www.bootstrap-switch.org
+ * ========================================================================
+ * Copyright 2012-2013 Mattia Larentis
+ *
+ * ========================================================================
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================================
+ */
+
+.bootstrap-switch {
+  display: inline-block;
+  direction: ltr;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: #cccccc;
+  position: relative;
+  text-align: left;
+  overflow: hidden;
+  line-height: 8px;
+  z-index: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.bootstrap-switch .bootstrap-switch-container {
+  display: inline-block;
+  top: 0;
+  border-radius: 4px;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.bootstrap-switch .bootstrap-switch-handle-on,
+.bootstrap-switch .bootstrap-switch-handle-off,
+.bootstrap-switch .bootstrap-switch-label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block !important;
+  height: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.bootstrap-switch .bootstrap-switch-handle-on,
+.bootstrap-switch .bootstrap-switch-handle-off {
+  text-align: center;
+  z-index: 1;
+}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+  color: #fff;
+  background: #428bca;
+}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info {
+  color: #fff;
+  background: #5bc0de;
+}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
+  color: #fff;
+  background: #5cb85c;
+}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning {
+  background: #f0ad4e;
+  color: #fff;
+}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-danger,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-danger {
+  color: #fff;
+  background: #d9534f;
+}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
+  color: #000;
+  background: #eeeeee;
+}
+.bootstrap-switch .bootstrap-switch-label {
+  text-align: center;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  z-index: 100;
+  color: #333333;
+  background: #ffffff;
+}
+.bootstrap-switch .bootstrap-switch-handle-on {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.bootstrap-switch .bootstrap-switch-handle-off {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.bootstrap-switch input[type='radio'],
+.bootstrap-switch input[type='checkbox'] {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  z-index: -1;
+}
+.bootstrap-switch input[type='radio'].form-control,
+.bootstrap-switch input[type='checkbox'].form-control {
+  height: auto;
+}
+.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-label {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.bootstrap-switch.bootstrap-switch-small .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-small .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-small .bootstrap-switch-label {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-large .bootstrap-switch-label {
+  padding: 6px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+}
+.bootstrap-switch.bootstrap-switch-disabled,
+.bootstrap-switch.bootstrap-switch-readonly,
+.bootstrap-switch.bootstrap-switch-indeterminate {
+  cursor: default !important;
+}
+.bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-on,
+.bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-handle-off,
+.bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-label,
+.bootstrap-switch.bootstrap-switch-readonly .bootstrap-switch-label,
+.bootstrap-switch.bootstrap-switch-indeterminate .bootstrap-switch-label {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default !important;
+}
+.bootstrap-switch.bootstrap-switch-animate .bootstrap-switch-container {
+  -webkit-transition: margin-left 0.5s;
+  transition: margin-left 0.5s;
+}
+.bootstrap-switch.bootstrap-switch-inverse .bootstrap-switch-handle-on {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.bootstrap-switch.bootstrap-switch-inverse .bootstrap-switch-handle-off {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.bootstrap-switch.bootstrap-switch-focused {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label,
+.bootstrap-switch.bootstrap-switch-inverse.bootstrap-switch-off .bootstrap-switch-label {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
+.bootstrap-switch.bootstrap-switch-inverse.bootstrap-switch-on .bootstrap-switch-label {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
 }
 
 .md-editor{display:block;border:1px solid #ddd}.md-editor .md-footer,.md-editor>.md-header{display:block;padding:6px 4px;background:#f5f5f5}.md-editor>.md-header{margin:0}.md-editor>.md-preview{background:#fff;border-top:1px dashed #ddd;border-bottom:1px dashed #ddd;min-height:10px;overflow:auto}.md-editor>textarea{font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:14px;outline:0;margin:0;display:block;padding:0;width:100%;border:0;border-top:1px dashed #ddd;border-bottom:1px dashed #ddd;border-radius:0;box-shadow:none;background:#eee}.md-editor>textarea:focus{box-shadow:none;background:#fff}.md-editor.active{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}.md-editor .md-controls{float:right;padding:3px}.md-editor .md-controls .md-control{right:5px;color:#bebebe;padding:3px 3px 3px 10px}.md-editor .md-controls .md-control:hover{color:#333}.md-editor.md-fullscreen-mode{width:100%;height:100%;position:fixed;top:0;left:0;z-index:99999;padding:60px 30px 15px;background:#fff!important;border:0!important}.md-editor.md-fullscreen-mode .md-footer{display:none}.md-editor.md-fullscreen-mode .md-input,.md-editor.md-fullscreen-mode .md-preview{margin:0 auto!important;height:100%!important;font-size:20px!important;padding:20px!important;color:#999;line-height:1.6em!important;resize:none!important;box-shadow:none!important;background:#fff!important;border:0!important}.md-editor.md-fullscreen-mode .md-preview{color:#333;overflow:auto}.md-editor.md-fullscreen-mode .md-input:focus,.md-editor.md-fullscreen-mode .md-input:hover{color:#333;background:#fff!important}.md-editor.md-fullscreen-mode .md-header{background:0 0;text-align:center;position:fixed;width:100%;top:20px}.md-editor.md-fullscreen-mode .btn-group{float:none}.md-editor.md-fullscreen-mode .btn{border:0;background:0 0;color:#b3b3b3}.md-editor.md-fullscreen-mode .btn.active,.md-editor.md-fullscreen-mode .btn:active,.md-editor.md-fullscreen-mode .btn:focus,.md-editor.md-fullscreen-mode .btn:hover{box-shadow:none;color:#333}.md-editor.md-fullscreen-mode .md-fullscreen-controls{position:absolute;top:20px;right:20px;text-align:right;z-index:1002;display:block}.md-editor.md-fullscreen-mode .md-fullscreen-controls a{color:#b3b3b3;clear:right;margin:10px;width:30px;height:30px;text-align:center}.md-editor.md-fullscreen-mode .md-fullscreen-controls a:hover{color:#333;text-decoration:none}.md-editor.md-fullscreen-mode .md-editor{height:100%!important;position:relative}.md-editor .md-fullscreen-controls{display:none}.md-nooverflow{overflow:hidden;position:fixed;width:100%}

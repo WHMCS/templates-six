@@ -463,6 +463,10 @@ jQuery(document).ready(function() {
 
     // Bootstrap Confirmation popup auto object registration
     WHMCS.ui.confirmation.register();
+
+    jQuery('#frmReply').submit(function(e) {
+        jQuery('#frmReply').find('input[type="submit"]').addClass('disabled').prop('disabled', true);
+    });
 });
 
 /**
@@ -717,17 +721,4 @@ function getTicketSuggestions() {
         lastTicketMsg = userMsg;
     }
     setTimeout('getTicketSuggestions()', 3000);
-}
-
-/**
- * Confirm that the contact should be deleted and redirect.
- *
- * @param {string} confirmQuestion
- * @param {int} contactId
- */
-function deleteContact(confirmQuestion, contactId)
-{
-    if (confirm(confirmQuestion)) {
-        window.location = 'clientarea.php?action=contacts&delete=true&id=' + contactId + '&token=' + csrfToken;
-    }
 }
