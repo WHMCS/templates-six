@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     {/if}
-                    {if $products.archiving}
+                    {if $products.incomingoutgoingarchiving}
                         <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
                             <div class="item">
                                 <h4>Email Archiving</h4>
@@ -85,13 +85,13 @@
                                 </div>
                                 <span>Backup and Compliance</span>
                                 <p>Never lose an email again and ensure email data integrity for legal compliance</p>
-                                {if $products.archiving->pricing()->best()}
-                                    <div class="price">From {$products.archiving->pricing()->best()->toFullString()}/domain</div>
+                                {if $products.incomingoutgoingarchiving->pricing()->best()}
+                                    <div class="price">From {$products.incomingoutgoingarchiving->pricing()->best()->toFullString()}/domain</div>
                                 {/if}
                                 <a href="#" class="btn btn-learn-more" data-target="archiving">
                                     Learn more
                                 </a>
-                                <a href="#" class="btn btn-buy" data-target="archiving">
+                                <a href="#" class="btn btn-buy" data-target="incomingoutgoingarchiving">
                                     Buy
                                 </a>
                             </div>
@@ -126,7 +126,7 @@
                             <a href="#outgoing" aria-controls="outgoing" role="tab" data-toggle="tab">Outgoing Email Filtering</a>
                         </li>
                     {/if}
-                    {if $products.archiving || $inPreview}
+                    {if $products.incomingoutgoingarchiving || $inPreview}
                         <li role="presentation">
                             <a href="#archiving" aria-controls="archiving" role="tab" data-toggle="tab">Email Archiving</a>
                         </li>
@@ -233,6 +233,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <i class="fa fa-check"></i>
+                                    Includes Incoming & Outcoming Email Filtering!
+                                </div>
+                                <div class="col-md-6">
+                                    <i class="fa fa-check"></i>
                                     Never lose an email again!
                                 </div>
                                 <div class="col-md-6">
@@ -288,8 +292,8 @@
                                 {if $products.outgoing}
                                     <button type="button" class="btn btn-default" data-product="outgoing">Outgoing Filtering</button>
                                 {/if}
-                                {if $products.archiving}
-                                    <button type="button" class="btn btn-default" data-product="archiving">Email Archiving</button>
+                                {if $products.incomingoutgoingarchiving}
+                                    <button type="button" class="btn btn-default" data-product="incomingoutgoingarchiving">Email Archiving</button>
                                 {/if}
                             </div>
                         {elseif $inPreview}
@@ -318,9 +322,6 @@
                         {/if}
                         {if $products.outgoing && $products.outgoing->pricing()->best()}
                             <span class="price price-outgoing">{$products.outgoing->pricing()->best()->toFullString()}</span>
-                        {/if}
-                        {if $products.archiving && $products.archiving->pricing()->best()}
-                            <span class="price price-archiving">{$products.archiving->pricing()->best()->toFullString()}</span>
                         {/if}
                         {if $products.incomingoutgoing && $products.incomingoutgoing->pricing()->best()}
                             <span class="price price-incomingoutgoing">{$products.incomingoutgoing->pricing()->best()->toFullString()}</span>

@@ -5,7 +5,6 @@
                         {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
                     </div>
                 {/if}
-            </div>
             <div class="clearfix"></div>
         </div>
     </div>
