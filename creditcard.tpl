@@ -15,6 +15,10 @@
 
 {else}
 
+    <script>
+        var stateNotRequired = true;
+    </script>
+    <script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
     <form id="frmPayment" method="post" action="creditcard.php" class="form-horizontal" role="form">
         <input type="hidden" name="action" value="submit" />
         <input type="hidden" name="invoiceid" value="{$invoiceid}" />

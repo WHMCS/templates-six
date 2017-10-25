@@ -19,7 +19,7 @@
                 </a>
                 <p>{$kbcat.description}</p>
             </div>
-            {if $smarty.foreach.kbcats.iteration mod 2 == 0}
+            {if $smarty.foreach.kbcats.iteration mod 3 == 0}
                 </div><div class="row">
             {/if}
         {/foreach}

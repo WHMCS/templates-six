@@ -409,7 +409,7 @@ section#home-banner .btn.transfer {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     section#home-banner h2 {
         font-size: 22px;
     }
@@ -910,6 +910,7 @@ div.domainresults table tr td {
 .domain-checker-container .input-group-box {
     margin: 0 auto;
     padding: 10px;
+    width: 100%;
     background-color: #fff;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -922,6 +923,22 @@ div.domainresults table tr td {
     top: 18px;
     right: 134px;
     z-index:100;
+}
+
+@media (max-width: 767px) {
+    .domain-checker-container .input-group-box .input-group-btn {
+        display: block;
+        width: 100%;
+    }
+    .domain-checker-container .input-group-box .input-group-btn .btn {
+        width: 100%;
+        border-radius: 6px;
+    }
+    .domain-checker-container .input-group-box .form-control {
+        border-radius: 6px !important;
+        margin-bottom: 5px;
+        float: none;
+    }
 }
 
 .domain-check-availability {
@@ -2792,7 +2809,7 @@ div.md-editor.active {
     margin-bottom: 10px;
     text-align: center;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .promo-banner form {
         text-align: center;
     }
