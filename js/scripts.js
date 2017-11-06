@@ -14258,6 +14258,14 @@ dataTable: function () {
                     }
                 };
             }
+            var ordering = el.data('ordering');
+            if (typeof ordering !== 'undefined') {
+                options["ordering"] = ordering;
+            }
+            var order = el.data('order');
+            if (typeof order !== 'undefined' && order) {
+                options["order"] = order;
+            }
             var colCss = el.data('columns');
             if (typeof colCss !== 'undefined' && colCss) {
                 options["columns"] = colCss;
@@ -14326,7 +14334,49 @@ dataTable: function () {
     };
 
     return this;
-}});
+},
+
+/**
+ * ToolTip and Clipboard behaviors
+ */
+toolTip: function () {
+    this.registerClipboard = function () {
+        var self = this;
+        jQuery('[data-toggle="tooltip"]').tooltip();
+        var clipboard = new Clipboard('.copy-to-clipboard');
+        clipboard.on('success', function(e) {
+            var btn = jQuery(e.trigger);
+            self.setTip(btn, 'Copied!');
+            self.hideTip(btn);
+        });
+        clipboard.on('error', function(e) {
+            self.setTip(e.trigger, 'Press Ctrl+C to copy');
+            self.hideTip(e.trigger);
+        });
+        $('.copy-to-clipboard').tooltip({
+            trigger: 'click',
+            placement: 'bottom'
+        });
+    };
+
+    this.setTip = function (btn, message) {
+        var tip = btn.data('bs.tooltip');
+        if (tip.hoverState !== 'in') {
+            tip.hoverState = 'in';
+        }
+        btn.attr('data-original-title', message);
+        tip.show();
+
+        return tip;
+    };
+
+    this.hideTip = function (btn) {
+        return setTimeout(function() {
+            btn.data('bs.tooltip').hide()
+        }, 2000);
+    }
+}
+});
 
 /**
  * Form module
@@ -14349,27 +14399,36 @@ function () {
         var huntSelector = '.btn-check-all';
         jQuery(huntSelector).click(function (e) {
             var btn = jQuery(e.target);
-
-            var textDeselect = 'Deselect All';
-            var textSelect = 'Select All';
-            if (btn.data('label-text-deselect')) {
-                textDeselect = btn.data('label-text-deselect');
-            }
-            if (btn.data('label-text-select')) {
-                textSelect = btn.data('label-text-select');
-            }
-
             var targetInputs = jQuery(
                 '#' + btn.data('checkbox-container') + ' input[type="checkbox"]'
             );
-            if (btn.hasClass('toggle-active')) {
-                targetInputs.prop('checked',false);
-                btn.text(textDeselect);
-                btn.removeClass('toggle-active');
+            if (btn.data('btn-check-toggle')) {
+                // one control that changes
+                var textDeselect = 'Deselect All';
+                var textSelect = 'Select All';
+                if (btn.data('label-text-deselect')) {
+                    textDeselect = btn.data('label-text-deselect');
+                }
+                if (btn.data('label-text-select')) {
+                    textSelect = btn.data('label-text-select');
+                }
+
+                if (btn.hasClass('toggle-active')) {
+                    targetInputs.prop('checked',false);
+                    btn.text(textDeselect);
+                    btn.removeClass('toggle-active');
+                } else {
+                    targetInputs.prop('checked',true);
+                    btn.text(textSelect);
+                    btn.addClass('toggle-active');
+                }
             } else {
-                targetInputs.prop('checked',true);
-                btn.text(textSelect);
-                btn.addClass('toggle-active');
+                // two controls that are static
+                if (btn.data('btn-toggle-on')) {
+                    targetInputs.prop('checked',true);
+                } else {
+                    targetInputs.prop('checked',false);
+                }
             }
         });
     };
@@ -15263,17 +15322,33 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
         submitButton.on('click', function() {
             var modalForm = jQuery('#modalAjax').find('form');
             jQuery('#modalAjax .loader').show();
-            var modalPost = jQuery.post(modalForm.attr('action'), modalForm.serialize(),
+            var modalPost = jQuery.post(
+                modalForm.attr('action'),
+                modalForm.serialize(),
                 function(data) {
                     if (successDataTable) {
                         data.successDataTable = successDataTable;
                     }
                     updateAjaxModal(data);
-                }, 'json').fail(function() {
-                    jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
-                    jQuery('#modalAjax .loader').fadeOut();
+                },
+                'json'
+            ).fail(function(xhr) {
+                var data = xhr.responseJSON;
+                var genericErrorMsg = 'An error occurred while communicating with the server. Please try again.';
+                if (data && data.data) {
+                    data = data.data;
+                    if (data.errorMsg) {
+                        jQuery.growl.warning({ title: data.errorMsgTitle, message: data.errorMsg });
+                    } else if (data.data.body) {
+                        jQuery('#modalAjax .modal-body').html(data.body);
+                    } else {
+                        jQuery('#modalAjax .modal-body').html(genericErrorMsg);
+                    }
+                } else {
+                    jQuery('#modalAjax .modal-body').html(genericErrorMsg);
                 }
-            );
+                jQuery('#modalAjax .loader').fadeOut();
+            });
         })
     }
 }
@@ -37712,11 +37787,13 @@ jQuery(document).ready(function() {
                 jQuery(this).val('');
             }
         });
-        phoneInput.on('blur', function (e) {
-            var number = jQuery(this).intlTelInput("getNumber"),
-                countryData = jQuery(this).intlTelInput("getSelectedCountryData");
-            number = number.replace('+' + countryData.dialCode, '');
-            jQuery(this).val(number);
+        phoneInput.on('blur keydown', function (e) {
+            if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
+                var number = jQuery(this).intlTelInput("getNumber"),
+                    countryData = jQuery(this).intlTelInput("getSelectedCountryData");
+                number = number.replace('+' + countryData.dialCode, '');
+                jQuery(this).intlTelInput("setNumber", number);
+            }
         });
         jQuery('#populatedCountryCode' + inputName).val(phoneInput.intlTelInput('getSelectedCountryData').dialCode);
 
@@ -37738,51 +37815,55 @@ jQuery(document).ready(function() {
         phoneInput.removeClass('field').addClass('form-control');
     }
 
-    jQuery.each(
-        ['Registrant', 'Admin', 'Tech', 'Billing'],
-        function(index, value) {
-            var registrantPhoneInput = jQuery('input[name$="[' + value + '][Phone Number]"],input[name$="[' + value + '][Phone]"]');
+    var registrarPhoneInput = jQuery('input[name$="][Phone Number]"], input[name$="][Phone]"]');
+    if (registrarPhoneInput.length) {
+        jQuery.each(registrarPhoneInput, function(index, input) {
+            var thisInput = jQuery(this),
+                inputName = thisInput.attr('name');
+            inputName = inputName.replace('contactdetails[', '').replace('][Phone Number]', '').replace('][Phone]', '');
 
-            if (registrantPhoneInput.length) {
-                var registrantCountryInput = jQuery('[name$="' + value + '][Country]"]'),
-                    registrantInitialCountry = registrantCountryInput.val().toLowerCase();
-                if (registrantInitialCountry === 'um') {
-                    registrantInitialCountry = 'us';
+            var countryInput = jQuery('[name$="' + inputName + '][Country]"]'),
+                initialCountry = countryInput.val().toLowerCase();
+            if (initialCountry === 'um') {
+                initialCountry = 'us';
+            }
+
+            thisInput.before('<input id="populated' + inputName + 'CountryCode" type="hidden" name="contactdetails[' + inputName + '][Phone Country Code]" value="" />');
+            thisInput.intlTelInput({
+                preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
+                    return self.indexOf(value) === index;
+                }),
+                initialCountry: initialCountry,
+                autoPlaceholder: 'polite', //always show the helper placeholder
+                separateDialCode: true
+            });
+
+            thisInput.on('countrychange', function (e, countryData) {
+                jQuery('#populated' + inputName + 'CountryCode').val(countryData.dialCode);
+                if (jQuery(this).val() === '+' + countryData.dialCode) {
+                    jQuery(this).val('');
                 }
-                registrantPhoneInput.before('<input id="populated' + value + 'CountryCode" type="hidden" name="contactdetails[' + value + '][Phone Country Code]" value="" />');
-                registrantPhoneInput.intlTelInput({
-                    preferredCountries: [registrantInitialCountry, "us", "gb"].filter(function(value, index, self) {
-                        return self.indexOf(value) === index;
-                    }),
-                    initialCountry: registrantInitialCountry,
-                    autoPlaceholder: 'polite', //always show the helper placeholder
-                    separateDialCode: true
-                });
-
-                registrantPhoneInput.on('countrychange', function (e, countryData) {
-                    jQuery('#populated' + value + 'CountryCode').val(countryData.dialCode);
-                    if (jQuery(this).val() === '+' + countryData.dialCode) {
-                        jQuery(this).val('');
-                    }
-                });
-                registrantPhoneInput.on('blur', function (e) {
+            });
+            thisInput.on('blur keydown', function (e) {
+                if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
                     var number = jQuery(this).intlTelInput("getNumber"),
                         countryData = jQuery(this).intlTelInput("getSelectedCountryData");
                     number = number.replace('+' + countryData.dialCode, '');
-                    jQuery(this).val(number);
-                });
-                jQuery('#populated' + value + 'CountryCode').val(registrantPhoneInput.intlTelInput('getSelectedCountryData').dialCode);
+                    jQuery(this).intlTelInput("setNumber", number);
+                }
+            });
+            jQuery('#populated' + inputName + 'CountryCode').val(thisInput.intlTelInput('getSelectedCountryData').dialCode);
 
-                registrantCountryInput.on('blur', function() {
-                    if (registrantPhoneInput.val() === '') {
-                        var country = jQuery(this).val().toLowerCase();
-                        if (country === 'um') {
-                            country = 'us';
-                        }
-                        registrantPhoneInput.intlTelInput('setCountry', country);
+            countryInput.on('blur', function() {
+                if (thisInput.val() === '') {
+                    var country = jQuery(this).val().toLowerCase();
+                    if (country === 'um') {
+                        country = 'us';
                     }
-                });
-            }
-        }
-    );
+                    thisInput.intlTelInput('setCountry', country);
+                }
+            });
+
+        });
+    }
 });
