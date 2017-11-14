@@ -47,7 +47,7 @@
                                                 {/foreach}
                                             </select>
                                             <button type="submit" class="btn btn-success btn-block">
-                                                Upgrade to {$product->name} for {$product->pricing()->monthly()->breakdownPrice()}
+                                                Upgrade to {$product->name} for {$product->pricing()->first()->breakdownPrice()}
                                             </button>
                                         </form>
                                     {/if}

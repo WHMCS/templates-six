@@ -11,7 +11,7 @@
     {$headoutput}
 
 </head>
-<body>
+<body data-phone-cc-input="{$phoneNumberInputStyle}">
 
 {$headeroutput}
 

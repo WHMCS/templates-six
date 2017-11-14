@@ -15236,10 +15236,12 @@ jQuery(document).ready(function(){
     jQuery('#modalAjax').on('hidden.bs.modal', function (e) {
         if (jQuery(this).hasClass('modal-feature-highlights')) {
             var dismissForVersion = jQuery('#cbFeatureHighlightsDismissForVersion').is(':checked');
-            jQuery.ajax(
-                'whatsnew.php?dismiss=1&until_next_update=' + (dismissForVersion ? '1' : '0'),
+            jQuery.post(
+                'whatsnew.php',
                 {
-                    dataType: 'json'
+                    dismiss: "1",
+                    until_next_update: dismissForVersion ? '1' : '0',
+                    token: csrfToken
                 }
             );
         }
@@ -37760,76 +37762,20 @@ v("intlTelInputUtils.numberType",{FIXED_LINE:0,MOBILE:1,FIXED_LINE_OR_MOBILE:2,T
  */
 
 jQuery(document).ready(function() {
-    var phoneInput = jQuery('input[name^="phone"], input[name$="phone"]');
-    if (phoneInput.length) {
-        var countryInput = jQuery('[name^="country"], [name$="country"]'),
-            initialCountry = 'us',
-            inputName = phoneInput.attr('name');
-        if (countryInput.length) {
-            initialCountry = countryInput.val().toLowerCase();
-            if (initialCountry === 'um') {
-                initialCountry = 'us';
-            }
-        }
-        phoneInput.before('<input id="populatedCountryCode' + inputName + '" type="hidden" name="country-calling-code-' + inputName + '" value="" />');
-        phoneInput.intlTelInput({
-            preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
-                return self.indexOf(value) === index;
-            }),
-            initialCountry: initialCountry,
-            autoPlaceholder: 'polite', //always show the helper placeholder
-            separateDialCode: true
-        });
-
-        phoneInput.on('countrychange', function (e, countryData) {
-            jQuery('#populatedCountryCode' + inputName).val(countryData.dialCode);
-            if (jQuery(this).val() === '+' + countryData.dialCode) {
-                jQuery(this).val('');
-            }
-        });
-        phoneInput.on('blur keydown', function (e) {
-            if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
-                var number = jQuery(this).intlTelInput("getNumber"),
-                    countryData = jQuery(this).intlTelInput("getSelectedCountryData");
-                number = number.replace('+' + countryData.dialCode, '');
-                jQuery(this).intlTelInput("setNumber", number);
-            }
-        });
-        jQuery('#populatedCountryCode' + inputName).val(phoneInput.intlTelInput('getSelectedCountryData').dialCode);
-
-        countryInput.on('change', function() {
-            if (phoneInput.val() === '') {
-                var country = jQuery(this).val().toLowerCase();
-                if (country === 'um') {
-                    country = 'us';
-                }
-                phoneInput.intlTelInput('setCountry', country);
-            }
-        });
-
-        /**
-         * In places where a form icon is present, hide it.
-         * Where the input has a class of field, remove that and add form-control in place.
-         */
-        phoneInput.parents('div.form-group').find('.field-icon').addClass('hidden').end();
-        phoneInput.removeClass('field').addClass('form-control');
-    }
-
-    var registrarPhoneInput = jQuery('input[name$="][Phone Number]"], input[name$="][Phone]"]');
-    if (registrarPhoneInput.length) {
-        jQuery.each(registrarPhoneInput, function(index, input) {
-            var thisInput = jQuery(this),
-                inputName = thisInput.attr('name');
-            inputName = inputName.replace('contactdetails[', '').replace('][Phone Number]', '').replace('][Phone]', '');
-
-            var countryInput = jQuery('[name$="' + inputName + '][Country]"]'),
+    if (jQuery('body').data('phone-cc-input')) {
+        var phoneInput = jQuery('input[name^="phone"], input[name$="phone"]').not('input[type="hidden"]');
+        if (phoneInput.length) {
+            var countryInput = jQuery('[name^="country"], [name$="country"]'),
+                initialCountry = 'us',
+                inputName = phoneInput.attr('name');
+            if (countryInput.length) {
                 initialCountry = countryInput.val().toLowerCase();
-            if (initialCountry === 'um') {
-                initialCountry = 'us';
+                if (initialCountry === 'um') {
+                    initialCountry = 'us';
+                }
             }
-
-            thisInput.before('<input id="populated' + inputName + 'CountryCode" type="hidden" name="contactdetails[' + inputName + '][Phone Country Code]" value="" />');
-            thisInput.intlTelInput({
+            phoneInput.before('<input id="populatedCountryCode' + inputName + '" type="hidden" name="country-calling-code-' + inputName + '" value="" />');
+            phoneInput.intlTelInput({
                 preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
                     return self.indexOf(value) === index;
                 }),
@@ -37838,13 +37784,13 @@ jQuery(document).ready(function() {
                 separateDialCode: true
             });
 
-            thisInput.on('countrychange', function (e, countryData) {
-                jQuery('#populated' + inputName + 'CountryCode').val(countryData.dialCode);
+            phoneInput.on('countrychange', function (e, countryData) {
+                jQuery('#populatedCountryCode' + inputName).val(countryData.dialCode);
                 if (jQuery(this).val() === '+' + countryData.dialCode) {
                     jQuery(this).val('');
                 }
             });
-            thisInput.on('blur keydown', function (e) {
+            phoneInput.on('blur keydown', function (e) {
                 if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
                     var number = jQuery(this).intlTelInput("getNumber"),
                         countryData = jQuery(this).intlTelInput("getSelectedCountryData");
@@ -37852,18 +37798,76 @@ jQuery(document).ready(function() {
                     jQuery(this).intlTelInput("setNumber", number);
                 }
             });
-            jQuery('#populated' + inputName + 'CountryCode').val(thisInput.intlTelInput('getSelectedCountryData').dialCode);
+            jQuery('#populatedCountryCode' + inputName).val(phoneInput.intlTelInput('getSelectedCountryData').dialCode);
 
-            countryInput.on('blur', function() {
-                if (thisInput.val() === '') {
+            countryInput.on('change', function() {
+                if (phoneInput.val() === '') {
                     var country = jQuery(this).val().toLowerCase();
                     if (country === 'um') {
                         country = 'us';
                     }
-                    thisInput.intlTelInput('setCountry', country);
+                    phoneInput.intlTelInput('setCountry', country);
                 }
             });
 
-        });
+            /**
+             * In places where a form icon is present, hide it.
+             * Where the input has a class of field, remove that and add form-control in place.
+             */
+            phoneInput.parents('div.form-group').find('.field-icon').addClass('hidden').end();
+            phoneInput.removeClass('field').addClass('form-control');
+        }
+
+        var registrarPhoneInput = jQuery('input[name$="][Phone Number]"], input[name$="][Phone]"]').not('input[type="hidden"]');
+        if (registrarPhoneInput.length) {
+            jQuery.each(registrarPhoneInput, function(index, input) {
+                var thisInput = jQuery(this),
+                    inputName = thisInput.attr('name');
+                inputName = inputName.replace('contactdetails[', '').replace('][Phone Number]', '').replace('][Phone]', '');
+
+                var countryInput = jQuery('[name$="' + inputName + '][Country]"]'),
+                    initialCountry = countryInput.val().toLowerCase();
+                if (initialCountry === 'um') {
+                    initialCountry = 'us';
+                }
+
+                thisInput.before('<input id="populated' + inputName + 'CountryCode" type="hidden" name="contactdetails[' + inputName + '][Phone Country Code]" value="" />');
+                thisInput.intlTelInput({
+                    preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
+                        return self.indexOf(value) === index;
+                    }),
+                    initialCountry: initialCountry,
+                    autoPlaceholder: 'polite', //always show the helper placeholder
+                    separateDialCode: true
+                });
+
+                thisInput.on('countrychange', function (e, countryData) {
+                    jQuery('#populated' + inputName + 'CountryCode').val(countryData.dialCode);
+                    if (jQuery(this).val() === '+' + countryData.dialCode) {
+                        jQuery(this).val('');
+                    }
+                });
+                thisInput.on('blur keydown', function (e) {
+                    if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
+                        var number = jQuery(this).intlTelInput("getNumber"),
+                            countryData = jQuery(this).intlTelInput("getSelectedCountryData");
+                        number = number.replace('+' + countryData.dialCode, '');
+                        jQuery(this).intlTelInput("setNumber", number);
+                    }
+                });
+                jQuery('#populated' + inputName + 'CountryCode').val(thisInput.intlTelInput('getSelectedCountryData').dialCode);
+
+                countryInput.on('blur', function() {
+                    if (thisInput.val() === '') {
+                        var country = jQuery(this).val().toLowerCase();
+                        if (country === 'um') {
+                            country = 'us';
+                        }
+                        thisInput.intlTelInput('setCountry', country);
+                    }
+                });
+
+            });
+        }
     }
 });
