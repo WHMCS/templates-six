@@ -37793,8 +37793,12 @@ jQuery(document).ready(function() {
             phoneInput.on('blur keydown', function (e) {
                 if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
                     var number = jQuery(this).intlTelInput("getNumber"),
-                        countryData = jQuery(this).intlTelInput("getSelectedCountryData");
-                    number = number.replace('+' + countryData.dialCode, '');
+                        countryData = jQuery(this).intlTelInput("getSelectedCountryData"),
+                        countryPrefix = '+' + countryData.dialCode;
+
+                    if (number.indexOf(countryPrefix) === 0 && (number.match(/\+/g) || []).length > 1) {
+                        number = number.substr(countryPrefix.length);
+                    }
                     jQuery(this).intlTelInput("setNumber", number);
                 }
             });
@@ -37850,8 +37854,12 @@ jQuery(document).ready(function() {
                 thisInput.on('blur keydown', function (e) {
                     if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
                         var number = jQuery(this).intlTelInput("getNumber"),
-                            countryData = jQuery(this).intlTelInput("getSelectedCountryData");
-                        number = number.replace('+' + countryData.dialCode, '');
+                            countryData = jQuery(this).intlTelInput("getSelectedCountryData"),
+                            countryPrefix = '+' + countryData.dialCode;
+
+                        if (number.indexOf(countryPrefix) === 0 && (number.match(/\+/g) || []).length > 1) {
+                            number = number.substr(countryPrefix.length);
+                        }
                         jQuery(this).intlTelInput("setNumber", number);
                     }
                 });
