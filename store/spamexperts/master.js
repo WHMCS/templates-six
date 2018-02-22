@@ -57,9 +57,3 @@ $(document).ready(function() {
         smoothScroll('#pricing');
     });
 });
-
-function smoothScroll(element) {
-    $('html, body').animate({
-        scrollTop: $(element).offset().top
-    }, 500);
-}

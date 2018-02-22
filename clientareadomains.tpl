@@ -58,10 +58,7 @@
                             <td>
                                 <span class="label status status-{$domain.statusClass}">{$domain.statustext}</span>
                                 <span class="hidden">
-                                    {if $domain.next30}<span>{$LANG.domainsExpiringInTheNext30Days}</span><br />{/if}
-                                    {if $domain.next90}<span>{$LANG.domainsExpiringInTheNext90Days}</span><br />{/if}
-                                    {if $domain.next180}<span>{$LANG.domainsExpiringInTheNext180Days}</span><br />{/if}
-                                    {if $domain.after180}<span>{$LANG.domainsExpiringInMoreThan180Days}</span>{/if}
+                                    {if $domain.expiringSoon}<span>{lang key="domainsExpiringSoon"}</span>{/if}
                                 </span>
                             </td>
                             <td>
@@ -139,10 +136,7 @@
                             <td id="status{$renewal.id}">
                                 <span class="label status status-{$renewal.statusClass}">{$renewal.status}</span>
                                 <span class="hidden">
-                                    {if $renewal.next30}<span>{$LANG.domainsExpiringInTheNext30Days}</span><br />{/if}
-                                    {if $renewal.next90}<span>{$LANG.domainsExpiringInTheNext90Days}</span><br />{/if}
-                                    {if $renewal.next180}<span>{$LANG.domainsExpiringInTheNext180Days}</span><br />{/if}
-                                    {if $renewal.after180}<span>{$LANG.domainsExpiringInMoreThan180Days}</span>{/if}
+                                    {if $renewal.expiringSoon}<span>{lang key="domainsExpiringSoon"}</span>{/if}
                                 </span>
                             </td>
                             <td id="expiry{$renewal.id}"><span class="hidden">{$renewal.normalisedExpiryDate}</span>{$renewal.expiryDate}</td>
@@ -151,12 +145,20 @@
                                     <span class="text-success">{$renewal.daysUntilExpiry} {$LANG.domainrenewalsdays}</span>
                                 {elseif $renewal.daysUntilExpiry > 0}
                                     <span class="text-warning">{$renewal.daysUntilExpiry} {$LANG.domainrenewalsdays}</span>
+                                {elseif $renewal.daysUntilExpiry === 0}
+                                    <span class="text-warning">{lang key="expiresToday"}</span>
                                 {else}
                                     <span class="text-danger">{$renewal.daysUntilExpiry*-1} {$LANG.domainrenewalsdaysago}</span>
                                 {/if}
-                                {if $renewal.inGracePeriod}
+                                {if $renewal.inGracePeriod || $renewal.inRedemptionGracePeriod}
                                     <br />
-                                    <span class="text-danger">{$LANG.domainrenewalsingraceperiod}</span>
+                                    <span class="text-danger">
+                                        {if $renewal.inGracePeriod}
+                                            {lang key='domainrenewalsingraceperiod'}
+                                        {else}
+                                            {lang key='domainRenewalsInRedemptionGracePeriod'}
+                                        {/if}
+                                    </span>
                                 {/if}
                             </td>
                             <td id="period{$renewal.id}" class="text-center">
@@ -164,7 +166,7 @@
                                     <span class="text-danger">
                                         {$LANG.domainrenewalsbeforerenewlimit|sprintf2:$renewal.beforeRenewLimitDays}
                                     </span>
-                                {elseif $renewal.pastGracePeriod}
+                                {elseif $renewal.pastGracePeriod && $renewal.pastRedemptionGracePeriod}
                                     <span class="textred">{$LANG.domainrenewalspastgraceperiod}</span>
                                 {else}
                                     <select id="renewalPeriod{$renewal.id}" name="renewalPeriod[{$renewal.id}]">
@@ -177,7 +179,7 @@
                                 {/if}
                             </td>
                             <td class="text-center">
-                                {if !$renewal.beforeRenewLimit && !$renewal.pastGracePeriod}
+                                {if !$renewal.beforeRenewLimit && !($renewal.pastGracePeriod && $renewal.pastRedemptionGracePeriod)}
                                     <button type="button" class="btn btn-primary btn-sm" id="renewButton{$renewal.id}" onclick="addRenewalToCart({$renewal.id}, this)">
                                         <span class="glyphicon glyphicon-shopping-cart"></span> {$LANG.addtocart}
                                     </button>

@@ -10,13 +10,19 @@
 <h2>{$LANG.knowledgebasecategories}</h2>
 
 {if $kbcats}
-    <div class="row">
+    <div class="row kbcategories">
         {foreach from=$kbcats name=kbcats item=kbcat}
             <div class="col-sm-4">
                 <a href="{routePath('knowledgebase-category-view', {$kbcat.id}, {$kbcat.urlfriendlyname})}">
                     <i class="fa fa-folder-open-o"></i>
                     {$kbcat.name} ({$kbcat.numarticles})
                 </a>
+                {if $kbcat.editLink}
+                    <a href="{$kbcat.editLink}" class="admin-inline-edit">
+                        <i class="fa fa-pencil fa-fw"></i>
+                        {$LANG.edit}
+                    </a>
+                {/if}
                 <p>{$kbcat.description}</p>
             </div>
             {if $smarty.foreach.kbcats.iteration mod 3 == 0}
@@ -37,6 +43,12 @@
             <a href="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}">
                 <span class="glyphicon glyphicon-file"></span>&nbsp;{$kbarticle.title}
             </a>
+            {if $kbarticle.editLink}
+                <a href="{$kbarticle.editLink}" class="admin-inline-edit">
+                    <i class="fa fa-pencil fa-fw"></i>
+                    {$LANG.edit}
+                </a>
+            {/if}
             <p>{$kbarticle.article|truncate:100:"..."}</p>
         {/foreach}
     </div>

@@ -20,33 +20,34 @@ if (typeof(buildFilterRegex) !== "function") {
         }
     }
 }
+jQuery.(document).ready(function () {ldelim}
+    jQuery(".view-filter-btns a").click(function(e) {ldelim}
+        var filterValue = jQuery(this).find("span").not('.badge').html().trim();
+        var dataTable = jQuery('#table{$tableName}').DataTable();
+        var filterValueRegex;
+        if (jQuery(this).hasClass('active')) {ldelim}
+            {if !isset($dontControlActiveClass) || !$dontControlActiveClass}
+                jQuery(this).removeClass('active');
+                jQuery(this).find("i.fa.fa-dot-circle-o").removeClass('fa-dot-circle-o').addClass('fa-circle-o');
+            {/if}
+            dataTable.column({$filterColumn}).search('').draw();
+        {rdelim} else {ldelim}
+            {if !isset($dontControlActiveClass) || !$dontControlActiveClass}
+                jQuery('.view-filter-btns .list-group-item').removeClass('active');
+                jQuery('i.fa.fa-dot-circle-o').removeClass('fa-dot-circle-o').addClass('fa-circle-o');
+                jQuery(this).addClass('active');
+                jQuery(this).find(jQuery("i.fa.fa-circle-o")).removeClass('fa-circle-o').addClass('fa-dot-circle-o');
+            {/if}
+            filterValueRegex = buildFilterRegex(filterValue);
+            dataTable.column({$filterColumn})
+                .search(filterValueRegex, true, false, false)
+                .draw();
+        {rdelim}
 
-jQuery(".view-filter-btns a").click(function(e) {ldelim}
-    var filterValue = jQuery(this).find("span").not('.badge').html().trim();
-    var dataTable = jQuery('#table{$tableName}').DataTable();
-    var filterValueRegex;
-    if (jQuery(this).hasClass('active')) {ldelim}
-        {if !isset($dontControlActiveClass) || !$dontControlActiveClass}
-            jQuery(this).removeClass('active');
-            jQuery(this).find("i.fa.fa-dot-circle-o").removeClass('fa-dot-circle-o').addClass('fa-circle-o');
-        {/if}
-        dataTable.column({$filterColumn}).search('').draw();
-    {rdelim} else {ldelim}
-        {if !isset($dontControlActiveClass) || !$dontControlActiveClass}
-            jQuery('.view-filter-btns .list-group-item').removeClass('active');
-            jQuery('i.fa.fa-dot-circle-o').removeClass('fa-dot-circle-o').addClass('fa-circle-o');
-            jQuery(this).addClass('active');
-            jQuery(this).find(jQuery("i.fa.fa-circle-o")).removeClass('fa-circle-o').addClass('fa-dot-circle-o');
-        {/if}
-        filterValueRegex = buildFilterRegex(filterValue);
-        dataTable.column({$filterColumn})
-            .search(filterValueRegex, true, false, false)
-            .draw();
-    {rdelim}
-
-    // Prevent jumping to the top of the page
-    // when no matching tag is found.
-    e.preventDefault();
+        // Prevent jumping to the top of the page
+        // when no matching tag is found.
+        e.preventDefault();
+    {rdelim});
 {rdelim});
 </script>
 {/if}

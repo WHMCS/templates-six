@@ -11,6 +11,13 @@
     {$kbarticle.text}
 </div>
 
+{if $kbarticle.editLink}
+    <a href="{$kbarticle.editLink}" class="btn btn-default btn-sm pull-right">
+        <i class="fa fa-pencil fa-fw"></i>
+        {$LANG.edit}
+    </a>
+{/if}
+
 <ul class="kb-article-details">
     {if $kbarticle.tags }
         <li><i class="fa fa-tag"></i> {$kbarticle.tags}</li>
@@ -41,6 +48,12 @@
                     <a href="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}">
                         <i class="glyphicon glyphicon-file"></i> {$kbarticle.title}
                     </a>
+                    {if $kbarticle.editLink}
+                        <a href="{$kbarticle.editLink}" class="admin-inline-edit">
+                            <i class="fa fa-pencil fa-fw"></i>
+                            {$LANG.edit}
+                        </a>
+                    {/if}
                     <p>{$kbarticle.article|truncate:100:"..."}</p>
                 </div>
             {/foreach}

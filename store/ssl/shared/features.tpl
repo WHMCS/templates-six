@@ -1,4 +1,4 @@
-<div class="content-block standout-features">
+<div class="content-block standout-features standout">
     <div class="container">
         <div class="row text-center">
             {if $type == 'ev'}
@@ -45,31 +45,43 @@
     <div class="container">
         <h3>Certificate Features</h3>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="feature">
+                    <i class="fa fa-lock"></i>
+                    <h4>Encrypt sensitive data</h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="feature">
+                    <i class="fa fa-credit-card"></i>
+                    <h4>Secure online transactions</h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="feature">
+                    <i class="fa fa-trophy"></i>
+                    <h4>Prove legitimacy</h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
                     <i class="fa fa-certificate"></i>
                     <h4>Strongest & Fastest SSL</h4>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
                     <i class="fa fa-window-maximize"></i>
                     <h4>99.9% Browser Compatability</h4>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-trophy"></i>
-                    <h4>Market Leading Security</h4>
+                    <i class="fa fa-search"></i>
+                    <h4>Increase SEO rank</h4>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="feature">
-                    <i class="fa fa-lock"></i>
-                    <h4>Recognised & Trusted Brand</h4>
-                </div>
-            </div>
-            <div class="col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
                     <i class="fa fa-clock-o"></i>
                     {if $type == 'ev'}
@@ -81,7 +93,7 @@
                     {/if}
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
                     <i class="fa fa-refresh"></i>
                     <h4>Free Reissues</h4>

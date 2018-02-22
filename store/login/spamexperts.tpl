@@ -27,7 +27,7 @@
                         <span class="loading hidden">
                             <i class="fa fa-spinner fa-spin"></i>
                         </span>
-                        <span class="text">Manage</span>
+                        <span class="text">{lang key="manage"}</span>
                     </button>
                     <span class="login-feedback"></span>
                 </form>

@@ -1,6 +1,6 @@
-<div class="content-block standout-2">
+<div class="content-block standout-2 standout">
     <div class="container">
-        We only sell SSL certificates from the most trusted brands in Online Web Security
+        Our SSL certificates are from some of the most trusted brands in Online Security.
         <br><br>
         <div class="logos">
             <div class="row">

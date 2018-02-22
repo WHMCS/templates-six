@@ -22,9 +22,3 @@ jQuery(document).ready(function(){
     var startCycle = jQuery('.btn.cycle-change.active').data('cycle');
     jQuery('.weebly-plans input[name="billingcycle"]').val(startCycle);
 });
-
-function smoothScroll(element) {
-    jQuery('html, body').animate({
-        scrollTop: jQuery(element).offset().top
-    }, 500);
-}

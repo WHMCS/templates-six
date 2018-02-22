@@ -240,6 +240,14 @@
             {/if}
         </div>
 
+        {if $showMarketingEmailOptIn}
+            <div class="marketing-email-optin">
+                <h4>{lang key='emailMarketing.joinOurMailingList'}</h4>
+                <p>{$marketingEmailOptInMessage}</p>
+                <input type="checkbox" name="marketingoptin" value="1"{if $marketingEmailOptIn} checked{/if} class="no-icheck toggle-switch-success" data-size="small" data-on-text="{lang key='yes'}" data-off-text="{lang key='no'}">
+            </div>
+        {/if}
+
         {include file="$template/includes/captcha.tpl"}
 
         <br/>

@@ -47,7 +47,7 @@
 
     {include file="$template/store/ssl/shared/nav.tpl" current=""}
 
-    <div class="content-block">
+    <div class="content-block what-is-ssl standout">
         <div class="container">
 
             <div class="row">
@@ -57,19 +57,73 @@
                 </div>
                 <div class="col-sm-8 col-md-9 col-sm-pull-4 col-md-pull-3">
 
-                    <h3>What is SSL?</h3>
+                    <h2>What is SSL?</h2>
 
                     <div class="text-center visible-xs">
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png">
                         <br><br>
                     </div>
 
-                    <p>SSL Certificates enable data encryption on the internet and allow data to be transmitted securely from a web server to a browser. With SSL, your website can use the https protocol and will display a padlock in end users web browsers to indicate the connection is secure.</p>
+                    <p>SSL Certificates are fundamental to internet security. They are used to establish an encrypted connection and allow data to be transmitted securely between a browser or user's computer and a server or website.</p>
 
-                    <p>Although all SSL certificates use similar methods to protect and validate your data, the level of trust and assertion they provide varies. <a href="{routePath('store-ssl-certificates-dv')}">Standard SSL (Domain Validated)</a> Certificates are the easiest and most common type of SSL certificate. <a href="{routePath('store-ssl-certificates-ov')}">OV</a> and <a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> also authenticate the identity of the company or organization that holds the certificate providing more trust to end users.</p>
+                    <ul>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            Establishes a secure connection between a browser and a server
+                        </li>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            Encrypts communication to protect sensitive information your customers provide to you
+                        </li>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            Places a padlock next to your web address in the browser
+                        </li>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            Authenticates an organization’s identity
+                        </li>
+                    </ul>
 
-                    <p><a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> offer the highest level of validation and trust, and will show the name of the company or organization in green in the address bar. This is an immediate, visual way that viewers can know that extra steps were taken to confirm the site they’re visiting – which is why most large companies and organizations choose EV certificates.</p>
+                    <p><a href="{routePath('store-ssl-certificates-dv')}">Standard SSL (Domain Validated)</a> Certificates are the easiest and most common type of SSL certificate. <a href="{routePath('store-ssl-certificates-ov')}">OV</a> and <a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> also authenticate the identity of the company or organization that holds the certificate providing more trust to end users.</p>
 
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-block ssl-benefits standout">
+        <div class="container">
+
+            <h2>Benefits of SSL</h2>
+
+            <h4>Establish trust and online security for your website visitors and business.</h4>
+
+            <div class="row">
+                <div class="col-md-2 col-sm-4">
+                    <i class="fa fa-globe"></i>
+                    Encrypt sensitive data
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <i class="fa fa-user"></i>
+                    Protect user privacy
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <i class="fa fa-credit-card"></i>
+                    Secure online transactions
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <i class="fa fa-lock"></i>
+                    Activate HTTPS and the lock icon
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <i class="fa fa-trophy"></i>
+                    Prove legitimacy
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <i class="fa fa-search"></i>
+                    Increase SEO rank
                 </div>
             </div>
 
@@ -78,7 +132,7 @@
 
     <div class="standout-1">
         <div class="container browser">
-            <h3>Browsers are changing, are you prepared?</h3>
+            <h3>Browsers have changed, don't get left behind</h3>
             <div class="browser-image">
                 <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/browser-warning.jpg">
             </div>
@@ -87,18 +141,38 @@
             <div class="wrapper-container">
                 <div class="wrapper">
                     <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/padlock-x.png">
-                    Web pages not served via HTTPS will be marked ‘not secure’ in <strong>Google Chrome</strong>
-                    and <strong>Mozilla Firefox</strong>. Could your website be one of them?
+                    Web pages not served via HTTPS are now being displayed as ‘not secure’ in <strong>Google Chrome</strong> and <strong>Mozilla Firefox</strong>. Don't let your website be one of them. Add SSL today.
                 </div>
             </div>
         </div>
     </div>
     <div class="clearfix"></div>
 
-    <div class="content-block browser-msg">
+    <br>
+
+    <div class="content-block standout">
         <div class="container">
-            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/browser-usage.png">
-            <span>As the world's most popular browsers, this will affect nearly 70% of global internet traffic and other browser companies will follow suit.</span>
+            <h2>Upgrade to Extended Validation SSL</h2>
+            <p>While all SSL certificates use similar methods to protect and validate your data, the level of trust and assertion they provide varies.</p>
+            <p><strong>Extended Validation Certificates</strong> offer the highest level of validation and trust. They validate and display the name of the company or organisation along with the green address bar which is one of the most highly recognizable trust indicators on the web.</p>
+            <br>
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <h4>Standard SSL</h4>
+                    <a href="{routePath('store-ssl-certificates-dv')}">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-dv-icon.png" class="img-responsive">
+                    </a>
+                    <br>
+                </div>
+                <div class="col-md-6">
+                    <h4>Extended Validation SSL</h4>
+                    <a href="{routePath('store-ssl-certificates-ev')}">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-ev-icon.png" class="img-responsive">
+                    </a>
+                    <br>
+                </div>
+            </div>
+            <p class="text-center"><a href="{routePath('store-ssl-certificates-ev')}">Learn more about Extended Validation SSL Certificates</a></p>
         </div>
     </div>
 

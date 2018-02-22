@@ -16,6 +16,12 @@
                 <a href="{routePath('knowledgebase-category-view',{$kbcat.id},{$kbcat.urlfriendlyname})}">
                     <span class="glyphicon glyphicon-folder-close"></span> {$kbcat.name} <span class="badge badge-info">{$kbcat.numarticles}</span>
                 </a>
+                {if $kbcat.editLink}
+                    <a href="{$kbcat.editLink}" class="admin-inline-edit">
+                        <i class="fa fa-pencil fa-fw"></i>
+                        {$LANG.edit}
+                    </a>
+                {/if}
                 <p>{$kbcat.description}</p>
             </div>
         {/foreach}
@@ -34,6 +40,12 @@
             <a href="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}">
                 <span class="glyphicon glyphicon-file"></span>&nbsp;{$kbarticle.title}
             </a>
+            {if $kbarticle.editLink}
+                <a href="{$kbarticle.editLink}" class="admin-inline-edit">
+                    <i class="fa fa-pencil fa-fw"></i>
+                    {$LANG.edit}
+                </a>
+            {/if}
             <p>{$kbarticle.article|truncate:100:"..."}</p>
         {foreachelse}
             {include file="$template/includes/alert.tpl" type="info" msg=$LANG.knowledgebasenoarticles textcenter=true}

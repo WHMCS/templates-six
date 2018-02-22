@@ -15,7 +15,8 @@
         markdownGuide = '{lang key="markdown.title"}',
         locale = '{if !empty($mdeLocale)}{$mdeLocale}{else}en{/if}',
         saved = '{lang key="markdown.saved"}',
-        saving = '{lang key="markdown.saving"}';
+        saving = '{lang key="markdown.saving"}',
+        whmcsBaseUrl = "{\WHMCS\Utility\Environment\WebHelper::getBaseUrl()}";
 </script>
 <script src="{$WEB_ROOT}/templates/{$template}/js/scripts.min.js?v={$versionHash}"></script>
 

@@ -28,9 +28,15 @@
         {/if}
 
         <div class="article-items">
-            <i class="fa fa-calendar"></i> {"jS M Y"|date:$announcement.timestamp}
+            <i class="fa fa-calendar fa-fw"></i>
+            {$carbon->createFromTimestamp($announcement.timestamp)->format('jS M Y')}
+            {if $announcement.editLink}
+                <a href="{$announcement.editLink}" class="admin-inline-edit">
+                    <i class="fa fa-pencil fa-fw"></i>
+                    {$LANG.edit}
+                </a>
+            {/if}
         </div>
-
 
         {if $announcementsFbRecommend}
             <div class="fb-like hidden-sm hidden-xs" data-layout="standard" data-href="{fqdnRoutePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>

@@ -18,10 +18,14 @@
                         <select name="billingcycle" class="form-control">
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
                                 <option value="{$pricing->cycle()}"{if $requestedCycle == $pricing->cycle()} selected{/if}>
-                                    {if $pricing->isYearly()}
-                                        {$pricing->cycleInYears()} - {$pricing->yearlyPrice()}
+                                    {if $pricing->isRecurring()}
+                                        {if $pricing->isYearly()}
+                                            {$pricing->cycleInYears()} - {$pricing->yearlyPrice()}
+                                        {else}
+                                            {$pricing->cycleInMonths()} - {$pricing->monthlyPrice()}
+                                        {/if}
                                     {else}
-                                        {$pricing->cycleInMonths()} - {$pricing->monthlyPrice()}
+                                        {$pricing->toFullString()}
                                     {/if}
                                 </option>
                             {/foreach}

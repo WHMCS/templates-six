@@ -11,7 +11,7 @@
 
     {include file="$template/store/ssl/shared/nav.tpl" current="wildcard"}
 
-    <div class="content-block">
+    <div class="content-block standout">
         <div class="container">
 
             <div class="row">

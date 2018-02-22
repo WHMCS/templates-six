@@ -11395,6 +11395,13 @@ a.domain-tld-pricing-category {
 .domain-pricing .tld-row.highlighted {
     background: #f3f9fd;
 }
+
+.domain-pricing .tld-pricing-header .col-xs-2,
+.domain-pricing .tld-pricing-header .col-sm-2 {
+    height: 56px;
+}
+.domain-pricing .tld-pricing-header .col-xs-2,
+.domain-pricing .tld-pricing-header .col-sm-2,
 .domain-pricing .tld-pricing-header .col-xs-4,
 .domain-pricing .tld-pricing-header .col-sm-4 {
     padding-top: 4px;
@@ -12361,6 +12368,10 @@ div#twofaactivation p {
 .kbarticles a .glyphicon {
     color: #8ce;
 }
+.kbcategories a.admin-inline-edit,
+.kbarticles a.admin-inline-edit {
+    font-size: 0.92em;
+}
 
 h3.kb-alsoread {
     padding: 8px 15px;
@@ -12512,6 +12523,16 @@ h3.with-badge .badge {
 }
 .admin-masquerade-notice a {
     text-decoration: underline;
+}
+
+a.admin-inline-edit {
+    margin-left: 6px;
+    font-weight: 400;
+    color: #888;
+}
+a.admin-inline-edit:hover {
+    color: #444;
+    text-decoration: none;
 }
 
 /**
@@ -13288,6 +13309,16 @@ div.md-editor.active {
     margin-left: 185px;
 }
 
+.promo-banner.sitelock {
+    border-top: 3px solid #c32126;
+}
+.promo-banner.sitelock a {
+    color: #c32126;
+}
+.promo-banner.sitelock .btn {
+    background-color: #c32126;
+}
+
 /**
  * -------------------------
  * MarketConnect Service SSO
@@ -13421,6 +13452,13 @@ div.md-editor.active {
     text-align: center;
 }
 
+.marketing-email-optin {
+    margin: 0 0 20px 0;
+    padding: 10px 20px 20px;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+}
+
 /*
  * Section Dividers
  */
@@ -13441,7 +13479,6 @@ div.md-editor.active {
     color: #058;
     background-color: #fff;
 }
-
 
 /**
  * Form fields

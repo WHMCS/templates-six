@@ -1,20 +1,20 @@
-<div id="weeblyLogin" class="panel panel-default panel-mc-sso panel-accent-silver">
+<div id="sitelockLogin" class="panel panel-default panel-mc-sso panel-accent-silver">
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-4 text-center">
                 <div class="icon-container">
-                    <img src="assets/img/marketconnect/weebly/dragdropeditor.png">
+                    <img src="assets/img/marketconnect/sitelock/logo-sml.png">
                 </div>
             </div>
             <div class="col-sm-8">
 
-                <h3>Weebly Website Builder</h3>
-                <h4>Manage your Weebly Service</h4>
+                <h3>{lang key="store.sitelock.title"}</h3>
+                <h4>{lang key="store.sitelock.manageService"}</h4>
                 <form action="" method="post">
                     <input type="hidden" name="action" value="manage-service" />
                     <p>
                         {if count($accounts) > 1}
-                            <select id="weeblyId" name="service-id" class="form-control select-inline">
+                            <select id="sitelockId" name="service-id" class="form-control select-inline">
                                 {foreach $accounts as $account}
                                     <option value="{if $account.type == 'addon'}a{/if}{$account.id}">{$account.domain}</option>
                                 {/foreach}

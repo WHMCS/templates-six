@@ -39,7 +39,13 @@
         {/if}
 
         <div class="pricing">
-            <h3>{$product->pricing()->first()->breakdownPrice()}</h3>
+            <h3>
+                {if $product->isFree()}
+                    {lang key="orderfree"}
+                {else}
+                    {$product->pricing()->first()->breakdownPrice()}
+                {/if}
+            </h3>
 
             <button type="button" class="btn btn-sm btn-add" data-product-key="{$product->productKey}">
                 <span class="loading hidden">

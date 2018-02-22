@@ -21,7 +21,7 @@
                     <input type="hidden" name="serviceid" value="{$serviceId}">
                 {/if}
                 <button type="submit" class="btn btn-success">
-                    {$promotion->getCta()} {$product->name} from just {$product->pricing()->best()->breakdownPrice()}
+                {$promotion->getCta()} {$product->name} {if $product->isFree()}{lang key="orderfree"}{else}from just {$product->pricing()->best()->breakdownPrice()}{/if}
                 </button>
 
             {if $promotion->getLearnMoreRoute()}

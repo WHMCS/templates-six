@@ -11,7 +11,7 @@
 
     {include file="$template/store/ssl/shared/nav.tpl" current="ev"}
 
-    <div class="content-block">
+    <div class="content-block standout">
         <div class="container">
 
             <div class="row">
@@ -37,7 +37,7 @@
 
     {include file="$template/store/ssl/shared/certificate-pricing.tpl" type="ev"}
 
-    <div class="content-block dashed-border">
+    <div class="content-block dashed-border standout">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-lg-push-7 col-md-5 col-md-push-7">

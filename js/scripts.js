@@ -14243,7 +14243,6 @@ dataTable: function () {
         var el = jQuery('#' + id);
         if (typeof self.tables[id] === 'undefined') {
             if (typeof options === 'undefined') {
-
                 options = {
                     dom: '<"listtable"ift>pl',
                     paging: false,
@@ -14252,11 +14251,22 @@ dataTable: function () {
                     info: false,
                     language: {
                         emptyTable: (el.data('lang-empty-table')) ? el.data('lang-empty-table') : "No records found"
-                    },
-                    ajax: {
-                        url: el.data("ajax-url")
                     }
                 };
+            }
+            var ajaxUrl = el.data('ajax-url');
+            if (typeof ajaxUrl !== 'undefined') {
+                options.ajax = {
+                    url: ajaxUrl
+                };
+            }
+            var searching = el.data('searching');
+            if (typeof searching !== 'undefined') {
+                options.searching = searching;
+            }
+            var responsive = el.data('responsive');
+            if (typeof responsive !== 'undefined') {
+                options.responsive = responsive;
             }
             var ordering = el.data('ordering');
             if (typeof ordering !== 'undefined') {
@@ -14478,6 +14488,10 @@ function () {
         }
 
         return s;
+    };
+
+    this.getRouteUrl = function (path) {
+        return whmcsBaseUrl + "/index.php?rp=" + path;
     };
 
     return this;
@@ -14943,6 +14957,35 @@ jQuery(document).ready(function() {
         );
     });
 
+    // Domain Pricing Table Filters
+    jQuery(".tld-filters a").click(function(e) {
+        e.preventDefault();
+
+        if (jQuery(this).hasClass('label-success')) {
+            jQuery(this).removeClass('label-success');
+        } else {
+            jQuery(this).addClass('label-success');
+        }
+
+        jQuery('.tld-row').removeClass('filtered-row');
+        jQuery('.tld-filters a.label-success').each(function(index) {
+            var filterValue = jQuery(this).data('category');
+            jQuery('.tld-row[data-category*="' + filterValue + '"]').addClass('filtered-row');
+        });
+        jQuery(".filtered-row:even").removeClass('highlighted');
+        jQuery(".filtered-row:odd").addClass('highlighted');
+        jQuery('.tld-row:not(".filtered-row")').fadeOut('', function() {
+            if (jQuery('.filtered-row').size() === 0) {
+                jQuery('.tld-row.no-tlds').show();
+            } else {
+                jQuery('.tld-row.no-tlds').hide();
+            }
+        });
+        jQuery('.tld-row.filtered-row').fadeIn();
+    });
+    jQuery(".filtered-row:even").removeClass('highlighted');
+    jQuery(".filtered-row:odd").addClass('highlighted');
+
     // DataTable data-driven auto object registration
     WHMCS.ui.dataTable.register();
 
@@ -15206,6 +15249,15 @@ function getTicketSuggestions() {
         lastTicketMsg = userMsg;
     }
     setTimeout('getTicketSuggestions()', 3000);
+}
+
+/**
+ * Smooth scroll to named element.
+ */
+function smoothScroll(element) {
+    $('html, body').animate({
+        scrollTop: $(element).offset().top
+    }, 500);
 }
 
 /*!

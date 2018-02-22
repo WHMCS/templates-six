@@ -24,7 +24,6 @@
                             <li>Browser Support</li>
                             <li>1 Year</li>
                             <li>2 Years</li>
-                            <li>3 Years</li>
                         </ul>
                     </div>
                     {if count($certificates.$type) > 0}
@@ -50,11 +49,6 @@
                                         <li class="price 2yr">{$product->pricing()->biennial()->yearlyPrice()}</li>
                                     {else}
                                         <li class="price 2yr na">-</li>
-                                    {/if}
-                                    {if $product->pricing()->triennial()}
-                                        <li class="price 3yr">{$product->pricing()->triennial()->yearlyPrice()}</li>
-                                    {else}
-                                        <li class="price 3yr na">-</li>
                                     {/if}
                                 </ul>
                                 <form method="post" action="{routePath('store-order')}">
