@@ -76,6 +76,14 @@
                                             <li class="divider"></li>
                                         {/if}
                                         <li><a href="clientarea.php?action=domaindetails&id={$domain.id}"><i class="glyphicon glyphicon-pencil"></i> {$LANG.managedomain}</a></li>
+                                        {if $allowrenew}
+                                            {if $domain.canDomainBeManaged}
+                                                <li><a href="{routePath('domain-renewal', $domain.domain)}"><i class="glyphicon glyphicon-refresh"></i> {lang key='domainsrenew'}</a></li>
+                                            {else}
+                                                <li class="disabled"><a href="#" onclick="return false;" class="disabled" disabled="disabled"><i class="glyphicon glyphicon-refresh"></i> {lang key='domainsrenew'}</a></li>
+                                            {/if}
+
+                                        {/if}
                                     </ul>
                                 </div>
                             </td>
@@ -98,105 +106,10 @@
                 <li><a href="#" id="autorenew" class="setBulkAction"><i class="glyphicon glyphicon-refresh"></i> {$LANG.domainautorenewstatus}</a></li>
                 <li><a href="#" id="reglock" class="setBulkAction"><i class="glyphicon glyphicon-lock"></i> {$LANG.domainreglockstatus}</a></li>
                 <li><a href="#" id="contactinfo" class="setBulkAction"><i class="glyphicon glyphicon-user"></i> {$LANG.domaincontactinfoedit}</a></li>
+                {if $allowrenew}
+                    <li><a href="#" id="renewDomains" class="setBulkAction"><i class="glyphicon glyphicon-refresh"></i> {lang key='domainmassrenew'}</a></li>
+                {/if}
             </ul>
-        </div>
-    </div>
-    <div class="tab-pane fade in" id="tabRenew">
-        {include file="$template/includes/tablelist.tpl" tableName="RenewalsList" noSortColumns="3, 4, 5" startOrderCol="0" filterColumn="1" dontControlActiveClass=true}
-        <script type="text/javascript">
-            var observer = new MutationObserver(function(mutations) {
-                jQuery('#Secondary_Sidebar-My_Domains_Actions-Renew_Domain').toggleClass('active')
-            });
-            var target = document.querySelector('#tabRenew');
-            observer.observe(target, {
-                attributes: true
-            });
-
-        </script>
-        <div class="table-container clearfix">
-            <table id="tableRenewalsList" class="table table-list">
-                <thead>
-                    <tr>
-                        <th>{$LANG.orderdomain}</th>
-                        <th>{$LANG.domainstatus}</th>
-                        <th>{$LANG.clientareadomainexpirydate}</th>
-                        <th>{$LANG.domaindaysuntilexpiry}</th>
-                        <th>&nbsp;</th>
-                        <th>
-                            <div id="btnCheckout" style="display:none;">
-                                <a href="cart.php?a=view" class="btn btn-default">{$LANG.domainsgotocheckout} &raquo;</a>
-                            </div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {foreach $renewals as $id => $renewal}
-                        <tr id="domainRow{$renewal.id}" {if $selectedIDs && in_array($renewal.id, $selectedIDs)}class="highlight"{/if}>
-                            <td id="domain{$renewal.id}">{$renewal.domain}</td>
-                            <td id="status{$renewal.id}">
-                                <span class="label status status-{$renewal.statusClass}">{$renewal.status}</span>
-                                <span class="hidden">
-                                    {if $renewal.expiringSoon}<span>{lang key="domainsExpiringSoon"}</span>{/if}
-                                </span>
-                            </td>
-                            <td id="expiry{$renewal.id}"><span class="hidden">{$renewal.normalisedExpiryDate}</span>{$renewal.expiryDate}</td>
-                            <td id="days{$renewal.id}" class="text-center">
-                                {if $renewal.daysUntilExpiry > 30}
-                                    <span class="text-success">{$renewal.daysUntilExpiry} {$LANG.domainrenewalsdays}</span>
-                                {elseif $renewal.daysUntilExpiry > 0}
-                                    <span class="text-warning">{$renewal.daysUntilExpiry} {$LANG.domainrenewalsdays}</span>
-                                {elseif $renewal.daysUntilExpiry === 0}
-                                    <span class="text-warning">{lang key="expiresToday"}</span>
-                                {else}
-                                    <span class="text-danger">{$renewal.daysUntilExpiry*-1} {$LANG.domainrenewalsdaysago}</span>
-                                {/if}
-                                {if $renewal.inGracePeriod || $renewal.inRedemptionGracePeriod}
-                                    <br />
-                                    <span class="text-danger">
-                                        {if $renewal.inGracePeriod}
-                                            {lang key='domainrenewalsingraceperiod'}
-                                        {else}
-                                            {lang key='domainRenewalsInRedemptionGracePeriod'}
-                                        {/if}
-                                    </span>
-                                {/if}
-                            </td>
-                            <td id="period{$renewal.id}" class="text-center">
-                                {if $renewal.beforeRenewLimit}
-                                    <span class="text-danger">
-                                        {$LANG.domainrenewalsbeforerenewlimit|sprintf2:$renewal.beforeRenewLimitDays}
-                                    </span>
-                                {elseif $renewal.pastGracePeriod && $renewal.pastRedemptionGracePeriod}
-                                    <span class="textred">{$LANG.domainrenewalspastgraceperiod}</span>
-                                {else}
-                                    <select id="renewalPeriod{$renewal.id}" name="renewalPeriod[{$renewal.id}]">
-                                        {foreach $renewal.renewalOptions as $renewalOption}
-                                            <option value="{$renewalOption.period}">
-                                                {$renewalOption.period} {$LANG.orderyears} @ {$renewalOption.price}
-                                            </option>
-                                        {/foreach}
-                                    </select>
-                                {/if}
-                            </td>
-                            <td class="text-center">
-                                {if !$renewal.beforeRenewLimit && !($renewal.pastGracePeriod && $renewal.pastRedemptionGracePeriod)}
-                                    <button type="button" class="btn btn-primary btn-sm" id="renewButton{$renewal.id}" onclick="addRenewalToCart({$renewal.id}, this)">
-                                        <span class="glyphicon glyphicon-shopping-cart"></span> {$LANG.addtocart}
-                                    </button>
-                                {/if}
-                            </td>
-                        </tr>
-                    {/foreach}
-                </tbody>
-            </table>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12" id="backLink">
-                <a href="#tabOverview" class="btn btn-default btn-sm" data-toggle="tab" id="back">
-                    <i class="glyphicon glyphicon-backward"></i> {$LANG.clientareabacklink|replace:'&laquo; ':''}
-                </a>
-            </div>
         </div>
     </div>
 </div>

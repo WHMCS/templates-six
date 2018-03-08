@@ -11738,7 +11738,7 @@ table.dtr-inline.collapsed .responsive-edit-button {
 }
 .status-active,
 .status-open,
-.status.completed {
+.status-completed {
     color: #3fad46;
 }
 .status-suspended {

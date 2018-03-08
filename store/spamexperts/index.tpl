@@ -348,7 +348,7 @@
                 <br>
                 <form method="post" action="">
                     <select name="currency" class="form-control ssl-currency-selector" onchange="submit()" style="width:250px;">
-                        <option>Change Currency ({$activeCurrency.prefix} {$activeCurrency.code})</option>
+                        <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
                         {foreach $currencies as $currency}
                             <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
                         {/foreach}

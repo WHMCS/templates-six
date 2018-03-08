@@ -22,7 +22,18 @@
         {if count($certificates.wildcard) > 0 || $inPreview}
             <li{if $current == 'wildcard'} class="active"{/if}><a href="{routePath('store-ssl-certificates-wildcard')}">Wildcard</a></li>
         {/if}
+        <li{if $current == 'competitiveupgrade'} class="active"{/if}><a href="{routePath('store-ssl-certificates-competitiveupgrade')}">Switch to Us</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
+{if $inCompetitiveUpgrade}
+    <div class="competitive-upgrade-banner" id="competitiveUpgradeBanner">
+        <div class="container">
+            <button class="btn btn-default btn-sm pull-right" onclick="$('#competitiveUpgradeBanner').slideUp()">{lang key="dismiss"}</button>
+            <h4>{lang key="store.ssl.competitiveUpgrade"}</h4>
+            <p>{lang key="store.ssl.competitiveUpgradeBannerMsg" domain=$competitiveUpgradeDomain}</p>
+        </div>
+    </div>
+{/if}

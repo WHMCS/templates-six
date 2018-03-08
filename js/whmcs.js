@@ -149,13 +149,19 @@ jQuery(document).ready(function() {
     // Mass Domain Management Bulk Action Handling
     jQuery(".setBulkAction").click(function(event) {
         event.preventDefault();
-        var id = jQuery(this).attr('id').replace("Link", "");
-        if (jQuery("#" + id).length != 0) {
-            var action = jQuery("#domainForm").attr("action");
-            jQuery("#domainForm").attr("action", action + "#" + id);
+        var id = jQuery(this).attr('id').replace('Link', ''),
+            domainForm = jQuery('#domainForm');
+
+        if (id === 'renewDomains') {
+            domainForm.attr('action', WHMCS.utils.getRouteUrl('/cart/domain/renew'));
+        } else {
+            if (jQuery('#' + id).length !== 0) {
+                var action = domainForm.attr('action');
+                domainForm.attr('action', action + '#' + id);
+            }
+            jQuery('#bulkaction').val(id);
         }
-        jQuery("#bulkaction").val(id);
-        jQuery("#domainForm").submit();
+        domainForm.submit();
     });
 
     // Stop events on objects with this class from bubbling up the dom

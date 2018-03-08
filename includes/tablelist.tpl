@@ -20,7 +20,7 @@ if (typeof(buildFilterRegex) !== "function") {
         }
     }
 }
-jQuery.(document).ready(function () {ldelim}
+jQuery(document).ready(function () {ldelim}
     jQuery(".view-filter-btns a").click(function(e) {ldelim}
         var filterValue = jQuery(this).find("span").not('.badge').html().trim();
         var dataTable = jQuery('#table{$tableName}').DataTable();
@@ -59,7 +59,8 @@ jQuery(document).ready( function () {ldelim}
         "dom": '<"listtable"fit>pl',{if isset($noPagination) && $noPagination}
         "paging": false,{/if}{if isset($noInfo) && $noInfo}
         "info": false,{/if}{if isset($noSearch) && $noSearch}
-        "filter": false,{/if}
+        "filter": false,{/if}{if isset($noOrdering) && $noOrdering}
+        "ordering": false,{/if}
         "responsive": true,
         "oLanguage": {ldelim}
             "sEmptyTable":     "{$LANG.norecordsfound}",

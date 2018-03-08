@@ -64,7 +64,7 @@
 
         <br />
 
-        {if $systemStatus == 'Active'
+        {if $canDomainBeManaged
             and (
                 $managementoptions.nameservers or
                 $managementoptions.contacts or
@@ -75,21 +75,21 @@
             <h4>{$LANG.doToday}</h4>
 
             <ul>
-                {if $managementoptions.nameservers}
+                {if $systemStatus == 'Active' && $managementoptions.nameservers}
                     <li>
                         <a class="tabControlLink" data-toggle="tab" href="#tabNameservers">
                             {$LANG.changeDomainNS}
                         </a>
                     </li>
                 {/if}
-                {if $managementoptions.contacts}
+                {if $systemStatus == 'Active' && $managementoptions.contacts}
                     <li>
                         <a href="clientarea.php?action=domaincontacts&domainid={$domainid}">
                             {$LANG.updateWhoisContact}
                         </a>
                     </li>
                 {/if}
-                {if $managementoptions.locking}
+                {if $systemStatus == 'Active' && $managementoptions.locking}
                     <li>
                         <a class="tabControlLink" data-toggle="tab" href="#tabReglock">
                             {$LANG.changeRegLock}
@@ -98,7 +98,7 @@
                 {/if}
                 {if $renew}
                     <li>
-                        <a href="cart.php?gid=renewals">
+                        <a href="{routePath('domain-renewal', $domain)}">
                             {$LANG.renewYourDomain}
                         </a>
                     </li>

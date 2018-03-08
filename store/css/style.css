@@ -367,6 +367,12 @@ section#main-body {
     margin-top: 0;
 }
 
+@media (min-width: 992px) {
+    .landing-page.ssl .navbar .navbar-nav > li {
+        width: 20%;
+    }
+}
+
 .landing-page.ssl .content-block h1,
 .landing-page.ssl .content-block h2,
 .landing-page.ssl .content-block h3,
@@ -379,7 +385,7 @@ section#main-body {
 
 .landing-page.ssl .validation-levels {
     padding: 20px 20px 0 20px;
-    background-color: #1b446d;
+    background-color: #327ba7;
     text-align: center;
 }
 .landing-page.ssl .validation-levels h3 {
@@ -518,6 +524,36 @@ section#main-body {
     }
 }
 
+.landing-page.ssl .competitive-upgrade-promo {
+    margin: 80px 0 40px 0;
+    background-color: #327aa7;
+    font-size: 2em;
+    color: #fff;
+    font-weight: 300;
+    text-align: center;
+}
+.landing-page.ssl .competitive-upgrade-promo a {
+    color: #fff;
+    text-decoration: underline;
+}
+.landing-page.ssl .competitive-upgrade-banner {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   padding: 12px;
+   width: 100%;
+   background: #444;
+   color: #eee;
+   z-index: 100;
+}
+.landing-page.ssl .competitive-upgrade-banner button.close {
+    color: #fff;
+}
+.landing-page.ssl .competitive-upgrade-banner h4,
+.landing-page.ssl .competitive-upgrade-banner p {
+    margin: 2px 0;
+}
+
 .landing-page.ssl .detailed-info {
     padding: 80px 0;
     background-color: #f8f8f8;
@@ -532,7 +568,7 @@ section#main-body {
     text-align: center;
 }
 .landing-page.ssl .detailed-info .panel-heading {
-    background-color: #336699;
+    background-color: #327aa7;
     color: #fff;
     border-radius: 3px;
 }
@@ -841,6 +877,10 @@ section#main-body {
 .landing-page.sitelock .plans h3,
 .landing-page.sitelock .emergency h3 {
     color: #fff;
+}
+
+.landing-page.sitelock .emergency h2.text-danger {
+    color: #ff8f8f;
 }
 
 .landing-page.sitelock .plans .plan-comparison {

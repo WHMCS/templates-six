@@ -23,7 +23,7 @@
           <ul class="nav navbar-nav">
             <li><a href="#" onclick="smoothScroll('#plans');return false">Plans & Pricing</a></li>
             <li><a href="#" onclick="smoothScroll('#features');return false">Features</a></li>
-            <li><a href="#" onclick="smoothScroll('#emergency');return false">Already compromised?</a></li>
+            <li><a href="#" onclick="smoothScroll('#emergency');return false">Website Hacked?</a></li>
             <li><a href="#" onclick="smoothScroll('#faq');return false">FAQ</a></li>
           </ul>
         </div>
@@ -49,6 +49,16 @@
     <div class="content-block plans" id="plans">
         <div class="container">
 
+            {if !$loggedin && $currencies}
+                <form method="post" action="" class="pull-right">
+                    <select name="currency" class="form-control currency-selector" onchange="submit()">
+                        <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
+                        {foreach $currencies as $currency}
+                            <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
+                        {/foreach}
+                    </select>
+                </form>
+            {/if}
             <h2>Compare SiteLock Plans</h2>
             <h3>Professional security features for your website</h3>
 
@@ -220,8 +230,8 @@
     <div class="content-block emergency" id="emergency">
         <div class="container">
 
-            <h2>Already compromised?</h2>
-            <h3>Recover your website with SiteLock Emergency Response</h3>
+            <h2 class="text-danger">Website Hacked?</h2>
+            <h3>Fix it now with SiteLock Emergency Response</h3>
 
             <p>If your website has been attacked and compromised get immediate emergency assistance to quickly recover your site. Here's how SiteLock Emergency Response helps:</p>
 

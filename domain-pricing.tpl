@@ -1,102 +1,175 @@
 <div class="domain-pricing">
 
+    {if $featuredTlds}
+        <div class="featured-tlds-container">
+            <div class="row">
+                {foreach $featuredTlds as $num => $tldinfo}
+                    <div class="col-md-3 col-sm-4 col-xs-6">
+                        <div class="featured-tld">
+                            <div class="img-container">
+                                <img src="{$BASE_PATH_IMG}/tld_logos/{$tldinfo.tldNoDots}.png">
+                            </div>
+                            <div class="price {$tldinfo.tldNoDots}">
+                                {if is_object($tldinfo.register)}
+                                    {$tldinfo.register->toPrefixed()}{if $tldinfo.period > 1}{lang key="orderForm.shortPerYears" years={$tldinfo.period}}{else}{lang key="orderForm.shortPerYear" years=''}{/if}
+                                {else}
+                                    {lang key="domainregnotavailable"}
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+    {/if}
+
+    {if !$loggedin && $currencies}
+        <form method="post" action="" class="pull-right">
+            <select name="currency" class="form-control currency-selector" onchange="submit()">
+                <option>
+                    {lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})
+                </option>
+                {foreach $currencies as $currency}
+                    <option value="{$currency['id']}">
+                        {$currency['prefix']} {$currency['code']}
+                    </option>
+                {/foreach}
+            </select>
+        </form>
+    {/if}
+
     <h4>{lang key='pricing.browseExtByCategory'}</h4>
 
     <div class="tld-filters">
-        {foreach $categories as $category => $count}
+        {foreach $tldCategories as $category => $count}
             <a href="#" data-category="{$category}" class="label label-default">{lang key="domainTldCategory.$category" defaultValue=$category} ({$count})</a>
         {/foreach}
     </div>
 
-    <div class="row tld-pricing-header text-center">
-        <div class="col-sm-3 no-bg">{lang key='orderdomain'}</div>
-        <div class="col-sm-9 no-bg">
-            <div class="row no-bg">
-                <div class="col-xs-1 no-bg"></div>
-                <div class="col-xs-2">{lang key='pricing.register'}</div>
-                <div class="col-xs-2">{lang key='pricing.transfer'}</div>
-                <div class="col-xs-2">{lang key='pricing.renewal'}</div>
-                <div class="col-xs-2">{lang key='gracePeriod'}</div>
-                <div class="col-xs-2">{lang key='redemptionPeriod'}</div>
-                <div class="col-xs-1 no-bg"></div>
-            </div>
-        </div>
-    </div>
-    {foreach $extensions as $order => $extension}
-        <div class="row tld-row" data-category="{foreach $extension.top_level.categories as $category}|{$category.category}|{/foreach}">
-            <div class="col-sm-3 two-row-center">
-                <strong>{$extension.extension}</strong>
-                {if $extension.group}
-                    <span class="tld-sale-group tld-sale-group-{$extension.group}">{$extension.group}!</span>
-                {/if}
-            </div>
-            <div class="col-sm-9">
-                <div class="row">
-                    <div class="col-xs-1"></div>
-                    {foreach $extension.pricing as $years => $price}
-                        <div class="col-xs-2 text-center">
-                            {if $price.register >= 0}
-                                {$price.register}<br>
+    {include file="$template/includes/tablelist.tpl" tableName="DomainPricing" noOrdering=true}
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            var table = jQuery('#tableDomainPricing').removeClass('hidden').DataTable();
+            {if $orderby == 'date'}
+                table.order(0, '{$sort}');
+            {elseif $orderby == 'subject'}
+                table.order(1, '{$sort}');
+            {/if}
+            table.draw();
+            jQuery('#tableLoading').addClass('hidden');
+            jQuery('.tld-filters a').unbind();
+            jQuery('.tld-filters a').click(function(e) {
+                e.preventDefault();
+                if (jQuery(this).hasClass('label-success')) {
+                    jQuery('#tableDomainPricing_wrapper input[type="search"]').val('').trigger('keyup');
+                    jQuery('.tld-filters a').removeClass('label-success');
+                } else {
+                    jQuery('#tableDomainPricing_wrapper input[type="search"]').val(jQuery(this).data('category')).trigger('keyup');
+                    jQuery('.tld-filters a').removeClass('label-success');
+                    jQuery(this).addClass('label-success');
+                }
+            });
+        });
+    </script>
+
+    <div class="table-container clearfix">
+        <table class="table table-list hidden" id="tableDomainPricing">
+            <thead>
+            <tr>
+                <th>{lang key='domaintld'}</th>
+                <th>{lang key='category'}</th>
+                <th>{lang key='pricing.register'}</th>
+                <th>{lang key='pricing.transfer'}</th>
+                <th>{lang key='pricing.renewal'}</th>
+                <th>{lang key='gracePeriod'}</th>
+                <th>{lang key='redemptionPeriod'}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $pricing as $extension => $data}
+                <tr>
+                    <td>
+                        {$extension}
+                        {if $data.group}
+                            <span class="tld-sale-group tld-sale-group-{$data.group}">
+                                {$data.group}!
+                            </span>
+                        {/if}
+                    </td>
+                    <td>
+                        {$data.categories[0]}
+                        <span class="hidden">
+                            {foreach $data.categories as $category}
+                                {$category}
+                            {/foreach}
+                        </span>
+                    </td>
+                    {foreach $data.register as $years => $price}
+                        <td>
+                            {if $price >= 0}
+                                {$price}<br>
                                 <small>{$years} {if $years > 1}{lang key="orderForm.years"}{else}{lang key="orderForm.year"}{/if}</small>
                             {else}
-                                <small>N/A</small>
+                                <small>{lang key="domainregnotavailable"}</small>
                             {/if}
-                        </div>
-                        <div class="col-xs-2 text-center">
-                            {if $price.transfer >= 0}
-                                {$price.transfer}<br>
-                                <small>{$years} {if $years > 1}{lang key="orderForm.years"}{else}{lang key="orderForm.year"}{/if}</small>
-                            {else}
-                                <small>N/A</small>
-                            {/if}
-                        </div>
-                        <div class="col-xs-2 text-center">
-                            {if $price.renew >= 0}
-                                {$price.renew}<br>
-                                <small>{$years} {if $years > 1}{lang key="orderForm.years"}{else}{lang key="orderForm.year"}{/if}</small>
-                            {else}
-                                <small>N/A</small>
-                            {/if}
-                        </div>
+                        </td>
                         {break}
+                    {foreachelse}
+                        <td>-</td>
                     {/foreach}
-                    <div class="col-xs-2 text-center">
-                        {if $extension.grace_period_fee != -1}
-                            {$extension.grace_period_fee}<br>
-                            {if $extension.grace_period >= 0}
-                                {$extension.grace_period}
+                    {foreach $data.transfer as $years => $price}
+                        <td>
+                            {if $price >= 0}
+                                {$price}<br>
+                                <small>{$years} {if $years > 1}{lang key="orderForm.years"}{else}{lang key="orderForm.year"}{/if}</small>
                             {else}
-                                {$extension.defaultGracePeriod}
-                            {/if} {lang key='domainrenewalsdays'}
-                        {else}-{/if}
-                    </div>
-                    <div class="col-xs-2 text-center">
-                        {if $extension.redemption_grace_period_fee != -1}
-                            {$extension.redemption_grace_period_fee}<br>
-                            {if $extension.redemption_grace_period >= 0}
-                                {$extension.redemption_grace_period}
+                                <small>{lang key="domainregnotavailable"}</small>
+                            {/if}
+                        </td>
+                        {break}
+                    {foreachelse}
+                        <td>-</td>
+                    {/foreach}
+                    {foreach $data.renew as $years => $price}
+                        <td>
+                            {if $price >= 0}
+                                {$price}<br>
+                                <small>{$years} {if $years > 1}{lang key="orderForm.years"}{else}{lang key="orderForm.year"}{/if}</small>
                             {else}
-                                {$extension.defaultRedemptionGracePeriod}
-                            {/if} {lang key='domainrenewalsdays'}
-                        {else}-{/if}
-                    </div>
-                    <div class="col-xs-1"></div>
-                </div>
-            </div>
-        </div>
-    {/foreach}
-    <div class="row tld-row no-tlds">
-        <div class="col-xs-12 text-center">
-            <br>
-            {lang key='pricing.selectExtCategory'}
-            <br><br>
+                                <small>{lang key="domainregnotavailable"}</small>
+                            {/if}
+                        </td>
+                        {break}
+                    {foreachelse}
+                        <td>-</td>
+                    {/foreach}
+                    <td>
+                        {if is_null($data.grace_period)}
+                            -
+                        {else}
+                            {$data.grace_period.days} {lang key='domainrenewalsdays'}<br>
+                            <small>({$data.grace_period.price})</small>
+                        {/if}
+                    </td>
+                    <td>
+                        {if is_null($data.redemption_period)}
+                            -
+                        {else}
+                            {$data.redemption_period.days} {lang key='domainrenewalsdays'}<br>
+                            <small>({$data.redemption_period.price})</small>
+                        {/if}
+                    </td>
+                </tr>
+            {foreachelse}
+                <tr>
+                    <td colspan="7">{lang key="pricing.noExtensionsDefined"}</td>
+                </tr>
+            {/foreach}
+            </tbody>
+        </table>
+        <div class="text-center" id="tableLoading">
+            <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
         </div>
     </div>
 
 </div>
-
-<script>
-    jQuery(document).ready(function() {
-        jQuery('.tld-filters a:first-child').click();
-    });
-</script>

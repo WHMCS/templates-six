@@ -42,7 +42,7 @@
             <h3>
                 {if $product->isFree()}
                     {lang key="orderfree"}
-                {else}
+                {elseif $product->pricing()->first()}
                     {$product->pricing()->first()->breakdownPrice()}
                 {/if}
             </h3>
@@ -52,7 +52,7 @@
                     <i class="fa fa-spinner fa-spin"></i>
                 </span>
                 <span class="text">
-                    Add to Cart
+                    {lang key="addtocart"}
                 </span>
             </button>
         </div>

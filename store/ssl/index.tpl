@@ -53,14 +53,14 @@
             <div class="row">
                 <div class="col-sm-4 col-md-3 col-sm-push-8 col-md-push-9 text-right hidden-xs">
                     <br><br>
-                    <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png">
+                    <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-multi.png">
                 </div>
                 <div class="col-sm-8 col-md-9 col-sm-pull-4 col-md-pull-3">
 
                     <h2>What is SSL?</h2>
 
                     <div class="text-center visible-xs">
-                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl.png">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-multi.png">
                         <br><br>
                     </div>
 
@@ -96,9 +96,13 @@
     <div class="content-block ssl-benefits standout">
         <div class="container">
 
-            <h2>Benefits of SSL</h2>
+            <h2>Improve Your Search Engine Ranking</h2>
 
             <h4>Establish trust and online security for your website visitors and business.</h4>
+
+            <p>Google wants to make the web safer and a big part of that involves making sure that the sites people access via Google are secure. That's why websites using SSL have been shown to benefit from higher ranking in search results.</p>
+
+            <p>There's also a lot more reasons why you should consider adding SSL to your website:</p>
 
             <div class="row">
                 <div class="col-md-2 col-sm-4">
@@ -148,7 +152,12 @@
     </div>
     <div class="clearfix"></div>
 
-    <br>
+    <div class="content-block competitive-upgrade-promo">
+        <div class="container">
+            Upgrade with us and get up to an additional 12 months free.
+            <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">Learn more &raquo;</a>
+        </div>
+    </div>
 
     <div class="content-block standout">
         <div class="container">
@@ -251,6 +260,26 @@
                     <h4>What are the different types of SSL?</h4>
 
                     <p>There are 3 different levels of vetting that SSL Certificates are based upon. Domain Validated (DV) , Organization Validated (OV), and Extended Validation (EV). The major difference between the types of certificate relates to the information the Certificate Authority, RapidSSL, GeoTrust and Symantec, requires and validates in order to issue a certificate. The higher levels of certificate require more information, and often is displayed in the browser bar. EV SSL for example turns the browser bar green and displays the organization name to visitors to generate more trust.</p>
+
+                    {if count($certificates.wildcard) > 0 || $inPreview}
+
+                        <h4>What is a Wildcard SSL Certificate</h4>
+
+                        <p>A Wildcard SSL certificate provides the same encryption and authentication features as other SSL certificates but can also be applied to an unlimited number of subdomains of a website. A Wildcard SSL certificate supports the root domain (example.com) as well as its subdomains. <a href="{routePath('store-ssl-certificates-wildcard')}">Learn more</a></p>
+
+                    {/if}
+
+                    {if count($certificates.ev) > 0 || $inPreview}
+
+                        <h4>What are the advantages of an EV SSL Certificate?</h4>
+
+                        <p>EV, or Extended Validation, is the highest class of SSL available today and gives more credibility and trust to your website than other SSL Certificates. They include features such as the green address bar and display of your company name that have been proven to boost trust and consumer confidence.</p>
+
+                    {/if}
+
+                    <h4>What if I already have an SSL Certificate?</h4>
+
+                    <p>You can switch to us at any time.  We offer highly competitive pricing and if you already have an existing certificate, we'll add any remaining validity that you have on your existing competitor SSL Certificate up to a maximum of an additional 12 months. <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">Learn more</a></p>
 
                 </div>
               </div>
