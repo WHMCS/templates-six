@@ -6,3 +6,132 @@
     defined here.
 
 ***************************************************** */
+
+section#header {
+    margin: 0;
+    padding: 10px 0;
+    background: #7a7de5;
+    border-radius: 5px 5px 0 0;
+}
+section#header .logo img {
+    margin: 0;
+    padding: 0;
+    max-height: 80px;
+    vertical-align: middle;
+}
+
+section#footer p {
+    margin: 25px 0 0 0;
+    border-top: 20px solid #7a7de5;
+    line-height: 40px;
+    color: #666;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.navbar-main .navbar-nav>.active>a, .navbar-main .navbar-nav>.active>a:focus, .navbar-main .navbar-nav>.active>a:hover, .navbar-main .navbar-nav>.open>a, .navbar-main .navbar-nav>.open>a:focus, .navbar-main .navbar-nav>.open>a:hover, .navbar-main .navbar-nav>li>a:focus, .navbar-main .navbar-nav>li>a:hover {
+    color: #eee;
+    background-color: #6064f1;
+}
+
+ul.top-nav>li.primary-action>a.btn {
+    padding: 6px 15px;
+    background-color: #080808;
+    color: #fff;
+    border-radius: 3px;
+}
+
+ul.top-nav>li>a {
+    padding: 6px 10px;
+    color: #fff;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.navbar-main {
+    margin-bottom: 0;
+    background-color: #000;
+    border: 0;
+    min-height: 38px;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+}
+
+#top-nav .nav {
+    margin: 0;
+    padding: 0;
+    line-height: 22px;
+    font-size: 14px;
+}
+#top-nav a.quick-nav {
+    margin: 0 0 0 15px;
+    padding: 0;
+    color: #fff;
+}
+
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+    background-color: #7a7de5;
+}
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #484cc9;
+    border-color: #ffffff;
+}
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #7a7de5;
+    border-color: #7a7de5;
+}
+
+.btn-primary {
+    color: #fff;
+  background-color: #484cc9;
+    border-color: #484cc9;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    color: white;
+    background-color: #3033a3;
+    border-color: #3033a3;
+}
+
+.dataTables_wrapper .dataTables_info {
+    padding: 9px 10px;
+    background-color: #3033a3;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    font-size: 0.9em;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    text-align: left !important;
+}
+.btn-info {
+    color: #fff;
+    background-color: #3033a3;
+    border-color: #3033a3;
+}
+div.header-lined h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding: 6px 0;
+    border-bottom: 1px solid #ccc;
+    font-weight: 400;
+    color: #3033a3;
+}
+
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+    background-color: #484cc9;
+}
+.navbar-main .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    text-decoration: none;
+    color: #fff;
+    background-color: #484cc9;
+}
+.domain-lookup-result .btn:not(.domain-contact-support) {
+    width: 120px;
+}
+element.style {
+    background-color: #337ab7;
+    width: 100%;
+}
+
