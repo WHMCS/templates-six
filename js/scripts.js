@@ -14246,9 +14246,11 @@ dataTable: function () {
                 options = {
                     dom: '<"listtable"ift>pl',
                     paging: false,
+                    lengthChange: false,
                     searching: false,
                     ordering: true,
                     info: false,
+                    autoWidth: true,
                     language: {
                         emptyTable: (el.data('lang-empty-table')) ? el.data('lang-empty-table') : "No records found"
                     }
@@ -14259,6 +14261,10 @@ dataTable: function () {
                 options.ajax = {
                     url: ajaxUrl
                 };
+            }
+            var dom = el.data('dom');
+            if (typeof dom !== 'undefined') {
+                options.dom = dom;
             }
             var searching = el.data('searching');
             if (typeof searching !== 'undefined') {
@@ -14282,7 +14288,19 @@ dataTable: function () {
             }
             var autoWidth = el.data('auto-width');
             if (typeof autoWidth !== 'undefined') {
-                options["bAutoWidth"] = autoWidth;
+                options["autoWidth"] = autoWidth;
+            }
+            var paging = el.data('paging');
+            if (typeof paging !== 'undefined') {
+                options["paging"] = paging;
+            }
+            var lengthChange = el.data('length-change');
+            if (typeof lengthChange !== 'undefined') {
+                options["lengthChange"] = lengthChange;
+            }
+            var pageLength = el.data('page-length');
+            if (typeof pageLength !== 'undefined') {
+                options["pageLength"] = pageLength;
             }
 
             self.tables[id] = self.initTable(el, options);

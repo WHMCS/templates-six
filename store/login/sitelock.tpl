@@ -10,7 +10,7 @@
 
                 <h3>{lang key="store.sitelock.title"}</h3>
                 <h4>{lang key="store.sitelock.manageService"}</h4>
-                <form action="" method="post">
+                <form action="{routePath('upgrade')}" method="post">
                     <input type="hidden" name="action" value="manage-service" />
                     <p>
                         {if count($accounts) > 1}
@@ -23,12 +23,19 @@
                             <input type="hidden" name="service-id" value="{if $accounts[0].type == 'addon'}a{/if}{$accounts[0].id}">
                         {/if}
                     </p>
-                    <button class="btn btn-default btn-service-sso">
+                    <button type="button" class="btn btn-default btn-service-sso">
                         <span class="loading hidden">
                             <i class="fa fa-spinner fa-spin"></i>
                         </span>
                         <span class="text">{lang key="manage"}</span>
                     </button>
+                    {if count($accounts) == 1}
+                        <input type="hidden" name="isproduct" value="{if $accounts[0].type == 'addon'}0{else}1{/if}">
+                        <input type="hidden" name="serviceid" value="{$accounts[0].id}">
+                        <button type="submit" class="btn btn-default">
+                            {lang key="upgrade"}
+                        </button>
+                    {/if}
                     <span class="login-feedback"></span>
                 </form>
 

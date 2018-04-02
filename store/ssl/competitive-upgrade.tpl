@@ -85,7 +85,7 @@
                                     </button>
                                 </span>
                             </div>
-                            <p><small>* Offer valid for Comodo, GlobalSign, Entrust, GoDaddy and DigiCert SSL Certificates.</small></p>
+                            <p><small>* Offer valid for Comodo, GlobalSign, Entrust, and GoDaddy SSL Certificates.</small></p>
                         {/if}
                     </form>
 

@@ -13325,6 +13325,9 @@ div.md-editor.active {
  * -------------------------
  */
 
+.panel-mc-sso {
+    min-height: 160px;
+}
 .panel-mc-sso .icon-container {
     margin: 0 auto;
     max-width: 400px;
@@ -13571,6 +13574,100 @@ div.md-editor.active {
     margin-bottom: 10px;
     color: #888;
     font-size: 12px;
+}
+
+/**
+ * -------------------------
+ * Service Upgrade
+ * -------------------------
+ */
+
+.upgrade .product-to-be-upgraded {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+}
+.upgrade .product-to-be-upgraded h4,
+.upgrade .product-to-be-upgraded h5 {
+    margin: 0;
+}
+.upgrade .products {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.upgrade .products .column {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.upgrade .products .product {
+    margin: 20px 0;
+    padding: 0;
+    background-color: #fff;
+}
+.upgrade .products .product .current,
+.upgrade .products .product .recommended {
+    padding: 5px;
+    background-color: #ffbc00;
+    color: #f5f5f5;
+    font-weight: bold;
+    text-align: center;
+}
+.upgrade .products .product .recommended {
+    background-color: #25ac2f;
+}
+.upgrade .products .product ul {
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+.upgrade .products .product .footer {
+    border: 1px solid #eee;
+    border-top: 0;
+}
+.upgrade .products .product .header {
+    margin: 0;
+    padding: 20px;
+    background-color: #2b5580;
+    color: #fff;
+}
+.upgrade .products .product .header p {
+    font-size: 1.1em;
+    font-weight: 300;
+}
+.upgrade .products .product ul {
+    margin: 0;
+    padding: 20px 25px;
+    list-style: none;
+}
+.upgrade .products .product ul li {
+    line-height: 25px;
+    font-size: 0.9em;
+    text-align: right;
+    color: #aaa;
+    border-bottom: 1px solid #eee;
+}
+.upgrade .products .product ul li:last-child {
+    border: 0;
+}
+.upgrade .products .product ul li span {
+    float: left;
+    color: #444;
+}
+.upgrade .products .fa {
+    font-size: 1.3em;
+}
+.upgrade .products .fa-check {
+    color: #23ad2e;
+}
+.upgrade .products .product .footer {
+    margin: 0;
+    padding: 20px;
+}
+.upgrade .products .product .footer select {
+    margin-bottom: 10px;
+}
+.upgrade .products .product .btn {
+    background-color: #2b5580;
+    color: #fff;
 }
 
 /**
