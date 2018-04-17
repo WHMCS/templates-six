@@ -14512,8 +14512,53 @@ function () {
         return whmcsBaseUrl + "/index.php?rp=" + path;
     };
 
+    this.validateBaseUrl = function() {
+        if (typeof window.whmcsBaseUrl === 'undefined') {
+            console.log('Warning: The WHMCS Base URL definition is missing '
+                + 'from your active template. Please refer to '
+                + 'https://docs.whmcs.com/WHMCS_Base_URL_Template_Variable '
+                + 'for more information and details of how to resolve this '
+                + 'warning.');
+            window.whmcsBaseUrl = this.autoDetermineBaseUrl();
+            window.whmcsBaseUrlAutoSet = true;
+        } else if (window.whmcsBaseUrl === ''
+            && typeof window.whmcsBaseUrlAutoSet !== 'undefined'
+            && window.whmcsBaseUrlAutoSet === true
+        ) {
+            window.whmcsBaseUrl = this.autoDetermineBaseUrl();
+        }
+    };
+
+    this.autoDetermineBaseUrl = function() {
+        var windowLocation = window.location.href;
+        var phpExtensionLocation = -1;
+
+        if (typeof windowLocation !== 'undefined') {
+            phpExtensionLocation = windowLocation.indexOf('.php');
+        }
+
+        if (phpExtensionLocation === -1) {
+            windowLocation = jQuery('#Primary_Navbar-Home a').attr('href');
+            if (typeof windowLocation !== 'undefined') {
+                phpExtensionLocation = windowLocation.indexOf('.php');
+            }
+        }
+
+        if (phpExtensionLocation !== -1) {
+            windowLocation = windowLocation.substring(0, phpExtensionLocation);
+            var lastTrailingSlash = windowLocation.lastIndexOf('/');
+            if (lastTrailingSlash !== false) {
+                return windowLocation.substring(0, lastTrailingSlash);
+            }
+        }
+
+        return '';
+    };
+
     return this;
 });
+
+WHMCS.utils.validateBaseUrl();
 
 /**
  * Javascript functions utilised by the client area templates.
