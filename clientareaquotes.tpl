@@ -41,7 +41,7 @@
                         <form method="submit" action="dl.php">
                             <input type="hidden" name="type" value="q" />
                             <input type="hidden" name="id" value="{$quote.id}" />
-                            <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-download"></i> {$LANG.quotedownload}</button>
+                            <button type="submit" class="btn btn-default btn-sm"><i class="fas fa-download"></i> {$LANG.quotedownload}</button>
                         </form>
                     </td>
                     <td class="responsive-edit-button" style="display: none;">
@@ -54,6 +54,6 @@
         </tbody>
     </table>
     <div class="text-center" id="tableLoading">
-        <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+        <p><i class="fas fa-spinner fa-spin"></i> {$LANG.loading}</p>
     </div>
 </div>

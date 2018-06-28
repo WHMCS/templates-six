@@ -309,8 +309,18 @@ section#main-body {
     font-size: 0.92em;
 }
 
+.landing-page.weebly .weebly-lite-plan {
+    margin: 0 0 30px 0;
+    padding: 20px;
+    background-color: #dceefd;
+    border: 1px solid #a7cdec;
+}
+
 .landing-page.weebly .pricing-item ul {
-    height: 235px;
+    height: 290px;
+}
+.landing-page.weebly .pricing-item ul.ecommerce-features {
+    height: 265px;
 }
 
 @media (max-width: 767px) {
@@ -440,7 +450,8 @@ section#main-body {
 .landing-page.ssl .what-is-ssl ul li {
     line-height: 2em;
 }
-.landing-page.ssl .what-is-ssl .fa {
+.landing-page.ssl .what-is-ssl .fas,
+.landing-page.ssl .what-is-ssl .far {
     float: left;
     color: #44737e;
     font-size: 2em;
@@ -932,7 +943,8 @@ section#main-body {
     float: left;
     color: #444;
 }
-.landing-page.sitelock .plans .fa {
+.landing-page.sitelock .plans .fas,
+.landing-page.sitelock .plans .far {
     font-size: 1.3em;
 }
 .landing-page.sitelock .plans .fa-check {
@@ -970,7 +982,8 @@ section#main-body {
     background-color: transparent;
     text-align: left;
 }
-.landing-page.sitelock .features .fa {
+.landing-page.sitelock .features .fas,
+.landing-page.sitelock .features .far {
     color: #336699;
 }
 
@@ -982,7 +995,8 @@ section#main-body {
 .landing-page.sitelock .emergency .price {
     font-size: 2em;
 }
-.landing-page.sitelock .emergency .fa {
+.landing-page.sitelock .emergency .fas,
+.landing-page.sitelock .emergency .far {
     color: #f5e88e;
 }
 .landing-page.sitelock .emergency .btn {

@@ -13879,6 +13879,22 @@ if (typeof jQuery === 'undefined') {
     }
 ));
 
+jQuery(document).ready(function() {
+    jQuery(document).on('click', '.disable-on-click', function () {
+        jQuery(this).addClass('disabled');
+
+        if (jQuery(this).hasClass('spinner-on-click')) {
+            var icon = $(this).find('i.fas,i.far,i.fal,i.fab');
+
+            jQuery(icon)
+                .removeAttr('class')
+                .addClass('fas fa-spinner fa-spin');
+        }
+    });
+
+    WHMCS.form.register();
+});
+
 /**
  * WHMCS authentication module
  *
@@ -13930,7 +13946,7 @@ provider: function () {
     };
 
     this.preLinkInit = function (callback) {
-        var icon = '<i class="fa fa-fw fa-spinner fa-spin"></i> ';
+        var icon = '<i class="fas fa-fw fa-spinner fa-spin"></i> ';
 
         this.feedbackContainer()
             .removeClass('alert-danger alert-success')
@@ -14166,6 +14182,138 @@ registration: function () {
 }});
 
 /**
+ * WHMCS HTTP module
+ *
+ * @copyright Copyright (c) WHMCS Limited 2005-2018
+ * @license http://www.whmcs.com/license/ WHMCS Eula
+ */
+(function(module) {
+    if (!WHMCS.hasModule('http')) {
+        WHMCS.loadModule('http', module);
+    }
+})({
+jqClient: function () {
+    _getSettings = function (url, data, success, dataType)
+    {
+        if (typeof url === 'object') {
+            /*
+                Settings may be the only argument
+             */
+            return url;
+        }
+
+        if (typeof data === 'function') {
+            /*
+                If 'data' is omitted, 'success' will come in its place
+             */
+            success = data;
+            data = null;
+        }
+
+        return {
+            url: url,
+            data: data,
+            success: success,
+            dataType: dataType
+        };
+    };
+
+    /**
+     * @param url
+     * @param data
+     * @param success
+     * @param dataType
+     * @returns {*}
+     */
+    this.get = function (url, data, success, dataType)
+    {
+        return WHMCS.http.client.request(
+            jQuery.extend(
+                _getSettings(url, data, success, dataType),
+                {
+                    type: 'GET'
+                }
+            )
+        );
+    };
+
+    /**
+     * @param url
+     * @param data
+     * @param success
+     * @param dataType
+     * @returns {*}
+     */
+    this.post = function (url, data, success, dataType)
+    {
+        return WHMCS.http.client.request(
+            jQuery.extend(
+                _getSettings(url, data, success, dataType),
+                {
+                    type: 'POST'
+                }
+            )
+        );
+    };
+
+    return this;
+},
+
+client: function () {
+    var methods = ['get', 'post', 'put', 'delete'];
+    var client = this;
+
+    _beforeRequest = function (settings)
+    {
+        /*
+            Enforcing dataType was found to break many invocations expecting HTML back.
+            If/when those are refactored, this may be uncommented to enforce a safer
+            data transit.
+         */
+        /*if (typeof settings.dataType === 'undefined') {
+            settings.dataType = 'json';
+        }*/
+
+        if (typeof settings.type === 'undefined') {
+            // default request type is GET
+            settings.type = 'GET';
+        }
+
+        /*
+            Add other preprocessing here if required
+         */
+
+        return settings;
+    };
+
+    this.request = function (settings)
+    {
+        settings = _beforeRequest(settings || {});
+        return jQuery.ajax(settings);
+    };
+
+    /*
+        Create shortcut methods for methods[] array above
+     */
+    jQuery.each(methods, function(index, method) {
+        client[method] = (function(method, client) {
+            return function (settings)
+            {
+                settings = settings || {};
+
+                settings.type = method.toUpperCase();
+
+                return client.request(settings);
+            }
+        })(method, client);
+    });
+
+    return this;
+}
+
+});
+
+/**
  * WHMCS UI module
  *
  * @copyright Copyright (c) WHMCS Limited 2005-2017
@@ -14344,7 +14492,7 @@ dataTable: function () {
                 function (e)
                 {
                     e.preventDefault();
-                    jQuery.post(
+                    WHMCS.http.jqClient.post(
                         jQuery(e.target).data('target-url'),
                         {
                             'token': csrfToken
@@ -14443,11 +14591,11 @@ function () {
 
                 if (btn.hasClass('toggle-active')) {
                     targetInputs.prop('checked',false);
-                    btn.text(textDeselect);
+                    btn.text(textSelect);
                     btn.removeClass('toggle-active');
                 } else {
                     targetInputs.prop('checked',true);
-                    btn.text(textSelect);
+                    btn.text(textDeselect);
                     btn.addClass('toggle-active');
                 }
             } else {
@@ -14463,6 +14611,113 @@ function () {
 
     return this;
 });
+
+/**
+ * reCaptcha module
+ *
+ * @copyright Copyright (c) WHMCS Limited 2005-2018
+ * @license http://www.whmcs.com/license/ WHMCS Eula
+ */
+(function(module) {
+    if (!WHMCS.hasModule('recaptcha')) {
+        WHMCS.loadModule('recaptcha', module);
+    }
+})(
+    function () {
+
+        this.register = function () {
+            var postLoad = [];
+            var recaptchaForms = jQuery(".btn-recaptcha").parents('form');
+            recaptchaForms.each(function (i, el){
+                if (typeof recaptchaSiteKey === 'undefined') {
+                    console.log('Recaptcha site key not defined');
+                    return;
+                }
+                var frm = jQuery(el);
+                var btnRecaptcha = frm.find(".btn-recaptcha");
+                var isInvisible = btnRecaptcha.hasClass('btn-recaptcha-invisible');
+
+                // if no recaptcha element, make one
+                var recaptchaContent = frm.find("#divDynamicRecaptcha .g-recaptcha");
+                if (!recaptchaContent.length) {
+                    frm.append('<div id="divDynamicRecaptcha" class="g-recaptcha"></div>');
+                    recaptchaContent = frm.find("#divDynamicRecaptcha");
+                }
+                // propagate invisible recaptcha if necessary
+                if (isInvisible) {
+                    if (recaptchaContent.data('size') !== 'invisible') {
+                        recaptchaContent.attr('data-size', 'invisible');
+                    }
+                } else {
+                    recaptchaContent.hide()
+                }
+
+                // ensure site key is available to grecaptcha
+                recaptchaContent.attr('data-sitekey', recaptchaSiteKey);
+
+
+                // alter form to work around JS behavior on .submit() when there
+                // there is an input with the name 'submit'
+                var btnSubmit = frm.find("input[name='submit']");
+                if (btnSubmit.length) {
+                    var action = frm.prop('action');
+                    frm.prop('action', action + '&submit=1');
+                    btnSubmit.remove();
+                }
+
+                // make callback for grecaptcha to invoke after
+                // injecting token & make it known via data-callback
+                var funcName = 'recaptchaCallback' + i;
+                window[funcName] = function () {
+                    if (isInvisible) {
+                        frm.submit();
+                    } else {
+                        btnRecaptcha.prop("disabled", false);
+                        recaptchaContent.slideUp('fast', function () {
+                            recaptchaContent.hide();
+                            btnRecaptcha.slideDown();
+                        });
+
+                    }
+                };
+                recaptchaContent.attr('data-callback', funcName);
+
+                // alter submit button to integrate invisible recaptcha
+                // otherwise setup a callback to twiddle UI after grecaptcha
+                // has inject DOM
+                if (isInvisible) {
+                    btnRecaptcha.on('click', function (event) {
+                        event.preventDefault();
+                        grecaptcha.execute();
+                    });
+                } else {
+                    postLoad.push(function () {
+                        btnRecaptcha.slideUp('fast', function () {
+                            btnRecaptcha.hide();
+                            btnRecaptcha.prop("disabled", true);
+                            recaptchaContent.find(':first').addClass('center-block');
+                            recaptchaContent.slideDown('fast', function() {
+                                // just in case there's a delay in DOM; rare
+                                recaptchaContent.find(':first').addClass('center-block');
+                            });
+                        });
+                    });
+                }
+            });
+
+            // fetch/invoke the grecaptcha lib
+            if (recaptchaForms.length) {
+                var gUrl = "https://www.google.com/recaptcha/api.js";
+                jQuery.getScript(gUrl, function () {
+                    for(var i = postLoad.length -1; i >= 0 ; i--){
+                        postLoad[i]();
+                    }
+                });
+            }
+        };
+
+        return this;
+    });
 
 /**
  * General utilities module
@@ -14602,7 +14857,7 @@ jQuery(document).ready(function() {
         },
     });
 
-    jQuery('.truncate').each(function () {
+    jQuery('.panel-sidebar .truncate').each(function () {
         jQuery(this).attr('title', jQuery(this).text())
             .attr('data-toggle', 'tooltip')
             .attr('data-placement', 'bottom');
@@ -14768,7 +15023,7 @@ jQuery(document).ready(function() {
             jQuery("#ssoStatusTextDisabled").removeClass('hidden').show();
             jQuery("#ssoStatusTextEnabled").hide();
         }
-        jQuery.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
+        WHMCS.http.jqClient.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
     });
 
     // Single Sign-On call for Product/Service
@@ -14787,7 +15042,7 @@ jQuery(document).ready(function() {
 
         button.find('.loading').removeClass('hidden').show().end()
             .attr('disabled', 'disabled');
-        jQuery.post(
+        WHMCS.http.jqClient.post(
             window.location.href,
             form.serialize(),
             function (data) {
@@ -14824,7 +15079,7 @@ jQuery(document).ready(function() {
     // Email verification close
     jQuery('.email-verification .btn.close').click(function(e) {
         e.preventDefault();
-        jQuery.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
+        WHMCS.http.jqClient.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
         jQuery('.email-verification').hide();
     });
 
@@ -14940,7 +15195,7 @@ jQuery(document).ready(function() {
 
     // Email verification
     jQuery('#btnResendVerificationEmail').click(function() {
-        jQuery.post('clientarea.php',
+        WHMCS.http.jqClient.post('clientarea.php',
             {
                 'token': csrfToken,
                 'action': 'resendVerificationEmail'
@@ -15010,7 +15265,7 @@ jQuery(document).ready(function() {
 
     // SSL Manage Action Button.
     jQuery('.btn-resend-approver-email').click(function () {
-        jQuery.post(
+        WHMCS.http.jqClient.post(
             jQuery(this).data('url'),
             {
                 addonId: jQuery(this).data('addonid'),
@@ -15063,6 +15318,24 @@ jQuery(document).ready(function() {
 
     jQuery('#frmReply').submit(function(e) {
         jQuery('#frmReply').find('input[type="submit"]').addClass('disabled').prop('disabled', true);
+    });
+
+    jQuery('#frmDomainContactModification').on('submit', function(){
+        if (!allowSubmit) {
+            var changed = false;
+            jQuery('.irtp-field').each(function() {
+                var value = jQuery(this).val(),
+                    originalValue = jQuery(this).data('original-value');
+                if (value !== originalValue) {
+                    changed = true;
+                }
+            });
+            if (changed) {
+                jQuery('#modalIRTPConfirmation').modal('show');
+                return false;
+            }
+        }
+        return true;
     });
 });
 
@@ -15150,7 +15423,7 @@ function addRenewalToCart(renewalID, selfThis) {
     jQuery("#domainRow" + renewalID).find("select,button").attr("disabled", "disabled");
     jQuery(selfThis).html('<span class="glyphicon glyphicon-shopping-cart"></span> Adding...');
     var renewalPeriod = jQuery("#renewalPeriod" + renewalID).val();
-    jQuery.post(
+    WHMCS.http.jqClient.post(
         "clientarea.php",
         "addRenewalToCart=1&token=" + csrfToken + "&renewID="+ renewalID + "&period=" + renewalPeriod,
         function( data ) {
@@ -15187,7 +15460,7 @@ function extraTicketAttachment() {
  * @param {number} num Server Id
  */
 function getStats(num) {
-    jQuery.post('serverstatus.php', 'getstats=1&num=' + num, function(data) {
+    WHMCS.http.jqClient.post('serverstatus.php', 'getstats=1&num=' + num, function(data) {
         jQuery("#load"+num).html(data.load);
         jQuery("#uptime"+num).html(data.uptime);
     },'json');
@@ -15200,7 +15473,7 @@ function getStats(num) {
  * @param {number} port Port Number
  */
 function checkPort(num, port) {
-    jQuery.post('serverstatus.php', 'ping=1&num=' + num + '&port=' + port, function(data) {
+    WHMCS.http.jqClient.post('serverstatus.php', 'ping=1&num=' + num + '&port=' + port, function(data) {
         jQuery("#port" + port + "_" + num).html(data);
     });
 }
@@ -15211,7 +15484,7 @@ function checkPort(num, port) {
 function getticketsuggestions() {
     currentcheckcontent = jQuery("#message").val();
     if (currentcheckcontent != lastcheckcontent && currentcheckcontent != "") {
-        jQuery.post("submitticket.php", { action: "getkbarticles", text: currentcheckcontent },
+        WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: currentcheckcontent },
             function(data){
             if (data) {
                 jQuery("#searchresults").html(data);
@@ -15241,7 +15514,9 @@ function refreshCustomFields(input) {
  * @param {string} containerId The ID name of the container
  */
 function autoSubmitFormByContainer(containerId) {
-    jQuery("#" + containerId).find("form:first").submit();
+    if (typeof noAutoSubmit === "undefined" || noAutoSubmit === false) {
+        jQuery("#" + containerId).find("form:first").submit();
+    }
 }
 
 /**
@@ -15306,7 +15581,7 @@ var lastTicketMsg;
 function getTicketSuggestions() {
     var userMsg = jQuery("#inputMessage").val();
     if (userMsg != lastTicketMsg && userMsg != '') {
-        jQuery.post("submitticket.php", { action: "getkbarticles", text: userMsg },
+        WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: userMsg },
             function (data) {
                 if (data) {
                     jQuery("#autoAnswerSuggestions").html(data);
@@ -15327,6 +15602,23 @@ function smoothScroll(element) {
     $('html, body').animate({
         scrollTop: $(element).offset().top
     }, 500);
+}
+
+function irtpSubmit()
+{
+    allowSubmit = true;
+    var optOut = 0,
+        optOutCheckbox = jQuery('#modalIrtpOptOut'),
+        optOutReason = jQuery('#modalReason'),
+        formOptOut = jQuery('#irtpOptOut'),
+        formOptOutReason = jQuery('#irtpOptOutReason');
+
+    if (optOutCheckbox.is(':checked')) {
+        optOut = 1;
+    }
+    formOptOut.val(optOut);
+    formOptOutReason.val(optOutReason.val());
+    jQuery('#frmDomainContactModification').submit();
 }
 
 /*!
@@ -15357,7 +15649,7 @@ jQuery(document).ready(function(){
     jQuery('#modalAjax').on('hidden.bs.modal', function (e) {
         if (jQuery(this).hasClass('modal-feature-highlights')) {
             var dismissForVersion = jQuery('#cbFeatureHighlightsDismissForVersion').is(':checked');
-            jQuery.post(
+            WHMCS.http.jqClient.post(
                 'whatsnew.php',
                 {
                     dismiss: "1",
@@ -15422,7 +15714,7 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
     jQuery('#modalAjax').modal('show');
 
     // fetch modal content
-    jQuery.post(url, postData, function(data) {
+    WHMCS.http.jqClient.post(url, postData, function(data) {
         updateAjaxModal(data);
     }, 'json').fail(function() {
         jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
@@ -15445,7 +15737,7 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
         submitButton.on('click', function() {
             var modalForm = jQuery('#modalAjax').find('form');
             jQuery('#modalAjax .loader').show();
-            var modalPost = jQuery.post(
+            var modalPost = WHMCS.http.jqClient.post(
                 modalForm.attr('action'),
                 modalForm.serialize(),
                 function(data) {
@@ -15496,7 +15788,7 @@ function updateAjaxModal(data) {
         jQuery('#modalAjax .modal-body').html(data.body);
     } else {
         if (data.url) {
-            jQuery.post(data.url, '', function(data2) {
+            WHMCS.http.jqClient.post(data.url, '', function(data2) {
                 jQuery('#modalAjax').find('.modal-body').html(data2.body);
             }, 'json').fail(function() {
                 jQuery('#modalAjax').find('.modal-body').html('An error occurred while communicating with the server. Please try again.');
@@ -15526,7 +15818,7 @@ function updateAjaxModal(data) {
         submitButton.on('click', function() {
             var modalForm = jQuery('#modalAjax').find('form');
             jQuery('#modalAjax .loader').show();
-            var modalPost = jQuery.post(modalForm.attr('action'), modalForm.serialize(),
+            var modalPost = WHMCS.http.jqClient.post(modalForm.attr('action'), modalForm.serialize(),
                 function(data) {
                     updateAjaxModal(data);
                 }, 'json').fail(function() {
@@ -15546,7 +15838,7 @@ function updateAjaxModal(data) {
 function dialogSubmit() {
     jQuery('#modalAjax .modal-submit').prop("disabled", true);
     jQuery('#modalAjax .loader').show();
-    jQuery.post('', jQuery('#modalAjax').find('form').serialize(),
+    WHMCS.http.jqClient.post('', jQuery('#modalAjax').find('form').serialize(),
         function(data) {
             updateAjaxModal(data);
         }, 'json').fail(function() {

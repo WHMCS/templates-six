@@ -49,7 +49,16 @@
                 <div class="form-group{if $userDetailsValidationError} hidden{/if}" id="billingAddressSummary">
                     <label for="cctype" class="col-sm-4 control-label">{$LANG.billingAddress}</label>
                     <div class="col-sm-6">
-                        {if $companyname}{$companyname}{else}{$firstname} {$lastname}{/if} <button type="button" id="btnEditBillingAddress" onclick="editBillingAddress()" class="btn btn-default btn-sm"{if $cardOnFile} disabled="disabled"{/if}><i class="fa fa-edit"></i> {$LANG.change}</button><br />
+                        {if $clientsdetails.companyname}
+                            {$clientsdetails.companyname}
+                        {else}
+                            {$firstname} {$lastname}
+                        {/if}
+                        <button type="button" id="btnEditBillingAddress" onclick="editBillingAddress()" class="btn btn-default btn-sm"{if $cardOnFile} disabled="disabled"{/if}>
+                            <i class="fas fa-edit"></i>
+                            {$LANG.change}
+                        </button>
+                        <br />
                         {$address1}{if $address2}, {$address2}{/if}<br />
                         {$city}, {$state}, {$postcode}<br />
                         {$countryname}
@@ -250,7 +259,7 @@
         </div>
 
         <div class="alert alert-warning" role="alert">
-            <i class="fa fa-lock"></i> &nbsp; {$LANG.creditcardsecuritynotice}
+            <i class="fas fa-lock"></i> &nbsp; {$LANG.creditcardsecuritynotice}
         </div>
 
     </form>

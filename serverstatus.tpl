@@ -50,20 +50,20 @@
                     <tr>
                         <td>{$server.name}</td>
                         <td class="text-center" id="port80_{$num}">
-                            <span class="fa fa-spinner fa-spin"></span>
+                            <span class="fas fa-spinner fa-spin"></span>
                         </td>
                         <td class="text-center" id="port21_{$num}">
-                            <span class="fa fa-spinner fa-spin"></span>
+                            <span class="fas fa-spinner fa-spin"></span>
                         </td>
                         <td class="text-center" id="port110_{$num}">
-                            <span class="fa fa-spinner fa-spin"></span>
+                            <span class="fas fa-spinner fa-spin"></span>
                         </td>
                         <td class="text-center"><a href="{$server.phpinfourl}" target="_blank">{$LANG.serverstatusphpinfo}</a></td>
                         <td class="text-center" id="load{$num}">
-                            <span class="fa fa-spinner fa-spin"></span>
+                            <span class="fas fa-spinner fa-spin"></span>
                         </td>
                         <td class="text-center" id="uptime{$num}">
-                            <span class="fa fa-spinner fa-spin"></span>
+                            <span class="fas fa-spinner fa-spin"></span>
                             <script>
                             jQuery(document).ready(function() {
                                 checkPort({$num}, 80);

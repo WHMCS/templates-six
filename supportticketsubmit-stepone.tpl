@@ -13,7 +13,7 @@
                     <p>
                         <strong>
                             <a href="{$smarty.server.PHP_SELF}?step=2&amp;deptid={$department.id}">
-                                <i class="fa fa-envelope"></i>
+                                <i class="fas fa-envelope"></i>
                                 &nbsp;{$department.name}
                             </a>
                         </strong>

@@ -18,7 +18,7 @@
                 </a>
                 {if $kbcat.editLink}
                     <a href="{$kbcat.editLink}" class="admin-inline-edit">
-                        <i class="fa fa-pencil fa-fw"></i>
+                        <i class="fas fa-pencil-alt fa-fw"></i>
                         {$LANG.edit}
                     </a>
                 {/if}
@@ -42,7 +42,7 @@
             </a>
             {if $kbarticle.editLink}
                 <a href="{$kbarticle.editLink}" class="admin-inline-edit">
-                    <i class="fa fa-pencil fa-fw"></i>
+                    <i class="fas fa-pencil-alt fa-fw"></i>
                     {$LANG.edit}
                 </a>
             {/if}

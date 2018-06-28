@@ -139,10 +139,33 @@
                 {/if}
             </div>
 
+            {if $litePlan}
+                <div class="weebly-lite-plan">
+                    <div class="pricing pull-right">
+                        {foreach $litePlan->pricing()->allAvailableCycles() as $pricing}
+                            <h4 class="pricing-text {$pricing->cycle()}{if !$pricing@first} hidden{/if}">
+                                {$pricing->toFullString()}
+                            </h4>
+                        {/foreach}
+                        <h4 class="pricing-text not-available hidden">-</h4>
+                    </div>
+                    <h4>Try Weebly</h4>
+                    <h5>Everything you need to create a 1 page site</h5>
+                    <p>{$litePlan->description}</p>
+                    <form method="post" action="{routePath('store-order')}">
+                        <input type="hidden" name="pid" value="{$litePlan->id}">
+                        <input type="hidden" name="billingcycle" value="">
+                        <button type="submit" class="btn btn-default btn-signup">
+                            {lang key='getStartedNow'}
+                        </button>
+                    </form>
+                </div>
+            {/if}
+
             <div class="row weebly-plans">
                 {if count($products) > 0}
                     {foreach $products as $key => $product}
-                        <div class="{if count($products) == 1}col-sm-6 col-sm-offset-3{elseif count($products) == 2}col-sm-5{if $key == 0} col-sm-offset-1{/if}{else}col-sm-4{/if}">
+                        <div class="{if count($products) == 1}col-sm-6 col-sm-offset-3{elseif count($products) == 2}col-sm-5{if $key == 0} col-sm-offset-1{/if}{elseif count($products) == 3}col-sm-4{else}col-sm-3{/if}">
                             <div class="pricing-item">
                                 <div class="header">
                                     <h4>{$product->name}</h4>

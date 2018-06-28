@@ -18,11 +18,11 @@
     <p>{$LANG.subaccountcontactmaster}</p>
     <div class="buttons">
         <a href="javascript:history.go(-1)" class="btn btn-primary btn-lg">
-            <i class="fa fa-arrow-circle-left"></i>
+            <i class="fas fa-arrow-circle-left"></i>
             {$LANG.goback}
         </a>
         <a href="index.php" class="btn btn-default btn-lg">
-            <i class="fa fa-home"></i>
+            <i class="fas fa-home"></i>
             {$LANG.returnhome}
         </a>
     </div>

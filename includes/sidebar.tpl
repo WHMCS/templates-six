@@ -5,7 +5,7 @@
                 {if $item->hasIcon()}<i class="{$item->getIcon()}"></i>&nbsp;{/if}
                 {$item->getLabel()}
                 {if $item->hasBadge()}&nbsp;<span class="badge">{$item->getBadge()}</span>{/if}
-                <i class="fa fa-chevron-up panel-minimise pull-right"></i>
+                <i class="fas fa-chevron-up panel-minimise pull-right"></i>
             </h3>
         </div>
         {if $item->hasBodyHtml()}

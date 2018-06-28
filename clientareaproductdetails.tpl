@@ -25,8 +25,8 @@
                         <div class="product-status product-status-{$rawstatus|strtolower}">
                             <div class="product-icon text-center">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-{if $type eq "hostingaccount" || $type == "reselleraccount"}hdd-o{elseif $type eq "server"}database{else}archive{/if} fa-stack-1x fa-inverse"></i>
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-{if $type eq "hostingaccount" || $type == "reselleraccount"}hdd{elseif $type eq "server"}database{else}archive{/if} fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <h3>{$product}</h3>
                                 <h4>{$groupname}</h4>
@@ -98,26 +98,26 @@
                         <ul class="nav nav-tabs nav-tabs-overflow">
                             {if $domain}
                                 <li class="active">
-                                    <a href="#domain" data-toggle="tab"><i class="fa fa-globe fa-fw"></i> {if $type eq "server"}{$LANG.sslserverinfo}{elseif ($type eq "hostingaccount" || $type eq "reselleraccount") && $serverdata}{$LANG.hostingInfo}{else}{$LANG.clientareahostingdomain}{/if}</a>
+                                    <a href="#domain" data-toggle="tab"><i class="fas fa-globe fa-fw"></i> {if $type eq "server"}{$LANG.sslserverinfo}{elseif ($type eq "hostingaccount" || $type eq "reselleraccount") && $serverdata}{$LANG.hostingInfo}{else}{$LANG.clientareahostingdomain}{/if}</a>
                                 </li>
                             {elseif $moduleclientarea}
                                 <li class="active">
-                                    <a href="#manage" data-toggle="tab"><i class="fa fa-globe fa-fw"></i> {$LANG.manage}</a>
+                                    <a href="#manage" data-toggle="tab"><i class="fas fa-globe fa-fw"></i> {$LANG.manage}</a>
                                 </li>
                             {/if}
                             {if $configurableoptions}
                                 <li{if !$domain && !$moduleclientarea} class="active"{/if}>
-                                    <a href="#configoptions" data-toggle="tab"><i class="fa fa-cubes fa-fw"></i> {$LANG.orderconfigpackage}</a>
+                                    <a href="#configoptions" data-toggle="tab"><i class="fas fa-cubes fa-fw"></i> {$LANG.orderconfigpackage}</a>
                                 </li>
                             {/if}
                             {if $customfields}
                                 <li{if !$domain && !$moduleclientarea && !$configurableoptions} class="active"{/if}>
-                                    <a href="#additionalinfo" data-toggle="tab"><i class="fa fa-info fa-fw"></i> {$LANG.additionalInfo}</a>
+                                    <a href="#additionalinfo" data-toggle="tab"><i class="fas fa-info fa-fw"></i> {$LANG.additionalInfo}</a>
                                 </li>
                             {/if}
                             {if $lastupdate}
                                 <li{if !$domain && !$moduleclientarea && !$configurableoptions && !$customfields} class="active"{/if}>
-                                    <a href="#resourceusage" data-toggle="tab"><i class="fa fa-inbox fa-fw"></i> {$LANG.resourceUsage}</a>
+                                    <a href="#resourceusage" data-toggle="tab"><i class="fas fa-inbox fa-fw"></i> {$LANG.resourceUsage}</a>
                                 </li>
                             {/if}
                         </ul>
@@ -321,7 +321,7 @@
                         {$download.description}
                     </p>
                     <p>
-                        <a href="{$download.link}" class="btn btn-default"><i class="fa fa-download"></i> {$LANG.downloadname}</a>
+                        <a href="{$download.link}" class="btn btn-default"><i class="fas fa-download"></i> {$LANG.downloadname}</a>
                     </p>
                 </div>
             {/foreach}

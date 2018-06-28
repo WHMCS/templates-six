@@ -2,7 +2,7 @@
 
     <div class="error-container boxed">
 
-        <h1><i class="fa fa-warning"></i> {lang key="errorPage.404.title"}</h1>
+        <h1><i class="fas fa-exclamation-triangle"></i> {lang key="errorPage.404.title"}</h1>
         <h3>{lang key="errorPage.404.subtitle"}</h3>
         <p>{lang key="errorPage.404.description"}</p>
 

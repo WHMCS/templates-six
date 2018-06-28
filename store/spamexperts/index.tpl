@@ -39,7 +39,7 @@
                             <div class="item">
                                 <h4>Incoming Email Filtering</h4>
                                 <div class="icon">
-                                    <i class="fa fa-envelope-open-o"></i>
+                                    <i class="far fa-envelope-open"></i>
                                 </div>
                                 <span>Protect your network</span>
                                 <p>Eliminate Spam & Viruses from email before they ever reach your network</p>
@@ -60,7 +60,7 @@
                             <div class="item">
                                 <h4>Outgoing Email Filtering</h4>
                                 <div class="icon">
-                                    <i class="fa fa-envelope-open"></i>
+                                    <i class="fas fa-envelope-open"></i>
                                 </div>
                                 <span>Safeguard your reputation</span>
                                 <p>Prevent Spam & Viruses from ever unknowingly leaving your network</p>
@@ -81,7 +81,7 @@
                             <div class="item">
                                 <h4>Email Archiving</h4>
                                 <div class="icon">
-                                    <i class="fa fa-cube"></i>
+                                    <i class="fas fa-cube"></i>
                                 </div>
                                 <span>Backup and Compliance</span>
                                 <p>Never lose an email again and ensure email data integrity for legal compliance</p>
@@ -143,35 +143,35 @@
                             <h3>Incoming email filtering gives you all these benefits...</h3>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Full Inbox protection at competitive prices
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Extremely accurate filtering
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Easy configuration
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Increase inbound email continuity & redundancy
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Various reporting options
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Friendly interface to keep you in full control over your email
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Increase employee productivity
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Compatible with any mail server
                                 </div>
                             </div>
@@ -195,27 +195,27 @@
                             <h3>Outgoing email filtering gives you all these benefits...</h3>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     No more blacklisting
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Protect the reputation of your brand and IT-systems
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Avoid de-listing related costs
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Increase outbound email continuity and delivery
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Enhance employee productivity
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Improve abuse manageability
                                 </div>
                             </div>
@@ -236,31 +236,31 @@
                             <h3>Email archiving gives you all these benefits...</h3>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Includes Incoming & Outcoming Email Filtering!
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Never lose an email again!
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Achieve legal compliance
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Improve IT system performance
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     User friendly data-protection management
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Added email continuity, journaling support, and easy re-delivery
                                 </div>
                                 <div class="col-md-6">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fas fa-check"></i>
                                     Compressed, encrypted and secure archive
                                 </div>
                             </div>

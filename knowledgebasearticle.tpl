@@ -1,5 +1,5 @@
 <div class="kb-article-title">
-    <a href="#" class="btn btn-link btn-print" onclick="window.print();return false"><i class="fa fa-print"></i></a>
+    <a href="#" class="btn btn-link btn-print" onclick="window.print();return false"><i class="fas fa-print"></i></a>
     <h2>{$kbarticle.title}</h2>
 </div>
 
@@ -13,16 +13,16 @@
 
 {if $kbarticle.editLink}
     <a href="{$kbarticle.editLink}" class="btn btn-default btn-sm pull-right">
-        <i class="fa fa-pencil fa-fw"></i>
+        <i class="fas fa-pencil-alt fa-fw"></i>
         {$LANG.edit}
     </a>
 {/if}
 
 <ul class="kb-article-details">
     {if $kbarticle.tags }
-        <li><i class="fa fa-tag"></i> {$kbarticle.tags}</li>
+        <li><i class="fas fa-tag"></i> {$kbarticle.tags}</li>
     {/if}
-    <li><i class="fa fa-star"></i> {$kbarticle.useful} {$LANG.knowledgebaseratingtext}</li>
+    <li><i class="fas fa-star"></i> {$kbarticle.useful} {$LANG.knowledgebaseratingtext}</li>
 </ul>
 <div class="clearfix"></div>
 
@@ -33,8 +33,8 @@
         {if $kbarticle.voted}
             {$kbarticle.useful} {$LANG.knowledgebaseratingtext} ({$kbarticle.votes} {$LANG.knowledgebasevotes})
         {else}
-            <button type="submit" name="vote" value="yes" class="btn btn-lg btn-link"><i class="fa fa-thumbs-o-up"></i> {$LANG.knowledgebaseyes}</button>
-            <button type="submit" name="vote" value="no" class="btn btn-lg btn-link"><i class="fa fa-thumbs-o-down"></i> {$LANG.knowledgebaseno}</button>
+            <button type="submit" name="vote" value="yes" class="btn btn-lg btn-link"><i class="far fa-thumbs-up"></i> {$LANG.knowledgebaseyes}</button>
+            <button type="submit" name="vote" value="no" class="btn btn-lg btn-link"><i class="far fa-thumbs-down"></i> {$LANG.knowledgebaseno}</button>
         {/if}
     </form>
 </div>
@@ -50,7 +50,7 @@
                     </a>
                     {if $kbarticle.editLink}
                         <a href="{$kbarticle.editLink}" class="admin-inline-edit">
-                            <i class="fa fa-pencil fa-fw"></i>
+                            <i class="fas fa-pencil-alt fa-fw"></i>
                             {$LANG.edit}
                         </a>
                     {/if}

@@ -8,7 +8,7 @@
 
     <div class="credit-card">
         <div class="card-icon pull-right">
-            <b class="fa fa-2x
+            <b class="fas fa-2x
             {if $cardtype eq "American Express"}
                 fa-cc-amex logo-amex
             {elseif $cardtype eq "Visa"}
@@ -30,10 +30,10 @@
             {if $cardlastfour}xxxx xxxx xxxx {$cardlastfour}{else}{$LANG.creditcardnonestored}{/if}
         </div>
         <div class="card-start">
-            {if $cardstart}Start: {$cardstart}{/if}
+            {if $cardstart}{$LANG.creditcardcardstart}: {$cardstart}{/if}
         </div>
         <div class="card-expiry">
-            {if $cardexp}Expires: {$cardexp}{/if}
+            {if $cardexp}{$LANG.creditcardcardexpires}: {$cardexp}{/if}
         </div>
         <div class="end"></div>
     </div>

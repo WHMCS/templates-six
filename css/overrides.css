@@ -197,7 +197,7 @@ input[type='file'].form-control {
     top: 27px !important;
 }
 
-.list-group-item > i.fa.fa-circle-o {
+.list-group-item > i.far.fa-circle {
     color: #808080;
 }
 

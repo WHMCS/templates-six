@@ -4,7 +4,7 @@
         {lang key='oauth.redirectDescriptionTwo'}
         <a href="#" class="alert-link">
             {lang key='oauth.redirectDescriptionThree'}
-            <i class="fa fa-arrow-right"></i>
+            <i class="fas fa-arrow-right"></i>
         </a>
     </div>
 </div>

@@ -7,7 +7,7 @@
         </div>
         <p>
             <button type="button" class="btn btn-default" onclick="history.back();">
-                <i class="fa fa-arrow-left"></i>
+                <i class="fas fa-arrow-left"></i>
                 {lang key="goback"}
             </button>
         </p>
@@ -71,7 +71,7 @@
                                     <span>{$label}</span>
 
                                     {if is_bool($value)}
-                                        <i class="fa fa-{if $value}check{else}times{/if}"></i>
+                                        <i class="fas fa-{if $value}check{else}times{/if}"></i>
                                     {else}
                                         {$value}
                                     {/if}
@@ -100,7 +100,7 @@
                                         {/if}
                                     {/foreach}
                                 </select>
-                                <button type="submit" class="btn btn-block"{if !$product->eligibleForUpgrade} disabled="disabled"{/if}>
+                                <button type="submit" class="btn btn-block" id="btnUpgradeSelect-{$product->productKey}"{if !$product->eligibleForUpgrade} disabled="disabled"{/if}>
                                     {lang key="upgradeService.select"}
                                 </button>
                             </form>

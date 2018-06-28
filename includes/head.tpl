@@ -16,7 +16,8 @@
         locale = '{if !empty($mdeLocale)}{$mdeLocale}{else}en{/if}',
         saved = '{lang key="markdown.saved"}',
         saving = '{lang key="markdown.saving"}',
-        whmcsBaseUrl = "{\WHMCS\Utility\Environment\WebHelper::getBaseUrl()}";
+        whmcsBaseUrl = "{\WHMCS\Utility\Environment\WebHelper::getBaseUrl()}",
+        recaptchaSiteKey = "{$recaptchaSiteKey}";
 </script>
 <script src="{$WEB_ROOT}/templates/{$template}/js/scripts.min.js?v={$versionHash}"></script>
 

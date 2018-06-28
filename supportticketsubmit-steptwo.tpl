@@ -74,7 +74,7 @@
         </div>
         <div class="col-sm-3">
             <button type="button" class="btn btn-default btn-block" onclick="extraTicketAttachment()">
-                <i class="fa fa-plus"></i> {$LANG.addmore}
+                <i class="fas fa-plus"></i> {$LANG.addmore}
             </button>
         </div>
         <div class="col-xs-12 ticket-attachments-message text-muted">

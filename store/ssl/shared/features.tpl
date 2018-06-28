@@ -47,43 +47,43 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-lock"></i>
+                    <i class="fas fa-lock"></i>
                     <h4>Encrypt sensitive data</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-credit-card"></i>
+                    <i class="fas fa-credit-card"></i>
                     <h4>Secure online transactions</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-trophy"></i>
+                    <i class="fas fa-trophy"></i>
                     <h4>Prove legitimacy</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-certificate"></i>
+                    <i class="fas fa-certificate"></i>
                     <h4>Strongest & Fastest SSL</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-window-maximize"></i>
+                    <i class="fas fa-window-maximize"></i>
                     <h4>99.9% Browser Compatability</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-search"></i>
+                    <i class="fas fa-search"></i>
                     <h4>Increase SEO rank</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-clock-o"></i>
+                    <i class="far fa-clock"></i>
                     {if $type == 'ev'}
                         <h4>Issued in 2-3 Days</h4>
                     {elseif $type == 'ov'}
@@ -95,7 +95,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="feature">
-                    <i class="fa fa-refresh"></i>
+                    <i class="fas fa-sync"></i>
                     <h4>Free Reissues</h4>
                 </div>
             </div>

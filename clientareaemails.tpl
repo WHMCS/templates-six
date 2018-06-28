@@ -32,6 +32,6 @@
         </tbody>
     </table>
     <div class="text-center" id="tableLoading">
-        <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+        <p><i class="fas fa-spinner fa-spin"></i> {$LANG.loading}</p>
     </div>
 </div>

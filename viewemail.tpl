@@ -10,7 +10,7 @@
 <body id="popup-backdrop">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2 class="popup-header-padding"><i class='fa fa-envelope-o'>&nbsp;</i>{$subject}</h2>
+            <h2 class="popup-header-padding"><i class='far fa-envelope'>&nbsp;</i>{$subject}</h2>
         </div>
         <div class="panel-body main-content">
             {$message}

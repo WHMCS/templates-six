@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <p><a href="#" class="show-all"><i class="fa fa-arrow-down"></i> Not sure? View all certificates</a></p>
+            <p><a href="#" class="show-all"><i class="fas fa-arrow-down"></i> Not sure? View all certificates</a></p>
         </div>
     </div>
 
@@ -68,19 +68,19 @@
 
                     <ul>
                         <li>
-                            <i class="fa fa-check-circle"></i>
+                            <i class="fas fa-check-circle"></i>
                             Establishes a secure connection between a browser and a server
                         </li>
                         <li>
-                            <i class="fa fa-check-circle"></i>
+                            <i class="fas fa-check-circle"></i>
                             Encrypts communication to protect sensitive information your customers provide to you
                         </li>
                         <li>
-                            <i class="fa fa-check-circle"></i>
+                            <i class="fas fa-check-circle"></i>
                             Places a padlock next to your web address in the browser
                         </li>
                         <li>
-                            <i class="fa fa-check-circle"></i>
+                            <i class="fas fa-check-circle"></i>
                             Authenticates an organization’s identity
                         </li>
                     </ul>
@@ -106,27 +106,27 @@
 
             <div class="row">
                 <div class="col-md-2 col-sm-4">
-                    <i class="fa fa-globe"></i>
+                    <i class="fas fa-globe"></i>
                     Encrypt sensitive data
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <i class="fa fa-user"></i>
+                    <i class="fas fa-user"></i>
                     Protect user privacy
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <i class="fa fa-credit-card"></i>
+                    <i class="fas fa-credit-card"></i>
                     Secure online transactions
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <i class="fa fa-lock"></i>
+                    <i class="fas fa-lock"></i>
                     Activate HTTPS and the lock icon
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <i class="fa fa-trophy"></i>
+                    <i class="fas fa-trophy"></i>
                     Prove legitimacy
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <i class="fa fa-search"></i>
+                    <i class="fas fa-search"></i>
                     Increase SEO rank
                 </div>
             </div>
@@ -191,7 +191,7 @@
             <div class="panel">
               <div class="panel-heading">
                 <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseAllCerts" class="panel-title expand">
-                   <span class="arrow"><i class="fa fa-chevron-right"></i></span>
+                   <span class="arrow"><i class="fas fa-chevron-right"></i></span>
                   <a href="#">View All SSL Certificates</a>
                 </h4>
               </div>
@@ -242,7 +242,7 @@
             <div class="panel">
               <div class="panel-heading">
                 <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseFaq" class="panel-title expand">
-                    <span class="arrow"><i class="fa fa-chevron-right"></i></span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
                   <a href="#">FAQ's</a>
                 </h4>
               </div>
@@ -297,10 +297,10 @@ $(function() {
   $(".expand").on( "click", function() {
     $expand = $(this).find(">:first-child");
 
-    if($expand.html() == '<i class="fa fa-chevron-right"></i>') {
-      $expand.html('<i class="fa fa-chevron-down"></i>');
+    if($expand.html() == '<i class="fas fa-chevron-right"></i>') {
+      $expand.html('<i class="fas fa-chevron-down"></i>');
     } else {
-      $expand.html('<i class="fa fa-chevron-right"></i>');
+      $expand.html('<i class="fas fa-chevron-right"></i>');
     }
   });
   $('.show-all').click(function(e) {

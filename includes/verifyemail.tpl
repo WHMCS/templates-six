@@ -1,7 +1,7 @@
 {if $emailVerificationIdValid}
     <div class="email-verification success">
         <div class="container">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-check"></i>
             <span class="text">{$LANG.emailAddressVerified}</span>
         </div>
     </div>
@@ -13,7 +13,7 @@
                     <button type="button" class="btn close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="col-xs-10 col-xs-pull-2 col-sm-7 col-sm-pull-1 col-md-8">
-                    <i class="fa fa-times-circle"></i>
+                    <i class="fas fa-times-circle"></i>
                     <span class="text">{$LANG.emailKeyExpired}</span>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-3 col-sm-pull-1">
@@ -32,7 +32,7 @@
                     <button type="button" class="btn close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="col-xs-10 col-xs-pull-2 col-sm-7 col-sm-pull-1 col-md-8">
-                    <i class="fa fa-warning"></i>
+                    <i class="fas fa-exclamation-triangle"></i>
                     <span class="text">{$LANG.verifyEmailAddress}</span>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-3 col-sm-pull-1">

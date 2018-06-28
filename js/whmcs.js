@@ -40,7 +40,7 @@ jQuery(document).ready(function() {
         },
     });
 
-    jQuery('.truncate').each(function () {
+    jQuery('.panel-sidebar .truncate').each(function () {
         jQuery(this).attr('title', jQuery(this).text())
             .attr('data-toggle', 'tooltip')
             .attr('data-placement', 'bottom');
@@ -206,7 +206,7 @@ jQuery(document).ready(function() {
             jQuery("#ssoStatusTextDisabled").removeClass('hidden').show();
             jQuery("#ssoStatusTextEnabled").hide();
         }
-        jQuery.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
+        WHMCS.http.jqClient.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
     });
 
     // Single Sign-On call for Product/Service
@@ -225,7 +225,7 @@ jQuery(document).ready(function() {
 
         button.find('.loading').removeClass('hidden').show().end()
             .attr('disabled', 'disabled');
-        jQuery.post(
+        WHMCS.http.jqClient.post(
             window.location.href,
             form.serialize(),
             function (data) {
@@ -262,7 +262,7 @@ jQuery(document).ready(function() {
     // Email verification close
     jQuery('.email-verification .btn.close').click(function(e) {
         e.preventDefault();
-        jQuery.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
+        WHMCS.http.jqClient.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
         jQuery('.email-verification').hide();
     });
 
@@ -378,7 +378,7 @@ jQuery(document).ready(function() {
 
     // Email verification
     jQuery('#btnResendVerificationEmail').click(function() {
-        jQuery.post('clientarea.php',
+        WHMCS.http.jqClient.post('clientarea.php',
             {
                 'token': csrfToken,
                 'action': 'resendVerificationEmail'
@@ -448,7 +448,7 @@ jQuery(document).ready(function() {
 
     // SSL Manage Action Button.
     jQuery('.btn-resend-approver-email').click(function () {
-        jQuery.post(
+        WHMCS.http.jqClient.post(
             jQuery(this).data('url'),
             {
                 addonId: jQuery(this).data('addonid'),
@@ -501,6 +501,24 @@ jQuery(document).ready(function() {
 
     jQuery('#frmReply').submit(function(e) {
         jQuery('#frmReply').find('input[type="submit"]').addClass('disabled').prop('disabled', true);
+    });
+
+    jQuery('#frmDomainContactModification').on('submit', function(){
+        if (!allowSubmit) {
+            var changed = false;
+            jQuery('.irtp-field').each(function() {
+                var value = jQuery(this).val(),
+                    originalValue = jQuery(this).data('original-value');
+                if (value !== originalValue) {
+                    changed = true;
+                }
+            });
+            if (changed) {
+                jQuery('#modalIRTPConfirmation').modal('show');
+                return false;
+            }
+        }
+        return true;
     });
 });
 
@@ -588,7 +606,7 @@ function addRenewalToCart(renewalID, selfThis) {
     jQuery("#domainRow" + renewalID).find("select,button").attr("disabled", "disabled");
     jQuery(selfThis).html('<span class="glyphicon glyphicon-shopping-cart"></span> Adding...');
     var renewalPeriod = jQuery("#renewalPeriod" + renewalID).val();
-    jQuery.post(
+    WHMCS.http.jqClient.post(
         "clientarea.php",
         "addRenewalToCart=1&token=" + csrfToken + "&renewID="+ renewalID + "&period=" + renewalPeriod,
         function( data ) {
@@ -625,7 +643,7 @@ function extraTicketAttachment() {
  * @param {number} num Server Id
  */
 function getStats(num) {
-    jQuery.post('serverstatus.php', 'getstats=1&num=' + num, function(data) {
+    WHMCS.http.jqClient.post('serverstatus.php', 'getstats=1&num=' + num, function(data) {
         jQuery("#load"+num).html(data.load);
         jQuery("#uptime"+num).html(data.uptime);
     },'json');
@@ -638,7 +656,7 @@ function getStats(num) {
  * @param {number} port Port Number
  */
 function checkPort(num, port) {
-    jQuery.post('serverstatus.php', 'ping=1&num=' + num + '&port=' + port, function(data) {
+    WHMCS.http.jqClient.post('serverstatus.php', 'ping=1&num=' + num + '&port=' + port, function(data) {
         jQuery("#port" + port + "_" + num).html(data);
     });
 }
@@ -649,7 +667,7 @@ function checkPort(num, port) {
 function getticketsuggestions() {
     currentcheckcontent = jQuery("#message").val();
     if (currentcheckcontent != lastcheckcontent && currentcheckcontent != "") {
-        jQuery.post("submitticket.php", { action: "getkbarticles", text: currentcheckcontent },
+        WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: currentcheckcontent },
             function(data){
             if (data) {
                 jQuery("#searchresults").html(data);
@@ -679,7 +697,9 @@ function refreshCustomFields(input) {
  * @param {string} containerId The ID name of the container
  */
 function autoSubmitFormByContainer(containerId) {
-    jQuery("#" + containerId).find("form:first").submit();
+    if (typeof noAutoSubmit === "undefined" || noAutoSubmit === false) {
+        jQuery("#" + containerId).find("form:first").submit();
+    }
 }
 
 /**
@@ -744,7 +764,7 @@ var lastTicketMsg;
 function getTicketSuggestions() {
     var userMsg = jQuery("#inputMessage").val();
     if (userMsg != lastTicketMsg && userMsg != '') {
-        jQuery.post("submitticket.php", { action: "getkbarticles", text: userMsg },
+        WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: userMsg },
             function (data) {
                 if (data) {
                     jQuery("#autoAnswerSuggestions").html(data);
@@ -765,4 +785,21 @@ function smoothScroll(element) {
     $('html, body').animate({
         scrollTop: $(element).offset().top
     }, 500);
+}
+
+function irtpSubmit()
+{
+    allowSubmit = true;
+    var optOut = 0,
+        optOutCheckbox = jQuery('#modalIrtpOptOut'),
+        optOutReason = jQuery('#modalReason'),
+        formOptOut = jQuery('#irtpOptOut'),
+        formOptOutReason = jQuery('#irtpOptOutReason');
+
+    if (optOutCheckbox.is(':checked')) {
+        optOut = 1;
+    }
+    formOptOut.val(optOut);
+    formOptOutReason.val(optOutReason.val());
+    jQuery('#frmDomainContactModification').submit();
 }

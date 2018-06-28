@@ -104,7 +104,7 @@ var stateNotRequired = true;
 
         <div class="form-group">
             <label class="full control-label">{$LANG.subaccountpermissions}</label>
-            <div class="checkbox clearfix">
+            <div class="checkbox clearfix" id="contactPermissions">
                 {foreach $allPermissions as $permission}
                     <div class="col-sm-6">
                         <label>
@@ -115,6 +115,13 @@ var stateNotRequired = true;
                         </label>
                     </div>
                 {/foreach}
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-sm btn-check-all" data-checkbox-container="contactPermissions" data-btn-check-toggle="1" id="btnSelectAll-contactPermissions" data-label-text-select="{lang key='checkAll'}" data-label-text-deselect="{lang key='uncheckAll'}">
+                        {lang key='checkAll'}
+                    </button>
+                </div>
             </div>
         </div>
         <fieldset class="form-horizontal">
