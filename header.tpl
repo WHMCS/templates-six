@@ -39,7 +39,7 @@
                 <li>
                     <a href="#" data-toggle="popover" id="accountNotifications" data-placement="bottom">
                         {$LANG.notifications}
-                        {if count($clientAlerts) > 0}<span class="label label-info">NEW</span>{/if}
+                        {if count($clientAlerts) > 0}<span class="label label-info">{$LANG.notificationsnewlabel}</span>{/if}
                         <b class="caret"></b>
                     </a>
                     <div id="accountNotificationsContent" class="hidden">
