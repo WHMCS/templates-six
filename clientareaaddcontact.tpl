@@ -4,8 +4,11 @@
 
 <script>
 var stateNotRequired = true;
+    jQuery(document).ready(function() {
+    WHMCS.form.register();
+});
 </script>
-<script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
+<script src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 
 <div class="alert alert-block alert-info">
     <form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=contacts">

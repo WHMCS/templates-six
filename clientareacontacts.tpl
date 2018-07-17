@@ -194,9 +194,10 @@
 
 {/if}
 
-<script type="text/javascript">
+<script>
     jQuery(document).ready( function ()
     {
+        WHMCS.form.register();
         jQuery('.removeAccountLink').click(function (e) {
             e.preventDefault();
             var authUserID = jQuery(this).data('authid');

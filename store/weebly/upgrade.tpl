@@ -11,12 +11,12 @@
 
                         <div class="content-padded">
                             <img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/logo.png">
-                            <h2>Upgrade Required</h2>
-                            <p>To access the functionality you requested, you need to upgrade your Weebly Site Builder plan.</p>
+                            <h2>{lang key="store.websiteBuilder.upgrade.required"}</h2>
+                            <p>{lang key="store.websiteBuilder.upgrade.requiredDescription"}</p>
                             {if $loggedin}
-                                <p>The recommended plan is displayed.</p>
+                                <p>{lang key="store.websiteBuilder.upgrade.recommended"}</p>
                             {else}
-                                <p>To view the available options, please login.</p>
+                                <p>{lang key="store.websiteBuilder.upgrade.login"}</p>
                             {/if}
                         </div>
 
@@ -27,9 +27,9 @@
                             {if $loggedin}
                                 {if count($weeblyServices) > 0}
                                     {if is_null($product)}
-                                        <h3>No upgrade available</h3>
-                                        <p>There is no upgrade available at this time.</p>
-                                        <p><a href="submitticket.php">Contact support</a></p>
+                                        <h3>{lang key="store.websiteBuilder.upgrade.no"}</h3>
+                                        <p>{lang key="store.websiteBuilder.upgrade.noUpgrade"}</p>
+                                        <p><a href="submitticket.php">{lang key="store.websiteBuilder.upgrade.submitTicket"}</a></p>
                                     {else}
                                         <h3 class="text-center">{$promo->getHeadline()}</h3>
                                         <h4 class="text-center">{$promo->getTagline()}</h4>
@@ -39,6 +39,7 @@
                                                     <li>{$highlight}</li>
                                                 {/foreach}
                                             </ul>
+                                            {debug}
                                         {/if}
                                         <form method="post" action="{routePath('store-weebly-upgrade-order')}">
                                             <select name="service" class="form-control weebly-service-select{if count($weeblyServices) == 1} hidden{/if}">
@@ -47,14 +48,14 @@
                                                 {/foreach}
                                             </select>
                                             <button type="submit" class="btn btn-success btn-block">
-                                                Upgrade to {$product->name} for {$product->pricing()->first()->breakdownPrice()}
+                                                {lang key="store.websiteBuilder.upgrade.to" product=$product->name amount=$product->pricing()->first()->breakdownPrice()}
                                             </button>
                                         </form>
                                     {/if}
                                 {else}
-                                    <h3>No active Weebly plans found</h3>
-                                    <p>You are currently logged in as {$loggedinuser.email}</p>
-                                    <p><a href="logout.php?redirect=store-weebly-upgrade">Logout/switch user</a></p>
+                                    <h3>{lang key="store.websiteBuilder.upgrade.noPlans"}</h3>
+                                    <p>{lang key="store.websiteBuilder.upgrade.loggedInAs" email=$loggedinuser.email}</p>
+                                    <p><a href="logout.php?redirect=store-weebly-upgrade">{lang key="store.websiteBuilder.upgrade.switchUser"}</a></p>
                                 {/if}
                             {else}
                                 {include file="$template/login.tpl" incorrect=$incorrect}

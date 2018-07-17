@@ -13891,8 +13891,6 @@ jQuery(document).ready(function() {
                 .addClass('fas fa-spinner fa-spin');
         }
     });
-
-    WHMCS.form.register();
 });
 
 /**
@@ -14566,8 +14564,13 @@ toolTip: function () {
     }
 })(
 function () {
+    this.checkAllBound = false;
+
     this.register = function () {
-        this.bindCheckAll();
+        if (!this.checkAllBound) {
+            this.bindCheckAll();
+            this.checkAllBound = true;
+        }
     };
 
     this.bindCheckAll = function ()
@@ -38179,52 +38182,58 @@ jQuery(document).ready(function() {
         var phoneInput = jQuery('input[name^="phone"], input[name$="phone"]').not('input[type="hidden"]');
         if (phoneInput.length) {
             var countryInput = jQuery('[name^="country"], [name$="country"]'),
-                initialCountry = 'us',
-                inputName = phoneInput.attr('name');
+                initialCountry = 'us';
             if (countryInput.length) {
                 initialCountry = countryInput.val().toLowerCase();
                 if (initialCountry === 'um') {
                     initialCountry = 'us';
                 }
             }
-            phoneInput.before('<input id="populatedCountryCode' + inputName + '" type="hidden" name="country-calling-code-' + inputName + '" value="" />');
-            phoneInput.intlTelInput({
-                preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
-                    return self.indexOf(value) === index;
-                }),
-                initialCountry: initialCountry,
-                autoPlaceholder: 'polite', //always show the helper placeholder
-                separateDialCode: true
-            });
 
-            phoneInput.on('countrychange', function (e, countryData) {
-                jQuery('#populatedCountryCode' + inputName).val(countryData.dialCode);
-                if (jQuery(this).val() === '+' + countryData.dialCode) {
-                    jQuery(this).val('');
-                }
-            });
-            phoneInput.on('blur keydown', function (e) {
-                if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
-                    var number = jQuery(this).intlTelInput("getNumber"),
-                        countryData = jQuery(this).intlTelInput("getSelectedCountryData"),
-                        countryPrefix = '+' + countryData.dialCode;
+            phoneInput.each(function(){
+                var thisInput = jQuery(this),
+                    inputName = thisInput.attr('name');
+                jQuery(this).before(
+                    '<input id="populatedCountryCode' + inputName + '" type="hidden" name="country-calling-code-' + inputName + '" value="" />'
+                );
+                thisInput.intlTelInput({
+                    preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
+                        return self.indexOf(value) === index;
+                    }),
+                    initialCountry: initialCountry,
+                    autoPlaceholder: 'polite', //always show the helper placeholder
+                    separateDialCode: true
+                });
 
-                    if (number.indexOf(countryPrefix) === 0 && (number.match(/\+/g) || []).length > 1) {
-                        number = number.substr(countryPrefix.length);
+                thisInput.on('countrychange', function (e, countryData) {
+                    jQuery('#populatedCountryCode' + inputName).val(countryData.dialCode);
+                    if (jQuery(this).val() === '+' + countryData.dialCode) {
+                        jQuery(this).val('');
                     }
-                    jQuery(this).intlTelInput("setNumber", number);
-                }
-            });
-            jQuery('#populatedCountryCode' + inputName).val(phoneInput.intlTelInput('getSelectedCountryData').dialCode);
+                });
+                thisInput.on('blur keydown', function (e) {
+                    if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
+                        var number = jQuery(this).intlTelInput("getNumber"),
+                            countryData = jQuery(this).intlTelInput("getSelectedCountryData"),
+                            countryPrefix = '+' + countryData.dialCode;
 
-            countryInput.on('change', function() {
-                if (phoneInput.val() === '') {
-                    var country = jQuery(this).val().toLowerCase();
-                    if (country === 'um') {
-                        country = 'us';
+                        if (number.indexOf(countryPrefix) === 0 && (number.match(/\+/g) || []).length > 1) {
+                            number = number.substr(countryPrefix.length);
+                        }
+                        jQuery(this).intlTelInput("setNumber", number);
                     }
-                    phoneInput.intlTelInput('setCountry', country);
-                }
+                });
+                jQuery('#populatedCountryCode' + inputName).val(thisInput.intlTelInput('getSelectedCountryData').dialCode);
+
+                countryInput.on('change', function() {
+                    if (thisInput.val() === '') {
+                        var country = jQuery(this).val().toLowerCase();
+                        if (country === 'um') {
+                            country = 'us';
+                        }
+                        phoneInput.intlTelInput('setCountry', country);
+                    }
+                });
             });
 
             /**
