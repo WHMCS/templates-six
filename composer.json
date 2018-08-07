@@ -1,0 +1,26 @@
+{
+    "name": "whmcs/sample-six-template",
+    "description": "Sample Six Template for WHMCS Billing Automation Platform",
+    "type": "whmcs-templates",
+    "keywords": [
+        "whmcs",
+        "web host automation platform",
+        "design template",
+        "six template"
+    ],
+    "homepage": "https://www.whmcs.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "WHMCS Development Team",
+            "email": "development@whmcs.com",
+            "homepage": "https://www.whmcs.com/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@whmcs.com",
+        "forum": "https://forums.whmcs.com/",
+        "wiki": "https://developers.whmcs.com/"
+    }
+}
