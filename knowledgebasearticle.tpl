@@ -41,7 +41,7 @@
 
 {if $kbarticles}
     <div class="kb-also-read">
-        <h3>Related Articles</h3>
+        <h3>{$LANG.knowledgebaserelated}</h3>
         <div class="kbarticles">
             {foreach key=num item=kbarticle from=$kbarticles}
                 <div>

@@ -1655,7 +1655,7 @@ table.dtr-inline.collapsed .responsive-edit-button {
 }
 .ticket-reply .rating span.star,
 .ticket-reply .rating-done span.star {
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Pro";
     font-weight: normal;
     font-style: normal;
     display: inline-block;
@@ -1670,7 +1670,7 @@ table.dtr-inline.collapsed .responsive-edit-button {
 }
 .ticket-reply .rating span.star:before,
 .ticket-reply .rating-done span.star:before {
-    content: "\f006";
+    content: "\f005";
     padding-right: 0;
     color: #999;
 }
@@ -3254,7 +3254,9 @@ div.md-editor.active {
 }
 
 #registration .field[disabled],
-#registration .field[readonly] {
+#registration .field[readonly],
+#registration .form-control[disabled],
+#registration .form-control[readonly] {
     background-color: #f8f8f8;
     opacity: 1;
 }
