@@ -82,6 +82,7 @@
                     <strong>{$LANG.invoicespayto}</strong>
                     <address class="small-text">
                         {$payto}
+                        {if $taxCode}<br />{$taxCode}{/if}
                     </address>
                 </div>
                 <div class="invoice-col">
@@ -92,6 +93,9 @@
                         {$clientsdetails.address1}, {$clientsdetails.address2}<br />
                         {$clientsdetails.city}, {$clientsdetails.state}, {$clientsdetails.postcode}<br />
                         {$clientsdetails.country}
+                        {if $clientsdetails.tax_id}
+                            {$clientsdetails.tax_id}
+                        {/if}
                         {if $customfields}
                         <br /><br />
                         {foreach from=$customfields item=customfield}

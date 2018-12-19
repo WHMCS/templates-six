@@ -61,6 +61,11 @@ var stateNotRequired = true;
             </div>
 
             <div class="form-group">
+                <label for="inputTaxId" class="control-label">{lang key=$taxIdLabel}</label>
+                <input type="text" name="tax_id" id="inputTaxId" class="form-control" value="{$contactTaxId}" />
+            </div>
+
+            <div class="form-group">
                 <label class="control-label" for="inputSubaccountActivate">{$LANG.subaccountactivate}</label>
                 <div class="controls checkbox">
                     <label><input type="checkbox" name="subaccount" id="inputSubaccountActivate"{if $subaccount} checked{/if} /> {$LANG.subaccountactivatedesc}</label>

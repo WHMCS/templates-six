@@ -1019,3 +1019,155 @@ section#main-body {
 .landing-page.sitelock .faq .panel-group li {
     margin-top: 10px;
 }
+
+.landing-page.codeguard .strong-green span {
+    color: #94c83d;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.landing-page.codeguard .overview-features ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.landing-page.codeguard .overview-features img {
+    padding: 5px 30px;
+}
+.landing-page.codeguard .overview-features span {
+    font-size: medium;
+    color: #888;
+}
+
+@media (min-width: 768px) {
+    .landing-page.codeguard .overview-features li {
+        float: left;
+        margin: 0;
+        width: 20%;
+        text-align: center;
+        border-right: 1px solid #ddd;
+    }
+    .landing-page.codeguard .overview-features li:last-child {
+        border-right: 0;
+    }
+    .landing-page.codeguard .overview-features img {
+        display: block;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .landing-page.codeguard .overview-features span {
+        display: block;
+        padding: 0 30px 20px;
+        font-size: medium;
+        color: #888;
+    }
+}
+
+.landing-page.codeguard .features .feature {
+    padding-top: 5px;
+}
+
+.landing-page.codeguard .faqs {
+    padding: 90px 0 50px;
+    background-color: #f6f6f6;
+    text-align: center;
+}
+.landing-page.codeguard .faqs h3 {
+    margin-bottom: 30px;
+}
+.landing-page.codeguard .faqs h4 {
+    font-weight: bold;
+    font-style: italic;
+}
+.landing-page.codeguard .faqs p {
+    min-height: 100px;
+}
+
+.landing-page.codeguard .features {
+    background-color: inherit;
+}
+
+.landing-page.codeguard .pricing {
+    background: #94c83d url(../../../../assets/img/marketconnect/codeguard/pricing-bg.gif);
+    color: #fff;
+    padding: 55px 0;
+}
+.landing-page.codeguard .pricing h2 {
+    margin: 0;
+}
+.landing-page.codeguard .pricing img {
+    margin: 20px 0;
+}
+
+/* Sliders Styles Overwrite */
+.landing-page.codeguard .irs-with-grid {
+    margin: 40px 10px;
+    height: 31px;
+}
+.landing-page.codeguard .irs-from,
+.landing-page.codeguard .irs-to,
+.landing-page.codeguard .irs-single {
+    color: #fff;
+    text-shadow: none;
+    background: transparent;
+}
+.landing-page.codeguard .irs-single {
+    display: none;
+}
+.landing-page.codeguard .irs-grid-pol.small {
+    display: none;
+}
+.landing-page.codeguard .irs-grid-text {
+    bottom: -4px;
+    color: #fff;
+    font-size: 16px;
+}
+.landing-page.codeguard .irs-slider,
+.landing-page.codeguard .irs-slider:hover {
+    background: url(../../../../assets/img/marketconnect/codeguard/slider.png) no-repeat;
+    top: -7px;
+    width: 96px;
+    cursor: pointer;
+    z-index: 1100;
+    border: none;
+    box-shadow: none;
+}
+.landing-page.codeguard .irs-line {
+    background: #fff;
+    border: 0;
+    height: 16px;
+    top: 0;
+    box-shadow: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.landing-page.codeguard .irs-bar {
+    height: 16px;
+    border: 0;
+    top: 0;
+    background: #6C6C6C;
+}
+.landing-page.codeguard .irs-bar-edge {
+    height: 16px;
+    width: 50px;
+    top: 0;
+    border: 0 solid #428bca;
+    background: #6C6C6C;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.landing-page.codeguard .order-btn {
+    padding: 12px 35px;
+    background-color: #6C6C6C;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+}
+
+.landing-page.codeguard .pricing-container {
+    float: left;
+}
+.landing-page.codeguard .pricing-container .price {
+    font-size: 30px;
+}

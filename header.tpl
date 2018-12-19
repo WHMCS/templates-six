@@ -139,17 +139,17 @@
         <div class="container text-center">
             {if $registerdomainenabled || $transferdomainenabled}
                 <h2>{$LANG.homebegin}</h2>
-                <form method="post" action="domainchecker.php">
+                <form method="post" action="domainchecker.php" id="frmDomainHomepage">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" autocapitalize="none" />
+                                <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" autocapitalize="none" data-toggle="tooltip" data-placement="left" data-trigger="manual" title="{lang key='orderForm.required'}" />
                                 <span class="input-group-btn">
                                     {if $registerdomainenabled}
-                                        <input type="submit" class="btn search" value="{$LANG.search}" />
+                                        <input type="submit" class="btn search{$captcha->getButtonClass($captchaForm)}" value="{$LANG.search}" />
                                     {/if}
                                     {if $transferdomainenabled}
-                                        <input type="submit" name="transfer" class="btn transfer" value="{$LANG.domainstransfer}" />
+                                        <input type="submit" name="transfer" class="btn transfer{$captcha->getButtonClass($captchaForm)}" value="{$LANG.domainstransfer}" />
                                     {/if}
                                 </span>
                             </div>

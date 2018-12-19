@@ -39,7 +39,6 @@
                                                     <li>{$highlight}</li>
                                                 {/foreach}
                                             </ul>
-                                            {debug}
                                         {/if}
                                         <form method="post" action="{routePath('store-weebly-upgrade-order')}">
                                             <select name="service" class="form-control weebly-service-select{if count($weeblyServices) == 1} hidden{/if}">

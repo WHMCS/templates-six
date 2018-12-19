@@ -55,6 +55,28 @@
                 <h4><strong>{$LANG.clientareastatus}:</strong></h4> {$status}
             </div>
         </div>
+        {if $sslInfo}
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-5{if !$sslInfo->active} ssl-required{/if}">
+                <h4><strong>{$LANG.sslState.sslStatus}</strong></h4> <img src="{$BASE_PATH_IMG}/ssl/{$sslImage}" width="16"> {$sslMessage}
+            </div>
+            <div class="col-sm-6">
+                {if $sslInfo->active}
+                    <h4><strong>{$LANG.sslState.startDate}</strong></h4> {$sslInfo->startDate->toClientDateFormat()}
+                {/if}
+            </div>
+        </div>
+            {if $sslInfo->active}
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <h4><strong>{$LANG.sslState.issuerName}</strong></h4> {$sslInfo->issuerName}
+                    </div>
+                    <div class="col-sm-6">
+                        <h4><strong>{$LANG.sslState.expiryDate}</strong></h4> {$sslInfo->expiryDate->toClientDateFormat()}
+                    </div>
+                </div>
+            {/if}
+        {/if}
 
         {if $registrarclientarea}
             <div class="moduleoutput">

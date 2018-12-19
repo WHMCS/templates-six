@@ -123,6 +123,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="tab-content product-details-tab-container">
                     {if $domain}
                         <div class="tab-pane fade in active text-center" id="domain">
@@ -165,15 +166,43 @@
                                         </div>
                                     </div>
                                 {/if}
-                            {elseif ($type eq "hostingaccount" || $type eq "reselleraccount") && $serverdata}
+                            {else}
                                 {if $domain}
                                     <div class="row">
                                         <div class="col-sm-5 text-right">
                                             <strong>{$LANG.orderdomain}</strong>
                                         </div>
                                         <div class="col-sm-7 text-left">
-                                            {$domain}&nbsp;<a href="http://{$domain}" target="_blank" class="btn btn-default btn-xs" >{$LANG.visitwebsite}</a>
+                                            {$domain}
                                         </div>
+                                        {if $sslInfo}
+                                            <div class="col-sm-5 text-right">
+                                                <strong>{$LANG.sslState.sslStatus}</strong>
+                                            </div>
+                                            <div class="col-sm-7 text-left{if !$sslInfo->active} ssl-required{/if}">
+                                                <img src="{$BASE_PATH_IMG}/ssl/{$sslImage}" width="12"> {$sslMessage}
+                                            </div>
+                                            {if $sslInfo->active}
+                                                <div class="col-sm-5 text-right">
+                                                    <strong>{$LANG.sslState.startDate}</strong>
+                                                </div>
+                                                <div class="col-sm-7 text-left">
+                                                    {$sslInfo->startDate->toClientDateFormat()}
+                                                </div>
+                                                <div class="col-sm-5 text-right">
+                                                    <strong>{$LANG.sslState.expiryDate}</strong>
+                                                </div>
+                                                <div class="col-sm-7 text-left">
+                                                    {$sslInfo->expiryDate->toClientDateFormat()}
+                                                </div>
+                                                <div class="col-sm-5 text-right">
+                                                    <strong>{$LANG.sslState.issuerName}</strong>
+                                                </div>
+                                                <div class="col-sm-7 text-left">
+                                                    {$sslInfo->issuerName}
+                                                </div>
+                                            {/if}
+                                        {/if}
                                     </div>
                                 {/if}
                                 {if $username}
@@ -186,40 +215,39 @@
                                         </div>
                                     </div>
                                 {/if}
-                                <div class="row">
-                                    <div class="col-sm-5 text-right">
-                                        <strong>{$LANG.servername}</strong>
-                                    </div>
-                                    <div class="col-sm-7 text-left">
-                                        {$serverdata.hostname}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-5 text-right">
-                                        <strong>{$LANG.domainregisternsip}</strong>
-                                    </div>
-                                    <div class="col-sm-7 text-left">
-                                        {$serverdata.ipaddress}
-                                    </div>
-                                </div>
-                                {if $serverdata.nameserver1 || $serverdata.nameserver2 || $serverdata.nameserver3 || $serverdata.nameserver4 || $serverdata.nameserver5}
+                                {if $serverdata}
                                     <div class="row">
                                         <div class="col-sm-5 text-right">
-                                            <strong>{$LANG.domainnameservers}</strong>
+                                            <strong>{$LANG.servername}</strong>
                                         </div>
                                         <div class="col-sm-7 text-left">
-                                            {if $serverdata.nameserver1}{$serverdata.nameserver1} ({$serverdata.nameserver1ip})<br />{/if}
-                                            {if $serverdata.nameserver2}{$serverdata.nameserver2} ({$serverdata.nameserver2ip})<br />{/if}
-                                            {if $serverdata.nameserver3}{$serverdata.nameserver3} ({$serverdata.nameserver3ip})<br />{/if}
-                                            {if $serverdata.nameserver4}{$serverdata.nameserver4} ({$serverdata.nameserver4ip})<br />{/if}
-                                            {if $serverdata.nameserver5}{$serverdata.nameserver5} ({$serverdata.nameserver5ip})<br />{/if}
+                                            {$serverdata.hostname}
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-5 text-right">
+                                            <strong>{$LANG.domainregisternsip}</strong>
+                                        </div>
+                                        <div class="col-sm-7 text-left">
+                                            {$serverdata.ipaddress}
+                                        </div>
+                                    </div>
+                                    {if $serverdata.nameserver1 || $serverdata.nameserver2 || $serverdata.nameserver3 || $serverdata.nameserver4 || $serverdata.nameserver5}
+                                        <div class="row">
+                                            <div class="col-sm-5 text-right">
+                                                <strong>{$LANG.domainnameservers}</strong>
+                                            </div>
+                                            <div class="col-sm-7 text-left">
+                                                {if $serverdata.nameserver1}{$serverdata.nameserver1} ({$serverdata.nameserver1ip})<br />{/if}
+                                                {if $serverdata.nameserver2}{$serverdata.nameserver2} ({$serverdata.nameserver2ip})<br />{/if}
+                                                {if $serverdata.nameserver3}{$serverdata.nameserver3} ({$serverdata.nameserver3ip})<br />{/if}
+                                                {if $serverdata.nameserver4}{$serverdata.nameserver4} ({$serverdata.nameserver4ip})<br />{/if}
+                                                {if $serverdata.nameserver5}{$serverdata.nameserver5} ({$serverdata.nameserver5ip})<br />{/if}
+                                            </div>
+                                        </div>
+                                    {/if}
                                 {/if}
-                            {else}
-                                <p>
-                                    {$domain}
-                                </p>
+                                <br>
                                 <p>
                                     <a href="http://{$domain}" class="btn btn-default" target="_blank">{$LANG.visitwebsite}</a>
                                     {if $domainId}
@@ -234,6 +262,19 @@
                                 </div>
                             {/if}
                         </div>
+                        {if $sslInfo}
+                            <div class="tab-pane fade text-center" id="ssl-info">
+                                {if $sslInfo->active}
+                                    <div class="alert alert-success" role="alert">
+                                        {lang key='sslActive' expiry=$sslInfo->expiryDate->toClientDateFormat()}
+                                    </div>
+                                {else}
+                                    <div class="alert alert-warning ssl-required" role="alert">
+                                        {lang key='sslRequired'}
+                                    </div>
+                                {/if}
+                            </div>
+                        {/if}
                     {elseif $moduleclientarea}
                         <div class="tab-pane fade{if !$domain} in active{/if} text-center" id="manage">
                             {if $moduleclientarea}

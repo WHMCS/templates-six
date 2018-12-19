@@ -181,8 +181,8 @@
                 </div>
                 {/if}
             </div>
+            {/if}
         </div>
-        {/if}
         <div id="containerNewUserSecurity" {if $remote_auth_prelinked && !$securityquestions } class="hidden"{/if}>
 
             <div class="sub-heading">
@@ -271,7 +271,7 @@
             </div>
         {/if}
         <p align="center">
-            <input class="btn btn-large btn-primary" type="submit" value="{$LANG.clientregistertitle}"/>
+            <input class="btn btn-large btn-primary{$captcha->getButtonClass($captchaForm)}" type="submit" value="{$LANG.clientregistertitle}"/>
         </p>
     </form>
 </div>

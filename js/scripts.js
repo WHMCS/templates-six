@@ -14006,7 +14006,11 @@ provider: function () {
                 this.feedbackContainer().removeClass('alert-danger alert-warning alert-success')
                     .addClass('alert alert-info')
                     .html(feedbackMsg);
-                window.location = data.redirect_url ? data.redirect_url : context.redirectUrl;
+
+                window.location = data.redirect_url
+                    ? decodeURIComponent(data.redirect_url)
+                    : decodeURIComponent(context.redirectUrl);
+
                 break;
 
             case "linking_complete":
@@ -14252,6 +14256,40 @@ jqClient: function () {
                 }
             )
         );
+    };
+
+    /**
+     * @param options
+     * @returns {*}
+     */
+    this.jsonPost = function (options) {
+        options = options || {};
+        this.post(options.url, options.data, function(response) {
+            if (response.warning) {
+                console.log('[WHMCS] Warning: ' + response.warning);
+                if (typeof options.warning === 'function') {
+                    options.warning(response.warning);
+                }
+            } else if (response.error) {
+                console.log('[WHMCS] Error: ' + response.error);
+                if (typeof options.error === 'function') {
+                    options.error(response.error);
+                }
+            } else {
+                if (typeof options.success === 'function') {
+                    options.success(response);
+                }
+            }
+        }, 'json').error(function(xhr, errorMsg){
+            console.log('[WHMCS] Error: ' + errorMsg);
+            if (typeof options.fail === 'function') {
+                options.fail(errorMsg);
+            }
+        }).always(function() {
+            if (typeof options.always === 'function') {
+                options.always();
+            }
+        });
     };
 
     return this;
@@ -14621,6 +14659,8 @@ function () {
  * @copyright Copyright (c) WHMCS Limited 2005-2018
  * @license http://www.whmcs.com/license/ WHMCS Eula
  */
+var recaptchaLoadComplete = false;
+
 (function(module) {
     if (!WHMCS.hasModule('recaptcha')) {
         WHMCS.loadModule('recaptcha', module);
@@ -14629,6 +14669,9 @@ function () {
     function () {
 
         this.register = function () {
+            if (recaptchaLoadComplete) {
+                return;
+            }
             var postLoad = [];
             var recaptchaForms = jQuery(".btn-recaptcha").parents('form');
             recaptchaForms.each(function (i, el){
@@ -14638,13 +14681,20 @@ function () {
                 }
                 var frm = jQuery(el);
                 var btnRecaptcha = frm.find(".btn-recaptcha");
-                var isInvisible = btnRecaptcha.hasClass('btn-recaptcha-invisible');
+                var isInvisible = btnRecaptcha.hasClass('btn-recaptcha-invisible'),
+                    required = (typeof requiredText !== 'undefined') ? requiredText : 'Required';
 
                 // if no recaptcha element, make one
-                var recaptchaContent = frm.find("#divDynamicRecaptcha .g-recaptcha");
+                var recaptchaContent = frm.find("#divDynamicRecaptcha .g-recaptcha"),
+                    recaptchaElement = frm.find('.recaptcha-container'),
+                    appendElement = frm;
+
+                if (recaptchaElement.length) {
+                    appendElement = recaptchaElement;
+                }
                 if (!recaptchaContent.length) {
-                    frm.append('<div id="divDynamicRecaptcha" class="g-recaptcha"></div>');
-                    recaptchaContent = frm.find("#divDynamicRecaptcha");
+                    appendElement.append('<div id="divDynamicRecaptcha" class="g-recaptcha" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="' + required + '"></div>');
+                    recaptchaContent = appendElement.find("#divDynamicRecaptcha");
                 }
                 // propagate invisible recaptcha if necessary
                 if (isInvisible) {
@@ -14674,13 +14724,6 @@ function () {
                 window[funcName] = function () {
                     if (isInvisible) {
                         frm.submit();
-                    } else {
-                        btnRecaptcha.prop("disabled", false);
-                        recaptchaContent.slideUp('fast', function () {
-                            recaptchaContent.hide();
-                            btnRecaptcha.slideDown();
-                        });
-
                     }
                 };
                 recaptchaContent.attr('data-callback', funcName);
@@ -14690,20 +14733,20 @@ function () {
                 // has inject DOM
                 if (isInvisible) {
                     btnRecaptcha.on('click', function (event) {
-                        event.preventDefault();
-                        grecaptcha.execute();
+                        if (!grecaptcha.getResponse().trim()) {
+                            event.preventDefault();
+                            grecaptcha.execute();
+                        }
                     });
                 } else {
                     postLoad.push(function () {
-                        btnRecaptcha.slideUp('fast', function () {
-                            btnRecaptcha.hide();
-                            btnRecaptcha.prop("disabled", true);
+                        recaptchaContent.slideDown('fast', function() {
+                            // just in case there's a delay in DOM; rare
                             recaptchaContent.find(':first').addClass('center-block');
-                            recaptchaContent.slideDown('fast', function() {
-                                // just in case there's a delay in DOM; rare
-                                recaptchaContent.find(':first').addClass('center-block');
-                            });
                         });
+                    });
+                    postLoad.push(function() {
+                        recaptchaContent.find(':first').addClass('center-block');
                     });
                 }
             });
@@ -14717,6 +14760,7 @@ function () {
                     }
                 });
             }
+            recaptchaLoadComplete = true;
         };
 
         return this;
@@ -14813,6 +14857,10 @@ function () {
         return '';
     };
 
+    this.normaliseStringValue = function(status) {
+        return status ? status.toLowerCase().replace(/\s/g, '-') : '';
+    }
+
     return this;
 });
 
@@ -14872,7 +14920,12 @@ jQuery(document).ready(function() {
     });
 
     // Enable tooltips
-    jQuery('[data-toggle="tooltip"]').tooltip();
+    // Attach function to body so tooltips inserted by ajax will load
+    jQuery(function(jQuery){
+        jQuery('body').tooltip({
+            selector: '[data-toggle="tooltip"]'
+        });
+    });
 
     // Logic to dismiss popovers on click outside
     jQuery('body').on('click', function (e) {
@@ -15117,7 +15170,7 @@ jQuery(document).ready(function() {
             autofocus: false,
             savable: false,
             resize: 'vertical',
-            iconlibrary: 'fa',
+            iconlibrary: 'glyph',
             language: locale,
             onShow: function(e){
                 var content = '',
@@ -15168,7 +15221,7 @@ jQuery(document).ready(function() {
                         hotkey: "Ctrl+F1",
                         btnClass: "btn open-modal",
                         icon: {
-                            glyph: 'glyphicons glyphicons-question-sign',
+                            glyph: 'fas fa-question-circle',
                             fa: 'fa fa-question-circle',
                             'fa-3': 'icon-question-sign'
                         },
@@ -15340,6 +15393,73 @@ jQuery(document).ready(function() {
         }
         return true;
     });
+
+    jQuery('i.to-load-ssl').each(function () {
+        var parent = jQuery(this).parent('td');
+        WHMCS.http.jqClient.post(
+            WHMCS.utils.getRouteUrl('/domain/ssl-check'),
+            {
+                'type': parent.data('type'),
+                'domain': parent.data('domain'),
+                'token': csrfToken
+            },
+            function (data) {
+                var image = data.image,
+                    imagePath = data.imagePath,
+                    domain = data.domain,
+                    status = data.status,
+                    iClass = data.class,
+                    title = data.title,
+                    id = data.id;
+
+                if (id) {
+                    jQuery('td.ssl-info[data-element-id="' + id + '"]').html(
+                        '<img id="sslStatus' + id + '" src="' + imagePath + image + '" data-toggle="tooltip" title="' + title + '" class="ssl-state ' + iClass + '"/>'
+                    );
+                }
+            }
+        );
+    });
+    jQuery(document).on('click', '.ssl-required', function(e) {
+        e.preventDefault();
+        window.location.href = WHMCS.utils.getRouteUrl('/ssl-purchase');
+    });
+
+    WHMCS.recaptcha.register();
+
+    var dynamicRecaptchaContainer = jQuery('#divDynamicRecaptcha');
+    var homepageHasRecaptcha = jQuery(dynamicRecaptchaContainer).length > 0;
+    var homepageHasInvisibleRecaptcha = homepageHasRecaptcha && jQuery(dynamicRecaptchaContainer).data('size') === 'invisible';
+
+    if (homepageHasRecaptcha && !homepageHasInvisibleRecaptcha) {
+        jQuery('section#home-banner').addClass('with-recaptcha');
+    }
+
+    if (jQuery('.domainchecker-homepage-captcha').length && !homepageHasInvisibleRecaptcha) {
+        // invisible reCaptcha doesn't play well with onsubmit() handlers on all submissions following a prevented one
+
+        jQuery('#frmDomainHomepage').submit(function (e) {
+            var frmDomain = jQuery('#frmDomainHomepage'),
+                inputDomain = jQuery(frmDomain).find('input[name="domain"]'),
+                reCaptchaContainer = jQuery('#divDynamicRecaptcha'),
+                reCaptcha = jQuery('#g-recaptcha-response'),
+                captcha = jQuery('#inputCaptcha');
+
+            if (reCaptcha.length && !reCaptcha.val()) {
+                reCaptchaContainer.tooltip('show');
+
+                e.preventDefault();
+                return;
+            }
+
+            if (captcha.length && !captcha.val()) {
+                captcha.tooltip('show');
+
+                e.preventDefault();
+                return;
+            }
+        });
+    }
 });
 
 /**
@@ -15379,6 +15499,9 @@ function clickableSafeRedirect(clickEvent, target, newWindow) {
     var eventTable = clickEvent.target.parentNode.parentNode.parentNode;
     if (jQuery(eventTable).hasClass('collapsed')) {
         // This is a mobile device sized display, and datatables has triggered folding
+        return false;
+    }
+    if (eventSource === 'i' && jQuery(clickEvent.target).hasClass('ssl-required')) {
         return false;
     }
     if(eventSource != 'button' && eventSource != 'a') {
@@ -15772,6 +15895,14 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
 }
 
 function updateAjaxModal(data) {
+    if (data.reloadPage) {
+        if (typeof data.reloadPage === 'string') {
+            window.location = data.reloadPage;
+        } else {
+            window.location.reload();
+        }
+        return;
+    }
     if (data.successDataTable) {
         WHMCS.ui.dataTable.getTableById(data.successDataTable, undefined).ajax.reload();
     }
@@ -38232,6 +38363,34 @@ jQuery(document).ready(function() {
                             country = 'us';
                         }
                         phoneInput.intlTelInput('setCountry', country);
+                    }
+                });
+
+                // this must be .attr (not .data) in order for it to be found by [data-initial-value] selector
+                thisInput.attr('data-initial-value', $(thisInput).val());
+
+                thisInput.parents('form').find('input[type=reset]').each(function() {
+                    var resetButton = this;
+                    var form = $(resetButton).parents('form');
+
+                    if (!$(resetButton).data('phone-handler')) {
+                        $(resetButton).data('phone-handler', true);
+
+                        $(resetButton).click(function(e) {
+                            e.stopPropagation();
+
+                            $(form).trigger('reset');
+
+                            $(form).find('input[data-initial-value]').each(function() {
+                                var inputToReset = this;
+
+                                $(inputToReset).val(
+                                    $(inputToReset).attr('data-initial-value')
+                                );
+                            });
+
+                            return false;
+                        });
                     }
                 });
             });

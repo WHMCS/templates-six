@@ -81,7 +81,7 @@
                             {if $item->getExtra('btn-link') && $item->getExtra('btn-text')}
                                 <div class="pull-right">
                                     <a href="{$item->getExtra('btn-link')}" class="btn btn-default bg-color-{$item->getExtra('color')} btn-xs">
-                                        {if $item->getExtra('btn-icon')}<i class="fas {$item->getextra('btn-icon')}"></i>{/if}
+                                        {if $item->getExtra('btn-icon')}<i class="{$item->getExtra('btn-icon')}"></i>{/if}
                                         {$item->getExtra('btn-text')}
                                     </a>
                                 </div>

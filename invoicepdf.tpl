@@ -50,6 +50,9 @@ foreach ($companyaddress as $addressLine) {
     $pdf->Cell(180, 4, trim($addressLine), 0, 1, 'R');
     $pdf->SetFont($pdfFont, '', 9);
 }
+if ($taxCode) {
+    $pdf->Cell(180, 4, trim($taxCode), 0, 1, 'R');
+}
 $pdf->Ln(5);
 
 # Header Bar
@@ -88,6 +91,9 @@ if ($clientsdetails["address2"]) {
 }
 $pdf->Cell(0, 4, $clientsdetails["city"] . ", " . $clientsdetails["state"] . ", " . $clientsdetails["postcode"], 0, 1, 'L');
 $pdf->Cell(0, 4, $clientsdetails["country"], 0, 1, 'L');
+if (array_key_exists('tax_id', $clientsdetails) && $clientsdetails['tax_id']) {
+    $pdf->Cell(0, 4, $clientsdetails['tax_id'], 0, 1, 'L');
+}
 if ($customfields) {
     $pdf->Ln();
     foreach ($customfields as $customfield) {

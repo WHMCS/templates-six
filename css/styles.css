@@ -377,6 +377,26 @@ section#home-banner {
     color: #fff;
 }
 
+section#home-banner.with-recaptcha {
+    padding-bottom: 90px;
+}
+
+section#home-banner .tooltip-inner {
+    background-color: #00a3c6;
+}
+
+section#home-banner .tooltip.left .tooltip-arrow {
+    border-left-color: #00a3c6;
+}
+
+section#home-banner .tooltip.bottom .tooltip-arrow {
+    border-bottom-color: #00a3c6;
+}
+
+section#home-banner .tooltip.right .tooltip-arrow {
+    border-right-color: #00a3c6;
+}
+
 section#home-banner h2 {
     margin: 0;
     padding: 0 25px 10px 25px;
@@ -1244,6 +1264,10 @@ div.product-details-tab-container {
 
 .module-client-area {
     padding: 15px 15px 0 15px;
+}
+
+.ssl-required {
+    cursor: pointer;
 }
 
 /**
@@ -2987,6 +3011,16 @@ div.md-editor.active {
     background-color: #f2952d;
 }
 
+.promo-banner.codeguard {
+    border-top: 3px solid #a9cc5f;
+}
+.promo-banner.codeguard a {
+    color: #a9cc5f;
+}
+.promo-banner.codeguard .btn {
+    background-color: #a9cc5f;
+}
+
 .mc-panel-promo {
     font-size: 0.95em;
 }
@@ -3321,6 +3355,7 @@ div.md-editor.active {
     padding: 20px;
     background-color: #2b5580;
     color: #fff;
+    min-height: 150px;
 }
 .upgrade .products .product .header p {
     font-size: 1.1em;
