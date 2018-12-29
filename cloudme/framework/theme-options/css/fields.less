@@ -1,0 +1,624 @@
+#theme-options {
+	.field {
+		margin-bottom: 20px;
+
+		& > .input {
+			margin-left: 200px;
+		}
+
+		.field {
+			clear: none;
+
+			.label {
+				float: none;
+				width: auto;
+			}
+			.input {
+				margin-left: 0;
+			}
+		}
+	}
+	.label {
+		display: block;
+		padding: 0;
+		float: left;
+		width: 180px;
+
+		label {
+			display: block;
+			font-weight: bold;
+			margin: 0 0 5px;
+		}
+	}
+	.desc {
+		font-size: 11px;
+		color: #888;
+	}
+	.subdesc {
+		font-size: 11px;
+		color: #999;
+		margin: 5px 0 0 0;
+	}
+	.suffix {
+		height: 35px;
+		padding: 8px 10px 8px 0;
+		font-size: 11px;
+	}
+
+	.divider {
+		border: none;
+		border-bottom: 1px solid @border-color;
+		margin: 20px 0;
+		padding-bottom: 8px;
+		clear: both;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	/** Inputs & Textarea **/
+	input[type="text"],
+	input[type="number"],
+	input[type="email"],
+	select,
+	textarea {
+		border: none;
+		padding: 5px;
+		width: 150px;
+		margin: 0 5px 0 0;
+		border: 1px solid @border-color;
+		background-color: @light-color;
+
+		&.input-mini {
+			width: 50px;
+		}
+		&.input-small {
+			width: 150px;
+		}
+		&.input-medium {
+			width: 250px;
+		}
+		&.input-large {
+			width: 350px;
+		}
+		&.input-xlarge {
+			width: 450px;
+		}
+		&.input-xxlarge {
+			width: 99%;
+		}
+	}
+	input[type="text"],
+	input[type="number"],
+	input[type="email"],
+	select {
+		height: 35px;
+	}
+	select {
+		padding-top: 8px;
+	}
+	textarea {
+		width: 100%;
+	}
+
+	/** Image **/
+	.images-holder {
+		text-align: center;
+		width: 485px;
+		height: 150px;
+		position: relative;
+		border: 1px dashed @border-color;
+		background: @light-color;
+
+		i {
+			color: @grey-color;
+			font-size: 32px;
+			display: block;
+			margin-top: 30px;
+		}
+		img {
+			display: none;
+			max-width: 100%;
+			max-height: 100%;
+			margin: 0 auto;
+		}
+		.button {
+			margin: 20px 10px 0 10px;
+		}
+		.button-clear {
+			transition: all 0.3s;
+			display: none;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			margin: 0;
+			color: @secondary-color;
+			font-size: 20px;
+			cursor: pointer;
+		}
+
+		.images-sort {
+			.clearfix;
+			position: relative;
+		}
+
+		.single-image,
+		.image-placeholder {
+			position: relative;
+			float: left;
+			margin: 10px;
+			width: 100px;
+			height: 100px;
+		}
+
+		.image-placeholder {
+			background-color: @grey-color;
+		}
+
+		&.has-image {
+			height: auto;
+
+			i {
+				display: none;
+			}
+
+			img {
+				display: block;
+				vertical-align: middle;
+			}
+
+			.button-select {
+				display: none;
+			}
+
+			.button-clear {
+				display: block;
+			}
+
+			&:hover > .button-clear,
+			.single-image:hover > .button-clear {
+				color: #ff0000;
+			}
+
+			.single-image:hover {
+				cursor: move;
+			}
+
+			&.multiple {
+				.button-select {
+					display: inline-block;
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+
+	/** Background **/
+	.field-background {
+		select {
+			width: 105px;
+		}
+
+		.background-position {
+			margin-bottom: 10px;
+		}
+	}
+
+	.background-preview {
+		text-align: center;
+		width: 400px;
+		height: 202px;
+		margin-right: 20px !important;
+		position: relative;
+		border: 1px dashed @border-color;
+		background-color: @light-color;
+
+		.button {
+			margin: 85px 10px 0 10px;
+		}
+		.button-clear {
+			box-shadow: 0 0 3px @secondary-color;
+			display: none;
+		}
+
+		&.has-image {
+			.button-select {
+				display: none;
+			}
+			.button-clear {
+				display: inline;
+			}
+		}
+	}
+
+	.background-patterns {
+		.pattern {
+			cursor: pointer;
+			display: inline-block;
+			zoom: 1;
+			*display: inline;
+			width: 40px;
+			height: 40px;
+			margin-right: 10px;
+			border: 1px solid @border-color;
+			background-repeat: repeat;
+
+			img {
+				display: none;
+			}
+
+			&.active {
+				border: 2px solid @primary-color;
+			}
+		}
+	}
+
+	/** Button Group **/
+	.button-group {
+		.button {
+			border-radius: 0;
+			color: @light-color;
+			margin-right: 0;
+			margin-left: 0;
+			border-left: 1px solid @border-color;
+			line-height: 35px;
+			height: 35px;
+
+			&:first-child {
+				border-left-width: 0;
+			}
+			&.active {
+				background: @primary-color;
+			}
+		}
+
+		label input {
+			display: none;
+		}
+	}
+
+	/** Image Toggle **/
+	.field-image_toggle {
+		img {
+			border: 3px solid transparent;
+		}
+		.active img {
+			border-color: @primary-color;
+		}
+		label input {
+			display: none;
+		}
+	}
+	.horizontal > label,
+	.horizontal > div {
+		display: inline-block;
+		margin: 0 5px 10px 0;
+		vertical-align: top;
+	}
+	.vertical > label {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	// Font
+	.field-font {
+		.desc {
+			display: block;
+		}
+		.button-group {
+			font-family: "Times New Roman", Times, serif;
+
+			.button {
+				font-size: 14px;
+
+				strong {
+					font-weight: 700;
+				}
+			}
+		}
+	}
+
+	/** Color Picker **/
+	.wp-picker-container {
+		position: relative;
+		border: 1px solid #e8e8e8;
+	}
+	.wp-picker-input-wrap,
+	.wp-picker-holder {
+		position: absolute;
+		z-index: 99;
+		left: 0;
+	}
+	.wp-picker-input-wrap {
+		top: 40px;
+		display: block;
+		width: 200px;
+
+		input[type="text"] {
+			width: 60px;
+		}
+	}
+	.wp-picker-holder {
+		top: 75px;
+
+		a {
+			transition: none;
+			box-sizing: content-box;
+		}
+		.iris-picker,
+		.iris-square-handle {
+			box-sizing: content-box;
+		}
+	}
+	.wp-color-result {
+		box-sizing: border-box;
+		border-radius: 0;
+		border: none;
+		height: 35px;
+		outline: none;
+		top: 0;
+		margin: 0;
+		box-shadow: none;
+
+		&:after {
+			box-sizing: border-box;
+			border-radius: 0;
+			height: 35px;
+			line-height: 35px;
+			border-color: #e8e8e8;
+		}
+	}
+
+	/** Social Icons **/
+	.field-social {
+		.hidden {
+			display: none;
+		}
+
+		.active {
+			display: block;
+		}
+	}
+	.socials-actived {
+		margin-bottom: 10px;
+
+		.social-link-input  {
+			background: @light-color;
+			border: 1px solid @border-color;
+			margin: 5px 0;
+
+			label {
+				float: left;
+			}
+
+			i {
+				float: right;
+				cursor: pointer;
+			}
+
+			.field {
+				margin: 0 40px 0 40px;
+			}
+		}
+
+		i,
+		label {
+			font-size: 20px;
+			line-height: 40px;
+			text-align: center;
+			width: 40px;
+			height: 40px;
+		}
+
+		input {
+			display: block;
+			width: 100%;
+			height: 40px;
+			margin: 0;
+			border-top-width: 0;
+			border-bottom-width: 0;
+		}
+
+		.entypo-facebook { color: #39599f; }
+		.entypo-twitter { color: #45b0e3; }
+		.entypo-google { color: #df5138; }
+		.entypo-flickr { color: #ff0086; }
+		.entypo-vimeo { color: #45afe1; }
+		.entypo-youtube { color: #e52d27; }
+		.entypo-linkedin { color: #0175b2; }
+		.entypo-pinterest { color: #cd2026; }
+		.entypo-dribbble { color: #e84c89; }
+		.entypo-behance { color: #329dd5; }
+		.entypo-soundcloud { color: #f65d0d; }
+		.entypo-spotify { color: #7eb615; }
+		.entypo-github { color: #000000; }
+		.entypo-instagram { color: #5280a4; }
+		.entypo-picasa { color: #8e68a3; }
+		.entypo-tumblr { color: #2a445d; }
+		.entypo-foursquare { color: #ef4b78; }
+		.entypo-lastfm { color: #d7000e; }
+	}
+	.socials-inactived {
+		i {
+			font-size: 20px;
+			line-height: 40px;
+			text-align: center;
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			margin-bottom: 5px;
+			cursor: pointer;
+			border: 1px solid @border-color;
+			background: @light-color;
+		}
+	}
+
+	/** Icon Picker **/
+	.field-icon {
+		width: 75px;
+		text-align: center;
+		vertical-align: top;
+
+		.label {
+			text-align: left;
+		}
+	}
+	.icon-picker {
+		width: 75px;
+		height: 75px;
+		position: relative;
+		border: 1px dashed #ddd;
+		background: #fff;
+		box-sizing: border-box;
+
+		&.active,
+		&.active:hover {
+			border-color: #666;
+		}
+
+		.select,
+		.remove {
+			position: absolute;
+			top: 0;
+			left: 0;
+			cursor: pointer;
+			display: none;
+		}
+		.select {
+			height: 73px;
+			width: 73px;
+			font-size: 30px;
+			line-height: 73px;
+			text-align: center;
+			color: #333;
+			display: block;
+		}
+		.remove {
+			background: #666;
+			width: 16px;
+			height: 16px;
+			line-height: 16px;
+			color: #fff;
+			text-align: center;
+		}
+
+		img {
+			width: 73px;
+			height: 73px;
+			display: none;
+		}
+		&.has-icon {
+			.remove,
+			img {
+				display: block;
+			}
+
+			.remove {
+				opacity: 0.5;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+
+			.select {
+				display: none;
+			}
+		}
+
+		&:hover {
+			border-color: #ccc;
+
+			.select {
+				display: block;
+			}
+			img {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	/** Switcher **/
+	.switcher {
+		transition: all 0.3s;
+		border-radius: 15px;
+		width: 50px;
+		height: 30px;
+		margin-right: 5px;
+		position: relative;
+		display: inline-block;
+		zoom: 1;
+		*display: inline;
+		background: @secondary-color;
+
+		&:before {
+			transition: all 0.3s;
+			border-radius: 50%;
+			position: absolute;
+			left: 22px;
+			top: 2px;
+			width: 26px;
+			height: 26px;
+			content: " ";
+			background: @light-color;
+		}
+		&.on {
+			background: #00a651;
+
+			&:before {
+				left: 2px;
+			}
+		}
+		input[type=checkbox] {
+			display: none;
+		}
+	}
+
+	/** Code Editor **/
+	.ace_editor {
+		height: 150px;
+		border: 1px solid @border-color;
+	}
+
+	/** Editor */
+	.field-editor {
+		.wp-editor-tabs .wp-switch-editor {
+			height: 36px;
+		}
+
+		textarea.wp-editor-area {
+			border-color: transparent;
+		}
+	}
+
+	/** Color Scheme */
+	.field-color_scheme {
+		.input {
+			label {
+				width: 35px;
+				height: 35px;
+				margin: 3px;
+				padding: 2px;
+				border: 3px solid transparent;
+				display: inline-block;
+
+				&.active {
+					border-color: @primary-color;
+				}
+
+				input {
+					display: none;
+				}
+
+				span {
+					display: block;
+					height: 25px;
+				}
+			}
+
+			.vertical label {
+				display: block;
+			}
+		}
+	}
+
+}

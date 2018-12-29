@@ -1,0 +1,308 @@
+/* Variables ------------------------------------------------*/
+@light-color: #fff;
+@dark-color: #404040;
+@grey-color: #ebebeb;
+@border-color: #ccc;
+@primary-color: #00bff3;
+@secondary-color: #555;
+
+.clearfix {
+	*zoom: 1;
+
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@import 'icon';
+@import 'jquery-ui';
+@import 'fields';
+
+html {
+	background: url(../img/bg.jpg) fixed 0 25%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	transition: all 0.3s;
+}
+
+/* Options Header ------------------------------------------*/
+.options-header {
+	color: @light-color;
+	font-weight: 300;
+	font-family: Roboto, Open-sans, sans-serif;
+	margin: 30px 0;
+
+	.help {
+		font-size: 14px;
+		color: @light-color;
+		text-decoration: none;
+		float: right;
+		margin: 20px 0 0 25px;
+
+		&:hover {
+			color: @primary-color;
+		}
+
+		i {
+			font-size: 18px;
+			margin-right: 10px;
+		}
+	}
+
+	h1 {
+		font-size: 40px;
+		font-weight: 300;
+		line-height: 1;
+		margin: 0;
+
+		.theme-version,
+		.theme-author {
+			font-size: 12px;
+			font-style: italic;
+		}
+
+		a {
+			color: @grey-color;
+			text-decoration: none;
+
+			&:hover {
+				color: @dark-color;
+			}
+		}
+	}
+}
+
+/* Theme Options ------------------------------------------*/
+#theme-options {
+	background-color: rgba(255,255,255,0.2);
+	margin: 20px 0 0 0;
+	position: relative;
+
+	* {
+		box-sizing: border-box;
+
+		:focus {
+			box-shadow: none;
+			outline: none;
+		}
+	}
+
+	&.minimized {
+		.options-menu {
+			width: 60px;
+
+			.menu {
+				li .changes {
+					display: none;
+				}
+
+				a span {
+					font-size: 0;
+				}
+			}
+		}
+
+		.options-content {
+			margin-left: 60px;
+		}
+	}
+}
+
+.options-menu {
+	transition: all 0.5s;
+	width: 240px;
+	float: left;
+
+	.menu {
+		margin: 0;
+		padding: 10px 0;
+
+		li {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+
+			&.current,
+			&:hover {
+				background: rgba(255,255,255,0.2);
+			}
+
+			.changes {
+				border-radius: 50%;
+				float: right;
+				margin: 13px 20px 0 0;
+				width: 24px;
+				height: 24px;
+				line-height: 24px;
+				color: @light-color;
+				font-size: 13px;
+				text-align: center;
+
+				&.active {
+					background: @primary-color;
+				}
+			}
+		}
+
+		a {
+			overflow: hidden;
+			display: block;
+			outline: none;
+			font-size: 13px;
+			line-height: 40px;
+			color: #fff;
+			text-decoration: none;
+			padding: 5px 0 5px 20px;
+
+			i {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				font-size: 20px;
+				float: left;
+				margin: 10px 0;
+			}
+
+			span {
+				transition: all 0.5s;
+				display: block;
+				margin: 0 0 0 30px;
+			}
+		}
+	}
+}
+
+.options-sections {
+	position: relative;
+
+	.options-back-content {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		background: #f5f5f5;
+		z-index: -1;
+	}
+}
+
+.options-content {
+	transition: all 0.5s;
+	margin-left: 240px;
+	position: relative;
+	background: #f5f5f5;
+
+	.button {
+		transition: all 0.5s;
+		box-shadow: none;
+		border-radius: 0;
+		color: @light-color;
+		font-weight: 500;
+		line-height: 30px;
+		vertical-align: middle;
+		text-transform: uppercase;
+		border: none;
+		display: inline-block;
+		height: 30px;
+		padding: 0 15px;
+		background: @secondary-color;
+
+		&.button-primary {
+			background: @primary-color;
+
+			&:hover,
+			&:focus {
+				background: darken(@primary-color, 10%);
+			}
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			box-shadow: none;
+			border: none;
+			outline: none;
+			color: @light-color;
+			background: darken(@secondary-color, 10%);
+		}
+	}
+
+	.toolbar {
+		overflow: hidden;
+		height: 60px;
+		padding: 10px 20px;
+		position: relative;
+		border-bottom: 1px solid @border-color;
+
+		.toggle-menu {
+			float: left;
+			margin-top: 3px;
+			cursor: pointer;
+			font-size: 40px;
+			color: @secondary-color;
+		}
+
+		.quick-search {
+			width: 230px;
+			position: relative;
+			float: left;
+			margin: 5px 0 0 20px;
+
+			&:after {
+				font-family: 'entypo';
+				font-size: 20px;
+				position: absolute;
+				right: 10px;
+				top: 7px;
+				color: @secondary-color;
+				content: "\e6d9";
+			}
+		}
+
+		#quick-search {
+			border-radius: 15px;
+			height: 30px;
+			padding: 5px 30px 5px 20px;
+			border: 1px solid @secondary-color;
+			width: 100%;
+			font-size: 13px;
+			color: @dark-color;
+			line-height: 18px;
+
+			&:focus {
+				box-shadow: none;
+				border: 1px solid @secondary-color;
+			}
+		}
+
+		.save-options,
+		.reset-options {
+			float: right;
+			margin: 5px 0 0 10px;
+		}
+
+		.spinner {
+			margin-top: 10px;
+			visibility: visible;
+		}
+	}
+
+	.section {
+		float: left;
+		width: 100%;
+		padding: 20px;
+		visibility: visible;
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+}
