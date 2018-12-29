@@ -3,7 +3,11 @@
 {elseif $registrarcustombuttonresult}
     {include file="$template/includes/alert.tpl" type="error" msg=$LANG.moduleactionfailed textcenter=true}
 {/if}
-
+{*-- Resellerclub Mods --*}
+{if $raapending}{include file="$raaverify"}{/if}
+{if $irtppending}{include file="$irtpverify"}{/if}
+{if $gdprpending}{include file="$gdprverify"}{/if}
+{*-- Resellerclub Mods --*}
 <div class="tab-content margin-bottom">
     <div class="tab-pane fade in active" id="tabOverview">
 
@@ -112,7 +116,7 @@
                 {/if}
                 {if $systemStatus == 'Active' && $managementoptions.contacts}
                     <li>
-                        <a href="clientarea.php?action=domaincontacts&domainid={$domainid}">
+                        <a href="domainmanagement.php?action=domaincontacts&domainid={$domainid}&domain={$domain}">
                             {$LANG.updateWhoisContact}
                         </a>
                     </li>
@@ -315,8 +319,7 @@
                     <form action="clientarea.php?action=domainaddons" method="post">
                         <input type="hidden" name="id" value="{$domainid}"/>
                         {if $addonstatus.dnsmanagement}
-                            <input type="hidden" name="disable" value="dnsmanagement"/>
-                            <a class="btn btn-success" href="clientarea.php?action=domaindns&domainid={$domainid}">{$LANG.manage}</a> <input type="submit" value="{$LANG.disable}" class="btn btn-danger"/>
+                            <a class="btn btn-success" href = "dnsmanagement.php?action=managednszone&domain={$domain}&domainid={$domainid}">{$LANG.manage}</a> <input type="submit" value="{$LANG.disable}" class="btn btn-danger"/>
                         {else}
                             <input type="hidden" name="buy" value="dnsmanagement"/>
                             <input type="submit" value="{$LANG.domainaddonsbuynow} {$addonspricing.dnsmanagement}" class="btn btn-success"/>
@@ -337,7 +340,7 @@
                         <input type="hidden" name="id" value="{$domainid}"/>
                         {if $addonstatus.emailforwarding}
                             <input type="hidden" name="disable" value="emailfwd"/>
-                            <a class="btn btn-success" href="clientarea.php?action=domainemailforwarding&domainid={$domainid}">{$LANG.manage}</a> <input type="submit" value="{$LANG.disable}" class="btn btn-danger"/>
+                            <a class="btn btn-success" href = "emailmanagement.php?action=managemailhosting&domain={$domain}&domainid={$domainid}">{$LANG.manage}</a> <input type="submit" value="{$LANG.disable}" class="btn btn-danger"/>
                         {else}
                             <input type="hidden" name="buy" value="emailfwd"/>
                             <input type="submit" value="{$LANG.domainaddonsbuynow} {$addonspricing.emailforwarding}" class="btn btn-success"/>
