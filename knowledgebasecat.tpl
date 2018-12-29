@@ -1,6 +1,6 @@
 <form role="form" method="post" action="{routePath('knowledgebase-search')}">
     <div class="input-group input-group-lg kb-search">
-        <input type="text"  id="inputKnowledgebaseSearch" name="search" class="form-control" placeholder="What can we help you with?" value="{$searchterm}" />
+        <input type="text"  id="inputKnowledgebaseSearch" name="search" class="form-control" placeholder="{$LANG.clientHomeSearchKb}" value="{$searchterm}" />
         <span class="input-group-btn">
             <input type="submit" id="btnKnowledgebaseSearch" class="btn btn-primary btn-input-padded-responsive" value="{$LANG.search}" />
         </span>
@@ -18,7 +18,7 @@
                 </a>
                 {if $kbcat.editLink}
                     <a href="{$kbcat.editLink}" class="admin-inline-edit">
-                        <i class="fa fa-pencil fa-fw"></i>
+                        <i class="fas fa-pencil-alt fa-fw"></i>
                         {$LANG.edit}
                     </a>
                 {/if}
@@ -42,7 +42,7 @@
             </a>
             {if $kbarticle.editLink}
                 <a href="{$kbarticle.editLink}" class="admin-inline-edit">
-                    <i class="fa fa-pencil fa-fw"></i>
+                    <i class="fas fa-pencil-alt fa-fw"></i>
                     {$LANG.edit}
                 </a>
             {/if}

@@ -28,7 +28,7 @@
 
     <p>{$LANG.feedbackdesc}</p>
 
-    <p class="text-center"><a href="viewticket.php?tid={$tid}&amp;c={$c}" class="btn btn-success">{$LANG.feedbackclickreview}&nbsp; <i class="fa fa-arrow-right">&nbsp;</i></a></p>
+    <p class="text-center"><a href="viewticket.php?tid={$tid}&amp;c={$c}" class="btn btn-success">{$LANG.feedbackclickreview}&nbsp; <i class="fas fa-arrow-right">&nbsp;</i></a></p>
 
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">

@@ -26,7 +26,7 @@
 
         <p class="text-center">
             <a href="{$WEB_ROOT}/index.php" class="btn btn-default">
-                <i class="fa fa-home"></i>
+                <i class="fas fa-home"></i>
                 {$LANG.returnhome}
             </a>
         </p>

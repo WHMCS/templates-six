@@ -49,7 +49,7 @@
 
                     {if $stage eq "Delivered" || $stage eq "On Hold"}
                         <div class="payment-btn-container" align="center">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#acceptQuoteModal"><i class="fa fa-check-circle"></i> {$LANG.quoteacceptbtn}</button>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#acceptQuoteModal"><i class="fas fa-check-circle"></i> {$LANG.quoteacceptbtn}</button>
                         </div>
                     {/if}
 
@@ -165,8 +165,8 @@
             {/if}
 
             <div class="pull-right btn-group btn-group-sm hidden-print">
-                <a href="javascript:window.print()" class="btn btn-default"><i class="fa fa-print"></i> {$LANG.print}</a>
-                <a href="dl.php?type=q&amp;id={$quoteid}" class="btn btn-default"><i class="fa fa-download"></i> {$LANG.invoicesdownload}</a>
+                <a href="javascript:window.print()" class="btn btn-default"><i class="fas fa-print"></i> {$LANG.print}</a>
+                <a href="dl.php?type=q&amp;id={$quoteid}" class="btn btn-default"><i class="fas fa-download"></i> {$LANG.invoicesdownload}</a>
             </div>
 
         {/if}

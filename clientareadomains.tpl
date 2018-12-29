@@ -3,21 +3,21 @@
 {/if}
 <div class="tab-content">
     <div class="tab-pane fade in active" id="tabOverview">
-        {include file="$template/includes/tablelist.tpl" tableName="DomainsList" noSortColumns="0, 6" startOrderCol="1" filterColumn="5"}
+        {include file="$template/includes/tablelist.tpl" tableName="DomainsList" noSortColumns="0, 1, 6" startOrderCol="2" filterColumn="6"}
         <script type="text/javascript">
             jQuery(document).ready( function ()
             {
                 var table = jQuery('#tableDomainsList').removeClass('hidden').DataTable();
                 {if $orderby == 'domain'}
-                    table.order(1, '{$sort}');
-                {elseif $orderby == 'regdate' || $orderby == 'registrationdate'}
                     table.order(2, '{$sort}');
-                {elseif $orderby == 'nextduedate'}
+                {elseif $orderby == 'regdate' || $orderby == 'registrationdate'}
                     table.order(3, '{$sort}');
-                {elseif $orderby == 'autorenew'}
+                {elseif $orderby == 'nextduedate'}
                     table.order(4, '{$sort}');
-                {elseif $orderby == 'status'}
+                {elseif $orderby == 'autorenew'}
                     table.order(5, '{$sort}');
+                {elseif $orderby == 'status'}
+                    table.order(6, '{$sort}');
                 {/if}
                 table.draw();
                 jQuery('#tableLoading').addClass('hidden');
@@ -31,6 +31,7 @@
                     <thead>
                         <tr>
                             <th width="20"></th>
+                            <th></th>
                             <th>{$LANG.orderdomain}</th>
                             <th>{$LANG.regdate}</th>
                             <th>{$LANG.nextdue}</th>
@@ -45,14 +46,23 @@
                             <td>
                                 <input type="checkbox" name="domids[]" class="domids stopEventBubble" value="{$domain.id}" />
                             </td>
+                            <td class="text-center ssl-info" data-element-id="{$domain.id}" data-type="domain" data-domain="{$domain.domain}">
+                                {if !$domain.sslStatus}
+                                    <img id="sslStatus{$domain.id}" src="{$WEB_ROOT}/assets/img/ssl/ssl-unknown.png" data-toggle="tooltip" title="{lang key='sslUnknown'}" />
+                                {elseif $domain.sslStatus && $domain.sslStatus.toSync}
+                                    <i id="sslStatus{$domain.id}" data-toggle="tooltip" title="{lang key='loading'}" class="far fa-spinner fa-fw fa-2x fa-pulse {$domain.sslStatus.class}"></i>
+                                {elseif $domain.sslStatus}
+                                    <img id="sslStatus{$domain.id}" src="{$domain.sslStatus.imagePath}{$domain.sslStatus.image}" data-toggle="tooltip" title="{$domain.sslStatus.title}" class="ssl-state {$domain.sslStatus.class}"/>
+                                {/if}
+                            </td>
                             <td><a href="http://{$domain.domain}" target="_blank">{$domain.domain}</a></td>
                             <td><span class="hidden">{$domain.normalisedRegistrationDate}</span>{$domain.registrationdate}</td>
                             <td><span class="hidden">{$domain.normalisedNextDueDate}</span>{$domain.nextduedate}</td>
                             <td>
                                 {if $domain.autorenew}
-                                    <i class="fa fa-fw fa-check text-success"></i> {$LANG.domainsautorenewenabled}
+                                    <i class="fas fa-fw fa-check text-success"></i> {$LANG.domainsautorenewenabled}
                                 {else}
-                                    <i class="fa fa-fw fa-times text-danger"></i> {$LANG.domainsautorenewdisabled}
+                                    <i class="fas fa-fw fa-times text-danger"></i> {$LANG.domainsautorenewdisabled}
                                 {/if}
                             </td>
                             <td>
@@ -63,12 +73,12 @@
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm" style="width:60px;">
-                                    <a href="clientarea.php?action=domaindetails&id={$domain.id}" class="btn btn-default"><i class="fa fa-wrench"></i></a>
+                                    <a href="clientarea.php?action=domaindetails&id={$domain.id}" class="btn btn-default"><i class="fas fa-wrench"></i></a>
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
-                                    <ul class="dropdown-menu text-left" role="menu">
+                                    <ul class="dropdown-menu text-left dropdown-menu-right" role="menu">
                                         {if $domain.status eq 'Active'}
                                             <li><a href="clientarea.php?action=domaindetails&id={$domain.id}#tabNameservers"><i class="glyphicon glyphicon-globe"></i> {$LANG.domainmanagens}</a></li>
                                             <li><a href="clientarea.php?action=domaincontacts&domainid={$domain.id}"><i class="glyphicon glyphicon-user"></i> {$LANG.domaincontactinfoedit}</a></li>
@@ -92,7 +102,7 @@
                     </tbody>
                 </table>
                 <div class="text-center" id="tableLoading">
-                    <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+                    <p><i class="fas fa-spinner fa-spin"></i> {$LANG.loading}</p>
                 </div>
             </div>
         </form>

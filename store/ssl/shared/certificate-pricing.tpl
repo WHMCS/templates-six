@@ -33,12 +33,12 @@
                                     <h4>{$product->name}</h4>
                                 </div>
                                 <ul>
-                                    <li><i class="fa fa-check"></i></li>
+                                    <li><i class="fas fa-check"></i></li>
                                     <li>{$certificateFeatures.{$product->configoption1}.issuance}</li>
                                     <li>{$certificateFeatures.{$product->configoption1}.for}</li>
                                     <li>USD ${$certificateFeatures.{$product->configoption1}.warranty}</li>
-                                    <li><i class="fa fa-check"></i></li>
-                                    <li><i class="fa fa-check"></i></li>
+                                    <li><i class="fas fa-check"></i></li>
+                                    <li><i class="fas fa-check"></i></li>
                                     <li>99.9%</li>
                                     {if $product->pricing()->annual()}
                                         <li class="price 1yr">{$product->pricing()->annual()->yearlyPrice()}</li>

@@ -7,6 +7,12 @@
 <div class="tab-content margin-bottom">
     <div class="tab-pane fade in active" id="tabOverview">
 
+        {if $alerts}
+            {foreach $alerts as $alert}
+                {include file="$template/includes/alert.tpl" type=$alert.type msg="<strong>{$alert.title}</strong><br>{$alert.description}" textcenter=true}
+            {/foreach}
+        {/if}
+
         {if $systemStatus != 'Active'}
             <div class="alert alert-warning text-center" role="alert">
                 {$LANG.domainCannotBeManagedUnlessActive}
@@ -49,6 +55,28 @@
                 <h4><strong>{$LANG.clientareastatus}:</strong></h4> {$status}
             </div>
         </div>
+        {if $sslInfo}
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-5{if !$sslInfo->active} ssl-required{/if}">
+                <h4><strong>{$LANG.sslState.sslStatus}</strong></h4> <img src="{$BASE_PATH_IMG}/ssl/{$sslImage}" width="16"> {$sslMessage}
+            </div>
+            <div class="col-sm-6">
+                {if $sslInfo->active}
+                    <h4><strong>{$LANG.sslState.startDate}</strong></h4> {$sslInfo->startDate->toClientDateFormat()}
+                {/if}
+            </div>
+        </div>
+            {if $sslInfo->active}
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <h4><strong>{$LANG.sslState.issuerName}</strong></h4> {$sslInfo->issuerName}
+                    </div>
+                    <div class="col-sm-6">
+                        <h4><strong>{$LANG.sslState.expiryDate}</strong></h4> {$sslInfo->expiryDate->toClientDateFormat()}
+                    </div>
+                </div>
+            {/if}
+        {/if}
 
         {if $registrarclientarea}
             <div class="moduleoutput">
@@ -258,7 +286,7 @@
         {if $addons.idprotection}
             <div class="row margin-bottom">
                 <div class="col-xs-3 col-md-2 text-center">
-                    <i class="fa fa-shield fa-3x"></i>
+                    <i class="fas fa-shield-alt fa-3x"></i>
                 </div>
                 <div class="col-xs-9 col-md-10">
                     <strong>{$LANG.domainidprotection}</strong><br />
@@ -279,7 +307,7 @@
         {if $addons.dnsmanagement}
             <div class="row margin-bottom">
                 <div class="col-xs-3 col-md-2 text-center">
-                    <i class="fa fa-cloud fa-3x"></i>
+                    <i class="fas fa-cloud fa-3x"></i>
                 </div>
                 <div class="col-xs-9 col-md-10">
                     <strong>{$LANG.domainaddonsdnsmanagement}</strong><br />
@@ -300,7 +328,7 @@
         {if $addons.emailforwarding}
             <div class="row margin-bottom">
                 <div class="col-xs-3 col-md-2 text-center">
-                    <i class="fa fa-envelope fa-3x">&nbsp;</i><i class="fa fa-mail-forward fa-2x"></i>
+                    <i class="fas fa-envelope fa-3x">&nbsp;</i><i class="fas fa-share fa-2x"></i>
                 </div>
                 <div class="col-xs-9 col-md-10">
                     <strong>{$LANG.domainemailforwarding}</strong><br />

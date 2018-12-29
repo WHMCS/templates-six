@@ -14,7 +14,7 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-landing-page" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">{lang key="store.toggleNav"}</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -22,10 +22,10 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-landing-page">
           <ul class="nav navbar-nav">
-            <li><a href="#" onclick="smoothScroll('#overview');return false">Overview</a></li>
-            <li><a href="#" onclick="smoothScroll('#features');return false">Features</a></li>
-            <li><a href="#" onclick="smoothScroll('#pricing');return false">Pricing</a></li>
-            <li><a href="#" onclick="smoothScroll('#faq');return false">FAQ</a></li>
+            <li><a href="#" onclick="smoothScroll('#overview');return false">{lang key="store.websiteBuilder.tab.overview"}</a></li>
+            <li><a href="#" onclick="smoothScroll('#features');return false">{lang key="store.websiteBuilder.tab.features"}</a></li>
+            <li><a href="#" onclick="smoothScroll('#pricing');return false">{lang key="store.websiteBuilder.tab.pricing"}</a></li>
+            <li><a href="#" onclick="smoothScroll('#faq');return false">{lang key="store.websiteBuilder.tab.faq"}</a></li>
           </ul>
         </div>
       </div>
@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-sm-7">
                     <br><br>
-                    <h3>Drag & Drop Builder</h3>
-                    <p>The easy drag & drop builder allows you to create a professional website with no technical skills required. Choose different elements to add photos, maps or videos by just dragging and dropping them into place, right from your web browser.</p>
+                    <h3>{lang key="store.websiteBuilder.ddEditor"}</h3>
+                    <p>{lang key="store.websiteBuilder.ddEditorDescription"}</p>
                 </div>
             </div>
         </div>
@@ -54,57 +54,57 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/builder.png"></div>
-                    <h4>Builder</h4>
-                    <p>Create the perfect website with powerful drag and drop tools</p>
+                    <h4>{lang key="store.websiteBuilder.features.builder"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.builderDescription"}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/ecommerce.png"></div>
-                    <h4>Ecommerce</h4>
-                    <p>Complete e-commerce solution to grow your business online</p>
+                    <h4>{lang key="store.websiteBuilder.features.ecommerce"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.ecommerceDescription"}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/forms.png"></div>
-                    <h4>Forms</h4>
-                    <p>Create custom contact forms, RSVP lists and surveys</p>
+                    <h4>{lang key="store.websiteBuilder.features.forms"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.formsDescription"}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/templates.png"></div>
-                    <h4>Templates</h4>
-                    <p>Professionally designed website templates with full customisation</p>
+                    <h4>{lang key="store.websiteBuilder.features.templates"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.templatesDescription"}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/gallery.png"></div>
-                    <h4>Photos</h4>
-                    <p>Create your own galleries, slideshows and custom backgrounds</p>
+                    <h4>{lang key="store.websiteBuilder.features.gallery"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.galleryDescription"}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/blogging.png"></div>
-                    <h4>Blogging</h4>
-                    <p>Make an amazing blog in minutes</p>
+                    <h4>{lang key="store.websiteBuilder.features.blogging"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.bloggingDescription"}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/video.png"></div>
-                    <h4>Video</h4>
-                    <p>Embed video from popular services or host your own</p>
+                    <h4>{lang key="store.websiteBuilder.features.video"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.videoDescription"}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="feature">
                     <div class="icon"><img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/icons/seo.png"></div>
-                    <h4>SEO</h4>
-                    <p>Powerful SEO tools to help search engines find you</p>
+                    <h4>{lang key="store.websiteBuilder.features.seo"}</h4>
+                    <p>{lang key="store.websiteBuilder.features.seoDescription"}</p>
                     </div>
                 </div>
             </div>
@@ -139,14 +139,37 @@
                 {/if}
             </div>
 
+            {if $litePlan}
+                <div class="weebly-lite-plan">
+                    <div class="pricing pull-right">
+                        {foreach $litePlan->pricing()->allAvailableCycles() as $pricing}
+                            <h4 class="pricing-text {$pricing->cycle()}{if !$pricing@first} hidden{/if}">
+                                {$pricing->toFullString()}
+                            </h4>
+                        {/foreach}
+                        <h4 class="pricing-text not-available hidden">-</h4>
+                    </div>
+                    <h4>{lang key="store.websiteBuilder.pricing.lite.headline"}</h4>
+                    <h5>{lang key="store.websiteBuilder.pricing.lite.tagline"}</h5>
+                    <p>{$litePlan->description}</p>
+                    <form method="post" action="{routePath('store-order')}">
+                        <input type="hidden" name="pid" value="{$litePlan->id}">
+                        <input type="hidden" name="billingcycle" value="">
+                        <button type="submit" class="btn btn-default btn-signup">
+                            {lang key='getStartedNow'}
+                        </button>
+                    </form>
+                </div>
+            {/if}
+
             <div class="row weebly-plans">
                 {if count($products) > 0}
                     {foreach $products as $key => $product}
-                        <div class="{if count($products) == 1}col-sm-6 col-sm-offset-3{elseif count($products) == 2}col-sm-5{if $key == 0} col-sm-offset-1{/if}{else}col-sm-4{/if}">
+                        <div class="{if count($products) == 1}col-sm-6 col-sm-offset-3{elseif count($products) == 2}col-sm-5{if $key == 0} col-sm-offset-1{/if}{elseif count($products) == 3}col-sm-4{else}col-sm-3{/if}">
                             <div class="pricing-item">
                                 <div class="header">
                                     <h4>{$product->name}</h4>
-                                    <h5>Ideal for {$product->idealFor}</h5>
+                                    <h5>{lang key="store.websiteBuilder.pricing.idealFor" for=$product->idealFor}</h5>
                                 </div>
                                 <div class="price">
                                     {foreach $product->pricing()->allAvailableCycles() as $pricing}
@@ -158,19 +181,19 @@
                                         -
                                     </span>
                                 </div>
-                                <div class="feature-heading">Site Features</div>
+                                <div class="feature-heading">{lang key="store.websiteBuilder.pricing.siteFeatures"}</div>
                                 <ul class="site-features">
-                                    {foreach $product->siteFeatures as $feature}
+                                    {foreach $product->siteFeatures as $langKey => $feature}
                                         <li>
-                                            {$feature}
+                                            {lang key="store.websiteBuilder.pricing.features.$langKey"}
                                         </li>
                                     {/foreach}
                                 </ul>
-                                <div class="feature-heading">eCommerce Features</div>
+                                <div class="feature-heading">{lang key="store.websiteBuilder.pricing.eCommerceFeatures"}</div>
                                 <ul class="ecommerce-features">
-                                    {foreach $product->ecommerceFeatures as $feature}
+                                    {foreach $product->ecommerceFeatures as $langKey => $feature}
                                         <li>
-                                            {$feature}
+                                            {lang key="store.websiteBuilder.pricing.features.$langKey"}
                                         </li>
                                     {/foreach}
                                 </ul>
@@ -178,13 +201,13 @@
                             <form method="post" action="{routePath('store-order')}">
                                 <input type="hidden" name="pid" value="{$product->id}">
                                 <input type="hidden" name="billingcycle" value="">
-                                <button type="submit" class="btn btn-primary btn-block btn-signup">Signup</button>
+                                <button type="submit" class="btn btn-primary btn-block btn-signup">{lang key="signup"}</button>
                             </form>
                         </div>
                     {/foreach}
                 {elseif $inPreview}
                     <div class="col-xs-12 lead text-center">
-                        Weebly plans you activate will be displayed here
+                        {lang key="store.websiteBuilder.adminPreview"}
                     </div>
                 {/if}
             </div>
@@ -194,37 +217,21 @@
 
     <div class="content-block faq" id="faq">
         <div class="container">
-            <h3 class="text-center">Frequently Asked Questions</h3>
+            <h3 class="text-center">{lang key="store.websiteBuilder.faq.title"}</h3>
             <div class="row">
-                <div class="col-md-4">
-                    <h4>Can I create a blog?</h4>
-                    <p>Yes the website builder allows you to include blog functionality.</p>
-                    <hr>
-                    <h4>Will my site be mobile friendly?</h4>
-                    <p>Yes all websites created with the Weebly site builder are optimised for mobile.</p>
-                    <hr>
-                    <h4>Can I add photos to my website?</h4>
-                    <p>Yes, you can add photos to your site, but HD Video and Audio are only available on Pro & Business plans.</p>
-                    <div class="hidden-md hidden-lg"><hr></div>
-                    </div>
+                {foreach [[1,2,3], [4,5,6], [7,8]] as $columns}
                     <div class="col-md-4">
-                    <h4>Can I sell products through my site?</h4>
-                    <p>Yes eCommerce functionality is included with all plans but the number of products you can offer varies.</p>
-                    <hr>
-                    <h4>Can I add forms to my site?</h4>
-                    <p>Yes the Weebly site builder makes it easy to create contact forms, RSVP lists, surveys and more.</p>
-                    <hr>
-                    <h4>How do I get my site into search engines?</h4>
-                    <p>All Weebly powered websites include powerful SEO tools to help maximise your search engine ranking.</p>
-                    <div class="hidden-md hidden-lg"><hr></div>
+                        {foreach $columns as $row}
+                            <h4>{lang key="store.websiteBuilder.faq.q$row"}</h4>
+                            <p>{lang key="store.websiteBuilder.faq.a$row"}</p>
+                            {if $row@last && $row != 8}
+                                <div class="hidden-md hidden-lg"><hr></div>
+                            {else}
+                                <hr>
+                            {/if}
+                        {/foreach}
                     </div>
-                    <div class="col-md-4">
-                    <h4>Are there multiple styles to choose from?</h4>
-                    <p>Yes there are multiple pre-made templates for you to choose from.</p>
-                    <hr>
-                    <h4>Can I upgrade?</h4>
-                    <p>Yes you can upgrade at any time. Simply login to your account and choose the upgrade option.</p>
-                </div>
+                {/foreach}
             </div>
         </div>
     </div>
@@ -236,7 +243,7 @@
                     <img src="{$WEB_ROOT}/assets/img/marketconnect/weebly/logo.png">
                 </div>
                 <div class="col-sm-7 text-right">
-                    Trusted by over 40,000,000 people worldwide
+                    {lang key="store.websiteBuilder.trust"}
                 </div>
             </div>
         </div>

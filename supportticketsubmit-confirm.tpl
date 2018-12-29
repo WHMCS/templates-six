@@ -21,7 +21,7 @@
         <p class="text-center">
             <a href="viewticket.php?tid={$tid}&amp;c={$c}" class="btn btn-default">
                 {$LANG.continue}
-                <i class="fa fa-arrow-circle-right"></i>
+                <i class="fas fa-arrow-circle-right"></i>
             </a>
         </p>
 

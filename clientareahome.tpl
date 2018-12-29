@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=services'">
             <a href="clientarea.php?action=services">
-                <div class="icon"><i class="fa fa-cube"></i></div>
+                <div class="icon"><i class="fas fa-cube"></i></div>
                 <div class="stat">{$clientsstats.productsnumactive}</div>
                 <div class="title">{$LANG.navservices}</div>
                 <div class="highlight bg-color-blue"></div>
@@ -11,7 +11,7 @@
         {if $registerdomainenabled || $transferdomainenabled}
             <div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=domains'">
                 <a href="clientarea.php?action=domains">
-                    <div class="icon"><i class="fa fa-globe"></i></div>
+                    <div class="icon"><i class="fas fa-globe"></i></div>
                     <div class="stat">{$clientsstats.numactivedomains}</div>
                     <div class="title">{$LANG.navdomains}</div>
                     <div class="highlight bg-color-green"></div>
@@ -20,7 +20,7 @@
         {elseif $condlinks.affiliates && $clientsstats.isAffiliate}
             <div class="col-sm-3 col-xs-6 tile" onclick="window.location='affiliates.php'">
                 <a href="affiliates.php">
-                    <div class="icon"><i class="fa fa-shopping-cart"></i></div>
+                    <div class="icon"><i class="fas fa-shopping-cart"></i></div>
                     <div class="stat">{$clientsstats.numaffiliatesignups}</div>
                     <div class="title">{$LANG.affiliatessignups}</div>
                     <div class="highlight bg-color-green"></div>
@@ -29,7 +29,7 @@
         {else}
             <div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=quotes'">
                 <a href="clientarea.php?action=quotes">
-                    <div class="icon"><i class="fa fa-file-text-o"></i></div>
+                    <div class="icon"><i class="far fa-file-alt"></i></div>
                     <div class="stat">{$clientsstats.numquotes}</div>
                     <div class="title">{$LANG.quotes}</div>
                     <div class="highlight bg-color-green"></div>
@@ -38,7 +38,7 @@
         {/if}
         <div class="col-sm-3 col-xs-6 tile" onclick="window.location='supporttickets.php'">
             <a href="supporttickets.php">
-                <div class="icon"><i class="fa fa-comments"></i></div>
+                <div class="icon"><i class="fas fa-comments"></i></div>
                 <div class="stat">{$clientsstats.numactivetickets}</div>
                 <div class="title">{$LANG.navtickets}</div>
                 <div class="highlight bg-color-red"></div>
@@ -46,7 +46,7 @@
         </div>
         <div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=invoices'">
             <a href="clientarea.php?action=invoices">
-                <div class="icon"><i class="fa fa-credit-card"></i></div>
+                <div class="icon"><i class="fas fa-credit-card"></i></div>
                 <div class="stat">{$clientsstats.numunpaidinvoices}</div>
                 <div class="title">{$LANG.navinvoices}</div>
                 <div class="highlight bg-color-gold"></div>
@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-md-12 home-kb-search">
             <input type="text" name="search" class="form-control input-lg" placeholder="{$LANG.clientHomeSearchKb}" />
-            <i class="fa fa-search"></i>
+            <i class="fas fa-search"></i>
         </div>
     </div>
 </form>
@@ -81,7 +81,7 @@
                             {if $item->getExtra('btn-link') && $item->getExtra('btn-text')}
                                 <div class="pull-right">
                                     <a href="{$item->getExtra('btn-link')}" class="btn btn-default bg-color-{$item->getExtra('color')} btn-xs">
-                                        {if $item->getExtra('btn-icon')}<i class="fa {$item->getExtra('btn-icon')}"></i>{/if}
+                                        {if $item->getExtra('btn-icon')}<i class="{$item->getExtra('btn-icon')}"></i>{/if}
                                         {$item->getExtra('btn-text')}
                                     </a>
                                 </div>

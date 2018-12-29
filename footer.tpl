@@ -1,7 +1,7 @@
 ﻿
                 </div><!-- /.main-content -->
                 {if !$inShoppingCart && $secondarySidebar->hasChildren()}
-                    <div class="col-md-3 pull-md-left sidebar">
+                    <div class="col-md-3 pull-md-left sidebar sidebar-secondary">
                         {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
                     </div>
                 {/if}
@@ -9,7 +9,6 @@
         </div>
     </div>
 </section>
-
 
 <div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -26,7 +25,7 @@
             </div>
             <div class="modal-footer panel-footer">
                 <div class="pull-left loader">
-                    <i class="fa fa-circle-o-notch fa-spin"></i> Loading...
+                    <i class="fas fa-circle-notch fa-spin"></i> Loading...
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     Close

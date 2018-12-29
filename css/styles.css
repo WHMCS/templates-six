@@ -11,7 +11,7 @@
  * @cssdoc    version 1.0-pre
  * @package   WHMCS
  * @author    WHMCS Limited <development@whmcs.com>
- * @copyright Copyright (c) WHMCS Limited 2005-2015
+ * @copyright Copyright (c) WHMCS Limited 2005-2018
  * @license   http://www.whmcs.com/license/
  * @link      http://www.whmcs.com/
  */
@@ -375,6 +375,26 @@ section#home-banner {
     padding: 50px 0 60px;
     background-color: #043d5f;
     color: #fff;
+}
+
+section#home-banner.with-recaptcha {
+    padding-bottom: 90px;
+}
+
+section#home-banner .tooltip-inner {
+    background-color: #00a3c6;
+}
+
+section#home-banner .tooltip.left .tooltip-arrow {
+    border-left-color: #00a3c6;
+}
+
+section#home-banner .tooltip.bottom .tooltip-arrow {
+    border-bottom-color: #00a3c6;
+}
+
+section#home-banner .tooltip.right .tooltip-arrow {
+    border-right-color: #00a3c6;
 }
 
 section#home-banner h2 {
@@ -1246,6 +1266,10 @@ div.product-details-tab-container {
     padding: 15px 15px 0 15px;
 }
 
+.ssl-required {
+    cursor: pointer;
+}
+
 /**
  * -------------------------
  * @section List Tables
@@ -1655,7 +1679,7 @@ table.dtr-inline.collapsed .responsive-edit-button {
 }
 .ticket-reply .rating span.star,
 .ticket-reply .rating-done span.star {
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Pro";
     font-weight: normal;
     font-style: normal;
     display: inline-block;
@@ -1670,7 +1694,7 @@ table.dtr-inline.collapsed .responsive-edit-button {
 }
 .ticket-reply .rating span.star:before,
 .ticket-reply .rating-done span.star:before {
-    content: "\f006";
+    content: "\f005";
     padding-right: 0;
     color: #999;
 }
@@ -1774,18 +1798,22 @@ table.dtr-inline.collapsed .responsive-edit-button {
 .popover-user-notifications ul li a:hover {
     background-color: #f6f6f6;
 }
-.popover-user-notifications ul li i.fa {
+.popover-user-notifications ul li i.fas,
+.popover-user-notifications ul li i.far {
     float: left;
     padding-top: 6px;
     font-size: 21px;
 }
-.popover-user-notifications ul li i.fa.fa-check-circle {
+.popover-user-notifications ul li i.fas.fa-check-circle,
+.popover-user-notifications ul li i.far.fa-check-circle{
     color: #5cb85c;
 }
-.popover-user-notifications ul li i.fa.fa-warning {
+.popover-user-notifications ul li i.fas.fa-warning,
+.popover-user-notifications ul li i.far.fa-warning {
     color: #ecc317;
 }
-.popover-user-notifications ul li i.fa.fa-exclamation-circle {
+.popover-user-notifications ul li i.fas.fa-exclamation-circle,
+.popover-user-notifications ul li i.far.fa-exclamation-circle{
     color: #ec2d45;
 }
 .popover-user-notifications ul li .message {
@@ -1951,6 +1979,10 @@ div.sidebar .list-group-item-selected {
 div.sidebar .list-group-item-selected .badge {
     background-color: #FFFFFF;
     color: #319FC3;
+}
+
+.sidebar.sidebar-secondary {
+    clear: left;
 }
 
 @media (max-width: 991px) {
@@ -2481,7 +2513,8 @@ tr.masspay-total td {
 .email-verification .btn.close:hover {
     color: rgba(55, 55, 55, 0.8);
 }
-.email-verification .fa {
+.email-verification .fas,
+.email-verification .far {
     color: #666;
     float: left;
     padding: 2px 10px 0 0;
@@ -2500,7 +2533,8 @@ tr.masspay-total td {
     .email-verification .button {
         float: right;
     }
-    .email-verification .fa {
+    .email-verification .fas,
+    .email-verification .far {
         font-size: 36px;
     }
 }
@@ -2510,7 +2544,8 @@ tr.masspay-total td {
     border-bottom: 1px solid #e3f7d5;
     color: #5cb85c;
 }
-.email-verification.success .fa {
+.email-verification.success .fas,
+.email-verification.success .far {
     color: #6fbb51;
 }
 .email-verification.failed {
@@ -2518,7 +2553,8 @@ tr.masspay-total td {
     border-bottom: 1px solid #f7f3d0;
     color: #b3a879;
 }
-.email-verification.failed .fa {
+.email-verification.failed .fas,
+.email-verification.failed .far {
     color: #b3a879;
 }
 
@@ -2632,6 +2668,14 @@ div.md-editor.active {
     background-color: #f5f5f5;
     border-bottom: 0;
 }
+
+.panel-heading i.far,
+.panel-heading i.fas,
+.panel-heading i.fal,
+.panel-heading i.fab {
+    font-size:0.85em;
+}
+
 .panel-sidebar .panel-title {
     font-size: 1.1em;
     font-weight: 300;
@@ -2657,10 +2701,10 @@ div.md-editor.active {
 .panel-sidebar .list-group-item {
     line-height: 24px;
 }
-.panel-sidebar .list-group-item i.fa:not(.fa-circle-o):not(.fa-dot-circle-o) {
+.panel-sidebar .list-group-item i:not(.fa-circle):not(.fa-dot-circle) {
     float: right;
     line-height: 24px;
-    font-size: 18px;
+    font-size: 16px;
     color: #ccc;
 }
 .panel-sidebar .list-group-item.disabled,
@@ -2670,7 +2714,8 @@ div.md-editor.active {
     opacity: 0.5;
 }
 
-.panel-sidebar a.list-group-item:hover i.fa {
+.panel-sidebar a.list-group-item:hover i.fas,
+.panel-sidebar a.list-group-item:hover i.far {
     color: #666 !important;
 }
 .panel-sidebar a.list-group-item.active,
@@ -2811,7 +2856,7 @@ div.md-editor.active {
  */
 
 .promo-banner {
-    margin: 20px 0;
+    margin: 0;
     padding: 15px 10px 20px 10px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -2911,69 +2956,6 @@ div.md-editor.active {
     border-radius: 4px;
 }
 
-.promo-cart {
-    margin-top: 0;
-    margin-bottom: 0;
-    border-bottom: 0;
-}
-.promo-cart:first-child {
-    margin-top: 20px;
-}
-.promo-cart:last-child {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
-.promo-cart {
-    padding: 20px;
-    border-left: 0;
-    border-right: 0;
-}
-.promo-cart .btn-add {
-    padding: 7px 18px;
-    font-size: 1.1em;
-}
-.promo-cart h3 {
-    margin: 0 0 10px 0;
-    font-size: 20px;
-}
-.promo-cart h4 {
-    font-size: 17px;
-}
-@media (min-width: 768px) {
-    .promo-cart .icon-left {
-        width: 120px;
-    }
-    .promo-cart .content {
-        margin-left: 140px;
-    }
-}
-.promo-cart .pricing {
-    text-align: center;
-}
-@media (min-width: 768px) and (max-width: 991px), (min-width: 1200px) {
-    .promo-cart .pricing {
-        float: right;
-        margin-top: -10px;
-    }
-}
-.promo-cart .pricing h3 {
-    margin-bottom: 0;
-}
-.promo-cart {
-    border-top: 2px solid #00548a;
-}
-.promo-cart .btn-add {
-    background-color: #00548a;
-}
-.promo-cart a {
-    color: #3399FF;
-}
-.promo-cart ul li {
-    float: none;
-    width: 100%;
-    margin-bottom: 4px;
-}
-
 .promo-banner-slim {
     padding: 10px;
 }
@@ -2994,10 +2976,10 @@ div.md-editor.active {
     padding: 6px 20px;
 }
 
-.promo-banner.symantec-ssl {
-    border-top: 3px solid #43737f;
+.promo-banner.ssl {
+    border-top: 3px solid #4da24c;
 }
-.promo-banner.symantec-ssl .btn {
+.promo-banner.ssl .btn {
     background-color: #4da24c;
 }
 
@@ -3009,10 +2991,10 @@ div.md-editor.active {
 }
 
 .promo-banner.spamexperts {
-    border-top: 3px solid #58585a;
+    border-top: 3px solid #589ed7;
 }
 .promo-banner.spamexperts .btn {
-    background-color: #58585a;
+    background-color: #589ed7;
 }
 
 .promo-banner-slim.weebly .icon-left {
@@ -3023,13 +3005,30 @@ div.md-editor.active {
 }
 
 .promo-banner.sitelock {
-    border-top: 3px solid #c32126;
-}
-.promo-banner.sitelock a {
-    color: #c32126;
+    border-top: 3px solid #f2952d;
 }
 .promo-banner.sitelock .btn {
-    background-color: #c32126;
+    background-color: #f2952d;
+}
+
+.promo-banner.codeguard {
+    border-top: 3px solid #a9cc5f;
+}
+.promo-banner.codeguard a {
+    color: #a9cc5f;
+}
+.promo-banner.codeguard .btn {
+    background-color: #a9cc5f;
+}
+
+.mc-panel-promo {
+    font-size: 0.95em;
+}
+.mc-panel-promo img {
+    display: block;
+    margin: 0 auto 6px;
+    max-width: 90%;
+    max-height: 87px;
 }
 
 /**
@@ -3039,15 +3038,27 @@ div.md-editor.active {
  */
 
 .panel-mc-sso {
-    min-height: 160px;
+    padding: 0 10px 10px 10px;
 }
-.panel-mc-sso .icon-container {
-    margin: 0 auto;
-    max-width: 400px;
-}
-.panel-mc-sso .icon-container img {
+.panel-mc-sso img {
     max-width: 100%;
-    max-height: 175px;
+    max-height: 120px;
+}
+.panel-mc-sso .row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.panel-mc-sso .col-sm-6 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.panel-mc-sso .form-control,
+.panel-mc-sso .btn,
+.panel-mc-sso small {
+    margin-top: 5px;
+}
+.panel-mc-sso small {
+    display: block;
 }
 
 /**
@@ -3072,7 +3083,8 @@ div.md-editor.active {
     text-overflow: ellipsis;
 }
 
-.btn-social i.fa {
+.btn-social i.fas,
+.btn-social i.far {
     position: absolute;
     left: 0;
     top: 0;
@@ -3276,7 +3288,9 @@ div.md-editor.active {
 }
 
 #registration .field[disabled],
-#registration .field[readonly] {
+#registration .field[readonly],
+#registration .form-control[disabled],
+#registration .form-control[readonly] {
     background-color: #f8f8f8;
     opacity: 1;
 }
@@ -3341,6 +3355,7 @@ div.md-editor.active {
     padding: 20px;
     background-color: #2b5580;
     color: #fff;
+    min-height: 150px;
 }
 .upgrade .products .product .header p {
     font-size: 1.1em;
@@ -3365,7 +3380,8 @@ div.md-editor.active {
     float: left;
     color: #444;
 }
-.upgrade .products .fa {
+.upgrade .products .fas,
+.upgrade .products .far {
     font-size: 1.3em;
 }
 .upgrade .products .fa-check {
@@ -3381,4 +3397,14 @@ div.md-editor.active {
 .upgrade .products .product .btn {
     background-color: #2b5580;
     color: #fff;
+}
+
+/**
+ * Helper Alerts
+ */
+.alert .fas.pull-left {
+    margin: -3px 0 0 -3px;
+}
+.alert .alert-text {
+    margin-left: 56px;
 }

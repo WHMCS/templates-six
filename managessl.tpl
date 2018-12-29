@@ -47,9 +47,11 @@
                                 <a href="{$sslProduct->getConfigurationUrl()}" class="btn btn-default btn-sm">Configure</a>
                             {/if}
                             {if $sslProduct->addon->nextDueDate instanceof Carbon &&  $sslProduct->addon->nextDueDate->subDay()->isFuture()}
-                                <a href="#" class="btn btn-default btn-sm"{if $sslProduct->validationType == 'EV'} disabled="disabled"{/if}>Upgrade</a>
+                                <form action="{$sslProduct->getUpgradeUrl()}" method="post">
+                                    <input type="hidden" name="id" value="{$sslProduct->id}">
+                                    <button type="submit" class="btn btn-default btn-sm"{if $sslProduct->validationType == 'EV'} disabled="disabled"{/if}>Upgrade</button>
+                                </form>
                             {/if}
-                            <a href="#" class="btn btn-default btn-sm">Renew</a>
                         </td>
                     {else}
                         <td>

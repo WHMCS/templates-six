@@ -35,13 +35,15 @@
                 </div>
             </div>
 
-            <div class="text-center margin-bottom">
-                {include file="$template/includes/captcha.tpl"}
-            </div>
+            {if $captcha}
+                <div class="text-center margin-bottom">
+                    {include file="$template/includes/captcha.tpl"}
+                </div>
+            {/if}
 
             <div class="form-group">
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">{$LANG.contactsend}</button>
+                    <button type="submit" class="btn btn-primary{$captcha->getButtonClass($captchaForm)}">{$LANG.contactsend}</button>
                 </div>
             </div>
 

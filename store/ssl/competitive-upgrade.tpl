@@ -18,7 +18,7 @@
                     <h4>Buy a new SSL Certificate from us and we'll add any remaining time you have on your current SSL Certificate up to a maximum of an additional 12 months <strong>free of charge</strong>.</h4>
 
                     <div class="alert alert-warning text-left">
-                        <strong><i class="fa fa-star fa-5x pull-left"></i> Example Scenario</strong><br>
+                        <strong><i class="fas fa-star fa-5x pull-left"></i> Example Scenario</strong><br>
                         Your current 2 year certificate has 11 months left to run.
                         You make the switch and your new certificate will be valid for <strong>1 year AND 11 months</strong>.
                         The fee for the new certificate will <strong>ONLY</strong> be for 1 year.

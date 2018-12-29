@@ -12,7 +12,7 @@
 {if $editLink}
     <p>
         <a href="{$editLink}" class="btn btn-default btn-sm pull-right">
-            <i class="fa fa-pencil fa-fw"></i>
+            <i class="fas fa-pencil-alt fa-fw"></i>
             {$LANG.edit}
         </a>
     </p>

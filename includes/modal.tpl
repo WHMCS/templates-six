@@ -8,7 +8,7 @@
                 </h4>
             </div>
             <div class="modal-body text-center hidden" id="modal{$name}Loader">
-                <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+                <p><i class="fas fa-spinner fa-spin"></i> {$LANG.loading}</p>
             </div>
             <div class="modal-body" id="modal{$name}Body">
                 {if isset($content)}

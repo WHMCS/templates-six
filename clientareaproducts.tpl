@@ -1,16 +1,16 @@
-{include file="$template/includes/tablelist.tpl" tableName="ServicesList" filterColumn="3"}
+{include file="$template/includes/tablelist.tpl" tableName="ServicesList" filterColumn="4" noSortColumns="0"}
 <script type="text/javascript">
     jQuery(document).ready( function ()
     {
         var table = jQuery('#tableServicesList').removeClass('hidden').DataTable();
         {if $orderby == 'product'}
-            table.order([0, '{$sort}'], [3, 'asc']);
+            table.order([1, '{$sort}'], [4, 'asc']);
         {elseif $orderby == 'amount' || $orderby == 'billingcycle'}
-            table.order(1, '{$sort}');
-        {elseif $orderby == 'nextduedate'}
             table.order(2, '{$sort}');
-        {elseif $orderby == 'domainstatus'}
+        {elseif $orderby == 'nextduedate'}
             table.order(3, '{$sort}');
+        {elseif $orderby == 'domainstatus'}
+            table.order(4, '{$sort}');
         {/if}
         table.draw();
         jQuery('#tableLoading').addClass('hidden');
@@ -20,6 +20,7 @@
     <table id="tableServicesList" class="table table-list hidden">
         <thead>
             <tr>
+                <th></th>
                 <th>{$LANG.orderproduct}</th>
                 <th>{$LANG.clientareaaddonpricing}</th>
                 <th>{$LANG.clientareahostingnextduedate}</th>
@@ -30,6 +31,15 @@
         <tbody>
             {foreach key=num item=service from=$services}
                 <tr onclick="clickableSafeRedirect(event, 'clientarea.php?action=productdetails&amp;id={$service.id}', false)">
+                    <td class="text-center ssl-info" data-element-id="{$service.id}" data-type="service"{if $service.domain} data-domain="{$service.domain}"{/if}>
+                        {if !$service.domain || !$service.sslStatus}
+                            <img id="sslStatus{$service.id}" src="{$WEB_ROOT}/img/ssl/ssl-unknown.png" data-toggle="tooltip" title="{lang key='sslUnknown'}" />
+                        {elseif $service.sslStatus && $service.sslStatus.toSync}
+                            <i id="sslStatus{$service.id}" data-toggle="tooltip" title="{lang key='loading'}" class="far fa-spinner fa-2x fa-fw fa-pulse {$service.sslStatus.class}"></i>
+                        {elseif $service.sslStatus && $service.sslStatus.image}
+                            <img id="sslStatus{$service.id}" src="{$service.sslStatus.imagePath}{$service.sslStatus.image}" data-toggle="tooltip" title="{$service.sslStatus.title}" class="ssl-state {$service.sslStatus.class}"/>
+                        {/if}
+                    </td>
                     <td><strong>{$service.product}</strong>{if $service.domain}<br /><a href="http://{$service.domain}" target="_blank">{$service.domain}</a>{/if}</td>
                     <td class="text-center" data-order="{$service.amountnum}">{$service.amount}<br />{$service.billingcycle}</td>
                     <td class="text-center"><span class="hidden">{$service.normalisedNextDueDate}</span>{$service.nextduedate}</td>
@@ -44,6 +54,6 @@
         </tbody>
     </table>
     <div class="text-center" id="tableLoading">
-        <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+        <p><i class="fas fa-spinner fa-spin"></i> {$LANG.loading}</p>
     </div>
 </div>

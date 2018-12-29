@@ -8,6 +8,8 @@
         {include file="$template/includes/alert.tpl" type="error" msg=$LANG.verificationKeyExpired textcenter=true}
     {elseif $ssoredirect}
         {include file="$template/includes/alert.tpl" type="info" msg=$LANG.sso.redirectafterlogin textcenter=true}
+    {elseif $invalid}
+        {include file="$template/includes/alert.tpl" type="error" msg=$LANG.googleRecaptchaIncorrect textcenter=true}
     {/if}
 
     <div class="providerLinkingFeedback"></div>
@@ -31,9 +33,13 @@
                         <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme}
                     </label>
                 </div>
-
+                {if $captcha->isEnabled()}
+                    <div class="text-center margin-bottom">
+                        {include file="$template/includes/captcha.tpl"}
+                    </div>
+                {/if}
                 <div align="center">
-                    <input id="login" type="submit" class="btn btn-primary" value="{$LANG.loginbutton}" /> <a href="pwreset.php" class="btn btn-default">{$LANG.forgotpw}</a>
+                    <input id="login" type="submit" class="btn btn-primary{$captcha->getButtonClass($captchaForm)}" value="{$LANG.loginbutton}" /> <a href="{$systemurl}pwreset.php" class="btn btn-default">{$LANG.forgotpw}</a>
                 </div>
             </form>
 

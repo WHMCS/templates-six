@@ -13879,6 +13879,20 @@ if (typeof jQuery === 'undefined') {
     }
 ));
 
+jQuery(document).ready(function() {
+    jQuery(document).on('click', '.disable-on-click', function () {
+        jQuery(this).addClass('disabled');
+
+        if (jQuery(this).hasClass('spinner-on-click')) {
+            var icon = $(this).find('i.fas,i.far,i.fal,i.fab');
+
+            jQuery(icon)
+                .removeAttr('class')
+                .addClass('fas fa-spinner fa-spin');
+        }
+    });
+});
+
 /**
  * WHMCS authentication module
  *
@@ -13930,7 +13944,7 @@ provider: function () {
     };
 
     this.preLinkInit = function (callback) {
-        var icon = '<i class="fa fa-fw fa-spinner fa-spin"></i> ';
+        var icon = '<i class="fas fa-fw fa-spinner fa-spin"></i> ';
 
         this.feedbackContainer()
             .removeClass('alert-danger alert-success')
@@ -13992,7 +14006,11 @@ provider: function () {
                 this.feedbackContainer().removeClass('alert-danger alert-warning alert-success')
                     .addClass('alert alert-info')
                     .html(feedbackMsg);
-                window.location = data.redirect_url ? data.redirect_url : context.redirectUrl;
+
+                window.location = data.redirect_url
+                    ? decodeURIComponent(data.redirect_url)
+                    : decodeURIComponent(context.redirectUrl);
+
                 break;
 
             case "linking_complete":
@@ -14164,6 +14182,172 @@ registration: function () {
 
     return this;
 }});
+
+/**
+ * WHMCS HTTP module
+ *
+ * @copyright Copyright (c) WHMCS Limited 2005-2018
+ * @license http://www.whmcs.com/license/ WHMCS Eula
+ */
+(function(module) {
+    if (!WHMCS.hasModule('http')) {
+        WHMCS.loadModule('http', module);
+    }
+})({
+jqClient: function () {
+    _getSettings = function (url, data, success, dataType)
+    {
+        if (typeof url === 'object') {
+            /*
+                Settings may be the only argument
+             */
+            return url;
+        }
+
+        if (typeof data === 'function') {
+            /*
+                If 'data' is omitted, 'success' will come in its place
+             */
+            success = data;
+            data = null;
+        }
+
+        return {
+            url: url,
+            data: data,
+            success: success,
+            dataType: dataType
+        };
+    };
+
+    /**
+     * @param url
+     * @param data
+     * @param success
+     * @param dataType
+     * @returns {*}
+     */
+    this.get = function (url, data, success, dataType)
+    {
+        return WHMCS.http.client.request(
+            jQuery.extend(
+                _getSettings(url, data, success, dataType),
+                {
+                    type: 'GET'
+                }
+            )
+        );
+    };
+
+    /**
+     * @param url
+     * @param data
+     * @param success
+     * @param dataType
+     * @returns {*}
+     */
+    this.post = function (url, data, success, dataType)
+    {
+        return WHMCS.http.client.request(
+            jQuery.extend(
+                _getSettings(url, data, success, dataType),
+                {
+                    type: 'POST'
+                }
+            )
+        );
+    };
+
+    /**
+     * @param options
+     * @returns {*}
+     */
+    this.jsonPost = function (options) {
+        options = options || {};
+        this.post(options.url, options.data, function(response) {
+            if (response.warning) {
+                console.log('[WHMCS] Warning: ' + response.warning);
+                if (typeof options.warning === 'function') {
+                    options.warning(response.warning);
+                }
+            } else if (response.error) {
+                console.log('[WHMCS] Error: ' + response.error);
+                if (typeof options.error === 'function') {
+                    options.error(response.error);
+                }
+            } else {
+                if (typeof options.success === 'function') {
+                    options.success(response);
+                }
+            }
+        }, 'json').error(function(xhr, errorMsg){
+            console.log('[WHMCS] Error: ' + errorMsg);
+            if (typeof options.fail === 'function') {
+                options.fail(errorMsg);
+            }
+        }).always(function() {
+            if (typeof options.always === 'function') {
+                options.always();
+            }
+        });
+    };
+
+    return this;
+},
+
+client: function () {
+    var methods = ['get', 'post', 'put', 'delete'];
+    var client = this;
+
+    _beforeRequest = function (settings)
+    {
+        /*
+            Enforcing dataType was found to break many invocations expecting HTML back.
+            If/when those are refactored, this may be uncommented to enforce a safer
+            data transit.
+         */
+        /*if (typeof settings.dataType === 'undefined') {
+            settings.dataType = 'json';
+        }*/
+
+        if (typeof settings.type === 'undefined') {
+            // default request type is GET
+            settings.type = 'GET';
+        }
+
+        /*
+            Add other preprocessing here if required
+         */
+
+        return settings;
+    };
+
+    this.request = function (settings)
+    {
+        settings = _beforeRequest(settings || {});
+        return jQuery.ajax(settings);
+    };
+
+    /*
+        Create shortcut methods for methods[] array above
+     */
+    jQuery.each(methods, function(index, method) {
+        client[method] = (function(method, client) {
+            return function (settings)
+            {
+                settings = settings || {};
+
+                settings.type = method.toUpperCase();
+
+                return client.request(settings);
+            }
+        })(method, client);
+    });
+
+    return this;
+}
+
+});
 
 /**
  * WHMCS UI module
@@ -14344,7 +14528,7 @@ dataTable: function () {
                 function (e)
                 {
                     e.preventDefault();
-                    jQuery.post(
+                    WHMCS.http.jqClient.post(
                         jQuery(e.target).data('target-url'),
                         {
                             'token': csrfToken
@@ -14418,8 +14602,13 @@ toolTip: function () {
     }
 })(
 function () {
+    this.checkAllBound = false;
+
     this.register = function () {
-        this.bindCheckAll();
+        if (!this.checkAllBound) {
+            this.bindCheckAll();
+            this.checkAllBound = true;
+        }
     };
 
     this.bindCheckAll = function ()
@@ -14443,11 +14632,11 @@ function () {
 
                 if (btn.hasClass('toggle-active')) {
                     targetInputs.prop('checked',false);
-                    btn.text(textDeselect);
+                    btn.text(textSelect);
                     btn.removeClass('toggle-active');
                 } else {
                     targetInputs.prop('checked',true);
-                    btn.text(textSelect);
+                    btn.text(textDeselect);
                     btn.addClass('toggle-active');
                 }
             } else {
@@ -14463,6 +14652,119 @@ function () {
 
     return this;
 });
+
+/**
+ * reCaptcha module
+ *
+ * @copyright Copyright (c) WHMCS Limited 2005-2018
+ * @license http://www.whmcs.com/license/ WHMCS Eula
+ */
+var recaptchaLoadComplete = false;
+
+(function(module) {
+    if (!WHMCS.hasModule('recaptcha')) {
+        WHMCS.loadModule('recaptcha', module);
+    }
+})(
+    function () {
+
+        this.register = function () {
+            if (recaptchaLoadComplete) {
+                return;
+            }
+            var postLoad = [];
+            var recaptchaForms = jQuery(".btn-recaptcha").parents('form');
+            recaptchaForms.each(function (i, el){
+                if (typeof recaptchaSiteKey === 'undefined') {
+                    console.log('Recaptcha site key not defined');
+                    return;
+                }
+                var frm = jQuery(el);
+                var btnRecaptcha = frm.find(".btn-recaptcha");
+                var isInvisible = btnRecaptcha.hasClass('btn-recaptcha-invisible'),
+                    required = (typeof requiredText !== 'undefined') ? requiredText : 'Required';
+
+                // if no recaptcha element, make one
+                var recaptchaContent = frm.find("#divDynamicRecaptcha .g-recaptcha"),
+                    recaptchaElement = frm.find('.recaptcha-container'),
+                    appendElement = frm;
+
+                if (recaptchaElement.length) {
+                    appendElement = recaptchaElement;
+                }
+                if (!recaptchaContent.length) {
+                    appendElement.append('<div id="divDynamicRecaptcha" class="g-recaptcha" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="' + required + '"></div>');
+                    recaptchaContent = appendElement.find("#divDynamicRecaptcha");
+                }
+                // propagate invisible recaptcha if necessary
+                if (isInvisible) {
+                    if (recaptchaContent.data('size') !== 'invisible') {
+                        recaptchaContent.attr('data-size', 'invisible');
+                    }
+                } else {
+                    recaptchaContent.hide()
+                }
+
+                // ensure site key is available to grecaptcha
+                recaptchaContent.attr('data-sitekey', recaptchaSiteKey);
+
+
+                // alter form to work around JS behavior on .submit() when there
+                // there is an input with the name 'submit'
+                var btnSubmit = frm.find("input[name='submit']");
+                if (btnSubmit.length) {
+                    var action = frm.prop('action');
+                    frm.prop('action', action + '&submit=1');
+                    btnSubmit.remove();
+                }
+
+                // make callback for grecaptcha to invoke after
+                // injecting token & make it known via data-callback
+                var funcName = 'recaptchaCallback' + i;
+                window[funcName] = function () {
+                    if (isInvisible) {
+                        frm.submit();
+                    }
+                };
+                recaptchaContent.attr('data-callback', funcName);
+
+                // alter submit button to integrate invisible recaptcha
+                // otherwise setup a callback to twiddle UI after grecaptcha
+                // has inject DOM
+                if (isInvisible) {
+                    btnRecaptcha.on('click', function (event) {
+                        if (!grecaptcha.getResponse().trim()) {
+                            event.preventDefault();
+                            grecaptcha.execute();
+                        }
+                    });
+                } else {
+                    postLoad.push(function () {
+                        recaptchaContent.slideDown('fast', function() {
+                            // just in case there's a delay in DOM; rare
+                            recaptchaContent.find(':first').addClass('center-block');
+                        });
+                    });
+                    postLoad.push(function() {
+                        recaptchaContent.find(':first').addClass('center-block');
+                    });
+                }
+            });
+
+            // fetch/invoke the grecaptcha lib
+            if (recaptchaForms.length) {
+                var gUrl = "https://www.google.com/recaptcha/api.js";
+                jQuery.getScript(gUrl, function () {
+                    for(var i = postLoad.length -1; i >= 0 ; i--){
+                        postLoad[i]();
+                    }
+                });
+            }
+            recaptchaLoadComplete = true;
+        };
+
+        return this;
+    });
 
 /**
  * General utilities module
@@ -14555,6 +14857,10 @@ function () {
         return '';
     };
 
+    this.normaliseStringValue = function(status) {
+        return status ? status.toLowerCase().replace(/\s/g, '-') : '';
+    }
+
     return this;
 });
 
@@ -14602,7 +14908,7 @@ jQuery(document).ready(function() {
         },
     });
 
-    jQuery('.truncate').each(function () {
+    jQuery('.panel-sidebar .truncate').each(function () {
         jQuery(this).attr('title', jQuery(this).text())
             .attr('data-toggle', 'tooltip')
             .attr('data-placement', 'bottom');
@@ -14614,7 +14920,12 @@ jQuery(document).ready(function() {
     });
 
     // Enable tooltips
-    jQuery('[data-toggle="tooltip"]').tooltip();
+    // Attach function to body so tooltips inserted by ajax will load
+    jQuery(function(jQuery){
+        jQuery('body').tooltip({
+            selector: '[data-toggle="tooltip"]'
+        });
+    });
 
     // Logic to dismiss popovers on click outside
     jQuery('body').on('click', function (e) {
@@ -14768,7 +15079,7 @@ jQuery(document).ready(function() {
             jQuery("#ssoStatusTextDisabled").removeClass('hidden').show();
             jQuery("#ssoStatusTextEnabled").hide();
         }
-        jQuery.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
+        WHMCS.http.jqClient.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
     });
 
     // Single Sign-On call for Product/Service
@@ -14787,7 +15098,7 @@ jQuery(document).ready(function() {
 
         button.find('.loading').removeClass('hidden').show().end()
             .attr('disabled', 'disabled');
-        jQuery.post(
+        WHMCS.http.jqClient.post(
             window.location.href,
             form.serialize(),
             function (data) {
@@ -14824,7 +15135,7 @@ jQuery(document).ready(function() {
     // Email verification close
     jQuery('.email-verification .btn.close').click(function(e) {
         e.preventDefault();
-        jQuery.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
+        WHMCS.http.jqClient.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
         jQuery('.email-verification').hide();
     });
 
@@ -14859,7 +15170,7 @@ jQuery(document).ready(function() {
             autofocus: false,
             savable: false,
             resize: 'vertical',
-            iconlibrary: 'fa',
+            iconlibrary: 'glyph',
             language: locale,
             onShow: function(e){
                 var content = '',
@@ -14910,7 +15221,7 @@ jQuery(document).ready(function() {
                         hotkey: "Ctrl+F1",
                         btnClass: "btn open-modal",
                         icon: {
-                            glyph: 'glyphicons glyphicons-question-sign',
+                            glyph: 'fas fa-question-circle',
                             fa: 'fa fa-question-circle',
                             'fa-3': 'icon-question-sign'
                         },
@@ -14940,7 +15251,7 @@ jQuery(document).ready(function() {
 
     // Email verification
     jQuery('#btnResendVerificationEmail').click(function() {
-        jQuery.post('clientarea.php',
+        WHMCS.http.jqClient.post('clientarea.php',
             {
                 'token': csrfToken,
                 'action': 'resendVerificationEmail'
@@ -15010,7 +15321,7 @@ jQuery(document).ready(function() {
 
     // SSL Manage Action Button.
     jQuery('.btn-resend-approver-email').click(function () {
-        jQuery.post(
+        WHMCS.http.jqClient.post(
             jQuery(this).data('url'),
             {
                 addonId: jQuery(this).data('addonid'),
@@ -15064,6 +15375,91 @@ jQuery(document).ready(function() {
     jQuery('#frmReply').submit(function(e) {
         jQuery('#frmReply').find('input[type="submit"]').addClass('disabled').prop('disabled', true);
     });
+
+    jQuery('#frmDomainContactModification').on('submit', function(){
+        if (!allowSubmit) {
+            var changed = false;
+            jQuery('.irtp-field').each(function() {
+                var value = jQuery(this).val(),
+                    originalValue = jQuery(this).data('original-value');
+                if (value !== originalValue) {
+                    changed = true;
+                }
+            });
+            if (changed) {
+                jQuery('#modalIRTPConfirmation').modal('show');
+                return false;
+            }
+        }
+        return true;
+    });
+
+    jQuery('i.to-load-ssl').each(function () {
+        var parent = jQuery(this).parent('td');
+        WHMCS.http.jqClient.post(
+            WHMCS.utils.getRouteUrl('/domain/ssl-check'),
+            {
+                'type': parent.data('type'),
+                'domain': parent.data('domain'),
+                'token': csrfToken
+            },
+            function (data) {
+                var image = data.image,
+                    imagePath = data.imagePath,
+                    domain = data.domain,
+                    status = data.status,
+                    iClass = data.class,
+                    title = data.title,
+                    id = data.id;
+
+                if (id) {
+                    jQuery('td.ssl-info[data-element-id="' + id + '"]').html(
+                        '<img id="sslStatus' + id + '" src="' + imagePath + image + '" data-toggle="tooltip" title="' + title + '" class="ssl-state ' + iClass + '"/>'
+                    );
+                }
+            }
+        );
+    });
+    jQuery(document).on('click', '.ssl-required', function(e) {
+        e.preventDefault();
+        window.location.href = WHMCS.utils.getRouteUrl('/ssl-purchase');
+    });
+
+    WHMCS.recaptcha.register();
+
+    var dynamicRecaptchaContainer = jQuery('#divDynamicRecaptcha');
+    var homepageHasRecaptcha = jQuery(dynamicRecaptchaContainer).length > 0;
+    var homepageHasInvisibleRecaptcha = homepageHasRecaptcha && jQuery(dynamicRecaptchaContainer).data('size') === 'invisible';
+
+    if (homepageHasRecaptcha && !homepageHasInvisibleRecaptcha) {
+        jQuery('section#home-banner').addClass('with-recaptcha');
+    }
+
+    if (jQuery('.domainchecker-homepage-captcha').length && !homepageHasInvisibleRecaptcha) {
+        // invisible reCaptcha doesn't play well with onsubmit() handlers on all submissions following a prevented one
+
+        jQuery('#frmDomainHomepage').submit(function (e) {
+            var frmDomain = jQuery('#frmDomainHomepage'),
+                inputDomain = jQuery(frmDomain).find('input[name="domain"]'),
+                reCaptchaContainer = jQuery('#divDynamicRecaptcha'),
+                reCaptcha = jQuery('#g-recaptcha-response'),
+                captcha = jQuery('#inputCaptcha');
+
+            if (reCaptcha.length && !reCaptcha.val()) {
+                reCaptchaContainer.tooltip('show');
+
+                e.preventDefault();
+                return;
+            }
+
+            if (captcha.length && !captcha.val()) {
+                captcha.tooltip('show');
+
+                e.preventDefault();
+                return;
+            }
+        });
+    }
 });
 
 /**
@@ -15103,6 +15499,9 @@ function clickableSafeRedirect(clickEvent, target, newWindow) {
     var eventTable = clickEvent.target.parentNode.parentNode.parentNode;
     if (jQuery(eventTable).hasClass('collapsed')) {
         // This is a mobile device sized display, and datatables has triggered folding
+        return false;
+    }
+    if (eventSource === 'i' && jQuery(clickEvent.target).hasClass('ssl-required')) {
         return false;
     }
     if(eventSource != 'button' && eventSource != 'a') {
@@ -15150,7 +15549,7 @@ function addRenewalToCart(renewalID, selfThis) {
     jQuery("#domainRow" + renewalID).find("select,button").attr("disabled", "disabled");
     jQuery(selfThis).html('<span class="glyphicon glyphicon-shopping-cart"></span> Adding...');
     var renewalPeriod = jQuery("#renewalPeriod" + renewalID).val();
-    jQuery.post(
+    WHMCS.http.jqClient.post(
         "clientarea.php",
         "addRenewalToCart=1&token=" + csrfToken + "&renewID="+ renewalID + "&period=" + renewalPeriod,
         function( data ) {
@@ -15187,7 +15586,7 @@ function extraTicketAttachment() {
  * @param {number} num Server Id
  */
 function getStats(num) {
-    jQuery.post('serverstatus.php', 'getstats=1&num=' + num, function(data) {
+    WHMCS.http.jqClient.post('serverstatus.php', 'getstats=1&num=' + num, function(data) {
         jQuery("#load"+num).html(data.load);
         jQuery("#uptime"+num).html(data.uptime);
     },'json');
@@ -15200,7 +15599,7 @@ function getStats(num) {
  * @param {number} port Port Number
  */
 function checkPort(num, port) {
-    jQuery.post('serverstatus.php', 'ping=1&num=' + num + '&port=' + port, function(data) {
+    WHMCS.http.jqClient.post('serverstatus.php', 'ping=1&num=' + num + '&port=' + port, function(data) {
         jQuery("#port" + port + "_" + num).html(data);
     });
 }
@@ -15211,7 +15610,7 @@ function checkPort(num, port) {
 function getticketsuggestions() {
     currentcheckcontent = jQuery("#message").val();
     if (currentcheckcontent != lastcheckcontent && currentcheckcontent != "") {
-        jQuery.post("submitticket.php", { action: "getkbarticles", text: currentcheckcontent },
+        WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: currentcheckcontent },
             function(data){
             if (data) {
                 jQuery("#searchresults").html(data);
@@ -15241,7 +15640,9 @@ function refreshCustomFields(input) {
  * @param {string} containerId The ID name of the container
  */
 function autoSubmitFormByContainer(containerId) {
-    jQuery("#" + containerId).find("form:first").submit();
+    if (typeof noAutoSubmit === "undefined" || noAutoSubmit === false) {
+        jQuery("#" + containerId).find("form:first").submit();
+    }
 }
 
 /**
@@ -15306,7 +15707,7 @@ var lastTicketMsg;
 function getTicketSuggestions() {
     var userMsg = jQuery("#inputMessage").val();
     if (userMsg != lastTicketMsg && userMsg != '') {
-        jQuery.post("submitticket.php", { action: "getkbarticles", text: userMsg },
+        WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: userMsg },
             function (data) {
                 if (data) {
                     jQuery("#autoAnswerSuggestions").html(data);
@@ -15327,6 +15728,23 @@ function smoothScroll(element) {
     $('html, body').animate({
         scrollTop: $(element).offset().top
     }, 500);
+}
+
+function irtpSubmit()
+{
+    allowSubmit = true;
+    var optOut = 0,
+        optOutCheckbox = jQuery('#modalIrtpOptOut'),
+        optOutReason = jQuery('#modalReason'),
+        formOptOut = jQuery('#irtpOptOut'),
+        formOptOutReason = jQuery('#irtpOptOutReason');
+
+    if (optOutCheckbox.is(':checked')) {
+        optOut = 1;
+    }
+    formOptOut.val(optOut);
+    formOptOutReason.val(optOutReason.val());
+    jQuery('#frmDomainContactModification').submit();
 }
 
 /*!
@@ -15357,7 +15775,7 @@ jQuery(document).ready(function(){
     jQuery('#modalAjax').on('hidden.bs.modal', function (e) {
         if (jQuery(this).hasClass('modal-feature-highlights')) {
             var dismissForVersion = jQuery('#cbFeatureHighlightsDismissForVersion').is(':checked');
-            jQuery.post(
+            WHMCS.http.jqClient.post(
                 'whatsnew.php',
                 {
                     dismiss: "1",
@@ -15422,7 +15840,7 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
     jQuery('#modalAjax').modal('show');
 
     // fetch modal content
-    jQuery.post(url, postData, function(data) {
+    WHMCS.http.jqClient.post(url, postData, function(data) {
         updateAjaxModal(data);
     }, 'json').fail(function() {
         jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
@@ -15445,7 +15863,7 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
         submitButton.on('click', function() {
             var modalForm = jQuery('#modalAjax').find('form');
             jQuery('#modalAjax .loader').show();
-            var modalPost = jQuery.post(
+            var modalPost = WHMCS.http.jqClient.post(
                 modalForm.attr('action'),
                 modalForm.serialize(),
                 function(data) {
@@ -15477,6 +15895,14 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
 }
 
 function updateAjaxModal(data) {
+    if (data.reloadPage) {
+        if (typeof data.reloadPage === 'string') {
+            window.location = data.reloadPage;
+        } else {
+            window.location.reload();
+        }
+        return;
+    }
     if (data.successDataTable) {
         WHMCS.ui.dataTable.getTableById(data.successDataTable, undefined).ajax.reload();
     }
@@ -15496,7 +15922,7 @@ function updateAjaxModal(data) {
         jQuery('#modalAjax .modal-body').html(data.body);
     } else {
         if (data.url) {
-            jQuery.post(data.url, '', function(data2) {
+            WHMCS.http.jqClient.post(data.url, '', function(data2) {
                 jQuery('#modalAjax').find('.modal-body').html(data2.body);
             }, 'json').fail(function() {
                 jQuery('#modalAjax').find('.modal-body').html('An error occurred while communicating with the server. Please try again.');
@@ -15526,7 +15952,7 @@ function updateAjaxModal(data) {
         submitButton.on('click', function() {
             var modalForm = jQuery('#modalAjax').find('form');
             jQuery('#modalAjax .loader').show();
-            var modalPost = jQuery.post(modalForm.attr('action'), modalForm.serialize(),
+            var modalPost = WHMCS.http.jqClient.post(modalForm.attr('action'), modalForm.serialize(),
                 function(data) {
                     updateAjaxModal(data);
                 }, 'json').fail(function() {
@@ -15546,7 +15972,7 @@ function updateAjaxModal(data) {
 function dialogSubmit() {
     jQuery('#modalAjax .modal-submit').prop("disabled", true);
     jQuery('#modalAjax .loader').show();
-    jQuery.post('', jQuery('#modalAjax').find('form').serialize(),
+    WHMCS.http.jqClient.post('', jQuery('#modalAjax').find('form').serialize(),
         function(data) {
             updateAjaxModal(data);
         }, 'json').fail(function() {
@@ -37887,52 +38313,86 @@ jQuery(document).ready(function() {
         var phoneInput = jQuery('input[name^="phone"], input[name$="phone"]').not('input[type="hidden"]');
         if (phoneInput.length) {
             var countryInput = jQuery('[name^="country"], [name$="country"]'),
-                initialCountry = 'us',
-                inputName = phoneInput.attr('name');
+                initialCountry = 'us';
             if (countryInput.length) {
                 initialCountry = countryInput.val().toLowerCase();
                 if (initialCountry === 'um') {
                     initialCountry = 'us';
                 }
             }
-            phoneInput.before('<input id="populatedCountryCode' + inputName + '" type="hidden" name="country-calling-code-' + inputName + '" value="" />');
-            phoneInput.intlTelInput({
-                preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
-                    return self.indexOf(value) === index;
-                }),
-                initialCountry: initialCountry,
-                autoPlaceholder: 'polite', //always show the helper placeholder
-                separateDialCode: true
-            });
 
-            phoneInput.on('countrychange', function (e, countryData) {
-                jQuery('#populatedCountryCode' + inputName).val(countryData.dialCode);
-                if (jQuery(this).val() === '+' + countryData.dialCode) {
-                    jQuery(this).val('');
-                }
-            });
-            phoneInput.on('blur keydown', function (e) {
-                if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
-                    var number = jQuery(this).intlTelInput("getNumber"),
-                        countryData = jQuery(this).intlTelInput("getSelectedCountryData"),
-                        countryPrefix = '+' + countryData.dialCode;
+            phoneInput.each(function(){
+                var thisInput = jQuery(this),
+                    inputName = thisInput.attr('name');
+                jQuery(this).before(
+                    '<input id="populatedCountryCode' + inputName + '" type="hidden" name="country-calling-code-' + inputName + '" value="" />'
+                );
+                thisInput.intlTelInput({
+                    preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
+                        return self.indexOf(value) === index;
+                    }),
+                    initialCountry: initialCountry,
+                    autoPlaceholder: 'polite', //always show the helper placeholder
+                    separateDialCode: true
+                });
 
-                    if (number.indexOf(countryPrefix) === 0 && (number.match(/\+/g) || []).length > 1) {
-                        number = number.substr(countryPrefix.length);
+                thisInput.on('countrychange', function (e, countryData) {
+                    jQuery('#populatedCountryCode' + inputName).val(countryData.dialCode);
+                    if (jQuery(this).val() === '+' + countryData.dialCode) {
+                        jQuery(this).val('');
                     }
-                    jQuery(this).intlTelInput("setNumber", number);
-                }
-            });
-            jQuery('#populatedCountryCode' + inputName).val(phoneInput.intlTelInput('getSelectedCountryData').dialCode);
+                });
+                thisInput.on('blur keydown', function (e) {
+                    if (e.type === 'blur' || (e.type === 'keydown' && e.keyCode === 13)) {
+                        var number = jQuery(this).intlTelInput("getNumber"),
+                            countryData = jQuery(this).intlTelInput("getSelectedCountryData"),
+                            countryPrefix = '+' + countryData.dialCode;
 
-            countryInput.on('change', function() {
-                if (phoneInput.val() === '') {
-                    var country = jQuery(this).val().toLowerCase();
-                    if (country === 'um') {
-                        country = 'us';
+                        if (number.indexOf(countryPrefix) === 0 && (number.match(/\+/g) || []).length > 1) {
+                            number = number.substr(countryPrefix.length);
+                        }
+                        jQuery(this).intlTelInput("setNumber", number);
                     }
-                    phoneInput.intlTelInput('setCountry', country);
-                }
+                });
+                jQuery('#populatedCountryCode' + inputName).val(thisInput.intlTelInput('getSelectedCountryData').dialCode);
+
+                countryInput.on('change', function() {
+                    if (thisInput.val() === '') {
+                        var country = jQuery(this).val().toLowerCase();
+                        if (country === 'um') {
+                            country = 'us';
+                        }
+                        phoneInput.intlTelInput('setCountry', country);
+                    }
+                });
+
+                // this must be .attr (not .data) in order for it to be found by [data-initial-value] selector
+                thisInput.attr('data-initial-value', $(thisInput).val());
+
+                thisInput.parents('form').find('input[type=reset]').each(function() {
+                    var resetButton = this;
+                    var form = $(resetButton).parents('form');
+
+                    if (!$(resetButton).data('phone-handler')) {
+                        $(resetButton).data('phone-handler', true);
+
+                        $(resetButton).click(function(e) {
+                            e.stopPropagation();
+
+                            $(form).trigger('reset');
+
+                            $(form).find('input[data-initial-value]').each(function() {
+                                var inputToReset = this;
+
+                                $(inputToReset).val(
+                                    $(inputToReset).attr('data-initial-value')
+                                );
+                            });
+
+                            return false;
+                        });
+                    }
+                });
             });
 
             /**

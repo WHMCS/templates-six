@@ -7,7 +7,7 @@
         </div>
         <p>
             <button type="button" class="btn btn-default" onclick="history.back();">
-                <i class="fa fa-arrow-left"></i>
+                <i class="fas fa-arrow-left"></i>
                 {lang key="goback"}
             </button>
         </p>
@@ -46,8 +46,8 @@
         <h3>{lang key="upgradeService.chooseNew"}</h3>
 
         <div class="products row">
-            {foreach $upgradeProducts as $product}
-                <div class="column col-sm-{if count($upgradeProducts) >= 4}3{elseif count($upgradeProducts) == 3}4{else}2{/if}">
+            {foreach $upgradeProducts as $key => $product}
+                <div class="column col-sm-{if count($upgradeProducts) >= 4}3{elseif count($upgradeProducts) == 3}4{else}6{/if}">
                     <div class="product">
                         <div class="header">
                             <h4>
@@ -71,7 +71,7 @@
                                     <span>{$label}</span>
 
                                     {if is_bool($value)}
-                                        <i class="fa fa-{if $value}check{else}times{/if}"></i>
+                                        <i class="fas fa-{if $value}check{else}times{/if}"></i>
                                     {else}
                                         {$value}
                                     {/if}
@@ -100,13 +100,17 @@
                                         {/if}
                                     {/foreach}
                                 </select>
-                                <button type="submit" class="btn btn-block"{if !$product->eligibleForUpgrade} disabled="disabled"{/if}>
+                                <button type="submit" class="btn btn-block" id="btnUpgradeSelect-{$product->productKey}"{if !$product->eligibleForUpgrade} disabled="disabled"{/if}>
                                     {lang key="upgradeService.select"}
                                 </button>
                             </form>
                         </div>
                     </div>
                 </div>
+                {if count($upgradeProducts) >= 4 && (($key + 1) % 4 == 0)}
+                    </div>
+                    <div class="products row">
+                {/if}
             {/foreach}
         </div>
 

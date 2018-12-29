@@ -28,11 +28,11 @@
         {/if}
 
         <div class="article-items">
-            <i class="fa fa-calendar fa-fw"></i>
+            <i class="fas fa-calendar-alt fa-fw"></i>
             {$carbon->createFromTimestamp($announcement.timestamp)->format('jS M Y')}
             {if $announcement.editLink}
                 <a href="{$announcement.editLink}" class="admin-inline-edit">
-                    <i class="fa fa-pencil fa-fw"></i>
+                    <i class="fas fa-pencil-alt fa-fw"></i>
                     {$LANG.edit}
                 </a>
             {/if}

@@ -89,7 +89,7 @@
                                         <span>{$label}</span>
 
                                         {if is_bool($value)}
-                                            <i class="fa fa-{if $value}check{else}times{/if}"></i>
+                                            <i class="fas fa-{if $value}check{else}times{/if}"></i>
                                         {else}
                                             {$value}
                                         {/if}
@@ -135,7 +135,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-search fa-fw"></i>
+                        <i class="fas fa-search fa-fw"></i>
                         <div class="content">
                             <h4>Malware Scan</h4>
                             <p>Proactively monitors for and alerts you about any malware that is detected on your website.</p>
@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-wrench fa-fw"></i>
+                        <i class="fas fa-wrench fa-fw"></i>
                         <div class="content">
                             <h4>Automatic malware removal</h4>
                             <p>If a scan finds anything, SiteLock will safely remove any known malware automatically.</p>
@@ -155,7 +155,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-code fa-fw"></i>
+                        <i class="fas fa-code fa-fw"></i>
                         <div class="content">
                             <h4>Vulnerability Scan</h4>
                             <p>Automatically checks your applications to ensure they're up-to-date and secured against known vulnerabilities.</p>
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-file-code-o fa-fw"></i>
+                        <i class="far fa-file-code fa-fw"></i>
                         <div class="content">
                             <h4>OWASP Protection</h4>
                             <p>Get protection against the top 10 web app security flaws as recognised by OWASP, the Open Web Application Security Project.</p>
@@ -175,7 +175,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-trophy fa-fw"></i>
+                        <i class="fas fa-trophy fa-fw"></i>
                         <div class="content">
                             <h4>SiteLock&trade; Trust Seal</h4>
                             <p>Give your visitors added confidence by showing your website is protected by SiteLock.</p>
@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-shield fa-fw"></i>
+                        <i class="fas fa-shield-alt fa-fw"></i>
                         <div class="content">
                             <h4>Firewall</h4>
                             <p>The TrueShield&trade; Web Application Firewall protects your website against hackers and attacks.</p>
@@ -195,7 +195,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-lock fa-fw"></i>
+                        <i class="fas fa-lock fa-fw"></i>
                         <div class="content">
                             <h4>Protect your reputation</h4>
                             <p>Daily scans help detect malware early before search engines have a chance to find it and blacklist your site.</p>
@@ -204,7 +204,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-star fa-fw"></i>
+                        <i class="fas fa-star fa-fw"></i>
                         <div class="content">
                             <h4>Fast automated setup</h4>
                             <p>Instant and fully automated setup gives you protection immediately without anything to install.</p>
@@ -215,7 +215,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-globe fa-fw"></i>
+                        <i class="fas fa-globe fa-fw"></i>
                         <div class="content">
                             <h4>Content Delivery Network (CDN)</h4>
                             <p>Speed up your website by distributing it globally and serving it to your visitors from the closest location for faster page load speeds wherever they are.</p>
@@ -240,7 +240,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-clock-o fa-fw"></i>
+                        <i class="far fa-clock fa-fw"></i>
                         <div class="content">
                             <h4>Immediate response</h4>
                             <p>Get our fastest response time with analysis and work to recover your site started within 30 minutes.</p>
@@ -249,7 +249,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-remove fa-fw"></i>
+                        <i class="fas fa-times fa-fw"></i>
                         <div class="content">
                             <h4>Complete malware removal</h4>
                             <p>If our automatic technology is unable to remove the malicious content we'll perform manual cleaning.</p>
@@ -260,7 +260,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-exclamation-circle fa-fw"></i>
+                        <i class="fas fa-exclamation-circle fa-fw"></i>
                         <div class="content">
                             <h4>Priority treatment</h4>
                             <p>With the emergency package you get fast tracked straight to the top of the queue.</p>
@@ -269,7 +269,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-calendar-check-o fa-fw"></i>
+                        <i class="far fa-calendar-check fa-fw"></i>
                         <div class="content">
                             <h4>7 day aftercare</h4>
                             <p>We'll continue to monitor your site for 7 days to ensure that your site remains malware-free post recovery.</p>
@@ -280,7 +280,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-envelope-o fa-fw"></i>
+                        <i class="far fa-envelope fa-fw"></i>
                         <div class="content">
                             <h4>Real-time updates</h4>
                             <p>Track progress with our real-time updates throughout the process of cleaning and recovering your site.</p>
@@ -289,7 +289,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="feature-wrapper">
-                        <i class="fa fa-star fa-fw"></i>
+                        <i class="fas fa-star fa-fw"></i>
                         <div class="content">
                             <h4>One-off payment</h4>
                             <p>The emergency service is available for a single one-off fee, there's no recurring fees or subscription.</p>

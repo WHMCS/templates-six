@@ -8,7 +8,7 @@
 jQuery(document).ready(function() {
     // Number should be between 1 and 2, since this is a limit of
     // Twitter's "Web Intents" setup.
-    jQuery.post("index.php?rp=/announcements/twitterfeed", { numtweets: 2 },
+    WHMCS.http.jqClient.post("index.php?rp=/announcements/twitterfeed", { numtweets: 2 },
         function(data) {
             jQuery("#twitterFeedOutput").html(data);
         });

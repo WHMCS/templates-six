@@ -61,6 +61,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="inputTaxId" class="control-label">{lang key=$taxIdLabel}</label>
+                    <input type="text" name="tax_id" id="inputTaxId" class="form-control" value="{$contactTaxId}" />
+                </div>
+
+                <div class="form-group">
                     <label class="control-label" for="inputSubaccountActivate">{$LANG.subaccountactivate}</label>
                     <div class="controls checkbox">
                         <label>
@@ -109,7 +114,7 @@
 
             <div class="form-group">
                 <label class="full control-label">{$LANG.subaccountpermissions}</label>
-                <div class="checkbox clearfix">
+                <div class="checkbox clearfix" id="contactPermissions">
                     {foreach $allPermissions as $permission}
                         <div class="col-sm-6">
                             <label>
@@ -120,6 +125,13 @@
                             </label>
                         </div>
                     {/foreach}
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-sm btn-check-all" data-checkbox-container="contactPermissions" data-btn-check-toggle="1" id="btnSelectAll-contactPermissions" data-label-text-select="{lang key='checkAll'}" data-label-text-deselect="{lang key='uncheckAll'}">
+                            {lang key='checkAll'}
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -177,7 +189,7 @@
         <div class="form-group text-center">
             <input class="btn btn-primary" type="submit" name="save" value="{$LANG.clientareasavechanges}" />
             <input class="btn btn-default" type="reset" value="{$LANG.cancel}" />
-            <a class="btn btn-danger" data-toggle="confirmation" data-btn-ok-label="{lang key='yes'}" data-btn-ok-icon="fa fa-check" data-btn-ok-class="btn-success" data-btn-cancel-label="{lang key='no'}" data-btn-cancel-icon="fa fa-ban" data-btn-cancel-class="btn-default" data-title="{lang key='clientareadeletecontact'}" data-content="{lang key='clientareadeletecontactareyousure'}" data-popout="true" href="clientarea.php?action=contacts&delete=true&id={$contactid}&token={$token}">{lang key='clientareadeletecontact'}</a>
+            <a class="btn btn-danger" data-toggle="confirmation" data-btn-ok-label="{lang key='yes'}" data-btn-ok-icon="fas fa-check" data-btn-ok-class="btn-success" data-btn-cancel-label="{lang key='no'}" data-btn-cancel-icon="fas fa-ban" data-btn-cancel-class="btn-default" data-title="{lang key='clientareadeletecontact'}" data-content="{lang key='clientareadeletecontactareyousure'}" data-popout="true" href="clientarea.php?action=contacts&delete=true&id={$contactid}&token={$token}">{lang key='clientareadeletecontact'}</a>
         </div>
 
     </form>
@@ -187,9 +199,10 @@
 
 {/if}
 
-<script type="text/javascript">
+<script>
     jQuery(document).ready( function ()
     {
+        WHMCS.form.register();
         jQuery('.removeAccountLink').click(function (e) {
             e.preventDefault();
             var authUserID = jQuery(this).data('authid');
@@ -204,7 +217,7 @@
                     closeOnConfirm: false
                 },
                 function(){
-                    jQuery.post('{routePath('auth-manage-client-delete')}' + authUserID,
+                    WHMCS.http.jqClient.post('{routePath('auth-manage-client-delete')}' + authUserID,
                         {
                             'token': '" . generate_token("plain") . "'
                         }).done(function(data) {

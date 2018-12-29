@@ -8,7 +8,7 @@
 
         <div class="col-sm-4">
             <div class="affiliate-stat affiliate-stat-green alert-warning">
-                <i class="fa fa-users"></i>
+                <i class="fas fa-users"></i>
                 <span>{$visitors}</span>
                 {$LANG.affiliatesclicks}
             </div>
@@ -16,7 +16,7 @@
 
         <div class="col-sm-4">
             <div class="affiliate-stat affiliate-stat-green alert-info">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fas fa-shopping-cart"></i>
                 <span>{$signups}</span>
                 {$LANG.affiliatessignups}
             </div>
@@ -24,7 +24,7 @@
 
         <div class="col-sm-4">
             <div class="affiliate-stat affiliate-stat-green alert-success">
-                <i class="fa fa-bar-chart-o"></i>
+                <i class="far fa-chart-bar"></i>
                 <span>{$conversionrate}%</span>
                 {$LANG.affiliatesconversionrate}
             </div>
@@ -65,7 +65,7 @@
     {else}
         <p class="text-center">
             <a href="{$smarty.server.PHP_SELF}?action=withdrawrequest" class="btn btn-lg btn-danger"{if !$withdrawlevel} disabled="true"{/if}>
-                <i class="fa fa-bank"></i> {$LANG.affiliatesrequestwithdrawal}
+                <i class="fas fa-university"></i> {$LANG.affiliatesrequestwithdrawal}
             </a>
         </p>
         {if !$withdrawlevel}
@@ -117,7 +117,7 @@
             </tbody>
         </table>
         <div class="text-center" id="tableLoading">
-            <p><i class="fa fa-spinner fa-spin"></i> {$LANG.loading}</p>
+            <p><i class="fas fa-spinner fa-spin"></i> {$LANG.loading}</p>
         </div>
     </div>
 
