@@ -94,10 +94,12 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="inputTaxId" class="control-label">{lang key=$taxIdLabel}</label>
-                <input type="text" name="tax_id" id="inputTaxId" class="form-control" value="{$clientTaxId}"{if in_array('tax_id', $uneditablefields)} disabled="disabled"{/if} />
-            </div>
+            {if $showTaxIdField}
+                <div class="form-group">
+                    <label for="inputTaxId" class="control-label">{lang key=$taxIdLabel}</label>
+                    <input type="text" name="tax_id" id="inputTaxId" class="form-control" value="{$clientTaxId}"{if in_array('tax_id', $uneditablefields)} disabled="disabled"{/if} />
+                </div>
+            {/if}
 
             {if $customfields}
                 {foreach from=$customfields key=num item=customfield}

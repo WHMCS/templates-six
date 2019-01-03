@@ -47,11 +47,9 @@
                                 <input type="checkbox" name="domids[]" class="domids stopEventBubble" value="{$domain.id}" />
                             </td>
                             <td class="text-center ssl-info" data-element-id="{$domain.id}" data-type="domain" data-domain="{$domain.domain}">
-                                {if !$domain.sslStatus}
-                                    <img id="sslStatus{$domain.id}" src="{$WEB_ROOT}/assets/img/ssl/ssl-unknown.png" data-toggle="tooltip" title="{lang key='sslUnknown'}" />
-                                {elseif $domain.sslStatus && $domain.sslStatus.toSync}
+                                {if $domain.sslStatus.toSync}
                                     <i id="sslStatus{$domain.id}" data-toggle="tooltip" title="{lang key='loading'}" class="far fa-spinner fa-fw fa-2x fa-pulse {$domain.sslStatus.class}"></i>
-                                {elseif $domain.sslStatus}
+                                {else}
                                     <img id="sslStatus{$domain.id}" src="{$domain.sslStatus.imagePath}{$domain.sslStatus.image}" data-toggle="tooltip" title="{$domain.sslStatus.title}" class="ssl-state {$domain.sslStatus.class}"/>
                                 {/if}
                             </td>
