@@ -82,7 +82,7 @@
                     <strong>{$LANG.invoicespayto}</strong>
                     <address class="small-text">
                         {$payto}
-                        {if $taxCode}<br />{$taxCode}{/if}
+                        {if $taxCode}<br />{$taxIdLabel}: {$taxCode}{/if}
                     </address>
                 </div>
                 <div class="invoice-col">
@@ -94,7 +94,7 @@
                         {$clientsdetails.city}, {$clientsdetails.state}, {$clientsdetails.postcode}<br />
                         {$clientsdetails.country}
                         {if $clientsdetails.tax_id}
-                            {$clientsdetails.tax_id}
+                            <br />{$taxIdLabel}: {$clientsdetails.tax_id}
                         {/if}
                         {if $customfields}
                         <br /><br />

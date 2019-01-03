@@ -1,6 +1,5 @@
 <link href="{$WEB_ROOT}/templates/{$template}/css/all.min.css?v={$versionHash}" rel="stylesheet">
 
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 <link rel='stylesheet' id='cloudme-fonts-css'  href='https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900&#038;subset=latin%2Clatin-ext&#038;ver=1.0.0' type='text/css' media='all' />
 
@@ -11,8 +10,7 @@
 <link rel='stylesheet' id='cloudme-font-awesome-css'  href='{$WEB_ROOT}/templates/{$template}/cloudme/css/font-awesome.min.css?ver=4.9.6' type='text/css' media='all' />
 <link rel='stylesheet' id='cloudme-style-css'  href='{$WEB_ROOT}/templates/{$template}/cloudme/style.css?ver=21-05-2015' type='text/css' media='all' />
 
-
-<link href="{$WEB_ROOT}/templates/{$template}/css/custom.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <div class="content-block features">
+    <div class="content-block features" id="features">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
@@ -211,7 +211,7 @@
         </div>
     </div>
 
-    <div class="content-block faqs">
+    <div class="content-block faqs" id="faq">
         <div class="container">
             <h3 class="text-center">{lang key="store.codeGuard.faq.title"}</h3>
             <div class="row">
