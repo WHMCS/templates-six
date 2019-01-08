@@ -1,0 +1,96 @@
+// COMPATIBILITY
+// Mixins and functions related to browser compatibility.
+
+	@mixin font-size($sizeValue: 16) {
+		font-size: $sizeValue + px;
+		font-size: ($sizeValue / 10) + rem;
+	}
+
+	@mixin font-layout($font-size: 12, $line-height: 25) {
+		@include font-size($font-size);
+		line-height: $line-height/$font-size + em;
+	}
+
+	// Flexbox on Safari
+	@mixin flex-grow($v) {
+		-webkit-flex-grow: $v;
+		flex-grow: $v;
+	}
+
+	// Clip Path
+	@mixin clip-path($v) {
+		-webkit-clip-path: $v;
+		clip-path: $v;
+	}
+
+	@mixin calc($property, $expression) {
+		#{$property}: -moz-calc(#{$expression});
+		#{$property}: -webkit-calc(#{$expression});
+		#{$property}: calc(#{$expression});
+	}
+
+// CLEAR
+
+	@mixin clear-after {
+		&::after {
+			clear: both;
+			display: block;
+			content: '';
+		}
+	}
+
+// LINK COLOR
+
+	@mixin link-color($color, $hover: $color) {
+		color: $color;
+		&:active { color: $color; }
+		&:visited { color: $color; }
+		@if ( $hover != null ) {
+			&:hover { color: $hover; }
+		}
+	}
+
+// VERTICAL/HORIZONTAL MARGINS
+
+	@mixin margin-x($v) {
+		margin-left:  $v;
+		margin-right: $v;
+	}
+
+	@mixin margin-y($v) {
+		margin-top:  $v;
+		margin-bottom: $v;
+	}
+
+// BLOCK SPACING
+// Include in blocks that are siblings but should be spaced apart from each other in the flow.
+
+	@mixin block-spacing {
+		@include margin-y( 1em );
+	}
+
+// FIRST & LAST MARGINS
+// Specify that the first and last children of a containing element have no top or bottom margin, respectively. This is useful when the container already provides appropriate padding or margin around its contents.
+
+	@mixin no-first-last-margins($first: 0, $last: 0) {
+		& > *:first-child { margin-top:    $first !important; > .block-button-link { margin-top: $first !important; } }
+		& > *:last-child  { margin-bottom: $last !important; > .block-button-link { margin-bottom: $last !important; } }
+	}
+
+	@mixin no-first-last-margins-lr($first: 0, $last: 0) {
+		& > *:first-child { margin-left:    $first !important; > .block-button-link { margin-left: $first !important; } }
+		& > *:last-child  { margin-right: $last !important;  > .block-button-link { margin-right: $first !important; } }
+	}
+
+//Force wordwrap
+
+	@mixin word-wrap() {
+	  overflow-wrap: break-word;
+	  word-wrap: break-word;
+	  -ms-word-break: break-all;
+	  word-break: break-word;
+	  -ms-hyphens: auto;
+	  -moz-hyphens: auto;
+	  -webkit-hyphens: auto;
+	  hyphens: auto;
+	}

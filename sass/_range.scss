@@ -1,0 +1,105 @@
+/*
+
+MIXIN: RANGE
+
+@version 0.1
+@date    2015-10-21
+@author  michael@marketingdesigngroup.com
+
+This SASS mixin creates a media query for one or more predefined ranges of
+screen widths. It requires a map of named ranges with min and/or max values (in
+pixels). Example:
+
+	$ranges: (
+		small:   (max: 500),
+		medium:  (min: 501, max: 768),
+		large:   (min: 769)
+	);
+
+Bootstrap ranges are created by default, but may be overwritten in your
+stylesheet after this file is included. It was designed to be used on documents
+with at least one finite range (with both min and max), but should work equally
+well with a mobile-first design.
+
+Use examples:
+
+	@include range(small) { ... }
+
+	@include range(small, medium) { ... }
+
+	@include range(medium, large) { ... }
+
+	@include range(alpha, bravo, charlie) { ... }
+
+Argument order does not matter. The ranges are merged inclusively, meaning each
+included range can only expand the total scope of the final media query, not
+contract it. This means that if ANY included range has a "null" max or min, the
+final media query will not have a max-width or min-width constraint,
+respectively. It also means that if there are gaps between the included ranges,
+they will be ignored, since both min and max will have been provided.
+
+A more sophisticated version of this mixin would detect gaps in the included
+ranges and output multiple media queries.
+
+*/
+
+@mixin range($included-ranges...) {
+
+	// Set defaults.
+	$total-min: null;
+	$total-max: null;
+	// null means the min/max has not been set by any range. 0 means one of the
+	// range has no min/max. Once set to 0, it cannot change back. i (any other
+	// integer) means an explicit min/max has been set and may be expanded (but
+	// not contracted) by another range.
+
+	// Loop ranges.
+	@each $range in $included-ranges {
+		$breakpoints: map-get($ranges, $range);
+		$range-min:   map-get($breakpoints, min) or null;
+		$range-max:   map-get($breakpoints, max) or null;
+
+		// Update min.
+		@if $total-min != 0 {
+			@if $range-min == null {
+				$total-min: 0;
+			} @else {
+				$total-min: if( $total-min == null, $range-min, min($total-min, $range-min) );
+			}
+		}
+
+		// Update max.
+		@if $total-max != 0 {
+			@if $range-max == null {
+				$total-max: 0;
+			} @else {
+				$total-max: if( $total-max == null, $range-max, max($total-max, $range-max) );
+			}
+		}
+
+	}
+
+	// If either min or max have not been touched, default to zero.
+	$total-min: if( $total-min == null, 0, $total-min);
+	$total-max: if( $total-max == null, 0, $total-max);
+
+	// Output media query.
+	@if $total-min == 0 and $total-max == 0 {
+		@content
+	} @else if $total-min == 0 {
+		@media screen and (max-width: $total-max + px) { @content }
+	} @else if $total-max == 0 {
+		@media screen and (min-width: $total-min + px) { @content }
+	} @else {
+		@media screen and (min-width: $total-min + px) and (max-width: $total-max + px) { @content }
+	}
+
+}
+
+// DEFUALT RANGES (BOOTSTRAP)
+$ranges: (
+	xs: (min: null, max:  767),
+	sm: (min:  768, max:  991),
+	md: (min:  992, max: 1199),
+	lg: (min: 1200, max: null),
+);
