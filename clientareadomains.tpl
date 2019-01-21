@@ -47,10 +47,10 @@
                                 <input type="checkbox" name="domids[]" class="domids stopEventBubble" value="{$domain.id}" />
                             </td>
                             <td class="text-center ssl-info" data-element-id="{$domain.id}" data-type="domain" data-domain="{$domain.domain}">
-                                {if $domain.sslStatus.toSync}
-                                    <i id="sslStatus{$domain.id}" data-toggle="tooltip" title="{lang key='loading'}" class="far fa-spinner fa-fw fa-2x fa-pulse {$domain.sslStatus.class}"></i>
-                                {else}
-                                    <img id="sslStatus{$domain.id}" src="{$domain.sslStatus.imagePath}{$domain.sslStatus.image}" data-toggle="tooltip" title="{$domain.sslStatus.title}" class="ssl-state {$domain.sslStatus.class}"/>
+                                {if $domain.sslStatus}
+                                    <img src="{$domain.sslStatus->getImagePath()}" data-toggle="tooltip" title="{$domain.sslStatus->getTooltipContent()}" class="{$domain.sslStatus->getClass()}"/>
+                                {elseif !$domain.isActive}
+                                    <img src="{$BASE_PATH_IMG}/ssl/ssl-inactive-domain.png" data-toggle="tooltip" title="{lang key='sslState.sslInactiveDomain'}">
                                 {/if}
                             </td>
                             <td><a href="http://{$domain.domain}" target="_blank">{$domain.domain}</a></td>
