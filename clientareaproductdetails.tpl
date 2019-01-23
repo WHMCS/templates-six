@@ -175,34 +175,6 @@
                                         <div class="col-sm-7 text-left">
                                             {$domain}
                                         </div>
-                                        {if $sslInfo}
-                                            <div class="col-sm-5 text-right">
-                                                <strong>{$LANG.sslState.sslStatus}</strong>
-                                            </div>
-                                            <div class="col-sm-7 text-left{if !$sslInfo->active} ssl-required{/if}">
-                                                <img src="{$BASE_PATH_IMG}/ssl/{$sslImage}" width="12"> {$sslMessage}
-                                            </div>
-                                            {if $sslInfo->active}
-                                                <div class="col-sm-5 text-right">
-                                                    <strong>{$LANG.sslState.startDate}</strong>
-                                                </div>
-                                                <div class="col-sm-7 text-left">
-                                                    {$sslInfo->startDate->toClientDateFormat()}
-                                                </div>
-                                                <div class="col-sm-5 text-right">
-                                                    <strong>{$LANG.sslState.expiryDate}</strong>
-                                                </div>
-                                                <div class="col-sm-7 text-left">
-                                                    {$sslInfo->expiryDate->toClientDateFormat()}
-                                                </div>
-                                                <div class="col-sm-5 text-right">
-                                                    <strong>{$LANG.sslState.issuerName}</strong>
-                                                </div>
-                                                <div class="col-sm-7 text-left">
-                                                    {$sslInfo->issuerName}
-                                                </div>
-                                            {/if}
-                                        {/if}
                                     </div>
                                 {/if}
                                 {if $username}
@@ -247,6 +219,42 @@
                                         </div>
                                     {/if}
                                 {/if}
+                                {if $domain && $sslStatus}
+                                    <div class="row">
+                                        <div class="col-sm-5 text-right">
+                                            <strong>{$LANG.sslState.sslStatus}</strong>
+                                        </div>
+                                        <div class="col-sm-7 text-left{if $sslStatus->isInactive()} ssl-inactive{/if}">
+                                            <img src="{$sslStatus->getImagePath()}" width="12"> {$sslStatus->getStatusDisplayLabel()}
+                                        </div>
+                                    </div>
+                                    {if $sslStatus->isActive()}
+                                        <div class="row">
+                                            <div class="col-sm-5 text-right">
+                                                <strong>{$LANG.sslState.startDate}</strong>
+                                            </div>
+                                            <div class="col-sm-7 text-left">
+                                                {$sslStatus->startDate->toClientDateFormat()}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5 text-right">
+                                                <strong>{$LANG.sslState.expiryDate}</strong>
+                                            </div>
+                                            <div class="col-sm-7 text-left">
+                                                {$sslStatus->expiryDate->toClientDateFormat()}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5 text-right">
+                                                <strong>{$LANG.sslState.issuerName}</strong>
+                                            </div>
+                                            <div class="col-sm-7 text-left">
+                                                {$sslStatus->issuerName}
+                                            </div>
+                                        </div>
+                                    {/if}
+                                {/if}
                                 <br>
                                 <p>
                                     <a href="http://{$domain}" class="btn btn-default" target="_blank">{$LANG.visitwebsite}</a>
@@ -262,11 +270,11 @@
                                 </div>
                             {/if}
                         </div>
-                        {if $sslInfo}
+                        {if $sslStatus}
                             <div class="tab-pane fade text-center" id="ssl-info">
-                                {if $sslInfo->active}
+                                {if $sslStatus->isActive()}
                                     <div class="alert alert-success" role="alert">
-                                        {lang key='sslActive' expiry=$sslInfo->expiryDate->toClientDateFormat()}
+                                        {lang key='sslActive' expiry=$sslStatus->expiryDate->toClientDateFormat()}
                                     </div>
                                 {else}
                                     <div class="alert alert-warning ssl-required" role="alert">
