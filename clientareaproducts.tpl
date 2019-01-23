@@ -33,11 +33,9 @@
                 <tr onclick="clickableSafeRedirect(event, 'clientarea.php?action=productdetails&amp;id={$service.id}', false)">
                     <td class="text-center{if $service.sslStatus} ssl-info{/if}" data-element-id="{$service.id}" data-type="service"{if $service.domain} data-domain="{$service.domain}"{/if}>
                         {if $service.sslStatus}
-                            {if $service.sslStatus.toSync}
-                                <i id="sslStatus{$service.id}" data-toggle="tooltip" title="{lang key='loading'}" class="far fa-spinner fa-2x fa-fw fa-pulse {$service.sslStatus.class}"></i>
-                            {elseif $service.sslStatus.image}
-                                <img id="sslStatus{$service.id}" src="{$service.sslStatus.imagePath}{$service.sslStatus.image}" data-toggle="tooltip" title="{$service.sslStatus.title}" class="ssl-state {$service.sslStatus.class}"/>
-                            {/if}
+                            <img src="{$service.sslStatus->getImagePath()}" data-toggle="tooltip" title="{$service.sslStatus->getTooltipContent()}" class="{$service.sslStatus->getClass()}"/>
+                        {elseif !$service.isActive}
+                            <img src="{$BASE_PATH_IMG}/ssl/ssl-inactive-domain.png" data-toggle="tooltip" title="{lang key='sslState.sslInactiveService'}">
                         {/if}
                     </td>
                     <td><strong>{$service.product}</strong>{if $service.domain}<br /><a href="http://{$service.domain}" target="_blank">{$service.domain}</a>{/if}</td>

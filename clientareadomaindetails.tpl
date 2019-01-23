@@ -59,24 +59,24 @@
                 <h4><strong>{$LANG.clientareastatus}:</strong></h4> {$status}
             </div>
         </div>
-        {if $sslInfo}
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-5{if !$sslInfo->active} ssl-required{/if}">
-                <h4><strong>{$LANG.sslState.sslStatus}</strong></h4> <img src="{$BASE_PATH_IMG}/ssl/{$sslImage}" width="16"> {$sslMessage}
-            </div>
-            <div class="col-sm-6">
-                {if $sslInfo->active}
-                    <h4><strong>{$LANG.sslState.startDate}</strong></h4> {$sslInfo->startDate->toClientDateFormat()}
+        {if $sslStatus}
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-5{if $sslStatus->isInactive()} ssl-inactive{/if}">
+                    <h4><strong>{$LANG.sslState.sslStatus}</strong></h4> <img src="{$sslStatus->getImagePath()}" width="16"> {$sslStatus->getStatusDisplayLabel()}
+                </div>
+                {if $sslStatus->isActive()}
+                    <div class="col-sm-6">
+                        <h4><strong>{$LANG.sslState.startDate}</strong></h4> {$sslStatus->startDate->toClientDateFormat()}
+                    </div>
                 {/if}
             </div>
-        </div>
-            {if $sslInfo->active}
+            {if $sslStatus->isActive()}
                 <div class="row">
                     <div class="col-sm-offset-1 col-sm-5">
-                        <h4><strong>{$LANG.sslState.issuerName}</strong></h4> {$sslInfo->issuerName}
+                        <h4><strong>{$LANG.sslState.issuerName}</strong></h4> {$sslStatus->issuerName}
                     </div>
                     <div class="col-sm-6">
-                        <h4><strong>{$LANG.sslState.expiryDate}</strong></h4> {$sslInfo->expiryDate->toClientDateFormat()}
+                        <h4><strong>{$LANG.sslState.expiryDate}</strong></h4> {$sslStatus->expiryDate->toClientDateFormat()}
                     </div>
                 </div>
             {/if}
@@ -248,7 +248,6 @@
                     <input type="submit" class="btn btn-lg btn-danger" value="{$LANG.domainreglockdisable}" />
                 </p>
             {else}
-                <input type="hidden" name="autorenew" value="enable">
                 <p class="text-center">
                     <input type="submit" class="btn btn-lg btn-success" name="reglock" value="{$LANG.domainreglockenable}" />
                 </p>
