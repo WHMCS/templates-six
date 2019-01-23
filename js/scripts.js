@@ -15394,33 +15394,27 @@ jQuery(document).ready(function() {
         return true;
     });
 
-    jQuery('i.to-load-ssl').each(function () {
-        var parent = jQuery(this).parent('td');
+    jQuery('.ssl-state.ssl-sync').each(function () {
+        var self = jQuery(this);
         WHMCS.http.jqClient.post(
             WHMCS.utils.getRouteUrl('/domain/ssl-check'),
             {
-                'type': parent.data('type'),
-                'domain': parent.data('domain'),
+                'type': self.parent('td').data('type'),
+                'domain': self.parent('td').data('domain'),
                 'token': csrfToken
             },
             function (data) {
-                var image = data.image,
-                    imagePath = data.imagePath,
-                    domain = data.domain,
-                    status = data.status,
-                    iClass = data.class,
-                    title = data.title,
-                    id = data.id;
-
-                if (id) {
-                    jQuery('td.ssl-info[data-element-id="' + id + '"]').html(
-                        '<img id="sslStatus' + id + '" src="' + imagePath + image + '" data-toggle="tooltip" title="' + title + '" class="ssl-state ' + iClass + '"/>'
+                if (data.invalid) {
+                    self.hide();
+                } else {
+                    self.replaceWith(
+                        '<img src="' + data.image + '" data-toggle="tooltip" title="' + data.tooltip + '" class="' + data.class + '">'
                     );
                 }
             }
         );
     });
-    jQuery(document).on('click', '.ssl-required', function(e) {
+    jQuery(document).on('click', '.ssl-state.ssl-inactive', function(e) {
         e.preventDefault();
         window.location.href = WHMCS.utils.getRouteUrl('/ssl-purchase');
     });
