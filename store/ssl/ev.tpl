@@ -29,6 +29,23 @@
 
                     {lang key="store.ssl.ev.descriptionContent"}
 
+                    <br>
+                    <h3>{lang key="store.ssl.useCases.title"}</h3>
+                    <div class="row ideal-for ev">
+                        <div class="col-sm-4">
+                            <i class="fas fa-globe-americas"></i>
+                            <h4>{lang key="store.ssl.useCases.criticalDomains"}</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h4>{lang key="store.ssl.useCases.ecommerce"}</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <i class="fas fa-user-plus"></i>
+                            <h4>{lang key="store.ssl.useCases.signupPages"}</h4>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -42,8 +59,8 @@
             <div class="row">
                 <div class="col-lg-4 col-lg-push-7 col-md-5 col-md-push-7">
                     <br>
-                    <h4>Contains Your EV Authenticated Organization Details</h4>
-                    <p>Certificate details indicate your website is using an Extended Validation SSL Certificate and include the issuing CA, validity status, and expiration date.</p>
+                    <h4>{lang key="store.ssl.ev.orgInfo"}</h4>
+                    <p>{lang key="store.ssl.ev.orgInfoDescription"}</p>
                 </div>
                 <div class="col-lg-6 col-lg-pull-2 col-md-7 col-md-pull-4">
                     <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/cert-details-ev.png">

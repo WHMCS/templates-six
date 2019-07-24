@@ -433,9 +433,14 @@ section#main-body {
     background-color: #989898;
     color: #eee;
 }
-.landing-page.ssl .validation-levels a.show-all {
+.landing-page.ssl p.help-me-choose {
+    margin-bottom: 20px;
     line-height: 50px;
-    color: #eee;
+}
+.landing-page.ssl p.help-me-choose a,
+.landing-page.ssl a.help-me-choose {
+    font-size: 1.3em;
+    color: #fff;
 }
 
 .landing-page.ssl .standout {
@@ -456,6 +461,38 @@ section#main-body {
     color: #44737e;
     font-size: 2em;
     padding-right: 15px;
+}
+
+.landing-page.ssl .help-me-choose .ideal {
+    font-style: italic;
+    text-align: center;
+    color: #888;
+}
+.landing-page.ssl .help-me-choose .ssl-types-expl {
+    margin: 0 0 20px 0;
+    font-size: 0.85em;
+    text-align: center;
+}
+.landing-page.ssl .help-me-choose img {
+    margin: 20px 0;
+}
+
+.landing-page.ssl .ideal-for {
+    text-align: center;
+}
+.landing-page.ssl .ideal-for i {
+    padding: 15px 0;
+    font-size: 3em;
+    color: #ccc;
+}
+.landing-page.ssl .ideal-for.dv i {
+    color: #2369a5;
+}
+.landing-page.ssl .ideal-for.ov i {
+    color: #f3b32e;
+}
+.landing-page.ssl .ideal-for.ev i {
+    color: #4cab6e;
 }
 
 .landing-page.ssl .ssl-benefits {
@@ -670,7 +707,7 @@ section#main-body {
 }
 
 .landing-page.ssl .features {
-    background-color: #1b446d;
+    background-color: #444;
     text-align: center;
 }
 @media (max-width: 767px) {
@@ -689,13 +726,17 @@ section#main-body {
 .landing-page.ssl .features .feature {
     margin: 0 0 40px 0;
     padding: 30px 20px;
-    border: 1px solid #fff;
+    background-color: #666;
     height: 150px;
     font-size: 40px;
-    color: #fff;
+    color: #eee;
 }
 .landing-page.ssl .features .feature h4 {
     font-weight: 300;
+}
+.landing-page.ssl .features .feature:hover {
+    background-color: #999;
+    color: #fff;
 }
 
 .landing-page.ssl .logos {

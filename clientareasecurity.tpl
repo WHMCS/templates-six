@@ -12,45 +12,33 @@
     <br>
 {/if}
 
-{if $twofaavailable}
+{if $twoFactorAuthAvailable}
 
-    {if $twofaactivation}
+    <h2>{$LANG.twofactorauth}</h2>
 
-        <div id="twofaactivation">
-            {$twofaactivation}
-        </div>
+    <p class="twofa-config-link disable{if !$twoFactorAuthEnabled} hidden{/if}">
+        {$LANG.twofacurrently} <strong>{$LANG.enabled|strtolower}</strong>
+    </p>
+    <p class="twofa-config-link enable{if $twoFactorAuthEnabled} hidden{/if}">
+        {$LANG.twofacurrently} <strong>{$LANG.disabled|strtolower}</strong>
+    </p>
 
-    {else}
+    {include file="$template/includes/alert.tpl" type="warning" msg="{lang key="clientAreaSecurityTwoFactorAuthRecommendation"}"}
 
-        <h2>{$LANG.twofactorauth}</h2>
 
-        {include file="$template/includes/alert.tpl" type="warning" msg="{lang key="clientAreaSecurityTwoFactorAuthRecommendation"}"}
+    <a href="{routePath('account-security-two-factor-disable')}" class="btn btn-danger open-modal twofa-config-link disable{if !$twoFactorAuthEnabled} hidden{/if}" data-modal-title="{$LANG.twofadisable}" data-modal-class="twofa-setup">
+        {$LANG.twofadisableclickhere}
+    </a>
+    <a href="{routePath('account-security-two-factor-enable')}" class="btn btn-success open-modal twofa-config-link enable{if $twoFactorAuthEnabled} hidden{/if}" data-modal-title="{$LANG.twofaenable}" data-modal-class="twofa-setup">
+        {$LANG.twofaenableclickhere}
+    </a>
 
-        <p>
-            {$LANG.twofaactivationintro}
-        </p>
-
-        <br />
-
-        <form method="post" action="clientarea.php?action=security">
-            <input type="hidden" name="2fasetup" value="1" />
-            <p align="center">
-                {if $twofastatus}
-                    <input type="submit" value="{$LANG.twofadisableclickhere}" class="btn btn-danger" />
-                {else}
-                    <input type="submit" value="{$LANG.twofaenableclickhere}" class="btn btn-success" />
-                {/if}
-            </p>
-        </form>
-
-        <br />
-        <br />
-
-    {/if}
+    <br />
+    <br />
 
 {/if}
 
-{if $securityquestionsenabled && !$twofaactivation}
+{if $securityquestionsenabled}
 
     <h2>{$LANG.clientareanavsecurityquestions}</h2>
 

@@ -7,6 +7,7 @@
     <title>{$companyname} - {$pagetitle}</title>
 
     <link href="{$WEB_ROOT}/templates/{$template}/css/all.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
     <link href="{$WEB_ROOT}/templates/{$template}/css/invoice.css" rel="stylesheet">
 
 </head>
@@ -115,7 +116,7 @@
                                 {$gatewaydropdown}
                             </form>
                         {else}
-                            {$paymentmethod}
+                            {$paymentmethod}{if $paymethoddisplayname} ({$paymethoddisplayname}){/if}
                         {/if}
                     </span>
                     <br /><br />
@@ -182,13 +183,13 @@
                                     <td class="total-row text-right"><strong>{$LANG.invoicessubtotal}</strong></td>
                                     <td class="total-row text-center">{$subtotal}</td>
                                 </tr>
-                                {if $taxrate}
+                                {if $taxname}
                                     <tr>
                                         <td class="total-row text-right"><strong>{$taxrate}% {$taxname}</strong></td>
                                         <td class="total-row text-center">{$tax}</td>
                                     </tr>
                                 {/if}
-                                {if $taxrate2}
+                                {if $taxname2}
                                     <tr>
                                         <td class="total-row text-right"><strong>{$taxrate2}% {$taxname2}</strong></td>
                                         <td class="total-row text-center">{$tax2}</td>

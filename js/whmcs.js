@@ -282,6 +282,40 @@ jQuery(document).ready(function() {
         e.preventDefault();
     });
 
+    // Activate copy to clipboard functionality
+    jQuery('.copy-to-clipboard').click(WHMCS.ui.clipboard.copy);
+
+    // Password Generator
+    jQuery('.generate-password').click(function(e) {
+        jQuery('#frmGeneratePassword').submit();
+        jQuery('#modalGeneratePassword')
+            .data('targetfields', jQuery(this).data('targetfields'))
+            .modal('show');
+    });
+    jQuery('#frmGeneratePassword').submit(function(e) {
+        e.preventDefault();
+        var length = parseInt(jQuery('#inputGeneratePasswordLength').val(), 10);
+
+        // Check length
+        if (length < 8 || length > 64) {
+            jQuery('#generatePasswordLengthError').removeClass('hidden').show();
+            return;
+        }
+
+        jQuery('#inputGeneratePasswordOutput').val(WHMCS.utils.generatePassword(length));
+    });
+    jQuery('#btnGeneratePasswordInsert')
+        .click(WHMCS.ui.clipboard.copy)
+        .click(function(e) {
+            jQuery(this).closest('.modal').modal('hide');
+            var targetFields = jQuery(this).closest('.modal').data('targetfields');
+            targetFields = targetFields.split(',');
+            for(var i = 0; i < targetFields.length; i++) {
+                jQuery('#' + targetFields[i]).val(jQuery('#inputGeneratePasswordOutput').val())
+                    .trigger('keyup');
+            }
+        });
+
     /**
      * Code will loop through each element that has the class markdown-editor and
      * enable the Markdown editor.
@@ -447,8 +481,15 @@ jQuery(document).ready(function() {
         openModal(frmTwoFactorActivation.attr('action'), frmTwoFactorActivation.serialize(), 'Loading...');
     });
 
-    jQuery('#frmPayment').find('#btnSubmit').on('click', function(){
-        jQuery(this).find('span').toggleClass('hidden');
+    jQuery.fn.showInputError = function () {
+        this.parents('.form-group').addClass('has-error').find('.field-error-msg').show();
+        return this;
+    };
+
+    jQuery('#frmPayment').on('submit', function() {
+        var btn = jQuery('#btnSubmit');
+            btn.find('span').toggleClass('hidden');
+            btn.prop('disabled', true).addClass('disabled');
     });
 
     // SSL Manage Action Button.
@@ -503,6 +544,8 @@ jQuery(document).ready(function() {
 
     // Bootstrap Confirmation popup auto object registration
     WHMCS.ui.confirmation.register();
+
+    WHMCS.ui.jsonForm.initAll();
 
     jQuery('#frmReply').submit(function(e) {
         jQuery('#frmReply').find('input[type="submit"]').addClass('disabled').prop('disabled', true);
@@ -586,6 +629,23 @@ jQuery(document).ready(function() {
             }
         });
     }
+
+    $('.icheck-button').iCheck({
+        inheritID: true,
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%'
+    });
+
+    jQuery('#inputNoStore').on('switchChange.bootstrapSwitch', function(event, state) {
+        var descContainer = jQuery('#inputDescription');
+        if (!state) {
+            descContainer.prop('disabled', true).addClass('disabled');
+        }
+        if (state) {
+            descContainer.removeClass('disabled').prop('disabled', false);
+        }
+    });
 });
 
 /**
@@ -793,12 +853,12 @@ function useCustomWhois(regType) {
     jQuery('#' + regType.substr(0, regType.length - 1) + '2').attr("checked", "checked");
 }
 
-/**
- * Used to toggle display of editable billing address fields.
- */
-function editBillingAddress() {
-    jQuery("#billingAddressSummary").hide();
-    jQuery(".cc-billing-address").hide().removeClass('hidden').fadeIn();
+function showNewBillingAddressFields() {
+    jQuery('#newBillingAddress').slideDown();
+}
+
+function hideNewBillingAddressFields() {
+    jQuery('#newBillingAddress').slideUp();
 }
 
 /**
@@ -809,20 +869,78 @@ function showNewCardInputFields() {
         jQuery(".cc-details").hide().removeClass("hidden");
     }
     jQuery(".cc-details").slideDown();
-    jQuery("#btnEditBillingAddress").removeAttr("disabled");
+
+    jQuery("#billingAddressChoice")
+        .slideDown()
+        .find('input[name="billingcontact"]')
+        .first()
+        .iCheck('check');
 }
 
 /**
  * Hide new credit card input fields.
  */
 function hideNewCardInputFields() {
-    jQuery(".cc-billing-address").slideUp();
+    hideNewBillingAddressFields();
+
     jQuery(".cc-details").slideUp();
-    jQuery("#btnEditBillingAddress").attr("disabled", "disabled");
-    if (jQuery("#billingAddressSummary").hasClass('hidden')) {
-        jQuery("#billingAddressSummary").hide().removeClass('hidden').slideDown();
-    } else {
-        jQuery("#billingAddressSummary").slideDown();
+    jQuery("#billingAddressChoice").slideUp();
+
+    var selectedCcInfo = jQuery('input[name="ccinfo"]:checked');
+
+    var selectedCcBillingContactId = jQuery(selectedCcInfo).data('billing-contact-id');
+
+    var selectedBillingContactData = jQuery('.billing-contact-info[data-billing-contact-id="' + selectedCcBillingContactId + '"]');
+
+    if (selectedBillingContactData.length) {
+        jQuery('.billing-contact-info').hide();
+        jQuery(selectedBillingContactData).show();
+    }
+}
+
+function showRemoteInputForm() {
+    var remoteInputForm = jQuery('#remoteInput'),
+        paymentGateway = remoteInputForm.data('payment-module'),
+        errorDiv = jQuery('#remoteInputError'),
+        btnSubmitContainer = jQuery('#btnSubmitContainer');
+    if (btnSubmitContainer.is(':visible')) {
+        btnSubmitContainer.slideUp('fast');
+    }
+    if (remoteInputForm.not(':visible')) {
+        remoteInputForm.html(
+            jQuery('#remoteInputLoading').html()
+        )
+            .hide()
+            .removeClass('hidden')
+            .slideDown('fast', function() {
+                var invoiceId = jQuery('input[name="invoiceid"]').val();
+                WHMCS.http.jqClient.jsonPost({
+                    url: WHMCS.utils.getRouteUrl('/account/paymentmethods/remote-input'),
+                    data: 'gateway=' + paymentGateway + '&invoice_id=' + invoiceId + '&token=' + csrfToken,
+                    success: function(response) {
+                        remoteInputForm.slideUp('fast').html(response.output).slideDown('fast');
+                    },
+                    warning: function(error) {
+                        errorDiv.find('div').html(error);
+                        remoteInputForm.slideUp('fast').html(errorDiv.html()).slideDown('fast');
+                    },
+                    fail: function(error) {
+                        errorDiv.find('div').html(error);
+                        remoteInputForm.slideUp('fast').html(errorDiv.html()).slideDown('fast');
+                    }
+                });
+            });
+    }
+}
+
+function hideRemoteInputForm() {
+    var remoteInputForm = jQuery('#remoteInput'),
+        btnSubmitContainer = jQuery('#btnSubmitContainer');
+    if (remoteInputForm.is(':visible')) {
+        remoteInputForm.slideUp('fast').html('').addClass('hidden');
+    }
+    if (btnSubmitContainer.not(':visible')) {
+        btnSubmitContainer.slideDown('fast');
     }
 }
 

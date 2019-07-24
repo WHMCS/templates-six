@@ -34,7 +34,7 @@
                         <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme}
                     </label>
                     &bull;
-                    <a href="{$issuerurl}pwreset.php">{lang key='forgotpw'}</a>
+                    <a href="{routePath('password-reset-begin')}">{lang key='forgotpw'}</a>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" id="btnLogin">

@@ -4,44 +4,47 @@
 
     <div class="hero">
         <div class="container">
-            <h2>SSL Certificates</h2>
-            <h3>Secure your site and add trust & confidence for your visitors</h3>
+            <h2>{lang key="store.ssl.landingPage.title"}</h2>
+            <h3>{lang key="store.ssl.landingPage.tagline1"}<br>{lang key="store.ssl.landingPage.tagline2"}</h3>
+
         </div>
     </div>
 
     <div class="validation-levels">
         <div class="container">
-            <h3>Choose your level of validation</h3>
+            <h3>{lang key="store.ssl.landingPage.chooseLevel"}</h3>
             <div class="row">
                 <div class="col-sm-6 col-md-4">
                     <div class="item">
-                        <h4>Domain Validation (DV)</h4>
+                        <h4>{lang key="store.ssl.landingPage.dv"}</h4>
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-dv-icon.png">
-                        <span>Basic Security</span>
-                        <p>Issued in minutes, ideal for blogs, social media & personal websites</p>
-                        <a href="{routePath('store-ssl-certificates-dv')}" class="btn">Buy</a>
+                        <span>{lang key="store.ssl.landingPage.dvSubtitle"}</span>
+                        <p>{lang key="store.ssl.landingPage.dvInformation"}</p>
+                        <a href="{routePath('store-ssl-certificates-dv')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <div class="item">
-                        <h4>Organization Validation (OV)</h4>
+                        <h4>{lang key="store.ssl.landingPage.ov"}</h4>
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-ov-icon.png">
-                        <span>Strong business level SSL</span>
-                        <p>Company identity included in certificate, ideal for business websites</p>
-                        <a href="{routePath('store-ssl-certificates-ov')}" class="btn">Buy</a>
+                        <span>{lang key="store.ssl.landingPage.ovSubtitle"}</span>
+                        <p>{lang key="store.ssl.landingPage.ovInformation"}</p>
+                        <a href="{routePath('store-ssl-certificates-ov')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0">
                     <div class="item">
-                        <h4>Extended Validation (EV)</h4>
+                        <h4>{lang key="store.ssl.landingPage.ev"}</h4>
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-ev-icon.png">
-                        <span>Maximum Protection & Trust</span>
-                        <p>Green address bar & company name displayed, ideal for ecommerce</p>
-                        <a href="{routePath('store-ssl-certificates-ev')}" class="btn">Buy</a>
+                        <span>{lang key="store.ssl.landingPage.evSubtitle"}</span>
+                        <p>{lang key="store.ssl.landingPage.evInformation"}</p>
+                        <a href="{routePath('store-ssl-certificates-ev')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
                     </div>
                 </div>
             </div>
-            <p><a href="#" class="show-all"><i class="fas fa-arrow-down"></i> Not sure? View all certificates</a></p>
+            <p class="help-me-choose">
+                <a href="#"><i class="fas fa-arrow-down"></i> {lang key="store.ssl.shared.helpMeChoose"}</a>
+            </p>
         </div>
     </div>
 
@@ -57,35 +60,35 @@
                 </div>
                 <div class="col-sm-8 col-md-9 col-sm-pull-4 col-md-pull-3">
 
-                    <h2>What is SSL?</h2>
+                    <h2>{lang key="store.ssl.landingPage.what"}</h2>
 
                     <div class="text-center visible-xs">
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-multi.png">
                         <br><br>
                     </div>
 
-                    <p>SSL Certificates are fundamental to internet security. They are used to establish an encrypted connection and allow data to be transmitted securely between a browser or user's computer and a server or website.</p>
+                    <p>{lang key="store.ssl.landingPage.whatInfo"}</p>
 
                     <ul>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            Establishes a secure connection between a browser and a server
+                            {lang key="store.ssl.landingPage.secureConnection"}
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            Encrypts communication to protect sensitive information your customers provide to you
+                            {lang key="store.ssl.landingPage.encrypts"}
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            Places a padlock next to your web address in the browser
+                            {lang key="store.ssl.landingPage.padlock"}
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            Authenticates an organization’s identity
+                            {lang key="store.ssl.landingPage.authenticates"}
                         </li>
                     </ul>
 
-                    <p><a href="{routePath('store-ssl-certificates-dv')}">Standard SSL (Domain Validated)</a> Certificates are the easiest and most common type of SSL certificate. <a href="{routePath('store-ssl-certificates-ov')}">OV</a> and <a href="{routePath('store-ssl-certificates-ev')}">EV Certificates</a> also authenticate the identity of the company or organization that holds the certificate providing more trust to end users.</p>
+                    <p>{lang key="store.ssl.landingPage.certTypeInfo" dvLink=routePath('store-ssl-certificates-dv') ovLink=routePath('store-ssl-certificates-ov') evLink=routePath('store-ssl-certificates-ev')}</p>
 
                 </div>
             </div>
@@ -96,38 +99,38 @@
     <div class="content-block ssl-benefits standout">
         <div class="container">
 
-            <h2>Improve Your Search Engine Ranking</h2>
+            <h2>{lang key="store.ssl.landingPage.benefits.title"}</h2>
 
-            <h4>Establish trust and online security for your website visitors and business.</h4>
+            <h4>{lang key="store.ssl.landingPage.benefits.subtitle"}</h4>
 
-            <p>Google wants to make the web safer and a big part of that involves making sure that the sites people access via Google are secure. That's why websites using SSL have been shown to benefit from higher ranking in search results.</p>
+            <p>{lang key="store.ssl.landingPage.benefits.higherResults"}</p>
 
-            <p>There's also a lot more reasons why you should consider adding SSL to your website:</p>
+            <p>{lang key="store.ssl.landingPage.benefits.reasons"}:</p>
 
             <div class="row">
                 <div class="col-md-2 col-sm-4">
                     <i class="fas fa-globe"></i>
-                    Encrypt sensitive data
+                    {lang key="store.ssl.landingPage.benefits.encrypt"}
                 </div>
                 <div class="col-md-2 col-sm-4">
                     <i class="fas fa-user"></i>
-                    Protect user privacy
+                    {lang key="store.ssl.landingPage.benefits.privacy"}
                 </div>
                 <div class="col-md-2 col-sm-4">
                     <i class="fas fa-credit-card"></i>
-                    Secure online transactions
+                    {lang key="store.ssl.landingPage.benefits.secure"}
                 </div>
                 <div class="col-md-2 col-sm-4">
                     <i class="fas fa-lock"></i>
-                    Activate HTTPS and the lock icon
+                    {lang key="store.ssl.landingPage.benefits.https"}
                 </div>
                 <div class="col-md-2 col-sm-4">
                     <i class="fas fa-trophy"></i>
-                    Prove legitimacy
+                    {lang key="store.ssl.landingPage.benefits.legitimacy"}
                 </div>
                 <div class="col-md-2 col-sm-4">
                     <i class="fas fa-search"></i>
-                    Increase SEO rank
+                    {lang key="store.ssl.landingPage.benefits.seo"}
                 </div>
             </div>
 
@@ -136,7 +139,7 @@
 
     <div class="standout-1">
         <div class="container browser">
-            <h3>Browsers have changed, don't get left behind</h3>
+            <h3>{lang key="store.ssl.landingPage.browser.title"}</h3>
             <div class="browser-image">
                 <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/browser-warning.jpg">
             </div>
@@ -145,7 +148,7 @@
             <div class="wrapper-container">
                 <div class="wrapper">
                     <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/padlock-x.png">
-                    Web pages not served via HTTPS are now being displayed as ‘not secure’ in <strong>Google Chrome</strong> and <strong>Mozilla Firefox</strong>. Don't let your website be one of them. Add SSL today.
+                    {lang key="store.ssl.landingPage.browser.insecureNotice"}
                 </div>
             </div>
         </div>
@@ -154,34 +157,34 @@
 
     <div class="content-block competitive-upgrade-promo">
         <div class="container">
-            Upgrade with us and get up to an additional 12 months free.
-            <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">Learn more &raquo;</a>
+            {lang key="store.ssl.landingPage.browser.competitiveUpgrade"}
+            <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"} &raquo;</a>
         </div>
     </div>
 
     <div class="content-block standout">
         <div class="container">
-            <h2>Upgrade to Extended Validation SSL</h2>
-            <p>While all SSL certificates use similar methods to protect and validate your data, the level of trust and assertion they provide varies.</p>
-            <p><strong>Extended Validation Certificates</strong> offer the highest level of validation and trust. They validate and display the name of the company or organisation along with the green address bar which is one of the most highly recognizable trust indicators on the web.</p>
+            <h2>{lang key="store.ssl.landingPage.evs.upgradeTitle"}</h2>
+            <p>{lang key="store.ssl.landingPage.evs.description"}</p>
+            <p>{lang key="store.ssl.landingPage.evs.whatIs"}</p>
             <br>
             <div class="row text-center">
                 <div class="col-md-6">
-                    <h4>Standard SSL</h4>
+                    <h4>{lang key="store.ssl.landingPage.evs.standard"}</h4>
                     <a href="{routePath('store-ssl-certificates-dv')}">
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-dv-icon.png" class="img-responsive">
                     </a>
                     <br>
                 </div>
                 <div class="col-md-6">
-                    <h4>Extended Validation SSL</h4>
+                    <h4>{lang key="store.ssl.landingPage.evs.ev"}</h4>
                     <a href="{routePath('store-ssl-certificates-ev')}">
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-ev-icon.png" class="img-responsive">
                     </a>
                     <br>
                 </div>
             </div>
-            <p class="text-center"><a href="{routePath('store-ssl-certificates-ev')}">Learn more about Extended Validation SSL Certificates</a></p>
+            <p class="text-center"><a href="{routePath('store-ssl-certificates-ev')}">{lang key="store.ssl.landingPage.evs.learn"}</a></p>
         </div>
     </div>
 
@@ -189,10 +192,79 @@
         <div class="container">
 
             <div class="panel">
+                <div class="panel-heading">
+                <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseHelpMeChoose" class="panel-title expand">
+                   <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                  <a href="#">{lang key="store.ssl.landingPage.help.title"}</a>
+                </h4>
+              </div>
+              <div id="collapseHelpMeChoose" class="panel-collapse collapse in">
+                <div class="panel-body">
+
+                    <p>{lang key="store.ssl.landingPage.help.guide"}</p>
+
+                    <div class="row help-me-choose">
+                        <div class="col-sm-4">
+                            <h4>{lang key="store.ssl.landingPage.help.dv.title"}</h4>
+
+                            <ul>
+                                <li>{lang key="store.ssl.landingPage.help.dv.verify"}</li>
+                                <li>{lang key="store.ssl.landingPage.help.dv.issued"}</li>
+                                <li>{lang key="store.ssl.landingPage.help.dv.compliance"}</li>
+                            </ul>
+
+                            <p class="ideal">{lang key="store.ssl.landingPage.help.dv.for"}</p>
+
+                            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/card-library.png" class="img-responsive">
+
+                            <p class="ssl-types-expl">{lang key="store.ssl.landingPage.help.dv.type"}</p>
+
+                            <a href="{routePath('store-ssl-certificates-dv')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.dv.browse"}</a>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>{lang key="store.ssl.landingPage.help.ov.title"}</h4>
+
+                            <ul>
+                                <li>{lang key="store.ssl.landingPage.help.ov.verify"}</li>
+                                <li>{lang key="store.ssl.landingPage.help.ov.issued"}</li>
+                                <li>{lang key="store.ssl.landingPage.help.ov.compliance"}</li>
+                            </ul>
+
+                            <p class="ideal">{lang key="store.ssl.landingPage.help.ov.for"}</p>
+
+                            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/card-driving.png" class="img-responsive">
+
+                            <p class="ssl-types-expl">{lang key="store.ssl.landingPage.help.ov.type"}</p>
+
+                            <a href="{routePath('store-ssl-certificates-ov')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.ov.browse"}</a>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>{lang key="store.ssl.landingPage.help.ev.title"}</h4>
+
+                            <ul>
+                                <li>{lang key="store.ssl.landingPage.help.ev.verify"}</li>
+                                <li>{lang key="store.ssl.landingPage.help.ev.issued"}</li>
+                                <li>{lang key="store.ssl.landingPage.help.ev.compliance"}</li>
+                            </ul>
+
+                            <p class="ideal">{lang key="store.ssl.landingPage.help.ev.for"}</p>
+
+                            <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/card-passport.png" class="img-responsive">
+
+                            <p class="ssl-types-expl">{lang key="store.ssl.landingPage.help.ev.type"}</p>
+
+                            <a href="{routePath('store-ssl-certificates-ev')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.ev.browse"}</a>
+                        </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="panel">
               <div class="panel-heading">
                 <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseAllCerts" class="panel-title expand">
                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                  <a href="#">View All SSL Certificates</a>
+                  <a href="#">{lang key="store.ssl.landingPage.viewAll"}</a>
                 </h4>
               </div>
               <div id="collapseAllCerts" class="panel-collapse collapse">
@@ -220,9 +292,9 @@
                                                 <div class="padded-cell">
                                                     <form method="post" action="{routePath('store-order')}">
                                                         <input type="hidden" name="pid" value="{$product->id}">
-                                                        <button type="submit" class="btn btn-success btn-block">Buy Now</button>
+                                                        <button type="submit" class="btn btn-success btn-block">{lang key="store.ssl.landingPage.buyNow"}</button>
                                                     </form>
-                                                    <a href="{routePath("store-ssl-certificates-$type")}">Learn more</a>
+                                                    <a href="{routePath("store-ssl-certificates-$type")}">{lang key="learnmore"}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -231,7 +303,7 @@
                             {/foreach}
                         {elseif $inPreview}
                             <div class="lead text-center">
-                                SSL products you activate will be displayed here
+                                {lang key="store.ssl.shared.noProducts"}
                             </div>
                         {/if}
                     </ul>
@@ -243,43 +315,43 @@
               <div class="panel-heading">
                 <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseFaq" class="panel-title expand">
                     <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                  <a href="#">FAQ's</a>
+                  <a href="#">{lang key="store.ssl.landingPage.faq.title"}</a>
                 </h4>
               </div>
               <div id="collapseFaq" class="panel-collapse collapse">
                 <div class="panel-body">
 
-                    <h4>What is an SSL Certificate?</h4>
+                    <h4>{lang key="store.ssl.landingPage.faq.q1"}</h4>
 
-                    <p>SSL Certificates enable data encryption on the internet and allow data to be transmitted securely from a web server to a browser. With SSL, your website can use the https protocol and will display a padlock in end users web browsers to indicate the connection is secure.</p>
+                    <p>{lang key="store.ssl.landingPage.faq.a1"}</p>
 
-                    <h4>Why do I need an SSL Certificate?</h4>
+                    <h4>{lang key="store.ssl.landingPage.faq.q2"}</h4>
 
-                    <p>SSL Certificates are an essential part of the internet. They not only encrypt communication between your computer and the server where a website is located, but they also provide verification that a site is what it claims to be.</p>
+                    <p>{lang key="store.ssl.landingPage.faq.a2"}</p>
 
-                    <h4>What are the different types of SSL?</h4>
+                    <h4>{lang key="store.ssl.landingPage.faq.q3"}</h4>
 
-                    <p>There are 3 different levels of vetting that SSL Certificates are based upon. Domain Validated (DV) , Organization Validated (OV), and Extended Validation (EV). The major difference between the types of certificate relates to the information the Certificate Authority, RapidSSL, GeoTrust and Symantec, requires and validates in order to issue a certificate. The higher levels of certificate require more information, and often is displayed in the browser bar. EV SSL for example turns the browser bar green and displays the organization name to visitors to generate more trust.</p>
+                    <p>{lang key="store.ssl.landingPage.faq.a3"}</p>
 
                     {if count($certificates.wildcard) > 0 || $inPreview}
 
-                        <h4>What is a Wildcard SSL Certificate</h4>
+                        <h4>{lang key="store.ssl.landingPage.faq.q4"}</h4>
 
-                        <p>A Wildcard SSL certificate provides the same encryption and authentication features as other SSL certificates but can also be applied to an unlimited number of subdomains of a website. A Wildcard SSL certificate supports the root domain (example.com) as well as its subdomains. <a href="{routePath('store-ssl-certificates-wildcard')}">Learn more</a></p>
+                        <p>{lang key="store.ssl.landingPage.faq.a4"} <a href="{routePath('store-ssl-certificates-wildcard')}">{lang key="learnmore"}</a></p>
 
                     {/if}
 
                     {if count($certificates.ev) > 0 || $inPreview}
 
-                        <h4>What are the advantages of an EV SSL Certificate?</h4>
+                        <h4>{lang key="store.ssl.landingPage.faq.q5"}</h4>
 
-                        <p>EV, or Extended Validation, is the highest class of SSL available today and gives more credibility and trust to your website than other SSL Certificates. They include features such as the green address bar and display of your company name that have been proven to boost trust and consumer confidence.</p>
+                        <p>{lang key="store.ssl.landingPage.faq.a5"}</p>
 
                     {/if}
 
-                    <h4>What if I already have an SSL Certificate?</h4>
+                    <h4>{lang key="store.ssl.landingPage.faq.q6"}</h4>
 
-                    <p>You can switch to us at any time.  We offer highly competitive pricing and if you already have an existing certificate, we'll add any remaining validity that you have on your existing competitor SSL Certificate up to a maximum of an additional 12 months. <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">Learn more</a></p>
+                    <p>{lang key="store.ssl.landingPage.faq.a6"} <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"}</a></p>
 
                 </div>
               </div>
@@ -293,24 +365,29 @@
 </div>
 
 <script>
-$(function() {
-  $(".expand").on( "click", function() {
-    $expand = $(this).find(">:first-child");
-
+jQuery(document).ready(function() {
+  jQuery(".expand").on( "click", function() {
+    $expand = jQuery(this).find(">:first-child");
     if($expand.html() == '<i class="fas fa-chevron-right"></i>') {
       $expand.html('<i class="fas fa-chevron-down"></i>');
     } else {
       $expand.html('<i class="fas fa-chevron-right"></i>');
     }
   });
-  $('.show-all').click(function(e) {
+  jQuery('.help-me-choose').click(function(e) {
     e.preventDefault();
-    if (!$('#collapseAllCerts').hasClass('in')) {
-        $('#collapseAllCerts').collapse('show');
+    if (!jQuery('#collapseHelpMeChoose').hasClass('in')) {
+      jQuery('#collapseHelpMeChoose').collapse('show');
     }
-    $('html, body').animate({
-        scrollTop: $('#sslDetail').offset().top
+    jQuery('html, body').animate({
+      scrollTop: jQuery('#collapseHelpMeChoose').offset().top - 75
     }, 500);
   });
+  var hash = location.hash.replace('#', '');
+  if (hash == 'helpmechoose') {
+    jQuery('html, body').animate({
+      scrollTop: jQuery('#collapseHelpMeChoose').offset().top - 75
+    }, 500);
+  }
 });
 </script>

@@ -124,3 +124,6 @@ body {
 .invoice-container td.no-line {
     border: 0;
 }
+.invoice-container .invoice-header img {
+    max-width: 100%;
+}

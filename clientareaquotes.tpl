@@ -46,7 +46,7 @@
                     </td>
                     <td class="responsive-edit-button" style="display: none;">
                         <a href="viewquote.php?id={$quote.id}" class="btn btn-block btn-info">
-                            {$LANG.manageproduct}
+                            {$LANG.quoteview}
                         </a>
                     </td>
                 </tr>
