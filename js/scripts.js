@@ -16682,6 +16682,85 @@ jQuery(document).ready(function() {
         }
     );
 
+    jQuery(document).on('click', '.delete-cc-email', function() {
+        var self = jQuery(this),
+            email = self.data('email'),
+            feedback = jQuery('#divCcEmailFeedback');
+
+        if (feedback.is(':visible')) {
+            feedback.slideUp('fast');
+        }
+
+        WHMCS.http.jqClient.jsonPost({
+            url: window.location.href,
+            data: {
+                action: 'delete',
+                email: email,
+                token: csrfToken
+            },
+            success: function (data) {
+                if (data.success) {
+                    self.closest('.ticket-cc-email').parent('div').slideUp('fast').remove();
+                    feedback.slideUp('fast')
+                        .removeClass('alert-danger hidden')
+                        .addClass('alert-success')
+                        .html(data.message)
+                        .slideDown('fast');
+                }
+            },
+            error: function (error) {
+                if (error) {
+                    feedback.slideUp('fast')
+                        .removeClass('alert-success hidden')
+                        .addClass('alert-danger')
+                        .html(error)
+                        .slideDown('fast');
+                }
+            }
+        });
+    }).on('submit', '#frmAddCcEmail', function(e) {
+        e.preventDefault();
+        var frm = jQuery(this),
+            cloneRow = jQuery('#ccCloneRow').clone().removeAttr('id'),
+            email = jQuery('#inputAddCcEmail'),
+            feedback = jQuery('#divCcEmailFeedback');
+
+        if (feedback.is(':visible')) {
+            feedback.slideUp('fast');
+        }
+        WHMCS.http.jqClient.jsonPost({
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                if (data.success) {
+                    cloneRow.find('span.email')
+                        .html(email.val())
+                        .find('button')
+                        .data('email', email.val())
+                        .end();
+
+                    cloneRow.removeClass('hidden')
+                        .appendTo(jQuery('#sidebarTicketCc').find('.list-group'));
+                    email.val('');
+                    feedback.slideUp('fast')
+                        .removeClass('alert-danger hidden')
+                        .addClass('alert-success')
+                        .html(data.message)
+                        .slideDown('fast');
+                }
+            },
+            error: function (error) {
+                if (error) {
+                    feedback.slideUp('fast')
+                        .removeClass('alert-success hidden')
+                        .addClass('alert-danger')
+                        .html(error)
+                        .slideDown('fast');
+                }
+            }
+        });
+    });
+
     // Ticket Rating Click Handler
     jQuery('.ticket-reply .rating span.star').click( function(event) {
         window.location = 'viewticket.php?tid='
@@ -17098,6 +17177,12 @@ jQuery(document).ready(function() {
     var homepageHasRecaptcha = jQuery(dynamicRecaptchaContainer).length > 0;
     var homepageHasInvisibleRecaptcha = homepageHasRecaptcha && jQuery(dynamicRecaptchaContainer).data('size') === 'invisible';
 
+    var frmDomainHomepage = jQuery('#frmDomainHomepage');
+
+    jQuery(frmDomainHomepage).find('#btnTransfer').click(function () {
+        jQuery(frmDomainHomepage).find('input[name="transfer"]').val('1');
+    });
+
     if (homepageHasRecaptcha && !homepageHasInvisibleRecaptcha) {
         jQuery('section#home-banner').addClass('with-recaptcha');
     }
@@ -17105,9 +17190,8 @@ jQuery(document).ready(function() {
     if (jQuery('.domainchecker-homepage-captcha').length && !homepageHasInvisibleRecaptcha) {
         // invisible reCaptcha doesn't play well with onsubmit() handlers on all submissions following a prevented one
 
-        jQuery('#frmDomainHomepage').submit(function (e) {
-            var frmDomain = jQuery('#frmDomainHomepage'),
-                inputDomain = jQuery(frmDomain).find('input[name="domain"]'),
+        jQuery(frmDomainHomepage).submit(function (e) {
+            var inputDomain = jQuery(frmDomainHomepage).find('input[name="domain"]'),
                 reCaptchaContainer = jQuery('#divDynamicRecaptcha'),
                 reCaptcha = jQuery('#g-recaptcha-response'),
                 captcha = jQuery('#inputCaptcha');
@@ -17617,7 +17701,10 @@ function submitIdAjaxModalClickEvent ()
     if (jQuery(this).hasClass('disabled')) {
         return;
     }
-    var canContinue = true;
+    var canContinue = true,
+        btn = jQuery(this);
+    btn.addClass('disabled');
+    jQuery('#modalAjax .loader').show();
     if (ajaxModalSubmitEvents.length) {
         jQuery.each(ajaxModalSubmitEvents, function (index, value) {
             var fn = window[value];
@@ -17627,13 +17714,13 @@ function submitIdAjaxModalClickEvent ()
         });
     }
     if (!canContinue) {
+        btn.removeClass('disabled');
         return;
     }
     var modalForm = jQuery('#modalAjax').find('form');
     var modalBody = jQuery('#modalAjax .modal-body');
     var modalErrorContainer = jQuery(modalBody).find('.admin-modal-error');
 
-    jQuery('#modalAjax .loader').show();
     jQuery(modalErrorContainer).slideUp();
 
     var modalPost = WHMCS.http.jqClient.post(
@@ -17668,6 +17755,8 @@ function submitIdAjaxModalClickEvent ()
             jQuery(modalBody).html(genericErrorMsg);
         }
         jQuery('#modalAjax .loader').fadeOut();
+    }).always(function () {
+        btn.removeClass('disabled');
     });
 }
 

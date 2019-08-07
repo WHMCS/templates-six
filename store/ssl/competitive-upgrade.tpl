@@ -15,7 +15,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <h4>{lang key='store.ssl.competitiveUpgrade.buyWithTime'} <strong>{lang key='store.ssl.competitiveUpgrades.foc'}</strong>.</h4>
+                    <h4>{lang key='store.ssl.competitiveUpgrades.buyWithTime'} <strong>{lang key='store.ssl.competitiveUpgrades.foc'}</strong>.</h4>
 
                     <div class="alert alert-warning text-left">
                         <strong><i class="fas fa-star fa-5x pull-left"></i> {lang key='store.ssl.competitiveUpgrades.exampleScenario'}</strong><br>

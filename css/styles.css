@@ -2761,7 +2761,7 @@ div.md-editor.active {
 .panel-sidebar .list-group-item {
     line-height: 24px;
 }
-.panel-sidebar .list-group-item i:not(.fa-circle):not(.fa-dot-circle) {
+.panel-sidebar .list-group-item i:not(.fa-circle):not(.fa-dot-circle):not(.no-transform) {
     float: right;
     line-height: 24px;
     font-size: 16px;
@@ -3481,6 +3481,10 @@ div.md-editor.active {
 }
 .alert .alert-text {
     margin-left: 56px;
+}
+.panel-sidebar .alert {
+    padding: 10px 15px;
+    margin-bottom: 5px;
 }
 
 /**
