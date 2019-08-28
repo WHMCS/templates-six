@@ -3174,20 +3174,25 @@ div.md-editor.active {
     border-color: rgba(0, 0, 0, 0.2)
 }
 .btn-google {
-    color: #fff;
-    background-color: #dd4b39;
+    color: #000;
+    background-color: #fff;
     border-color: rgba(0, 0, 0, 0.2)
 }
+.btn-google img {
+    margin-bottom: 2px;
+}
+.btn-social.btn-google {
+    padding-left: 41px;
+}
 .btn-google:hover, .btn-google:focus, .btn-google:active, .btn-google.active, .open .dropdown-toggle.btn-google {
-    color: #fff;
-    background-color: #ca3523;
-    border-color: rgba(0, 0, 0, 0.2)
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.5)
 }
 .btn-google:active, .btn-google.active, .open .dropdown-toggle.btn-google {
     background-image: none
 }
 .btn-google.disabled, .btn-google[disabled], fieldset[disabled] .btn-google, .btn-google.disabled:hover, .btn-google-plus[disabled]:hover, fieldset[disabled] .btn-google-plus:hover, .btn-google-plus.disabled:focus, .btn-google-plus[disabled]:focus, fieldset[disabled] .btn-google-plus:focus, .btn-google-plus.disabled:active, .btn-google-plus[disabled]:active, fieldset[disabled] .btn-google-plus:active, .btn-google-plus.disabled.active, .btn-google-plus[disabled].active, fieldset[disabled] .btn-google-plus.active {
-    background-color: #dd4b39;
+    background-color: #eee;
     border-color: rgba(0, 0, 0, 0.2)
 }
 .btn-twitter {

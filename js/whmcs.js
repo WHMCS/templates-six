@@ -560,6 +560,11 @@ jQuery(document).ready(function() {
         openModal(frmTwoFactorActivation.attr('action'), frmTwoFactorActivation.serialize(), 'Loading...');
     });
 
+    $.fn.setInputError = function(error) {
+        this.parents('.form-group').addClass('has-error').find('.field-error-msg').text(error);
+        return this;
+    };
+
     jQuery.fn.showInputError = function () {
         this.parents('.form-group').addClass('has-error').find('.field-error-msg').show();
         return this;
@@ -593,10 +598,15 @@ jQuery(document).ready(function() {
     jQuery(".tld-filters a").click(function(e) {
         e.preventDefault();
 
+        var noTlds = jQuery('.tld-row.no-tlds');
+
         if (jQuery(this).hasClass('label-success')) {
             jQuery(this).removeClass('label-success');
         } else {
             jQuery(this).addClass('label-success');
+        }
+        if (noTlds.is(':visible')) {
+            noTlds.hide();
         }
 
         jQuery('.tld-row').removeClass('filtered-row');
@@ -606,14 +616,16 @@ jQuery(document).ready(function() {
         });
         jQuery(".filtered-row:even").removeClass('highlighted');
         jQuery(".filtered-row:odd").addClass('highlighted');
-        jQuery('.tld-row:not(".filtered-row")').fadeOut('', function() {
-            if (jQuery('.filtered-row').size() === 0) {
-                jQuery('.tld-row.no-tlds').show();
+
+        var rowsToHide = jQuery('.tld-row:not(".filtered-row")');
+        rowsToHide.fadeOut('fast');
+        rowsToHide.promise().done(function () {
+            if (jQuery('.filtered-row').length === 0) {
+                noTlds.show();
             } else {
-                jQuery('.tld-row.no-tlds').hide();
+                jQuery('.tld-row.filtered-row').show();
             }
         });
-        jQuery('.tld-row.filtered-row').fadeIn();
     });
     jQuery(".filtered-row:even").removeClass('highlighted');
     jQuery(".filtered-row:odd").addClass('highlighted');
@@ -979,52 +991,6 @@ function hideNewCardInputFields() {
     if (selectedBillingContactData.length) {
         jQuery('.billing-contact-info').hide();
         jQuery(selectedBillingContactData).show();
-    }
-}
-
-function showRemoteInputForm() {
-    var remoteInputForm = jQuery('#remoteInput'),
-        paymentGateway = remoteInputForm.data('payment-module'),
-        errorDiv = jQuery('#remoteInputError'),
-        btnSubmitContainer = jQuery('#btnSubmitContainer');
-    if (btnSubmitContainer.is(':visible')) {
-        btnSubmitContainer.slideUp('fast');
-    }
-    if (remoteInputForm.not(':visible')) {
-        remoteInputForm.html(
-            jQuery('#remoteInputLoading').html()
-        )
-            .hide()
-            .removeClass('hidden')
-            .slideDown('fast', function() {
-                var invoiceId = jQuery('input[name="invoiceid"]').val();
-                WHMCS.http.jqClient.jsonPost({
-                    url: WHMCS.utils.getRouteUrl('/account/paymentmethods/remote-input'),
-                    data: 'gateway=' + paymentGateway + '&invoice_id=' + invoiceId + '&token=' + csrfToken,
-                    success: function(response) {
-                        remoteInputForm.slideUp('fast').html(response.output).slideDown('fast');
-                    },
-                    warning: function(error) {
-                        errorDiv.find('div').html(error);
-                        remoteInputForm.slideUp('fast').html(errorDiv.html()).slideDown('fast');
-                    },
-                    fail: function(error) {
-                        errorDiv.find('div').html(error);
-                        remoteInputForm.slideUp('fast').html(errorDiv.html()).slideDown('fast');
-                    }
-                });
-            });
-    }
-}
-
-function hideRemoteInputForm() {
-    var remoteInputForm = jQuery('#remoteInput'),
-        btnSubmitContainer = jQuery('#btnSubmitContainer');
-    if (remoteInputForm.is(':visible')) {
-        remoteInputForm.slideUp('fast').html('').addClass('hidden');
-    }
-    if (btnSubmitContainer.not(':visible')) {
-        btnSubmitContainer.slideDown('fast');
     }
 }
 

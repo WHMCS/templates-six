@@ -1,6 +1,6 @@
 <div id="innerBillingContactsContainer">
 <label class="radio-inline icheck-label billing-contact-0">
-    <input type="radio" class="icheck-button" name="billingcontact" value="0"{if $payMethod->getContactId() == 0 || $editMode || ($payMethod->getContactId() == $client->billingContactId)} checked{/if}>
+    <input type="radio" class="icheck-button" name="billingcontact" value="0"{if $payMethod->getContactId() == $client->billingContactId || $payMethod->getContactId() == 0} checked{/if}>
     <strong class="name">{$client->fullName}</strong>
     <span class="address1">{$client->address1}</span>,
     {if $client->address2}<span class="address2">{$client->address2}</span>,{/if}

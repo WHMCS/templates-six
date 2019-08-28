@@ -59,7 +59,7 @@
                 <div class="col-sm-8">
                     <div class="row">
                         <div class="col-sm-6">
-                            <input type="tel" class="form-control cc-number-field {$creditCard->getCardType()|strtolower}" id="inputCardNumber" name="ccnumber" autocomplete="cc-number" value="{$creditCard->getMaskedCardNumber()}"{if !$creditCardNumberFieldEnabled} disabled{/if} aria-describedby="cc-type">
+                            <input type="tel" class="form-control cc-number-field {$creditCard->getCardType()|strtolower}" id="inputCardNumber" name="ccnumber" autocomplete="cc-number" value="{$creditCard->getMaskedCardNumber()}"{if !$creditCardNumberFieldEnabled} disabled{/if} aria-describedby="cc-type" data-message-unsupported="{lang key='paymentMethodsManage.unsupportedCardType'}" data-message-invalid="{lang key='paymentMethodsManage.cardNumberNotValid'}" data-supported-cards="{$supportedCardTypes}">
                         </div>
                     </div>
                     <span class="field-error-msg">{$LANG.paymentMethodsManage.cardNumberNotValid}</span>
@@ -347,9 +347,17 @@ jQuery(document).ready(function() {
                 e.preventDefault();
             }
         } else if (checkedInput.val() === 'localcard') {
-            var cardType = $.payment.cardType(ccForm.find('#inputCardNumber').val());
-            if (ccNumberFieldEnabled && !$.payment.validateCardNumber(ccForm.find('#inputCardNumber').val())) {
-                ccForm.find('#inputCardNumber').showInputError();
+            var cardType = $.payment.cardType(ccForm.find('#inputCardNumber').val()),
+                cardNumber = ccForm.find('#inputCardNumber');
+            if (
+                ccNumberFieldEnabled
+                && (!$.payment.validateCardNumber(cardNumber.val()) || cardNumber.hasClass('unsupported'))
+            ) {
+                var error = cardNumber.data('message-invalid');
+                if (cardNumber.hasClass('unsupported')) {
+                    error = cardNumber.data('message-unsupported');
+                }
+                ccForm.find('#inputCardNumber').setInputError(error).showInputError();
                 e.preventDefault();
             }
             if (ccExpiryFieldEnabled && !$.payment.validateCardExpiry(ccForm.find('#inputCardExpiry').payment('cardExpiryVal'))) {
