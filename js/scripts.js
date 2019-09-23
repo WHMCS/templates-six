@@ -17681,6 +17681,7 @@ function submitIdAjaxModalClickEvent ()
     }
     if (!canContinue) {
         btn.removeClass('disabled');
+        jQuery('#modalAjax .loader').hide();
         return;
     }
     var modalForm = jQuery('#modalAjax').find('form');

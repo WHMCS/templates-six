@@ -207,7 +207,7 @@
                     <div class="form-group">
                         <label for="cctype" class="col-sm-4 control-label">{$LANG.creditcardcvvnumber}</label>
                         <div class="col-sm-7">
-                            <input type="number" name="cccvv" id="inputCardCvv" value="{$cccvv}" autocomplete="off" class="form-control input-inline input-inline-100" />
+                            <input type="tel" name="cccvv" id="inputCardCvv" value="{$cccvv}" autocomplete="off" class="form-control input-inline input-inline-100" />
                             <button id="cvvWhereLink" type="button" class="btn btn-link" data-toggle="popover" data-content="<img src='{$BASE_PATH_IMG}/ccv.gif' width='210'>">
                                 {$LANG.creditcardcvvwhere}
                             </button>
