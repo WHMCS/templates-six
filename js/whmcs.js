@@ -377,7 +377,7 @@ jQuery(document).ready(function() {
 
         // Check length
         if (length < 8 || length > 64) {
-            jQuery('#generatePasswordLengthError').removeClass('hidden').show();
+            jQuery('#generatePwLengthError').removeClass('hidden').show();
             return;
         }
 
@@ -467,7 +467,7 @@ jQuery(document).ready(function() {
                         btnClass: "btn open-modal",
                         icon: {
                             glyph: 'fas fa-question-circle',
-                            fa: 'fa fa-question-circle',
+                            fa: 'fas fa-question-circle',
                             'fa-3': 'icon-question-sign'
                         },
                         callback: function(e) {
@@ -974,6 +974,22 @@ function showNewCardInputFields() {
 }
 
 /**
+ * Show new bank account input fields.
+ */
+function showNewAccountInputFields() {
+    if (jQuery(".bank-details").hasClass("hidden")) {
+        jQuery(".bank-details").hide().removeClass("hidden");
+    }
+    jQuery(".bank-details").slideDown();
+
+    jQuery("#billingAddressChoice")
+        .slideDown()
+        .find('input[name="billingcontact"]')
+        .first()
+        .iCheck('check');
+}
+
+/**
  * Hide new credit card input fields.
  */
 function hideNewCardInputFields() {
@@ -991,6 +1007,25 @@ function hideNewCardInputFields() {
     if (selectedBillingContactData.length) {
         jQuery('.billing-contact-info').hide();
         jQuery(selectedBillingContactData).show();
+    }
+}
+
+/**
+ * Hide new bank account input fields.
+ */
+function hideNewAccountInputFields() {
+    hideNewBillingAddressFields();
+
+    jQuery(".bank-details").slideUp();
+    jQuery("#billingAddressChoice").slideUp();
+
+    var selectedAccount = jQuery('input[name="paymethod"]:checked'),
+        selectedContactId = jQuery(selectedAccount).data('billing-contact-id'),
+        selectedContactData = jQuery('.billing-contact-info[data-billing-contact-id="' + selectedContactId + '"]');
+
+    if (selectedContactData.length) {
+        jQuery('.billing-contact-info').hide();
+        jQuery(selectedContactData).show();
     }
 }
 
@@ -1024,8 +1059,7 @@ function smoothScroll(element) {
     }, 500);
 }
 
-function irtpSubmit()
-{
+function irtpSubmit() {
     allowSubmit = true;
     var optOut = 0,
         optOutCheckbox = jQuery('#modalIrtpOptOut'),
@@ -1039,4 +1073,13 @@ function irtpSubmit()
     formOptOut.val(optOut);
     formOptOutReason.val(optOutReason.val());
     jQuery('#frmDomainContactModification').submit();
+}
+
+function showOverlay(msg) {
+    jQuery('#fullpage-overlay .msg').html(msg);
+    jQuery('#fullpage-overlay').removeClass('hidden').show();
+}
+
+function hideOverlay() {
+    jQuery('#fullpage-overlay').hide();
 }

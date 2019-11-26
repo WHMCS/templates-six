@@ -14,7 +14,7 @@
                     <p>{lang key="captchaverify"}</p>
 
                     <div class="col-xs-6 captchaimage">
-                        <img id="inputCaptchaImage" src="includes/verifyimage.php" align="middle" />
+                        <img id="inputCaptchaImage" data-src="{$systemurl}includes/verifyimage.php" src="{$systemurl}includes/verifyimage.php" align="middle" />
                     </div>
 
                     <div class="col-xs-6">

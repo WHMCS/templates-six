@@ -121,8 +121,13 @@
                                     <a href="#configoptions" data-toggle="tab"><i class="fas fa-cubes fa-fw"></i> {$LANG.orderconfigpackage}</a>
                                 </li>
                             {/if}
-                            {if $customfields}
+                            {if $metricStats}
                                 <li{if !$domain && !$moduleclientarea && !$configurableoptions} class="active"{/if}>
+                                    <a href="#metrics" data-toggle="tab"><i class="fas fa-chart-line fa-fw"></i> {$LANG.metrics.title}</a>
+                                </li>
+                            {/if}
+                            {if $customfields}
+                                <li{if !$domain && !$moduleclientarea && !$metricStats && !$configurableoptions} class="active"{/if}>
                                     <a href="#additionalinfo" data-toggle="tab"><i class="fas fa-info fa-fw"></i> {$LANG.additionalInfo}</a>
                                 </li>
                             {/if}
@@ -317,8 +322,13 @@
                             {/foreach}
                         </div>
                     {/if}
+                    {if $metricStats}
+                        <div class="tab-pane fade{if !$domain && !$moduleclientarea && !$configurableoptions} in active{/if}" id="metrics">
+                            {include file="$template/clientareaproductusagebilling.tpl"}
+                        </div>
+                    {/if}
                     {if $customfields}
-                        <div class="tab-pane fade{if !$domain && !$moduleclientarea && !$configurableoptions} in active{/if} text-center" id="additionalinfo">
+                        <div class="tab-pane fade{if !$domain && !$moduleclientarea && !$configurableoptions && !$metricStats} in active{/if} text-center" id="additionalinfo">
                             {foreach from=$customfields item=field}
                                 <div class="row">
                                     <div class="col-sm-5">

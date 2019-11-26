@@ -236,6 +236,37 @@ div.header-lined small {
     padding: 0;
 }
 
+#fullpage-overlay {
+    display: table;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+#fullpage-overlay .outer-wrapper {
+    position: relative;
+    height: 100%;
+}
+#fullpage-overlay .inner-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30%;
+    width: 50%;
+    margin: -3% 0 0 -25%;
+    text-align: center;
+}
+#fullpage-overlay .msg {
+    display: inline-block;
+    padding: 20px;
+    max-width: 400px;
+}
+
 /**
  * -------------------------
  * @section Margin Classes
@@ -1326,8 +1357,6 @@ div.dataTables_wrapper div.dataTables_info {
     background-color: #f6f6f6;
 }
 
-
-
 .dataTables_wrapper .dataTables_filter {
     float: right;
 }
@@ -1982,16 +2011,22 @@ div.credit-card .logo-discover {
     color: #000000;
 }
 
+div.two-column-grid,
 div.three-column-grid {
     display: inline-grid;
     grid-template-columns: repeat(3, auto) minmax(10em, 30em) auto;
     font-weight: 300;
     font-size: 13px;
 }
+div.two-column-grid {
+    grid-template-columns: repeat(2, auto) minmax(10em, 30em) auto;
+}
+div.two-column-grid > div,
 div.three-column-grid > div {
     margin: 5px 0;
     padding-right: 5px;
 }
+div.two-column-grid > div > label,
 div.three-column-grid > div > label {
     font-weight: normal;
 }
@@ -3081,6 +3116,13 @@ div.md-editor.active {
     background-color: #a9cc5f;
 }
 
+.promo-banner.sitelockvpn {
+    border-top: 3px solid #555;
+}
+.promo-banner.sitelockvpn .btn {
+    background-color: #555;
+}
+
 .mc-panel-promo {
     font-size: 0.95em;
 }
@@ -3565,4 +3607,19 @@ form[data-role="json-form"] .has-error .tooltip.top .tooltip-arrow {
 }
 .cc-number-field.dankort {
     background-image: url(../../../assets/img/payment/dankort.png);
+}
+
+/**
+ * Usage Billing
+ */
+
+.modal-metric-pricing .modal-header,
+.modal-metric-pricing .modal-body,
+.modal-metric-pricing .modal-footer {
+    text-align: center !important;
+    border: 0;
+}
+
+.modal-metric-pricing .modal-footer {
+    padding-bottom: 45px;
 }

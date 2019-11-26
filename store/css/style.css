@@ -1212,3 +1212,235 @@ section#main-body {
 .landing-page.codeguard .pricing-container .price {
     font-size: 30px;
 }
+
+.landing-page.sitelockvpn .hero {
+    margin: 0;
+    padding: 0;
+    background-color: #3d82bb;
+    text-align: left;
+}
+.landing-page.sitelockvpn .hero-bg {
+    padding: 0 0 30px 0;
+    text-align: center;
+}
+.landing-page.sitelockvpn .hero-bg img {
+    max-width: 100%;
+}
+@media (min-width: 992px) {
+    .landing-page.sitelockvpn .hero-bg {
+        padding: 40px 0 60px;
+        text-align: left;
+        background: url('../../../../assets/img/marketconnect/sitelockvpn/header-img.png');
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: 650px;
+    }
+}
+@media (min-width: 1200px) {
+    .landing-page.sitelockvpn .hero-bg {
+        padding: 60px 0;
+        text-align: left;
+        background-size: auto;
+    }
+}
+.landing-page.sitelockvpn .hero h1 {
+    font-size: 4em;
+    color: #fff;
+}
+
+.landing-page.sitelockvpn .hero h2 {
+    font-size: 2em;
+    color: #fff;
+    font-family: "Open Sans",Verdana,Tahoma,serif;
+}
+
+.landing-page.sitelockvpn .btn-start {
+    margin: 15px 0;
+    padding: 10px 40px;
+    display: inline-block;
+    background-color: #7bc143;
+    color: #fff;
+    font-size: 1.4em;
+    border-radius: 5px;
+}
+
+.landing-page.sitelockvpn .feature {
+    margin: 40px 0;
+    padding: 40px 0;
+    font-size: 1.3em;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+.landing-page.sitelockvpn .feature img {
+    margin: 50px 0;
+}
+
+.landing-page.sitelockvpn .feature p {
+    margin: 20px 0;
+}
+
+.landing-page.sitelockvpn .feature h3 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
+@media (max-width: 767px) {
+    .landing-page.sitelockvpn .hero h1 {
+        font-size: 3em;
+    }
+    .landing-page.sitelockvpn .hero h2 {
+        font-size: 1.6em;
+    }
+    .landing-page.sitelockvpn .feature {
+        margin: 15px 0;
+        padding: 15px 0;
+        font-size: 1.2em;
+    }
+    .landing-page.sitelockvpn .feature img {
+        margin: 20px 0;
+    }
+}
+
+.landing-page.sitelockvpn ul.highlights {
+    list-style: none;
+}
+
+.landing-page.sitelockvpn ul.highlights li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: #ccc; /* Change the color */
+  font-size: 1.3em;
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  width: 1.5em; /* Also needed for space (tweak if needed) */
+  margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
+
+.landing-page.sitelockvpn .feature.alternate-bg {
+    background-color: #f4f8fb;
+}
+
+.landing-page.sitelockvpn .feature.devices {
+    margin: 0;
+    padding: 70px 0 20px;
+}
+.landing-page.sitelockvpn .feature.devices img {
+    margin: 0;
+}
+.landing-page.sitelockvpn .feature.devices h3 {
+    margin-top: 40px;
+}
+.landing-page.sitelockvpn .feature.devices .logos {
+    padding: 20px;
+    text-align: center;
+}
+.landing-page.sitelockvpn .feature.devices .logos img {
+    margin: 25px 30px;
+}
+
+.landing-page.sitelockvpn .feature.pricing {
+    margin: 0;
+    background-color: #3d82bb;
+}
+
+.landing-page.sitelockvpn .feature.pricing h2 {
+    color: #fff;
+}
+
+.landing-page.sitelockvpn .feature.pricing .pricing-box {
+    margin: 30px 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.landing-page.sitelockvpn .feature.pricing .cycle {
+    padding: 10px;
+    background-color: #dfeaf3;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+}
+.landing-page.sitelockvpn .feature.pricing .price {
+    margin: 15px;
+    padding: 15px;
+    color: #3d82bb;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+}
+.landing-page.sitelockvpn .feature.pricing ul {
+    list-style: none;
+    margin: 15px;
+    padding: 0;
+}
+.landing-page.sitelockvpn .feature.pricing ul li {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid #dce7f1;
+    font-size: 0.8em;
+}
+.landing-page.sitelockvpn .feature.pricing ul li:last-child {
+    border-bottom: 0;
+}
+.landing-page.sitelockvpn .signup {
+    padding: 15px;
+}
+.landing-page.sitelockvpn .btn-signup {
+    display: block;
+    padding: 8px;
+    background-color: #616161;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 400;
+    text-align: center;
+}
+.landing-page.sitelockvpn .btn-signup.highlight1 {
+    background-color: #3d82bb;
+}
+.landing-page.sitelockvpn .btn-signup.highlight2 {
+    background-color: #7bc143;
+}
+
+.landing-page.sitelockvpn .dividing-line {
+    margin: 30px auto;
+    padding: 0;
+    background-color: #dce7f1;
+    height: 3px;
+    width: 200px;
+}
+
+.landing-page.sitelockvpn .all-plans {
+    text-align: center;
+}
+.landing-page.sitelockvpn .all-plans span {
+    display: block;
+    padding: 10px;
+}
+.landing-page.sitelockvpn .all-plans img {
+    margin: 5px;
+}
+
+.landing-page.sitelockvpn .feature.world span {
+    display: block;
+    margin: 10px 0;
+    color: #3d82bb;
+    font-weight: bold;
+    font-size: 2.5em;
+}
+.landing-page.sitelockvpn .feature.world em {
+    display: block;
+    margin: 0 0 50px;
+    font-style: normal;
+}
+.landing-page.sitelockvpn .feature.world img {
+    max-width: 100%;
+}
+
+.landing-page.sitelockvpn .feature.countries {
+    background-color: #f8f8f8;
+}
+.landing-page.sitelockvpn .feature.countries img {
+    margin: 0;
+    max-width: 100%;
+}

@@ -48,7 +48,7 @@
     </div>
     <div class="fieldgroup-loading hidden">
         <div style="padding:30px;text-align:center;">
-            <i class="fa fa-spinner fa-spin"></i>
+            <i class="fas fa-spinner fa-spin"></i>
             {$LANG.pleasewait}
         </div>
     </div>
@@ -229,11 +229,13 @@
                                        class="form-control">
                             </div>
 
-                            <div class="form-group">
-                                <label for="inputTaxId" class="control-label">Tax ID/VAT Number</label>
-                                <input type="text" name="tax_id" id="inputTaxId" class="form-control"
-                                       value="{$contactTaxId}">
-                            </div>
+                            {if $showTaxIdField}
+                                <div class="form-group">
+                                    <label for="inputTaxId" class="control-label">{lang key=$taxIdLabel}</label>
+                                    <input type="text" name="tax_id" id="inputTaxId" class="form-control"
+                                           value="{$contactTaxId}">
+                                </div>
+                            {/if}
 
                         </div>
                         <div class="col-sm-6">
