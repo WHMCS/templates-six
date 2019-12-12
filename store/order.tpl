@@ -14,7 +14,7 @@
                 <div class="col-sm-5">
 
                     <div class="payment-term">
-                        <h4>Choose Payment Term</h4>
+                        <h4>{lang key='store.choosePaymentTerm'}</h4>
                         <select name="billingcycle" class="form-control">
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
                                 <option value="{$pricing->cycle()}"{if $requestedCycle == $pricing->cycle()} selected{/if}>
@@ -36,17 +36,17 @@
             </div>
 
             <br>
-            <h4>Choose Domain</h4>
+            <h4>{lang key='store.chooseDomain'}</h4>
 
             <ul class="nav nav-tabs store-domain-tabs" role="tablist">
                 {if $requireDomain}
                     {if (count($domains) > 0 || !$loggedin)}
-                        <li role="presentation" class="active"><a href="#existing-domain" aria-controls="existing-domain" role="tab" data-toggle="tab">Choose Existing Domain</a></li>
+                        <li role="presentation" class="active"><a href="#existing-domain" aria-controls="existing-domain" role="tab" data-toggle="tab">{lang key='store.chooseExistingDomain'}</a></li>
                     {/if}
                     {if $allowSubdomains}
-                        <li role="presentation"><a href="#sub-domain" aria-controls="sub-domain" role="tab" data-toggle="tab">Subdomain of an Existing Domain</a></li>
+                        <li role="presentation"><a href="#sub-domain" aria-controls="sub-domain" role="tab" data-toggle="tab">{lang key='store.subOfExisting'}</a></li>
                     {/if}
-                    <li role="presentation"><a id="tabCustomDomainControl" href="#custom-domain" aria-controls="custom-domain" role="tab" data-toggle="tab">A domain I already own</a></li>
+                    <li role="presentation"><a id="tabCustomDomainControl" href="#custom-domain" aria-controls="custom-domain" role="tab" data-toggle="tab">{lang key='store.domainAlreadyOwned'}</a></li>
                 {else}
                     <li role="presentation" class="active">
                         <a id="tabNoDomain" href="#no-domain" role="tab" data-toggle="tab">
@@ -73,12 +73,12 @@
                                     <div class="col-sm-4">
                                         <span class="domain-validation ok">
                                             <i class="fas fa-check"></i>
-                                            Eligible
+                                            {lang key='store.eligible'}
                                         </span>
                                     </div>
                                 </div>
                             {else}
-                                <a href="{routePath('store-order-login')}">Login</a> to add this to an existing hosting package.
+                                <a href="{routePath('store-order-login')}">{lang key='store.login'}</a> {lang key='store.addToExistingPackage'}
                             {/if}
                         </div>
                     {/if}

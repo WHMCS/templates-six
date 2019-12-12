@@ -14617,8 +14617,11 @@ jQuery(document).ready(function() {
 });
 
 function scrollToGatewayInputError() {
-    var frm = elementsDiv.closest('form'),
-        displayError = jQuery('.gateway-errors,.assisted-cc-input-feedback').first();
+    var displayError = jQuery('.gateway-errors,.assisted-cc-input-feedback').first(),
+        frm = displayError.closest('form');
+    if (!frm) {
+        frm = jQuery('form').first();
+    }
     frm.find('button[type="submit"],input[type="submit"]')
         .prop('disabled', false)
         .removeClass('disabled')
@@ -17905,18 +17908,7 @@ function updateAjaxModal(data) {
          */
         var submitButton = jQuery('#' + data.submitId);
         submitButton.off('click');
-        submitButton.on('click', function() {
-            var modalForm = jQuery('#modalAjax').find('form');
-            jQuery('#modalAjax .loader').show();
-            var modalPost = WHMCS.http.jqClient.post(modalForm.attr('action'), modalForm.serialize(),
-                function(data) {
-                    updateAjaxModal(data);
-                }, 'json').fail(function() {
-                    jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
-                    jQuery('#modalAjax .loader').fadeOut();
-                }
-            );
-        })
+        submitButton.on('click', submitIdAjaxModalClickEvent);
     }
 
     jQuery('#modalAjax .loader').fadeOut();

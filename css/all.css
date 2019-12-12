@@ -10063,6 +10063,10 @@ div.three-column-grid > div > label {
     font-weight: normal;
     cursor: pointer;
 }
+
+.iframe-input-container {
+    height: 34px;
+}
 /**
  * -------------------------
  * @section Sidebar Responsive Behaviour Classes

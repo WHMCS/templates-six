@@ -19,6 +19,7 @@
                     </button>
                 {elseif count($metric.pricing) == 1}
                     {$metric.lowestPrice} / {if $metric.unitName}{$metric.unitName}{else}{$LANG.metrics.unit}{/if}
+                    {if $metric.includedQuantity > 0} ({$metric.includedQuantity} {$LANG.metrics.includedNotCounted}){/if}
                 {else}
                     &mdash;
                 {/if}
