@@ -374,7 +374,7 @@ jQuery(document).ready(function() {
       $expand.html('<i class="fas fa-chevron-right"></i>');
     }
   });
-  jQuery('.help-me-choose').click(function(e) {
+  jQuery('p.help-me-choose').click(function(e) {
     e.preventDefault();
     if (!jQuery('#collapseHelpMeChoose').hasClass('in')) {
       jQuery('#collapseHelpMeChoose').collapse('show');

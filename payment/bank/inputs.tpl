@@ -18,7 +18,7 @@
         {lang key='paymentMethodsManage.accountHolderName'}
     </label>
     <div class="col-sm-7">
-        <input type="tel" class="form-control" id="inputBankAcctHolderName" name="account_holder_name" autocomplete="off" value="{$accountHolderName}">
+        <input type="text" class="form-control" id="inputBankAcctHolderName" name="account_holder_name" autocomplete="off" value="{$accountHolderName}">
         <span class="field-error-msg">
             {lang key='paymentMethods.fieldRequired'}
         </span>
@@ -29,7 +29,7 @@
         {lang key='paymentMethodsManage.bankName'}
     </label>
     <div class="col-sm-7">
-        <input type="tel" class="form-control" id="inputBankName" name="bank_name" autocomplete="off" value="{$bankName}">
+        <input type="text" class="form-control" id="inputBankName" name="bank_name" autocomplete="off" value="{$bankName}">
         <span class="field-error-msg">
             {lang key='paymentMethods.fieldRequired'}
         </span>

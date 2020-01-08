@@ -186,7 +186,9 @@
         <div id="tokenGatewayRemoteUpdateOutput" class="text-center">{$remoteUpdate}</div>
     {else}
         <div id="tokenGatewayRemoteInputOutput" class="text-center" align="center"></div>
-        <iframe name="ccframe" class="auth3d-area" width="90%" height="600" scrolling="auto" src="about:blank"></iframe>
+        <div class="text-center">
+            <iframe name="ccframe" class="auth3d-area" width="90%" height="600" scrolling="auto" src="about:blank"></iframe>
+        </div>
     {/if}
 </div>
 
