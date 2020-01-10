@@ -43,7 +43,7 @@
                     <td><span class="label status status-{$invoice.statusClass}">{$invoice.status}</span></td>
                     <td class="responsive-edit-button" style="display: none;">
                         <a href="viewinvoice.php?id={$invoice.id}" class="btn btn-block btn-info">
-                            {$LANG.manageproduct}
+                            {$LANG.invoicesview}
                         </a>
                     </td>
                 </tr>

@@ -1,7 +1,7 @@
 <div class="content-block certificate-options {$type}">
     <div class="container">
 
-        <h3 class="pull-left">Certificate Pricing</h3>
+        <h3 class="pull-left">{lang key='store.ssl.shared.pricing'}</h3>
 
         {include file="$template/store/ssl/shared/currency-chooser.tpl"}
 
@@ -15,15 +15,15 @@
                     <div class="col-sm-{if count($certificates.$type) == 1}6{elseif count($certificates.$type) == 2}4{else}3{/if} sidebar hidden-xs">
                         <div class="header"></div>
                         <ul>
-                            <li>256-Bit Encryption</li>
-                            <li>Issuance Time</li>
-                            <li>Great For</li>
-                            <li>Warranty Value</li>
-                            <li>Site Seal</li>
-                            <li>Free Reissues</li>
-                            <li>Browser Support</li>
-                            <li>1 Year</li>
-                            <li>2 Years</li>
+                            <li>{lang key='store.ssl.shared.encryption256'}</li>
+                            <li>{lang key='store.ssl.shared.issuanceTime'}</li>
+                            <li>{lang key='store.ssl.shared.greatFor'}</li>
+                            <li>{lang key='store.ssl.shared.warrantyValue'}</li>
+                            <li>{lang key='store.ssl.shared.siteSeal'}</li>
+                            <li>{lang key='store.ssl.shared.freeReissues'}</li>
+                            <li>{lang key='store.ssl.shared.browserSupport'}</li>
+                            <li>{lang key='store.ssl.shared.oneYear'}</li>
+                            <li>{lang key='store.ssl.shared.twoYears'}</li>
                         </ul>
                     </div>
                     {if count($certificates.$type) > 0}
@@ -60,10 +60,19 @@
                     {else}
                         <div class="col-xs-9">
                             <div class="lead preview-text">
-                                SSL Certificate products you activate will be displayed here
+                                {lang key='store.ssl.shared.noProducts'}
                             </div>
                         </div>
                     {/if}
+                </div>
+                <br>
+                <div class="row">
+                    <div class="{if count($certificates.$type) == 1}col-sm-6 col-sm-offset-6{elseif count($certificates.$type) == 2}col-sm-8 col-sm-offset-4{else}col-sm-9 col-sm-offset-3{/if} text-center">
+                        <a href="{routePath('store-ssl-certificates-index')}#helpmechoose" class="help-me-choose">
+                            <i class="fas fa-question-circle"></i>
+                            {lang key='store.ssl.shared.helpMeChoose'}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

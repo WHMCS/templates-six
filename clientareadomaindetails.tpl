@@ -3,6 +3,18 @@
 {elseif $registrarcustombuttonresult}
     {include file="$template/includes/alert.tpl" type="error" msg=$LANG.moduleactionfailed textcenter=true}
 {/if}
+
+{if $unpaidInvoice}
+    <div class="alert alert-{if $unpaidInvoiceOverdue}danger{else}warning{/if}" id="alert{if $unpaidInvoiceOverdue}Overdue{else}Unpaid{/if}Invoice">
+        <div class="pull-right">
+            <a href="viewinvoice.php?id={$unpaidInvoice}" class="btn btn-xs btn-default">
+                {lang key='payInvoice'}
+            </a>
+        </div>
+        {$unpaidInvoiceMessage}
+    </div>
+{/if}
+
 {*-- Resellerclub Mods --*}
 {if $raapending}{include file="$raaverify"}{/if}
 {if $irtppending}{include file="$irtpverify"}{/if}
@@ -176,7 +188,7 @@
     </div>
     <div class="tab-pane fade" id="tabNameservers">
 
-        <h3>Nameservers</h3>
+        <h3>{$LANG.domainnameservers}</h3>
 
         {if $nameservererror}
             {include file="$template/includes/alert.tpl" type="error" msg=$nameservererror textcenter=true}

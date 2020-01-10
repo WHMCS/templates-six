@@ -148,9 +148,23 @@
             {if $reply.attachments}
                 <div class="attachments">
                     <strong>{$LANG.supportticketsticketattachments} ({$reply.attachments|count})</strong>
+                    {if $reply.attachments_removed}({lang key='support.attachmentsRemoved'}){/if}
                     <ul>
                         {foreach from=$reply.attachments key=num item=attachment}
-                            <li><i class="far fa-file"></i> <a href="dl.php?type={if $reply.id}ar&id={$reply.id}{else}a&id={$id}{/if}&i={$num}">{$attachment}</a></li>
+                            {if $reply.attachments_removed}
+                                <li>
+                                    <i class="far fa-file-minus"></i>
+                                    {$attachment}
+                                </li>
+                            {else}
+                                <li>
+                                    <i class="far fa-file"></i>
+                                    <a href="dl.php?type={if $reply.id}ar&id={$reply.id}{else}a&id={$id}{/if}&i={$num}">
+                                        {$attachment}
+                                    </a>
+                                </li>
+                            {/if}
+
                         {/foreach}
                     </ul>
                 </div>

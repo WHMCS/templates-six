@@ -124,3 +124,39 @@ body {
 .invoice-container td.no-line {
     border: 0;
 }
+.invoice-container .invoice-header img {
+    max-width: 100%;
+}
+
+/* Overlay */
+
+#fullpage-overlay {
+    display: table;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+#fullpage-overlay .outer-wrapper {
+    position: relative;
+    height: 100%;
+}
+#fullpage-overlay .inner-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30%;
+    width: 50%;
+    margin: -3% 0 0 -25%;
+    text-align: center;
+}
+#fullpage-overlay .msg {
+    display: inline-block;
+    padding: 20px;
+    max-width: 400px;
+}

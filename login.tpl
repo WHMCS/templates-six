@@ -39,7 +39,7 @@
                     </div>
                 {/if}
                 <div align="center">
-                    <input id="login" type="submit" class="btn btn-primary{$captcha->getButtonClass($captchaForm)}" value="{$LANG.loginbutton}" /> <a href="{$systemurl}pwreset.php" class="btn btn-default">{$LANG.forgotpw}</a>
+                    <input id="login" type="submit" class="btn btn-primary{$captcha->getButtonClass($captchaForm)}" value="{$LANG.loginbutton}" /> <a href="{routePath('password-reset-begin')}" class="btn btn-default">{$LANG.forgotpw}</a>
                 </div>
             </form>
 

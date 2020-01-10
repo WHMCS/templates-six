@@ -133,6 +133,10 @@ section#footer .back-to-top i {
     text-overflow: ellipsis;
 }
 
+.text-md {
+    font-size: 1.2em;
+}
+
 /**
  * -------------------------
  * @section Main Navbar
@@ -227,6 +231,42 @@ div.header-lined small {
     }
 }
 
+.form-horizontal .checkbox-inline.no-padding,
+.no-padding {
+    padding: 0;
+}
+
+#fullpage-overlay {
+    display: table;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+#fullpage-overlay .outer-wrapper {
+    position: relative;
+    height: 100%;
+}
+#fullpage-overlay .inner-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30%;
+    width: 50%;
+    margin: -3% 0 0 -25%;
+    text-align: center;
+}
+#fullpage-overlay .msg {
+    display: inline-block;
+    padding: 20px;
+    max-width: 400px;
+}
+
 /**
  * -------------------------
  * @section Margin Classes
@@ -272,6 +312,12 @@ div.header-lined small {
 .select-inline {
     display: inline-block;
     width: auto;
+}
+
+.form-group .field-error-msg {
+    display: none;
+    font-size: 0.85em;
+    color: #cc0000;
 }
 
 /**
@@ -1311,8 +1357,6 @@ div.dataTables_wrapper div.dataTables_info {
     background-color: #f6f6f6;
 }
 
-
-
 .dataTables_wrapper .dataTables_filter {
     float: right;
 }
@@ -1966,6 +2010,38 @@ div.credit-card .logo-mastercard {
 div.credit-card .logo-discover {
     color: #000000;
 }
+
+div.two-column-grid,
+div.three-column-grid {
+    display: inline-grid;
+    grid-template-columns: repeat(3, auto) minmax(10em, 30em) auto;
+    font-weight: 300;
+    font-size: 13px;
+}
+div.two-column-grid {
+    grid-template-columns: repeat(2, auto) minmax(10em, 30em) auto;
+}
+div.two-column-grid > div,
+div.three-column-grid > div {
+    margin: 5px 0;
+    padding-right: 5px;
+}
+div.two-column-grid > div > label,
+div.three-column-grid > div > label {
+    font-weight: normal;
+}
+#frmPayment .paymethod-info {
+    margin: 5px 0;
+    cursor: pointer;
+}
+#frmPayment .paymethod-info label {
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.iframe-input-container {
+    height: 34px;
+}
 /**
  * -------------------------
  * @section Sidebar Responsive Behaviour Classes
@@ -2030,29 +2106,52 @@ div.sidebar .list-group-item-selected .badge {
  * -------------------------
  */
 
-div#twofaactivation {
-    margin: 0 auto;
-    padding: 15px 30px;
-    width: 85%;
-    background-color: #efefef;
-    border-radius: 10px;
+.twofa-setup .modal-body {
+    min-height: 100px;
 }
-
-div#twofaactivation .errorbox {
-    margin: 0 0 20px 0;
-    padding: 10px 20px;
-    background-color: #FF4F4F;
-    text-shadow: none;
-    color: #fff;
+.twofa-setup .activation-msg {
+    margin: 25px 0;
+    padding: 15px;
+    border: 1px dashed #ddd;
     text-align: center;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.twofa-setup .backup-code {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #efefef;
+    color: #444;
+    text-align: center;
 }
 
-div#twofaactivation p {
-    margin: 15px 0;
+.twofa-module {
+    margin: 10px 0;
+    padding: 14px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.twofa-module .col-radio {
+    float: left;
+    width: 35px;
+    margin-top: 12px;
+}
+.twofa-module .col-logo {
+    float: left;
+    width: 80px;
+    line-height: 40px;
+    text-align: center;
+}
+.twofa-module .col-description {
+    margin-left: 136px;
+}
+.twofa-module img {
+    max-width: 100%;
+    max-height: 40px;
+}
+.twofa-module.active {
+    border-color: #337ab7;
 }
 
 /**
@@ -2701,7 +2800,7 @@ div.md-editor.active {
 .panel-sidebar .list-group-item {
     line-height: 24px;
 }
-.panel-sidebar .list-group-item i:not(.fa-circle):not(.fa-dot-circle) {
+.panel-sidebar .list-group-item i:not(.fa-circle):not(.fa-dot-circle):not(.no-transform) {
     float: right;
     line-height: 24px;
     font-size: 16px;
@@ -3021,6 +3120,13 @@ div.md-editor.active {
     background-color: #a9cc5f;
 }
 
+.promo-banner.sitelockvpn {
+    border-top: 3px solid #555;
+}
+.promo-banner.sitelockvpn .btn {
+    background-color: #555;
+}
+
 .mc-panel-promo {
     font-size: 0.95em;
 }
@@ -3089,6 +3195,7 @@ div.md-editor.active {
     left: 0;
     top: 0;
     bottom: 0;
+    padding-right: 2px;
     width: 32px;
     line-height: 34px;
     font-size: 1.6em;
@@ -3097,7 +3204,7 @@ div.md-editor.active {
 }
 .btn-facebook {
     color: #fff;
-    background-color: #3b5998;
+    background-color: #4267b2;
     border-color: rgba(0, 0, 0, 0.2)
 }
 .btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active, .btn-facebook.active, .open .dropdown-toggle.btn-facebook {
@@ -3109,24 +3216,29 @@ div.md-editor.active {
     background-image: none
 }
 .btn-facebook.disabled, .btn-facebook[disabled], fieldset[disabled] .btn-facebook, .btn-facebook.disabled:hover, .btn-facebook[disabled]:hover, fieldset[disabled] .btn-facebook:hover, .btn-facebook.disabled:focus, .btn-facebook[disabled]:focus, fieldset[disabled] .btn-facebook:focus, .btn-facebook.disabled:active, .btn-facebook[disabled]:active, fieldset[disabled] .btn-facebook:active, .btn-facebook.disabled.active, .btn-facebook[disabled].active, fieldset[disabled] .btn-facebook.active {
-    background-color: #3b5998;
+    background-color: #4267b2;
     border-color: rgba(0, 0, 0, 0.2)
 }
 .btn-google {
-    color: #fff;
-    background-color: #dd4b39;
+    color: #000;
+    background-color: #fff;
     border-color: rgba(0, 0, 0, 0.2)
 }
+.btn-google img {
+    margin-bottom: 2px;
+}
+.btn-social.btn-google {
+    padding-left: 41px;
+}
 .btn-google:hover, .btn-google:focus, .btn-google:active, .btn-google.active, .open .dropdown-toggle.btn-google {
-    color: #fff;
-    background-color: #ca3523;
-    border-color: rgba(0, 0, 0, 0.2)
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.5)
 }
 .btn-google:active, .btn-google.active, .open .dropdown-toggle.btn-google {
     background-image: none
 }
 .btn-google.disabled, .btn-google[disabled], fieldset[disabled] .btn-google, .btn-google.disabled:hover, .btn-google-plus[disabled]:hover, fieldset[disabled] .btn-google-plus:hover, .btn-google-plus.disabled:focus, .btn-google-plus[disabled]:focus, fieldset[disabled] .btn-google-plus:focus, .btn-google-plus.disabled:active, .btn-google-plus[disabled]:active, fieldset[disabled] .btn-google-plus:active, .btn-google-plus.disabled.active, .btn-google-plus[disabled].active, fieldset[disabled] .btn-google-plus.active {
-    background-color: #dd4b39;
+    background-color: #eee;
     border-color: rgba(0, 0, 0, 0.2)
 }
 .btn-twitter {
@@ -3305,6 +3417,19 @@ div.md-editor.active {
 
 /**
  * -------------------------
+ * Password Strength Meter
+ * -------------------------
+ */
+
+.password-strength-meter .progress {
+    margin-bottom: 5px;
+}
+.password-strength-meter p {
+    margin-bottom: 15px;
+}
+
+/**
+ * -------------------------
  * Service Upgrade
  * -------------------------
  */
@@ -3407,4 +3532,98 @@ div.md-editor.active {
 }
 .alert .alert-text {
     margin-left: 56px;
+}
+.panel-sidebar .alert {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+}
+
+/**
+ * iCheck controls
+ */
+
+.checkbox-inline.icheck-label, .radio-inline.icheck-label {
+    padding-left: 0;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+.icheck-label .iradio_square-blue {
+    margin-right: 5px;
+    margin-left: -30px;
+    margin-top: -2px;
+}
+
+/**
+ * JsonForm
+ */
+
+form[data-role="json-form"] .has-error input.form-control,
+form[data-role="json-form"] .has-error textarea.form-control,
+form[data-role="json-form"] .has-error select.form-control {
+    background-color: #fff0f0;
+    transition: 0.2s;
+}
+
+form[data-role="json-form"] .has-error .tooltip-inner {
+    background-color: #9d2a0b;
+}
+
+form[data-role="json-form"] .has-error .tooltip.top .tooltip-arrow {
+    border-top-color: #9d2a0b;
+}
+
+/**
+ * Credit Card Input
+ */
+
+.cc-number-field {
+    background-image: url(../../../assets/img/payment/unknown.png);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+.cc-number-field.visa {
+    background-image: url(../../../assets/img/payment/visa.png);
+}
+.cc-number-field.mastercard {
+    background-image: url(../../../assets/img/payment/mastercard.png);
+}
+.cc-number-field.amex {
+    background-image: url(../../../assets/img/payment/amex.png);
+}
+.cc-number-field.dinersclub {
+    background-image: url(../../../assets/img/payment/dinersclub.png);
+}
+.cc-number-field.discover {
+    background-image: url(../../../assets/img/payment/discover.png);
+}
+.cc-number-field.unionpay {
+    background-image: url(../../../assets/img/payment/unionpay.png);
+}
+.cc-number-field.jcb {
+    background-image: url(../../../assets/img/payment/jcb.png);
+}
+.cc-number-field.maestro {
+    background-image: url(../../../assets/img/payment/maestro.png);
+}
+.cc-number-field.forbrugsforeningen {
+    background-image: url(../../../assets/img/payment/forbrugsforeningen.png);
+}
+.cc-number-field.dankort {
+    background-image: url(../../../assets/img/payment/dankort.png);
+}
+
+/**
+ * Usage Billing
+ */
+
+.modal-metric-pricing .modal-header,
+.modal-metric-pricing .modal-body,
+.modal-metric-pricing .modal-footer {
+    text-align: center !important;
+    border: 0;
+}
+
+.modal-metric-pricing .modal-footer {
+    padding-bottom: 45px;
 }

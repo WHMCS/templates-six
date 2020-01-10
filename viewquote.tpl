@@ -7,6 +7,7 @@
     <title>{$companyname} - {$LANG.quotenumber}{$id}</title>
 
     <link href="{$WEB_ROOT}/templates/{$template}/css/all.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
     <link href="{$WEB_ROOT}/templates/{$template}/css/invoice.css" rel="stylesheet">
 
 </head>
