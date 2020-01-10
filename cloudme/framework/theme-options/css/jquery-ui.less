@@ -1,0 +1,95 @@
+.ui-datepicker {
+	background: @light-color;
+	padding: 0;
+	border: 1px solid @border-color;
+}
+
+.ui-datepicker-header {
+	color: @light-color;
+	padding: 10px;
+	background: @primary-color;
+}
+
+.ui-datepicker-prev {
+	color: @light-color;
+	float: left;
+	cursor: pointer;
+
+	&:before {
+		font-family: 'entypo';
+		content: "\e622";
+	}
+
+	.ui-icon {
+		display: none;
+	}
+}
+
+.ui-datepicker-next {
+	color: @light-color;
+	float: right;
+	cursor: pointer;
+
+	&:after {
+		font-family: 'entypo';
+		content: "\e623";
+	}
+
+	.ui-icon {
+		display: none;
+	}
+}
+
+.ui-datepicker-title {
+	text-align: center;
+	font-weight: bold;
+}
+
+.ui-datepicker table {
+	width: 100%;
+	margin: 0;
+	border-collapse: collapse;
+
+	th,
+	td {
+		border: none;
+		text-align: center;
+	}
+
+	th {
+		padding: 10px;
+		color: @light-color;
+		background: @dark-color;
+	}
+
+	a {
+		display: block;
+		padding: 7px 10px;
+		color: @dark-color;
+		text-decoration: none;
+
+		&.ui-state-active {
+			color: @light-color;
+			background: @dark-color;
+		}
+
+		&.ui-state-hover,
+		&.ui-state-highlight {
+			color: @primary-color;
+		}
+	}
+}
+
+.ui-datepicker-trigger {
+	transition: all 0.3s;
+	color: @light-color;
+	padding: 7px 10px;
+	margin: 0;
+	border: none;
+	cursor: pointer;
+	background: @secondary-color;
+
+	&:hover {
+		background: @dark-color;
+	}
+}

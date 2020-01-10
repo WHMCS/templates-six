@@ -79,7 +79,7 @@
                                     <ul class="dropdown-menu text-left dropdown-menu-right" role="menu">
                                         {if $domain.status eq 'Active'}
                                             <li><a href="clientarea.php?action=domaindetails&id={$domain.id}#tabNameservers"><i class="glyphicon glyphicon-globe"></i> {$LANG.domainmanagens}</a></li>
-                                            <li><a href="clientarea.php?action=domaincontacts&domainid={$domain.id}"><i class="glyphicon glyphicon-user"></i> {$LANG.domaincontactinfoedit}</a></li>
+                                            <li><a href="domainmanagement.php?action=domaincontacts&domainid={$domain.id}&domain={$domain.domain}"><i class="glyphicon glyphicon-user"></i> {$LANG.domaincontactinfoedit}</a></li>
                                             <li><a href="clientarea.php?action=domaindetails&id={$domain.id}#tabAutorenew"><i class="glyphicon glyphicon-globe"></i> {$LANG.domainautorenewstatus}</a></li>
                                             <li class="divider"></li>
                                         {/if}

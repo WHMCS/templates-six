@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="{$charset}" />
@@ -11,7 +11,124 @@
     {$headoutput}
 
 </head>
-<body data-phone-cc-input="{$phoneNumberInputStyle}">
+
+<body class="page-template page-template-page-templates page-template-template-fullwidth page-template-page-templatestemplate-fullwidth-php page page-id-2074 dwpb-push-page op-plugin wpb-js-composer js-comp-ver-5.4.4 vc_responsive" data-phone-cc-input="{$phoneNumberInputStyle}">
+
+    <header id="toptop">
+        <div class="top">
+            <div class="containerx">
+                <div class="rowx">
+                    <div class="colx-sm-3">
+                        <div class="logo">
+                            <a href="https://www.stream101.com/">
+                                                                <img src="https://www.stream101.com/wp-content/uploads/2017/05/logo.png" alt="">
+                                                            </a>
+                        </div>
+                    </div>
+
+                    <div class="colx-sm-9">
+
+                        <!--  NAVIGATION MENU AREA -->
+                        <nav class="desktop-menu">
+                            <ul data-breakpoint="800" id="menu-primary-menu" class="sf-menu"><li id="menu-item-1284" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1284 "><a  title="Streaming" href="https://www.stream101.com/streaming/">Streaming <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li id="menu-item-1347" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1347"><a  title="Economy Streaming" href="https://www.stream101.com/economy-streaming/">Economy Streaming</a></li>
+	<li id="menu-item-1286" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1286"><a  title="Premium SHOUTcast Hosting" href="https://www.stream101.com/premium-shoutcast-hosting/">Premium SHOUTcast Hosting</a></li>
+	<li id="menu-item-1433" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1433"><a  title="Premium ICEcast Hosting" href="https://www.stream101.com/premium-icecast-hosting/">Premium ICEcast Hosting</a></li>
+</ul>
+</li>
+<li id="menu-item-1296" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1296 "><a  title="Web Hosting" href="https://www.stream101.com/web-hosting/">Web Hosting <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li id="menu-item-1266" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1266"><a  title="Domains" href="https://www.stream101.com/domains/">Domains</a></li>
+	<li id="menu-item-1293" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1293"><a  title="cPanel Cloud Hosting" href="https://www.stream101.com/cpanel-cloud-hosting/">cPanel Cloud Hosting</a></li>
+	<li id="menu-item-1292" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1292"><a  title="WordPress Hosting" href="https://www.stream101.com/wordpress-hosting/">WordPress Hosting</a></li>
+</ul>
+</li>
+<li id="menu-item-1259" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1259 "><a  title="Support" href="https://www.stream101.com/support/">Support <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li id="menu-item-1343" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1343"><a  title="News" href="https://www.stream101.com/blog/">News</a></li>
+	<li id="menu-item-1316" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1316"><a  title="Knowledgebase" href="https://www.stream101.com/knowledgebase/">Knowledgebase</a></li>
+	<li id="menu-item-1260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1260"><a  title="FAQs" href="https://www.stream101.com/faqs/">FAQs</a></li>
+	<li id="menu-item-1325" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1325"><a  title="Submit Ticket" href="https://clients.stream101.com/submitticket.php">Submit Ticket</a></li>
+	<li id="menu-item-1257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1257"><a  title="Contact" href="https://www.stream101.com/contact/">Contact</a></li>
+</ul>
+</li>
+<li id="menu-item-1261" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1261 "><a  title="About Us" href="https://www.stream101.com/about-us/">About Us <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li id="menu-item-1313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1313"><a  title="Affiliate Program" href="https://www.stream101.com/affiliate-program/">Affiliate Program</a></li>
+	<li id="menu-item-1262" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1262"><a  title="Datacenters" href="https://www.stream101.com/datacenters/">Datacenters</a></li>
+	<li id="menu-item-1258" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1258"><a  title="Testimonials" href="https://www.stream101.com/testimonials/">Testimonials</a></li>
+</ul>
+</li>
+<li id="menu-item-1314" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1314"><a  title="Media Panel" href="https://mcp.stream101.com/login/index.php">Media Panel</a></li>
+<li id="menu-item-1315" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1315"><a  title="Client Login" href="https://www.stream101.com/client-area/">Client Login</a></li>
+</ul>                      </nav>
+                        <!--  END OF NAVIGATION MENU AREA -->
+
+                        <!--  MOBILE MENU AREA -->
+                        <nav class="mobile-menu">
+                            <ul data-breakpoint="800" id="menu-primary-menu-1" class=""><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1284 "><a  title="Streaming" href="https://www.stream101.com/streaming/">Streaming <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1347"><a  title="Economy Streaming" href="https://www.stream101.com/economy-streaming/">Economy Streaming</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1286"><a  title="Premium SHOUTcast Hosting" href="https://www.stream101.com/premium-shoutcast-hosting/">Premium SHOUTcast Hosting</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1433"><a  title="Premium ICEcast Hosting" href="https://www.stream101.com/premium-icecast-hosting/">Premium ICEcast Hosting</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1296 "><a  title="Web Hosting" href="https://www.stream101.com/web-hosting/">Web Hosting <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1266"><a  title="Domains" href="https://www.stream101.com/domains/">Domains</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1293"><a  title="cPanel Cloud Hosting" href="https://www.stream101.com/cpanel-cloud-hosting/">cPanel Cloud Hosting</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1292"><a  title="WordPress Hosting" href="https://www.stream101.com/wordpress-hosting/">WordPress Hosting</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1259 "><a  title="Support" href="https://www.stream101.com/support/">Support <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1343"><a  title="News" href="https://www.stream101.com/blog/">News</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1316"><a  title="Knowledgebase" href="https://www.stream101.com/knowledgebase/">Knowledgebase</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1260"><a  title="FAQs" href="https://www.stream101.com/faqs/">FAQs</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1325"><a  title="Submit Ticket" href="https://clients.stream101.com/submitticket.php">Submit Ticket</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1257"><a  title="Contact" href="https://www.stream101.com/contact/">Contact</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1261 "><a  title="About Us" href="https://www.stream101.com/about-us/">About Us <span class="caretx"></span></a>
+<ul role="menu" class=" dropdownx-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1313"><a  title="Affiliate Program" href="https://www.stream101.com/affiliate-program/">Affiliate Program</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1262"><a  title="Datacenters" href="https://www.stream101.com/datacenters/">Datacenters</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1258"><a  title="Testimonials" href="https://www.stream101.com/testimonials/">Testimonials</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1314"><a  title="Media Panel" href="https://mcp.stream101.com/login/index.php">Media Panel</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1315"><a  title="Client Login" href="https://www.stream101.com/client-area/">Client Login</a></li>
+</ul>                        </nav>
+                        <!--  END OF MOBILE MENU AREA -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<div class="page-top" >
+<!--  MESSAGES ABOVE HEADER IMAGE -->
+<div class="message">
+    <div class="containerx">
+        <div class="rowx">
+            <div class="colx-md-12 columns">
+                <div class="message-intro">
+                    <span class="message-line"></span>
+                        <p>{include file="$template/includes/pageheader2.tpl" title=$displayTitle desc=$tagline showbreadcrumb=true}</p>
+                    <span class="message-line"></span>
+                </div>
+                <h1 style=""></h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  END OF MESSAGES ABOVE HEADER IMAGE -->
+</div>
+<!--  END OF HEADER -->
+
 
 {$headeroutput}
 
@@ -90,11 +207,6 @@
             {/if}
         </ul>
 
-        {if $assetLogoPath}
-            <a href="{$WEB_ROOT}/index.php" class="logo"><img src="{$assetLogoPath}" alt="{$companyname}"></a>
-        {else}
-            <a href="{$WEB_ROOT}/index.php" class="logo logo-text">{$companyname}</a>
-        {/if}
 
     </div>
 </section>
@@ -224,15 +336,15 @@
         {if !$inShoppingCart && ($primarySidebar->hasChildren() || $secondarySidebar->hasChildren())}
             {if $primarySidebar->hasChildren() && !$skipMainBodyContainer}
                 <div class="col-md-9 pull-md-right">
-                    {include file="$template/includes/pageheader.tpl" title=$displayTitle desc=$tagline showbreadcrumb=true}
+                    
                 </div>
             {/if}
-            <div class="col-md-3 pull-md-left sidebar">
+             <div class="col-md-3 pull-md-left sidebar" style="clear: left;"> 
                 {include file="$template/includes/sidebar.tpl" sidebar=$primarySidebar}
             </div>
         {/if}
         <!-- Container for main page display content -->
         <div class="{if !$inShoppingCart && ($primarySidebar->hasChildren() || $secondarySidebar->hasChildren())}col-md-9 pull-md-right{else}col-xs-12{/if} main-content">
             {if !$primarySidebar->hasChildren() && !$showingLoginPage && !$inShoppingCart && $templatefile != 'homepage' && !$skipMainBodyContainer}
-                {include file="$template/includes/pageheader.tpl" title=$displayTitle desc=$tagline showbreadcrumb=true}
+                
             {/if}

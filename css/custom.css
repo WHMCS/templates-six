@@ -6,3 +6,110 @@
     defined here.
 
 ***************************************************** */
+
+
+.client-home-panels .panel > .panel-heading {
+    background-color: #222d3a;
+    color:#fff;
+    border-bottom: 0;
+    font-weight: bold;
+}
+
+.navbar-main li.account,.panel-sidebar .panel-heading,
+.sidebar .panel-default>.panel-heading,ul.top-nav>li.primary-action>a.btn{color:#fff;background-color:#222d3a;border-color:#222d3a}
+.panel-default>.panel-heading{color:#fff;background-color:#222d3a;border-color:#222d3a}
+.panel-sidebar .panel-title,.panel-title h3 {color:#fff;}
+
+.dataTables_wrapper table.table-list thead th{border-bottom:4px solid #222d3a;font-weight:400}
+.dataTables_wrapper table.table-list thead th:nth-child(even){border-bottom:4px solid #222d3a}
+
+
+.panel-sidebar a.list-group-item.active,.panel-sidebar a.list-group-item.active:focus,.panel-sidebar a.list-group-item.active:hover {
+	background-color: #2a3848; border-color:#2a3848;
+}
+
+.navbar-main {
+    margin-bottom: 0;
+    background-color: #2a3848;
+    border: 0;
+    min-height: 38px;
+    font-size: 15px;
+}
+
+.navbar-main .navbar-nav > li > a:hover,
+.navbar-main .navbar-nav > li > a:focus,
+.navbar-main .navbar-nav > .active > a,
+.navbar-main .navbar-nav > .active > a:hover,
+.navbar-main .navbar-nav > .active > a:focus,
+.navbar-main .navbar-nav > .open > a,
+.navbar-main .navbar-nav > .open > a:hover,
+.navbar-main .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #222d3a;
+}
+.navbar-main .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    text-decoration: none;
+    color: #fff;
+    background-color: #222d3a;
+}
+
+.client-home-panels .panel-title h3 {color:#222d3a}
+
+.language-popover .popover-content li a {
+    color: #fff;
+}
+
+
+section#header {
+
+    background: transparent;
+}
+
+
+.home-shortcuts {
+  margin: 0;
+  background: #2a3848;
+  color: #fff;
+}
+section#home-banner {
+    background-color: #222d3a;
+    color: #fff;
+}
+
+
+#home-banner h2 {
+	color:#fff;
+}
+
+
+.dataTables_wrapper .dataTables_info {
+    background-color: #2a3848;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+    background-color: #2a3848;
+}
+ 
+.breadcrumb {
+	background-color: transparent;
+margin-left:0px;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    color: white;
+    background-color: #2a3848;
+    border-color: #2a3848;
+}
+
+h2 {
+	font-size:20px;
+}
+
+.container {font-size:15px;}
+
+div.header-lined h1 {
+border-bottom:0px solid #222d3a;
+color: #000;
+}
