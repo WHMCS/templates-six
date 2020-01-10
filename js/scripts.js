@@ -11008,8 +11008,8 @@ return jQuery;
 }));
 
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
+ * Bootstrap v3.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under the MIT license
  */
 
@@ -11026,10 +11026,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.7
- * http://getbootstrap.com/javascript/#transitions
+ * Bootstrap: transition.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#transitions
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -11037,7 +11037,7 @@ if (typeof jQuery === 'undefined') {
 +function ($) {
   'use strict';
 
-  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // CSS TRANSITION SUPPORT (Shoutout: https://modernizr.com/)
   // ============================================================
 
   function transitionEnd() {
@@ -11059,7 +11059,7 @@ if (typeof jQuery === 'undefined') {
     return false // explicit for ie8 (  ._.)
   }
 
-  // http://blog.alexmaccaw.com/css-transitions
+  // https://blog.alexmaccaw.com/css-transitions
   $.fn.emulateTransitionEnd = function (duration) {
     var called = false
     var $el = this
@@ -11086,10 +11086,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.7
- * http://getbootstrap.com/javascript/#alerts
+ * Bootstrap: alert.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#alerts
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -11105,7 +11105,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.7'
+  Alert.VERSION = '3.4.1'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -11118,7 +11118,8 @@ if (typeof jQuery === 'undefined') {
       selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
     }
 
-    var $parent = $(selector === '#' ? [] : selector)
+    selector    = selector === '#' ? [] : selector
+    var $parent = $(document).find(selector)
 
     if (e) e.preventDefault()
 
@@ -11181,10 +11182,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.7
- * http://getbootstrap.com/javascript/#buttons
+ * Bootstrap: button.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#buttons
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -11201,7 +11202,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.7'
+  Button.VERSION  = '3.4.1'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -11307,10 +11308,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.7
- * http://getbootstrap.com/javascript/#carousel
+ * Bootstrap: carousel.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#carousel
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -11338,7 +11339,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.7'
+  Carousel.VERSION  = '3.4.1'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -11452,7 +11453,9 @@ if (typeof jQuery === 'undefined') {
     var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
     if ($.support.transition && this.$element.hasClass('slide')) {
       $next.addClass(type)
-      $next[0].offsetWidth // force reflow
+      if (typeof $next === 'object' && $next.length) {
+        $next[0].offsetWidth // force reflow
+      }
       $active.addClass(direction)
       $next.addClass(direction)
       $active
@@ -11514,10 +11517,17 @@ if (typeof jQuery === 'undefined') {
   // =================
 
   var clickHandler = function (e) {
-    var href
     var $this   = $(this)
-    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+    var href    = $this.attr('href')
+    if (href) {
+      href = href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+    }
+
+    var target  = $this.attr('data-target') || href
+    var $target = $(document).find(target)
+
     if (!$target.hasClass('carousel')) return
+
     var options = $.extend({}, $target.data(), $this.data())
     var slideIndex = $this.attr('data-slide-to')
     if (slideIndex) options.interval = false
@@ -11545,10 +11555,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.7
- * http://getbootstrap.com/javascript/#collapse
+ * Bootstrap: collapse.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#collapse
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -11576,7 +11586,7 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.7'
+  Collapse.VERSION  = '3.4.1'
 
   Collapse.TRANSITION_DURATION = 350
 
@@ -11683,7 +11693,7 @@ if (typeof jQuery === 'undefined') {
   }
 
   Collapse.prototype.getParent = function () {
-    return $(this.options.parent)
+    return $(document).find(this.options.parent)
       .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
       .each($.proxy(function (i, element) {
         var $element = $(element)
@@ -11706,7 +11716,7 @@ if (typeof jQuery === 'undefined') {
     var target = $trigger.attr('data-target')
       || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
 
-    return $(target)
+    return $(document).find(target)
   }
 
 
@@ -11758,10 +11768,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.7
- * http://getbootstrap.com/javascript/#dropdowns
+ * Bootstrap: dropdown.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#dropdowns
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -11778,7 +11788,7 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.7'
+  Dropdown.VERSION = '3.4.1'
 
   function getParent($this) {
     var selector = $this.attr('data-target')
@@ -11788,7 +11798,7 @@ if (typeof jQuery === 'undefined') {
       selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
     }
 
-    var $parent = selector && $(selector)
+    var $parent = selector !== '#' ? $(document).find(selector) : null
 
     return $parent && $parent.length ? $parent : $this.parent()
   }
@@ -11924,10 +11934,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.7
- * http://getbootstrap.com/javascript/#modals
+ * Bootstrap: modal.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#modals
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -11939,15 +11949,16 @@ if (typeof jQuery === 'undefined') {
   // ======================
 
   var Modal = function (element, options) {
-    this.options             = options
-    this.$body               = $(document.body)
-    this.$element            = $(element)
-    this.$dialog             = this.$element.find('.modal-dialog')
-    this.$backdrop           = null
-    this.isShown             = null
-    this.originalBodyPad     = null
-    this.scrollbarWidth      = 0
+    this.options = options
+    this.$body = $(document.body)
+    this.$element = $(element)
+    this.$dialog = this.$element.find('.modal-dialog')
+    this.$backdrop = null
+    this.isShown = null
+    this.originalBodyPad = null
+    this.scrollbarWidth = 0
     this.ignoreBackdropClick = false
+    this.fixedContent = '.navbar-fixed-top, .navbar-fixed-bottom'
 
     if (this.options.remote) {
       this.$element
@@ -11958,7 +11969,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.7'
+  Modal.VERSION = '3.4.1'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -11975,7 +11986,7 @@ if (typeof jQuery === 'undefined') {
 
   Modal.prototype.show = function (_relatedTarget) {
     var that = this
-    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+    var e = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
 
     this.$element.trigger(e)
 
@@ -12066,8 +12077,8 @@ if (typeof jQuery === 'undefined') {
       .off('focusin.bs.modal') // guard against infinite focus loop
       .on('focusin.bs.modal', $.proxy(function (e) {
         if (document !== e.target &&
-            this.$element[0] !== e.target &&
-            !this.$element.has(e.target).length) {
+          this.$element[0] !== e.target &&
+          !this.$element.has(e.target).length) {
           this.$element.trigger('focus')
         }
       }, this))
@@ -12169,7 +12180,7 @@ if (typeof jQuery === 'undefined') {
     var modalIsOverflowing = this.$element[0].scrollHeight > document.documentElement.clientHeight
 
     this.$element.css({
-      paddingLeft:  !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
+      paddingLeft: !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
       paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.scrollbarWidth : ''
     })
   }
@@ -12194,11 +12205,26 @@ if (typeof jQuery === 'undefined') {
   Modal.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
     this.originalBodyPad = document.body.style.paddingRight || ''
-    if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
+    var scrollbarWidth = this.scrollbarWidth
+    if (this.bodyIsOverflowing) {
+      this.$body.css('padding-right', bodyPad + scrollbarWidth)
+      $(this.fixedContent).each(function (index, element) {
+        var actualPadding = element.style.paddingRight
+        var calculatedPadding = $(element).css('padding-right')
+        $(element)
+          .data('padding-right', actualPadding)
+          .css('padding-right', parseFloat(calculatedPadding) + scrollbarWidth + 'px')
+      })
+    }
   }
 
   Modal.prototype.resetScrollbar = function () {
     this.$body.css('padding-right', this.originalBodyPad)
+    $(this.fixedContent).each(function (index, element) {
+      var padding = $(element).data('padding-right')
+      $(element).removeData('padding-right')
+      element.style.paddingRight = padding ? padding : ''
+    })
   }
 
   Modal.prototype.measureScrollbar = function () { // thx walsh
@@ -12216,8 +12242,8 @@ if (typeof jQuery === 'undefined') {
 
   function Plugin(option, _relatedTarget) {
     return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.modal')
+      var $this = $(this)
+      var data = $this.data('bs.modal')
       var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
       if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
@@ -12228,7 +12254,7 @@ if (typeof jQuery === 'undefined') {
 
   var old = $.fn.modal
 
-  $.fn.modal             = Plugin
+  $.fn.modal = Plugin
   $.fn.modal.Constructor = Modal
 
 
@@ -12245,10 +12271,13 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
-    var $this   = $(this)
-    var href    = $this.attr('href')
-    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
-    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+    var $this = $(this)
+    var href = $this.attr('href')
+    var target = $this.attr('data-target') ||
+      (href && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+
+    var $target = $(document).find(target)
+    var option = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
 
     if ($this.is('a')) e.preventDefault()
 
@@ -12264,17 +12293,147 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.7
- * http://getbootstrap.com/javascript/#tooltip
+ * Bootstrap: tooltip.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
-
 +function ($) {
   'use strict';
+
+  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn']
+
+  var uriAttrs = [
+    'background',
+    'cite',
+    'href',
+    'itemtype',
+    'longdesc',
+    'poster',
+    'src',
+    'xlink:href'
+  ]
+
+  var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i
+
+  var DefaultWhitelist = {
+    // Global attributes allowed on any supplied element below.
+    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    a: ['target', 'href', 'title', 'rel'],
+    area: [],
+    b: [],
+    br: [],
+    col: [],
+    code: [],
+    div: [],
+    em: [],
+    hr: [],
+    h1: [],
+    h2: [],
+    h3: [],
+    h4: [],
+    h5: [],
+    h6: [],
+    i: [],
+    img: ['src', 'alt', 'title', 'width', 'height'],
+    li: [],
+    ol: [],
+    p: [],
+    pre: [],
+    s: [],
+    small: [],
+    span: [],
+    sub: [],
+    sup: [],
+    strong: [],
+    u: [],
+    ul: []
+  }
+
+  /**
+   * A pattern that recognizes a commonly useful subset of URLs that are safe.
+   *
+   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   */
+  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi
+
+  /**
+   * A pattern that matches safe data URLs. Only matches image, video and audio types.
+   *
+   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   */
+  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[a-z0-9+/]+=*$/i
+
+  function allowedAttribute(attr, allowedAttributeList) {
+    var attrName = attr.nodeName.toLowerCase()
+
+    if ($.inArray(attrName, allowedAttributeList) !== -1) {
+      if ($.inArray(attrName, uriAttrs) !== -1) {
+        return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN))
+      }
+
+      return true
+    }
+
+    var regExp = $(allowedAttributeList).filter(function (index, value) {
+      return value instanceof RegExp
+    })
+
+    // Check if a regular expression validates the attribute.
+    for (var i = 0, l = regExp.length; i < l; i++) {
+      if (attrName.match(regExp[i])) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  function sanitizeHtml(unsafeHtml, whiteList, sanitizeFn) {
+    if (unsafeHtml.length === 0) {
+      return unsafeHtml
+    }
+
+    if (sanitizeFn && typeof sanitizeFn === 'function') {
+      return sanitizeFn(unsafeHtml)
+    }
+
+    // IE 8 and below don't support createHTMLDocument
+    if (!document.implementation || !document.implementation.createHTMLDocument) {
+      return unsafeHtml
+    }
+
+    var createdDocument = document.implementation.createHTMLDocument('sanitization')
+    createdDocument.body.innerHTML = unsafeHtml
+
+    var whitelistKeys = $.map(whiteList, function (el, i) { return i })
+    var elements = $(createdDocument.body).find('*')
+
+    for (var i = 0, len = elements.length; i < len; i++) {
+      var el = elements[i]
+      var elName = el.nodeName.toLowerCase()
+
+      if ($.inArray(elName, whitelistKeys) === -1) {
+        el.parentNode.removeChild(el)
+
+        continue
+      }
+
+      var attributeList = $.map(el.attributes, function (el) { return el })
+      var whitelistedAttributes = [].concat(whiteList['*'] || [], whiteList[elName] || [])
+
+      for (var j = 0, len2 = attributeList.length; j < len2; j++) {
+        if (!allowedAttribute(attributeList[j], whitelistedAttributes)) {
+          el.removeAttribute(attributeList[j].nodeName)
+        }
+      }
+    }
+
+    return createdDocument.body.innerHTML
+  }
 
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
@@ -12291,7 +12450,7 @@ if (typeof jQuery === 'undefined') {
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.7'
+  Tooltip.VERSION  = '3.4.1'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -12308,7 +12467,10 @@ if (typeof jQuery === 'undefined') {
     viewport: {
       selector: 'body',
       padding: 0
-    }
+    },
+    sanitize : true,
+    sanitizeFn : null,
+    whiteList : DefaultWhitelist
   }
 
   Tooltip.prototype.init = function (type, element, options) {
@@ -12316,7 +12478,7 @@ if (typeof jQuery === 'undefined') {
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.$viewport = this.options.viewport && $(document).find($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
     this.inState   = { click: false, hover: false, focus: false }
 
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
@@ -12349,13 +12511,25 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.getOptions = function (options) {
-    options = $.extend({}, this.getDefaults(), this.$element.data(), options)
+    var dataAttributes = this.$element.data()
+
+    for (var dataAttr in dataAttributes) {
+      if (dataAttributes.hasOwnProperty(dataAttr) && $.inArray(dataAttr, DISALLOWED_ATTRIBUTES) !== -1) {
+        delete dataAttributes[dataAttr]
+      }
+    }
+
+    options = $.extend({}, this.getDefaults(), dataAttributes, options)
 
     if (options.delay && typeof options.delay == 'number') {
       options.delay = {
         show: options.delay,
         hide: options.delay
       }
+    }
+
+    if (options.sanitize) {
+      options.template = sanitizeHtml(options.template, options.whiteList, options.sanitizeFn)
     }
 
     return options
@@ -12469,7 +12643,7 @@ if (typeof jQuery === 'undefined') {
         .addClass(placement)
         .data('bs.' + this.type, this)
 
-      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      this.options.container ? $tip.appendTo($(document).find(this.options.container)) : $tip.insertAfter(this.$element)
       this.$element.trigger('inserted.bs.' + this.type)
 
       var pos          = this.getPosition()
@@ -12571,7 +12745,16 @@ if (typeof jQuery === 'undefined') {
     var $tip  = this.tip()
     var title = this.getTitle()
 
-    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+    if (this.options.html) {
+      if (this.options.sanitize) {
+        title = sanitizeHtml(title, this.options.whiteList, this.options.sanitizeFn)
+      }
+
+      $tip.find('.tooltip-inner').html(title)
+    } else {
+      $tip.find('.tooltip-inner').text(title)
+    }
+
     $tip.removeClass('fade in top bottom left right')
   }
 
@@ -12752,6 +12935,9 @@ if (typeof jQuery === 'undefined') {
     })
   }
 
+  Tooltip.prototype.sanitizeHtml = function (unsafeHtml) {
+    return sanitizeHtml(unsafeHtml, this.options.whiteList, this.options.sanitizeFn)
+  }
 
   // TOOLTIP PLUGIN DEFINITION
   // =========================
@@ -12785,10 +12971,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.7
- * http://getbootstrap.com/javascript/#popovers
+ * Bootstrap: popover.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#popovers
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -12805,7 +12991,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.7'
+  Popover.VERSION  = '3.4.1'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -12831,10 +13017,25 @@ if (typeof jQuery === 'undefined') {
     var title   = this.getTitle()
     var content = this.getContent()
 
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content').children().detach().end()[ // we use append for html objects to maintain js events
-      this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
-    ](content)
+    if (this.options.html) {
+      var typeContent = typeof content
+
+      if (this.options.sanitize) {
+        title = this.sanitizeHtml(title)
+
+        if (typeContent === 'string') {
+          content = this.sanitizeHtml(content)
+        }
+      }
+
+      $tip.find('.popover-title').html(title)
+      $tip.find('.popover-content').children().detach().end()[
+        typeContent === 'string' ? 'html' : 'append'
+      ](content)
+    } else {
+      $tip.find('.popover-title').text(title)
+      $tip.find('.popover-content').children().detach().end().text(content)
+    }
 
     $tip.removeClass('fade top bottom left right in')
 
@@ -12853,8 +13054,8 @@ if (typeof jQuery === 'undefined') {
 
     return $e.attr('data-content')
       || (typeof o.content == 'function' ?
-            o.content.call($e[0]) :
-            o.content)
+        o.content.call($e[0]) :
+        o.content)
   }
 
   Popover.prototype.arrow = function () {
@@ -12894,10 +13095,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.7
- * http://getbootstrap.com/javascript/#scrollspy
+ * Bootstrap: scrollspy.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#scrollspy
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -12923,7 +13124,7 @@ if (typeof jQuery === 'undefined') {
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.7'
+  ScrollSpy.VERSION  = '3.4.1'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -13067,10 +13268,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.7
- * http://getbootstrap.com/javascript/#tabs
+ * Bootstrap: tab.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#tabs
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -13087,7 +13288,7 @@ if (typeof jQuery === 'undefined') {
     // jscs:enable requireDollarBeforejQueryAssignment
   }
 
-  Tab.VERSION = '3.3.7'
+  Tab.VERSION = '3.4.1'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -13116,7 +13317,7 @@ if (typeof jQuery === 'undefined') {
 
     if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
 
-    var $target = $(selector)
+    var $target = $(document).find(selector)
 
     this.activate($this.closest('li'), $ul)
     this.activate($target, $target.parent(), function () {
@@ -13141,15 +13342,15 @@ if (typeof jQuery === 'undefined') {
       $active
         .removeClass('active')
         .find('> .dropdown-menu > .active')
-          .removeClass('active')
+        .removeClass('active')
         .end()
         .find('[data-toggle="tab"]')
-          .attr('aria-expanded', false)
+        .attr('aria-expanded', false)
 
       element
         .addClass('active')
         .find('[data-toggle="tab"]')
-          .attr('aria-expanded', true)
+        .attr('aria-expanded', true)
 
       if (transition) {
         element[0].offsetWidth // reflow for transition
@@ -13161,10 +13362,10 @@ if (typeof jQuery === 'undefined') {
       if (element.parent('.dropdown-menu').length) {
         element
           .closest('li.dropdown')
-            .addClass('active')
+          .addClass('active')
           .end()
           .find('[data-toggle="tab"]')
-            .attr('aria-expanded', true)
+          .attr('aria-expanded', true)
       }
 
       callback && callback()
@@ -13223,10 +13424,10 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.7
- * http://getbootstrap.com/javascript/#affix
+ * Bootstrap: affix.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#affix
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
@@ -13240,7 +13441,9 @@ if (typeof jQuery === 'undefined') {
   var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
 
-    this.$target = $(this.options.target)
+    var target = this.options.target === Affix.DEFAULTS.target ? $(this.options.target) : $(document).find(this.options.target)
+
+    this.$target = target
       .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
       .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
 
@@ -13252,7 +13455,7 @@ if (typeof jQuery === 'undefined') {
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.7'
+  Affix.VERSION  = '3.4.1'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -13388,7 +13591,7 @@ if (typeof jQuery === 'undefined') {
 /*!
  * Bootstrap Confirmation
  * Copyright 2013 Nimit Suwannagate <ethaizone@hotmail.com>
- * Copyright 2014-2016 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
+ * Copyright 2014-2019 Damien "Mistic" Sorel <contact@git.strangeplanet.fr>
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -13398,17 +13601,17 @@ if (typeof jQuery === 'undefined') {
   var activeConfirmation;
 
   // Confirmation extends popover.js
-  if (!$.fn.popover) throw new Error('Confirmation requires popover.js');
+  if (!$.fn.popover) {
+    throw new Error('Confirmation requires popover.js');
+  }
 
   // CONFIRMATION PUBLIC CLASS DEFINITION
   // ===============================
   var Confirmation = function(element, options) {
-    options.trigger = 'click';
-
     this.init(element, options);
   };
 
-  Confirmation.VERSION = '2.4.0';
+  Confirmation.VERSION = '2.4.3';
 
   /**
    * Map between keyboard events "keyCode|which" and "key"
@@ -13423,6 +13626,8 @@ if (typeof jQuery === 'undefined') {
   Confirmation.DEFAULTS = $.extend({}, $.fn.popover.Constructor.DEFAULTS, {
     placement: 'top',
     title: 'Are you sure?',
+    trigger: 'click',
+    confirmationEvent: undefined,
     popout: false,
     singleton: false,
     copyAttributes: 'href target',
@@ -13452,6 +13657,10 @@ if (typeof jQuery === 'undefined') {
     '</div>'
     // @formatter:on
   });
+
+  if (Confirmation.DEFAULTS.whiteList) {
+    Confirmation.DEFAULTS.whiteList['*'].push('data-apply', 'data-dismiss');
+  }
 
   Confirmation.prototype = $.extend({}, $.fn.popover.Constructor.prototype);
   Confirmation.prototype.constructor = Confirmation;
@@ -13487,6 +13696,10 @@ if (typeof jQuery === 'undefined') {
     }
     else { // standalone
       this.options._selector = options.rootSelector;
+    }
+
+    if (this.options.confirmationEvent === undefined) {
+      this.options.confirmationEvent = this.options.trigger;
     }
 
     var self = this;
@@ -13611,12 +13824,12 @@ if (typeof jQuery === 'undefined') {
               }
 
               if (button.cancel) {
-                self.getOnCancel.call(self).call(self.$element);
-                self.$element.trigger('canceled.bs.confirmation');
+                self.getOnCancel().call(self.$element, button.value);
+                self.$element.trigger('canceled.bs.confirmation', [button.value]);
               }
               else {
-                self.getOnConfirm.call(self).call(self.$element);
-                self.$element.trigger('confirmed.bs.confirmation');
+                self.getOnConfirm().call(self.$element, button.value);
+                self.$element.trigger('confirmed.bs.confirmation', [button.value]);
               }
 
               if (self.inState) { // Bootstrap 3.3.5
@@ -13641,10 +13854,10 @@ if (typeof jQuery === 'undefined') {
             e.preventDefault();
           }
 
-          self.getOnConfirm.call(self).call(self.$element);
+          self.getOnConfirm().call(self.$element);
           self.$element.trigger('confirmed.bs.confirmation');
 
-          self.$element.trigger(self.options.trigger, [true]);
+          self.$element.trigger(self.options.confirmationEvent, [true]);
 
           self.hide();
         });
@@ -13658,7 +13871,7 @@ if (typeof jQuery === 'undefined') {
         .one('click', function(e) {
           e.preventDefault();
 
-          self.getOnCancel.call(self).call(self.$element);
+          self.getOnCancel().call(self.$element);
           self.$element.trigger('canceled.bs.confirmation');
 
           if (self.inState) { // Bootstrap 3.3.5
@@ -13841,6 +14054,516 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery));
 
+/*!
+ * iCheck v1.0.2, http://git.io/arlzeA
+ * ===================================
+ * Powerful jQuery and Zepto plugin for checkboxes and radio buttons customization
+ *
+ * (c) 2013 Damir Sultanov, http://fronteed.com
+ * MIT Licensed
+ */
+
+(function($) {
+
+  // Cached vars
+  var _iCheck = 'iCheck',
+    _iCheckHelper = _iCheck + '-helper',
+    _checkbox = 'checkbox',
+    _radio = 'radio',
+    _checked = 'checked',
+    _unchecked = 'un' + _checked,
+    _disabled = 'disabled',a
+    _determinate = 'determinate',
+    _indeterminate = 'in' + _determinate,
+    _update = 'update',
+    _type = 'type',
+    _click = 'click',
+    _touch = 'touchbegin.i touchend.i',
+    _add = 'addClass',
+    _remove = 'removeClass',
+    _callback = 'trigger',
+    _label = 'label',
+    _cursor = 'cursor',
+    _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);
+
+  // Plugin init
+  $.fn[_iCheck] = function(options, fire) {
+
+    // Walker
+    var handle = 'input[type="' + _checkbox + '"], input[type="' + _radio + '"]',
+      stack = $(),
+      walker = function(object) {
+        object.each(function() {
+          var self = $(this);
+
+          if (self.is(handle)) {
+            stack = stack.add(self);
+          } else {
+            stack = stack.add(self.find(handle));
+          }
+        });
+      };
+
+    // Check if we should operate with some method
+    if (/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(options)) {
+
+      // Normalize method's name
+      options = options.toLowerCase();
+
+      // Find checkboxes and radio buttons
+      walker(this);
+
+      return stack.each(function() {
+        var self = $(this);
+
+        if (options == 'destroy') {
+          tidy(self, 'ifDestroyed');
+        } else {
+          operate(self, true, options);
+        }
+
+        // Fire method's callback
+        if ($.isFunction(fire)) {
+          fire();
+        }
+      });
+
+    // Customization
+    } else if (typeof options == 'object' || !options) {
+
+      // Check if any options were passed
+      var settings = $.extend({
+          checkedClass: _checked,
+          disabledClass: _disabled,
+          indeterminateClass: _indeterminate,
+          labelHover: true
+        }, options),
+
+        selector = settings.handle,
+        hoverClass = settings.hoverClass || 'hover',
+        focusClass = settings.focusClass || 'focus',
+        activeClass = settings.activeClass || 'active',
+        labelHover = !!settings.labelHover,
+        labelHoverClass = settings.labelHoverClass || 'hover',
+
+        // Setup clickable area
+        area = ('' + settings.increaseArea).replace('%', '') | 0;
+
+      // Selector limit
+      if (selector == _checkbox || selector == _radio) {
+        handle = 'input[type="' + selector + '"]';
+      }
+
+      // Clickable area limit
+      if (area < -50) {
+        area = -50;
+      }
+
+      // Walk around the selector
+      walker(this);
+
+      return stack.each(function() {
+        var self = $(this);
+
+        // If already customized
+        tidy(self);
+
+        var node = this,
+          id = node.id,
+
+          // Layer styles
+          offset = -area + '%',
+          size = 100 + (area * 2) + '%',
+          layer = {
+            position: 'absolute',
+            top: offset,
+            left: offset,
+            display: 'block',
+            width: size,
+            height: size,
+            margin: 0,
+            padding: 0,
+            background: '#fff',
+            border: 0,
+            opacity: 0
+          },
+
+          // Choose how to hide input
+          hide = _mobile ? {
+            position: 'absolute',
+            visibility: 'hidden'
+          } : area ? layer : {
+            position: 'absolute',
+            opacity: 0
+          },
+
+          // Get proper class
+          className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
+
+          // Find assigned labels
+          label = $(_label + '[for="' + id + '"]').add(self.closest(_label)),
+
+          // Check ARIA option
+          aria = !!settings.aria,
+
+          // Set ARIA placeholder
+          ariaID = _iCheck + '-' + Math.random().toString(36).substr(2,6),
+
+          // Parent & helper
+          parent = '<div class="' + className + '" ' + (aria ? 'role="' + node[_type] + '" ' : ''),
+          helper;
+
+        // Set ARIA "labelledby"
+        if (aria) {
+          label.each(function() {
+            parent += 'aria-labelledby="';
+
+            if (this.id) {
+              parent += this.id;
+            } else {
+              this.id = ariaID;
+              parent += ariaID;
+            }
+
+            parent += '"';
+          });
+        }
+
+        // Wrap input
+        parent = self.wrap(parent + '/>')[_callback]('ifCreated').parent().append(settings.insert);
+
+        // Layer addition
+        helper = $('<ins class="' + _iCheckHelper + '"/>').css(layer).appendTo(parent);
+
+        // Finalize customization
+        self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
+        !!settings.inheritClass && parent[_add](node.className || '');
+        !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
+        parent.css('position') == 'static' && parent.css('position', 'relative');
+        operate(self, true, _update);
+
+        // Label events
+        if (label.length) {
+          label.on(_click + '.i mouseover.i mouseout.i ' + _touch, function(event) {
+            var type = event[_type],
+              item = $(this);
+
+            // Do nothing if input is disabled
+            if (!node[_disabled]) {
+
+              // Click
+              if (type == _click) {
+                if ($(event.target).is('a')) {
+                  return;
+                }
+                operate(self, false, true);
+
+              // Hover state
+              } else if (labelHover) {
+
+                // mouseout|touchend
+                if (/ut|nd/.test(type)) {
+                  parent[_remove](hoverClass);
+                  item[_remove](labelHoverClass);
+                } else {
+                  parent[_add](hoverClass);
+                  item[_add](labelHoverClass);
+                }
+              }
+
+              if (_mobile) {
+                event.stopPropagation();
+              } else {
+                return false;
+              }
+            }
+          });
+        }
+
+        // Input events
+        self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
+          var type = event[_type],
+            key = event.keyCode;
+
+          // Click
+          if (type == _click) {
+            return false;
+
+          // Keydown
+          } else if (type == 'keydown' && key == 32) {
+            if (!(node[_type] == _radio && node[_checked])) {
+              if (node[_checked]) {
+                off(self, _checked);
+              } else {
+                on(self, _checked);
+              }
+            }
+
+            return false;
+
+          // Keyup
+          } else if (type == 'keyup' && node[_type] == _radio) {
+            !node[_checked] && on(self, _checked);
+
+          // Focus/blur
+          } else if (/us|ur/.test(type)) {
+            parent[type == 'blur' ? _remove : _add](focusClass);
+          }
+        });
+
+        // Helper events
+        helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function(event) {
+          var type = event[_type],
+
+            // mousedown|mouseup
+            toggle = /wn|up/.test(type) ? activeClass : hoverClass;
+
+          // Do nothing if input is disabled
+          if (!node[_disabled]) {
+
+            // Click
+            if (type == _click) {
+              operate(self, false, true);
+
+            // Active and hover states
+            } else {
+
+              // State is on
+              if (/wn|er|in/.test(type)) {
+
+                // mousedown|mouseover|touchbegin
+                parent[_add](toggle);
+
+              // State is off
+              } else {
+                parent[_remove](toggle + ' ' + activeClass);
+              }
+
+              // Label hover
+              if (label.length && labelHover && toggle == hoverClass) {
+
+                // mouseout|touchend
+                label[/ut|nd/.test(type) ? _remove : _add](labelHoverClass);
+              }
+            }
+
+            if (_mobile) {
+              event.stopPropagation();
+            } else {
+              return false;
+            }
+          }
+        });
+      });
+    } else {
+      return this;
+    }
+  };
+
+  // Do something with inputs
+  function operate(input, direct, method) {
+    var node = input[0],
+      state = /er/.test(method) ? _indeterminate : /bl/.test(method) ? _disabled : _checked,
+      active = method == _update ? {
+        checked: node[_checked],
+        disabled: node[_disabled],
+        indeterminate: input.attr(_indeterminate) == 'true' || input.attr(_determinate) == 'false'
+      } : node[state];
+
+    // Check, disable or indeterminate
+    if (/^(ch|di|in)/.test(method) && !active) {
+      on(input, state);
+
+    // Uncheck, enable or determinate
+    } else if (/^(un|en|de)/.test(method) && active) {
+      off(input, state);
+
+    // Update
+    } else if (method == _update) {
+
+      // Handle states
+      for (var each in active) {
+        if (active[each]) {
+          on(input, each, true);
+        } else {
+          off(input, each, true);
+        }
+      }
+
+    } else if (!direct || method == 'toggle') {
+
+      // Helper or label was clicked
+      if (!direct) {
+        input[_callback]('ifClicked');
+      }
+
+      // Toggle checked state
+      if (active) {
+        if (node[_type] !== _radio) {
+          off(input, state);
+        }
+      } else {
+        on(input, state);
+      }
+    }
+  }
+
+  // Add checked, disabled or indeterminate state
+  function on(input, state, keep) {
+    var node = input[0],
+      parent = input.parent(),
+      checked = state == _checked,
+      indeterminate = state == _indeterminate,
+      disabled = state == _disabled,
+      callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
+      regular = option(input, callback + capitalize(node[_type])),
+      specific = option(input, state + capitalize(node[_type]));
+
+    // Prevent unnecessary actions
+    if (node[state] !== true) {
+
+      // Toggle assigned radio buttons
+      if (!keep && state == _checked && node[_type] == _radio && node.name) {
+        var form = input.closest('form'),
+          inputs = 'input[name="' + node.name + '"]';
+
+        inputs = form.length ? form.find(inputs) : $(inputs);
+
+        inputs.each(function() {
+          if (this !== node && $(this).data(_iCheck)) {
+            off($(this), state);
+          }
+        });
+      }
+
+      // Indeterminate state
+      if (indeterminate) {
+
+        // Add indeterminate state
+        node[state] = true;
+
+        // Remove checked state
+        if (node[_checked]) {
+          off(input, _checked, 'force');
+        }
+
+      // Checked or disabled state
+      } else {
+
+        // Add checked or disabled state
+        if (!keep) {
+          node[state] = true;
+        }
+
+        // Remove indeterminate state
+        if (checked && node[_indeterminate]) {
+          off(input, _indeterminate, false);
+        }
+      }
+
+      // Trigger callbacks
+      callbacks(input, checked, state, keep);
+    }
+
+    // Add proper cursor
+    if (node[_disabled] && !!option(input, _cursor, true)) {
+      parent.find('.' + _iCheckHelper).css(_cursor, 'default');
+    }
+
+    // Add state class
+    parent[_add](specific || option(input, state) || '');
+
+    // Set ARIA attribute
+    if (!!parent.attr('role') && !indeterminate) {
+      parent.attr('aria-' + (disabled ? _disabled : _checked), 'true');
+    }
+
+    // Remove regular state class
+    parent[_remove](regular || option(input, callback) || '');
+  }
+
+  // Remove checked, disabled or indeterminate state
+  function off(input, state, keep) {
+    var node = input[0],
+      parent = input.parent(),
+      checked = state == _checked,
+      indeterminate = state == _indeterminate,
+      disabled = state == _disabled,
+      callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
+      regular = option(input, callback + capitalize(node[_type])),
+      specific = option(input, state + capitalize(node[_type]));
+
+    // Prevent unnecessary actions
+    if (node[state] !== false) {
+
+      // Toggle state
+      if (indeterminate || !keep || keep == 'force') {
+        node[state] = false;
+      }
+
+      // Trigger callbacks
+      callbacks(input, checked, callback, keep);
+    }
+
+    // Add proper cursor
+    if (!node[_disabled] && !!option(input, _cursor, true)) {
+      parent.find('.' + _iCheckHelper).css(_cursor, 'pointer');
+    }
+
+    // Remove state class
+    parent[_remove](specific || option(input, state) || '');
+
+    // Set ARIA attribute
+    if (!!parent.attr('role') && !indeterminate) {
+      parent.attr('aria-' + (disabled ? _disabled : _checked), 'false');
+    }
+
+    // Add regular state class
+    parent[_add](regular || option(input, callback) || '');
+  }
+
+  // Remove all traces
+  function tidy(input, callback) {
+    if (input.data(_iCheck)) {
+
+      // Remove everything except input
+      input.parent().html(input.attr('style', input.data(_iCheck).s || ''));
+
+      // Callback
+      if (callback) {
+        input[_callback](callback);
+      }
+
+      // Unbind events
+      input.off('.i').unwrap();
+      $(_label + '[for="' + input[0].id + '"]').add(input.closest(_label)).off('.i');
+    }
+  }
+
+  // Get some option
+  function option(input, state, regular) {
+    if (input.data(_iCheck)) {
+      return input.data(_iCheck).o[state + (regular ? '' : 'Class')];
+    }
+  }
+
+  // Capitalize some string
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // Executable handlers
+  function callbacks(input, checked, callback, keep) {
+    if (!keep) {
+      if (checked) {
+        input[_callback]('ifToggled');
+      }
+
+      input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
+    }
+  }
+})(window.jQuery || window.Zepto);
+
 /**
  * WHMCS core JS library reference
  *
@@ -13892,6 +14615,30 @@ jQuery(document).ready(function() {
         }
     });
 });
+
+function scrollToGatewayInputError() {
+    var displayError = jQuery('.gateway-errors,.assisted-cc-input-feedback').first(),
+        frm = displayError.closest('form');
+    if (!frm) {
+        frm = jQuery('form').first();
+    }
+    frm.find('button[type="submit"],input[type="submit"]')
+        .prop('disabled', false)
+        .removeClass('disabled')
+        .find('i.fas,i.far,i.fal,i.fab')
+        .removeAttr('class')
+        .addClass('fas fa-arrow-circle-right')
+        .find('span').toggleClass('hidden');
+
+    if (displayError.length) {
+        jQuery('html, body').animate(
+            {
+                scrollTop: displayError.offset().top - 50
+            },
+            500
+        );
+    }
+}
 
 /**
  * WHMCS authentication module
@@ -14262,6 +15009,40 @@ jqClient: function () {
      * @param options
      * @returns {*}
      */
+    this.jsonGet = function (options) {
+        options = options || {};
+        this.get(options.url, options.data, function(response) {
+            if (response.warning) {
+                console.log('[WHMCS] Warning: ' + response.warning);
+                if (typeof options.warning === 'function') {
+                    options.warning(response.warning);
+                }
+            } else if (response.error) {
+                console.log('[WHMCS] Error: ' + response.error);
+                if (typeof options.error === 'function') {
+                    options.error(response.error);
+                }
+            } else {
+                if (typeof options.success === 'function') {
+                    options.success(response);
+                }
+            }
+        }, 'json').error(function(xhr, errorMsg){
+            console.log('[WHMCS] Error: ' + errorMsg);
+            if (typeof options.fail === 'function') {
+                options.fail(errorMsg);
+            }
+        }).always(function() {
+            if (typeof options.always === 'function') {
+                options.always();
+            }
+        });
+    };
+
+    /**
+     * @param options
+     * @returns {*}
+     */
     this.jsonPost = function (options) {
         options = options || {};
         this.post(options.url, options.data, function(response) {
@@ -14548,29 +15329,44 @@ dataTable: function () {
     return this;
 },
 
+clipboard: function() {
+    this.copy = function(e) {
+        e.preventDefault();
+
+        var trigger = $(e.currentTarget);
+        var contentElement = $(trigger).data('clipboard-target');
+        var container = $(contentElement).parent();
+
+        try {
+            var tempElement = $('<textarea>')
+                .css('position', 'fixed')
+                .css('opacity', '0')
+                .css('width', '1px')
+                .css('height', '1px')
+                .val($(contentElement).val());
+
+            container.append(tempElement);
+            tempElement.focus().select();
+            document.execCommand('copy');
+        } finally {
+            tempElement.remove();
+        }
+
+        trigger.tooltip({
+            trigger: 'click',
+            placement: 'bottom'
+        });
+        WHMCS.ui.toolTip.setTip(trigger, 'Copied!');
+        WHMCS.ui.toolTip.hideTip(trigger);
+    };
+
+    return this;
+},
+
 /**
  * ToolTip and Clipboard behaviors
  */
 toolTip: function () {
-    this.registerClipboard = function () {
-        var self = this;
-        jQuery('[data-toggle="tooltip"]').tooltip();
-        var clipboard = new Clipboard('.copy-to-clipboard');
-        clipboard.on('success', function(e) {
-            var btn = jQuery(e.trigger);
-            self.setTip(btn, 'Copied!');
-            self.hideTip(btn);
-        });
-        clipboard.on('error', function(e) {
-            self.setTip(e.trigger, 'Press Ctrl+C to copy');
-            self.hideTip(e.trigger);
-        });
-        $('.copy-to-clipboard').tooltip({
-            trigger: 'click',
-            placement: 'bottom'
-        });
-    };
-
     this.setTip = function (btn, message) {
         var tip = btn.data('bs.tooltip');
         if (tip.hoverState !== 'in') {
@@ -14587,6 +15383,193 @@ toolTip: function () {
             btn.data('bs.tooltip').hide()
         }, 2000);
     }
+},
+
+jsonForm: function() {
+    this.managedElements = 'input,textarea,select';
+
+    this.initFields = function (form) {
+        var self = this;
+        $(form).find(self.managedElements).each(function () {
+            var field = this;
+
+            $(field).on('keypress change', function () {
+                if (self.fieldHasError(field)) {
+                    self.clearFieldError(field);
+                }
+            });
+        });
+    };
+
+    this.init = function (form) {
+        var self = this;
+
+        self.initFields(form);
+
+        $(form).on('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            self.clearErrors(form);
+
+            var formModal = $(form).parents('.modal[role="dialog"]').first();
+
+            if ($(formModal).length) {
+                $(formModal).on('show.bs.modal hidden.bs.modal', function() {
+                    self.clearErrors(form);
+                });
+
+                /*
+                 * Make this optional if the form is used for editing
+                 */
+                $(formModal).on('show.bs.modal', function() {
+                    $(form)[0].reset();
+                });
+            }
+
+            WHMCS.http.client.post({
+                url: $(form).attr('action'),
+                data: $(form).serializeArray(),
+            })
+                .done(function (response) {
+                    self.onSuccess(form, response);
+                })
+                .fail(function (jqXHR) {
+                    self.onError(form, jqXHR);
+                })
+                .always(function (data) {
+                    self.onRequestComplete(form, data);
+                });
+        });
+    };
+
+    this.initAll = function () {
+        var self = this;
+
+        $('form[data-role="json-form"]').each(function() {
+            var formElement = this;
+            self.init(formElement);
+        });
+    };
+
+    this.markFieldErrors = function (form, fields)
+    {
+        var self = this;
+        var errorMessage = null;
+        var field, fieldLookup;
+
+        for (var fieldName in fields) {
+            if (fields.hasOwnProperty(fieldName)) {
+                errorMessage = fields[fieldName];
+            }
+
+            fieldLookup = self.managedElements.split(',').map(function(element) {
+                return element + '[name="' + fieldName + '"]';
+            }).join(',');
+
+            field = $(form).find(fieldLookup);
+
+            if (errorMessage) {
+                $(field).parents('.form-group').addClass('has-error');
+                $(field).attr('title', errorMessage);
+                $(field).tooltip();
+            }
+        }
+
+        $(form).find('.form-group.has-error input[title]').first().tooltip('show');
+    };
+
+    this.fieldHasError = function (field) {
+        return $(field).parents('.form-group').hasClass('has-error');
+    };
+
+    this.clearFieldError = function (field) {
+        $(field).tooltip('destroy');
+        $(field).parents('.form-group').removeClass('has-error');
+    };
+
+    this.onSuccess = function (form, response) {
+        var formOnSuccess = $(form).data('on-success');
+
+        if (typeof formOnSuccess === 'function') {
+            formOnSuccess(response.data);
+        }
+    };
+
+    this.onError = function (form, jqXHR) {
+        if (jqXHR.responseJSON && jqXHR.responseJSON.fields && typeof jqXHR.responseJSON.fields === 'object') {
+            this.markFieldErrors(form, jqXHR.responseJSON.fields);
+        } else {
+            // TODO: replace with client-accessible generic error messaging
+            console.log('Unknown error - please try again later.');
+        }
+
+        var formOnError = $(form).data('on-error');
+
+        if (typeof formOnError === 'function') {
+            formOnError(jqXHR);
+        }
+    };
+
+    this.clearErrors = function (form) {
+        var self = this;
+
+        $(form).find(self.managedElements).each(function () {
+            self.clearFieldError(this);
+        })
+    };
+
+    this.onRequestComplete = function (form, data) {
+        // implement as needed
+    };
+
+    return this;
+},
+
+effects: function () {
+    this.errorShake = function (element) {
+        /**
+         * Shake effect without jQuery UI inspired by Hiren Patel | ninty9notout:
+         * @see https://github.com/ninty9notout/jquery-shake/blob/51f3dcf625970c78505bcac831fd9e28fc85d374/jquery.ui.shake.js
+         */
+        options = options || {};
+        var options = $.extend({
+            direction: "left",
+            distance: 8,
+            times: 3,
+            speed: 90
+        }, options);
+
+        return element.each(function () {
+            var el = $(this), props = {
+                position: el.css("position"),
+                top: el.css("top"),
+                bottom: el.css("bottom"),
+                left: el.css("left"),
+                right: el.css("right")
+            };
+
+            el.css("position", "relative");
+
+            var ref = (options.direction === "up" || options.direction === "down") ? "top" : "left";
+            var motion = (options.direction === "up" || options.direction === "left") ? "pos" : "neg";
+
+            var animation = {}, animation1 = {}, animation2 = {};
+            animation[ref] = (motion === "pos" ? "-=" : "+=") + options.distance;
+            animation1[ref] = (motion === "pos" ? "+=" : "-=") + options.distance * 2;
+            animation2[ref] = (motion === "pos" ? "-=" : "+=") + options.distance * 2;
+
+            el.animate(animation, options.speed);
+            for (var i = 1; i < options.times; i++) {
+                el.animate(animation1, options.speed).animate(animation2, options.speed);
+            }
+
+            el.animate(animation1, options.speed).animate(animation, options.speed / 2, function () {
+                el.css(props);
+            });
+        });
+    };
+
 }
 });
 
@@ -14648,6 +15631,16 @@ function () {
                 }
             }
         });
+    };
+
+    this.reloadCaptcha = function (element)
+    {
+        if (!element) {
+            element = jQuery('#inputCaptchaImage');
+        }
+
+        var src = jQuery(element).data('src');
+        jQuery(element).attr('src', src + '?nocache=' + (new Date()).getTime());
     };
 
     return this;
@@ -14767,6 +15760,640 @@ var recaptchaLoadComplete = false;
     });
 
 /**
+ * microplugin.js
+ * Copyright (c) 2013 Brian Reavis & contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ *
+ * @author Brian Reavis <brian@thirdroute.com>
+ */
+
+(function(root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		define(factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory();
+	} else {
+		root.MicroPlugin = factory();
+	}
+}(this, function() {
+	var MicroPlugin = {};
+
+	MicroPlugin.mixin = function(Interface) {
+		Interface.plugins = {};
+
+		/**
+		 * Initializes the listed plugins (with options).
+		 * Acceptable formats:
+		 *
+		 * List (without options):
+		 *   ['a', 'b', 'c']
+		 *
+		 * List (with options):
+		 *   [{'name': 'a', options: {}}, {'name': 'b', options: {}}]
+		 *
+		 * Hash (with options):
+		 *   {'a': { ... }, 'b': { ... }, 'c': { ... }}
+		 *
+		 * @param {mixed} plugins
+		 */
+		Interface.prototype.initializePlugins = function(plugins) {
+			var i, n, key;
+			var self  = this;
+			var queue = [];
+
+			self.plugins = {
+				names     : [],
+				settings  : {},
+				requested : {},
+				loaded    : {}
+			};
+
+			if (utils.isArray(plugins)) {
+				for (i = 0, n = plugins.length; i < n; i++) {
+					if (typeof plugins[i] === 'string') {
+						queue.push(plugins[i]);
+					} else {
+						self.plugins.settings[plugins[i].name] = plugins[i].options;
+						queue.push(plugins[i].name);
+					}
+				}
+			} else if (plugins) {
+				for (key in plugins) {
+					if (plugins.hasOwnProperty(key)) {
+						self.plugins.settings[key] = plugins[key];
+						queue.push(key);
+					}
+				}
+			}
+
+			while (queue.length) {
+				self.require(queue.shift());
+			}
+		};
+
+		Interface.prototype.loadPlugin = function(name) {
+			var self    = this;
+			var plugins = self.plugins;
+			var plugin  = Interface.plugins[name];
+
+			if (!Interface.plugins.hasOwnProperty(name)) {
+				throw new Error('Unable to find "' +  name + '" plugin');
+			}
+
+			plugins.requested[name] = true;
+			plugins.loaded[name] = plugin.fn.apply(self, [self.plugins.settings[name] || {}]);
+			plugins.names.push(name);
+		};
+
+		/**
+		 * Initializes a plugin.
+		 *
+		 * @param {string} name
+		 */
+		Interface.prototype.require = function(name) {
+			var self = this;
+			var plugins = self.plugins;
+
+			if (!self.plugins.loaded.hasOwnProperty(name)) {
+				if (plugins.requested[name]) {
+					throw new Error('Plugin has circular dependency ("' + name + '")');
+				}
+				self.loadPlugin(name);
+			}
+
+			return plugins.loaded[name];
+		};
+
+		/**
+		 * Registers a plugin.
+		 *
+		 * @param {string} name
+		 * @param {function} fn
+		 */
+		Interface.define = function(name, fn) {
+			Interface.plugins[name] = {
+				'name' : name,
+				'fn'   : fn
+			};
+		};
+	};
+
+	var utils = {
+		isArray: Array.isArray || function(vArg) {
+			return Object.prototype.toString.call(vArg) === '[object Array]';
+		}
+	};
+
+	return MicroPlugin;
+}));
+/**
+ * sifter.js
+ * Copyright (c) 2013 Brian Reavis & contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ *
+ * @author Brian Reavis <brian@thirdroute.com>
+ */
+
+(function(root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		define(factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory();
+	} else {
+		root.Sifter = factory();
+	}
+}(this, function() {
+
+	/**
+	 * Textually searches arrays and hashes of objects
+	 * by property (or multiple properties). Designed
+	 * specifically for autocomplete.
+	 *
+	 * @constructor
+	 * @param {array|object} items
+	 * @param {object} items
+	 */
+	var Sifter = function(items, settings) {
+		this.items = items;
+		this.settings = settings || {diacritics: true};
+	};
+
+	/**
+	 * Splits a search string into an array of individual
+	 * regexps to be used to match results.
+	 *
+	 * @param {string} query
+	 * @returns {array}
+	 */
+	Sifter.prototype.tokenize = function(query) {
+		query = trim(String(query || '').toLowerCase());
+		if (!query || !query.length) return [];
+
+		var i, n, regex, letter;
+		var tokens = [];
+		var words = query.split(/ +/);
+
+		for (i = 0, n = words.length; i < n; i++) {
+			regex = escape_regex(words[i]);
+			if (this.settings.diacritics) {
+				for (letter in DIACRITICS) {
+					if (DIACRITICS.hasOwnProperty(letter)) {
+						regex = regex.replace(new RegExp(letter, 'g'), DIACRITICS[letter]);
+					}
+				}
+			}
+			tokens.push({
+				string : words[i],
+				regex  : new RegExp(regex, 'i')
+			});
+		}
+
+		return tokens;
+	};
+
+	/**
+	 * Iterates over arrays and hashes.
+	 *
+	 * ```
+	 * this.iterator(this.items, function(item, id) {
+	 *    // invoked for each item
+	 * });
+	 * ```
+	 *
+	 * @param {array|object} object
+	 */
+	Sifter.prototype.iterator = function(object, callback) {
+		var iterator;
+		if (is_array(object)) {
+			iterator = Array.prototype.forEach || function(callback) {
+				for (var i = 0, n = this.length; i < n; i++) {
+					callback(this[i], i, this);
+				}
+			};
+		} else {
+			iterator = function(callback) {
+				for (var key in this) {
+					if (this.hasOwnProperty(key)) {
+						callback(this[key], key, this);
+					}
+				}
+			};
+		}
+
+		iterator.apply(object, [callback]);
+	};
+
+	/**
+	 * Returns a function to be used to score individual results.
+	 *
+	 * Good matches will have a higher score than poor matches.
+	 * If an item is not a match, 0 will be returned by the function.
+	 *
+	 * @param {object|string} search
+	 * @param {object} options (optional)
+	 * @returns {function}
+	 */
+	Sifter.prototype.getScoreFunction = function(search, options) {
+		var self, fields, tokens, token_count, nesting;
+
+		self        = this;
+		search      = self.prepareSearch(search, options);
+		tokens      = search.tokens;
+		fields      = search.options.fields;
+		token_count = tokens.length;
+		nesting     = search.options.nesting;
+
+		/**
+		 * Calculates how close of a match the
+		 * given value is against a search token.
+		 *
+		 * @param {mixed} value
+		 * @param {object} token
+		 * @return {number}
+		 */
+		var scoreValue = function(value, token) {
+			var score, pos;
+
+			if (!value) return 0;
+			value = String(value || '');
+			pos = value.search(token.regex);
+			if (pos === -1) return 0;
+			score = token.string.length / value.length;
+			if (pos === 0) score += 0.5;
+			return score;
+		};
+
+		/**
+		 * Calculates the score of an object
+		 * against the search query.
+		 *
+		 * @param {object} token
+		 * @param {object} data
+		 * @return {number}
+		 */
+		var scoreObject = (function() {
+			var field_count = fields.length;
+			if (!field_count) {
+				return function() { return 0; };
+			}
+			if (field_count === 1) {
+				return function(token, data) {
+					return scoreValue(getattr(data, fields[0], nesting), token);
+				};
+			}
+			return function(token, data) {
+				for (var i = 0, sum = 0; i < field_count; i++) {
+					sum += scoreValue(getattr(data, fields[i], nesting), token);
+				}
+				return sum / field_count;
+			};
+		})();
+
+		if (!token_count) {
+			return function() { return 0; };
+		}
+		if (token_count === 1) {
+			return function(data) {
+				return scoreObject(tokens[0], data);
+			};
+		}
+
+		if (search.options.conjunction === 'and') {
+			return function(data) {
+				var score;
+				for (var i = 0, sum = 0; i < token_count; i++) {
+					score = scoreObject(tokens[i], data);
+					if (score <= 0) return 0;
+					sum += score;
+				}
+				return sum / token_count;
+			};
+		} else {
+			return function(data) {
+				for (var i = 0, sum = 0; i < token_count; i++) {
+					sum += scoreObject(tokens[i], data);
+				}
+				return sum / token_count;
+			};
+		}
+	};
+
+	/**
+	 * Returns a function that can be used to compare two
+	 * results, for sorting purposes. If no sorting should
+	 * be performed, `null` will be returned.
+	 *
+	 * @param {string|object} search
+	 * @param {object} options
+	 * @return function(a,b)
+	 */
+	Sifter.prototype.getSortFunction = function(search, options) {
+		var i, n, self, field, fields, fields_count, multiplier, multipliers, get_field, implicit_score, sort;
+
+		self   = this;
+		search = self.prepareSearch(search, options);
+		sort   = (!search.query && options.sort_empty) || options.sort;
+
+		/**
+		 * Fetches the specified sort field value
+		 * from a search result item.
+		 *
+		 * @param  {string} name
+		 * @param  {object} result
+		 * @return {mixed}
+		 */
+		get_field = function(name, result) {
+			if (name === '$score') return result.score;
+			return getattr(self.items[result.id], name, options.nesting);
+		};
+
+		// parse options
+		fields = [];
+		if (sort) {
+			for (i = 0, n = sort.length; i < n; i++) {
+				if (search.query || sort[i].field !== '$score') {
+					fields.push(sort[i]);
+				}
+			}
+		}
+
+		// the "$score" field is implied to be the primary
+		// sort field, unless it's manually specified
+		if (search.query) {
+			implicit_score = true;
+			for (i = 0, n = fields.length; i < n; i++) {
+				if (fields[i].field === '$score') {
+					implicit_score = false;
+					break;
+				}
+			}
+			if (implicit_score) {
+				fields.unshift({field: '$score', direction: 'desc'});
+			}
+		} else {
+			for (i = 0, n = fields.length; i < n; i++) {
+				if (fields[i].field === '$score') {
+					fields.splice(i, 1);
+					break;
+				}
+			}
+		}
+
+		multipliers = [];
+		for (i = 0, n = fields.length; i < n; i++) {
+			multipliers.push(fields[i].direction === 'desc' ? -1 : 1);
+		}
+
+		// build function
+		fields_count = fields.length;
+		if (!fields_count) {
+			return null;
+		} else if (fields_count === 1) {
+			field = fields[0].field;
+			multiplier = multipliers[0];
+			return function(a, b) {
+				return multiplier * cmp(
+					get_field(field, a),
+					get_field(field, b)
+				);
+			};
+		} else {
+			return function(a, b) {
+				var i, result, a_value, b_value, field;
+				for (i = 0; i < fields_count; i++) {
+					field = fields[i].field;
+					result = multipliers[i] * cmp(
+						get_field(field, a),
+						get_field(field, b)
+					);
+					if (result) return result;
+				}
+				return 0;
+			};
+		}
+	};
+
+	/**
+	 * Parses a search query and returns an object
+	 * with tokens and fields ready to be populated
+	 * with results.
+	 *
+	 * @param {string} query
+	 * @param {object} options
+	 * @returns {object}
+	 */
+	Sifter.prototype.prepareSearch = function(query, options) {
+		if (typeof query === 'object') return query;
+
+		options = extend({}, options);
+
+		var option_fields     = options.fields;
+		var option_sort       = options.sort;
+		var option_sort_empty = options.sort_empty;
+
+		if (option_fields && !is_array(option_fields)) options.fields = [option_fields];
+		if (option_sort && !is_array(option_sort)) options.sort = [option_sort];
+		if (option_sort_empty && !is_array(option_sort_empty)) options.sort_empty = [option_sort_empty];
+
+		return {
+			options : options,
+			query   : String(query || '').toLowerCase(),
+			tokens  : this.tokenize(query),
+			total   : 0,
+			items   : []
+		};
+	};
+
+	/**
+	 * Searches through all items and returns a sorted array of matches.
+	 *
+	 * The `options` parameter can contain:
+	 *
+	 *   - fields {string|array}
+	 *   - sort {array}
+	 *   - score {function}
+	 *   - filter {bool}
+	 *   - limit {integer}
+	 *
+	 * Returns an object containing:
+	 *
+	 *   - options {object}
+	 *   - query {string}
+	 *   - tokens {array}
+	 *   - total {int}
+	 *   - items {array}
+	 *
+	 * @param {string} query
+	 * @param {object} options
+	 * @returns {object}
+	 */
+	Sifter.prototype.search = function(query, options) {
+		var self = this, value, score, search, calculateScore;
+		var fn_sort;
+		var fn_score;
+
+		search  = this.prepareSearch(query, options);
+		options = search.options;
+		query   = search.query;
+
+		// generate result scoring function
+		fn_score = options.score || self.getScoreFunction(search);
+
+		// perform search and sort
+		if (query.length) {
+			self.iterator(self.items, function(item, id) {
+				score = fn_score(item);
+				if (options.filter === false || score > 0) {
+					search.items.push({'score': score, 'id': id});
+				}
+			});
+		} else {
+			self.iterator(self.items, function(item, id) {
+				search.items.push({'score': 1, 'id': id});
+			});
+		}
+
+		fn_sort = self.getSortFunction(search, options);
+		if (fn_sort) search.items.sort(fn_sort);
+
+		// apply limits
+		search.total = search.items.length;
+		if (typeof options.limit === 'number') {
+			search.items = search.items.slice(0, options.limit);
+		}
+
+		return search;
+	};
+
+	// utilities
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	var cmp = function(a, b) {
+		if (typeof a === 'number' && typeof b === 'number') {
+			return a > b ? 1 : (a < b ? -1 : 0);
+		}
+		a = asciifold(String(a || ''));
+		b = asciifold(String(b || ''));
+		if (a > b) return 1;
+		if (b > a) return -1;
+		return 0;
+	};
+
+	var extend = function(a, b) {
+		var i, n, k, object;
+		for (i = 1, n = arguments.length; i < n; i++) {
+			object = arguments[i];
+			if (!object) continue;
+			for (k in object) {
+				if (object.hasOwnProperty(k)) {
+					a[k] = object[k];
+				}
+			}
+		}
+		return a;
+	};
+
+	/**
+	 * A property getter resolving dot-notation
+	 * @param  {Object}  obj     The root object to fetch property on
+	 * @param  {String}  name    The optionally dotted property name to fetch
+	 * @param  {Boolean} nesting Handle nesting or not
+	 * @return {Object}          The resolved property value
+	 */
+	var getattr = function(obj, name, nesting) {
+	    if (!obj || !name) return;
+	    if (!nesting) return obj[name];
+	    var names = name.split(".");
+	    while(names.length && (obj = obj[names.shift()]));
+	    return obj;
+	};
+
+	var trim = function(str) {
+		return (str + '').replace(/^\s+|\s+$|/g, '');
+	};
+
+	var escape_regex = function(str) {
+		return (str + '').replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
+	};
+
+	var is_array = Array.isArray || (typeof $ !== 'undefined' && $.isArray) || function(object) {
+		return Object.prototype.toString.call(object) === '[object Array]';
+	};
+
+	var DIACRITICS = {
+		'a': '[aḀḁĂăÂâǍǎȺⱥȦȧẠạÄäÀàÁáĀāÃãÅåąĄÃąĄ]',
+		'b': '[b␢βΒB฿𐌁ᛒ]',
+		'c': '[cĆćĈĉČčĊċC̄c̄ÇçḈḉȻȼƇƈɕᴄＣｃ]',
+		'd': '[dĎďḊḋḐḑḌḍḒḓḎḏĐđD̦d̦ƉɖƊɗƋƌᵭᶁᶑȡᴅＤｄð]',
+		'e': '[eÉéÈèÊêḘḙĚěĔĕẼẽḚḛẺẻĖėËëĒēȨȩĘęᶒɆɇȄȅẾếỀềỄễỂểḜḝḖḗḔḕȆȇẸẹỆệⱸᴇＥｅɘǝƏƐε]',
+		'f': '[fƑƒḞḟ]',
+		'g': '[gɢ₲ǤǥĜĝĞğĢģƓɠĠġ]',
+		'h': '[hĤĥĦħḨḩẖẖḤḥḢḣɦʰǶƕ]',
+		'i': '[iÍíÌìĬĭÎîǏǐÏïḮḯĨĩĮįĪīỈỉȈȉȊȋỊịḬḭƗɨɨ̆ᵻᶖİiIıɪＩｉ]',
+		'j': '[jȷĴĵɈɉʝɟʲ]',
+		'k': '[kƘƙꝀꝁḰḱǨǩḲḳḴḵκϰ₭]',
+		'l': '[lŁłĽľĻļĹĺḶḷḸḹḼḽḺḻĿŀȽƚⱠⱡⱢɫɬᶅɭȴʟＬｌ]',
+		'n': '[nŃńǸǹŇňÑñṄṅŅņṆṇṊṋṈṉN̈n̈ƝɲȠƞᵰᶇɳȵɴＮｎŊŋ]',
+		'o': '[oØøÖöÓóÒòÔôǑǒŐőŎŏȮȯỌọƟɵƠơỎỏŌōÕõǪǫȌȍՕօ]',
+		'p': '[pṔṕṖṗⱣᵽƤƥᵱ]',
+		'q': '[qꝖꝗʠɊɋꝘꝙq̃]',
+		'r': '[rŔŕɌɍŘřŖŗṘṙȐȑȒȓṚṛⱤɽ]',
+		's': '[sŚśṠṡṢṣꞨꞩŜŝŠšŞşȘșS̈s̈]',
+		't': '[tŤťṪṫŢţṬṭƮʈȚțṰṱṮṯƬƭ]',
+		'u': '[uŬŭɄʉỤụÜüÚúÙùÛûǓǔŰűŬŭƯưỦủŪūŨũŲųȔȕ∪]',
+		'v': '[vṼṽṾṿƲʋꝞꝟⱱʋ]',
+		'w': '[wẂẃẀẁŴŵẄẅẆẇẈẉ]',
+		'x': '[xẌẍẊẋχ]',
+		'y': '[yÝýỲỳŶŷŸÿỸỹẎẏỴỵɎɏƳƴ]',
+		'z': '[zŹźẐẑŽžŻżẒẓẔẕƵƶ]'
+	};
+
+	var asciifold = (function() {
+		var i, n, k, chunk;
+		var foreignletters = '';
+		var lookup = {};
+		for (k in DIACRITICS) {
+			if (DIACRITICS.hasOwnProperty(k)) {
+				chunk = DIACRITICS[k].substring(2, DIACRITICS[k].length - 1);
+				foreignletters += chunk;
+				for (i = 0, n = chunk.length; i < n; i++) {
+					lookup[chunk.charAt(i)] = k;
+				}
+			}
+		}
+		var regexp = new RegExp('[' +  foreignletters + ']', 'g');
+		return function(str) {
+			return str.replace(regexp, function(foreignletter) {
+				return lookup[foreignletter];
+			}).toLowerCase();
+		};
+	})();
+
+
+	// export
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	return Sifter;
+}));
+
+
+/**
  * General utilities module
  *
  * @copyright Copyright (c) WHMCS Limited 2005-2017
@@ -14859,7 +16486,78 @@ function () {
 
     this.normaliseStringValue = function(status) {
         return status ? status.toLowerCase().replace(/\s/g, '-') : '';
-    }
+    };
+
+    this.generatePassword = function(len) {
+        var charset = this.getPasswordCharacterSet();
+        var result = "";
+        for (var i = 0; len > i; i++)
+            result += charset[this.randomInt(charset.length)];
+        return result;
+    };
+    this.getPasswordCharacterSet = function() {
+        var rawCharset = '0123456789'
+            + 'abcdefghijklmnopqrstuvwxyz'
+            + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            + '!#$%()*+,-.:;=@_|{ldelim}{rdelim}~';
+
+        // Parse UTF-16, remove duplicates, convert to array of strings
+        var charset = [];
+        for (var i = 0; rawCharset.length > i; i++) {
+            var c = rawCharset.charCodeAt(i);
+            if (0xD800 > c || c >= 0xE000) {  // Regular UTF-16 character
+                var s = rawCharset.charAt(i);
+                if (charset.indexOf(s) == -1)
+                    charset.push(s);
+                continue;
+            }
+            if (0xDC00 > c ? rawCharset.length > i + 1 : false) {  // High surrogate
+                var d = rawCharset.charCodeAt(i + 1);
+                if (d >= 0xDC00 ? 0xE000 > d : false) {  // Low surrogate
+                    var s = rawCharset.substring(i, i + 2);
+                    i++;
+                    if (charset.indexOf(s) == -1)
+                        charset.push(s);
+                    continue;
+                }
+            }
+            throw "Invalid UTF-16";
+        }
+        return charset;
+    };
+    this.randomInt = function(n) {
+        var x = this.randomIntMathRandom(n);
+        x = (x + this.randomIntBrowserCrypto(n)) % n;
+        return x;
+    };
+    this.randomIntMathRandom = function(n) {
+        var x = Math.floor(Math.random() * n);
+        if (0 > x || x >= n)
+            throw "Arithmetic exception";
+        return x;
+    };
+    this.randomIntBrowserCrypto = function(n) {
+        var cryptoObject = null;
+
+        if ("crypto" in window)
+            cryptoObject = crypto;
+        else if ("msCrypto" in window)
+            cryptoObject = msCrypto;
+        else
+            return 0;
+
+        if (!("getRandomValues" in cryptoObject) || !("Uint32Array" in window) || typeof Uint32Array != "function")
+            cryptoObject = null;
+
+        if (cryptoObject == null)
+            return 0;
+
+        // Generate an unbiased sample
+        var x = new Uint32Array(1);
+        do cryptoObject.getRandomValues(x);
+        while (x[0] - x[0] % n > 4294967296 - n);
+        return x[0] % n;
+    };
 
     return this;
 });
@@ -15052,6 +16750,85 @@ jQuery(document).ready(function() {
         }
     );
 
+    jQuery(document).on('click', '.delete-cc-email', function() {
+        var self = jQuery(this),
+            email = self.data('email'),
+            feedback = jQuery('#divCcEmailFeedback');
+
+        if (feedback.is(':visible')) {
+            feedback.slideUp('fast');
+        }
+
+        WHMCS.http.jqClient.jsonPost({
+            url: window.location.href,
+            data: {
+                action: 'delete',
+                email: email,
+                token: csrfToken
+            },
+            success: function (data) {
+                if (data.success) {
+                    self.closest('.ticket-cc-email').parent('div').slideUp('fast').remove();
+                    feedback.slideUp('fast')
+                        .removeClass('alert-danger hidden')
+                        .addClass('alert-success')
+                        .html(data.message)
+                        .slideDown('fast');
+                }
+            },
+            error: function (error) {
+                if (error) {
+                    feedback.slideUp('fast')
+                        .removeClass('alert-success hidden')
+                        .addClass('alert-danger')
+                        .html(error)
+                        .slideDown('fast');
+                }
+            }
+        });
+    }).on('submit', '#frmAddCcEmail', function(e) {
+        e.preventDefault();
+        var frm = jQuery(this),
+            cloneRow = jQuery('#ccCloneRow').clone().removeAttr('id'),
+            email = jQuery('#inputAddCcEmail'),
+            feedback = jQuery('#divCcEmailFeedback');
+
+        if (feedback.is(':visible')) {
+            feedback.slideUp('fast');
+        }
+        WHMCS.http.jqClient.jsonPost({
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                if (data.success) {
+                    cloneRow.find('span.email')
+                        .html(email.val())
+                        .find('button')
+                        .data('email', email.val())
+                        .end();
+
+                    cloneRow.removeClass('hidden')
+                        .appendTo(jQuery('#sidebarTicketCc').find('.list-group'));
+                    email.val('');
+                    feedback.slideUp('fast')
+                        .removeClass('alert-danger hidden')
+                        .addClass('alert-success')
+                        .html(data.message)
+                        .slideDown('fast');
+                }
+            },
+            error: function (error) {
+                if (error) {
+                    feedback.slideUp('fast')
+                        .removeClass('alert-success hidden')
+                        .addClass('alert-danger')
+                        .html(error)
+                        .slideDown('fast');
+                }
+            }
+        });
+    });
+
     // Ticket Rating Click Handler
     jQuery('.ticket-reply .rating span.star').click( function(event) {
         window.location = 'viewticket.php?tid='
@@ -15150,6 +16927,40 @@ jQuery(document).ready(function() {
         e.preventDefault();
     });
 
+    // Activate copy to clipboard functionality
+    jQuery('.copy-to-clipboard').click(WHMCS.ui.clipboard.copy);
+
+    // Password Generator
+    jQuery('.generate-password').click(function(e) {
+        jQuery('#frmGeneratePassword').submit();
+        jQuery('#modalGeneratePassword')
+            .data('targetfields', jQuery(this).data('targetfields'))
+            .modal('show');
+    });
+    jQuery('#frmGeneratePassword').submit(function(e) {
+        e.preventDefault();
+        var length = parseInt(jQuery('#inputGeneratePasswordLength').val(), 10);
+
+        // Check length
+        if (length < 8 || length > 64) {
+            jQuery('#generatePwLengthError').removeClass('hidden').show();
+            return;
+        }
+
+        jQuery('#inputGeneratePasswordOutput').val(WHMCS.utils.generatePassword(length));
+    });
+    jQuery('#btnGeneratePasswordInsert')
+        .click(WHMCS.ui.clipboard.copy)
+        .click(function(e) {
+            jQuery(this).closest('.modal').modal('hide');
+            var targetFields = jQuery(this).closest('.modal').data('targetfields');
+            targetFields = targetFields.split(',');
+            for(var i = 0; i < targetFields.length; i++) {
+                jQuery('#' + targetFields[i]).val(jQuery('#inputGeneratePasswordOutput').val())
+                    .trigger('keyup');
+            }
+        });
+
     /**
      * Code will loop through each element that has the class markdown-editor and
      * enable the Markdown editor.
@@ -15222,7 +17033,7 @@ jQuery(document).ready(function() {
                         btnClass: "btn open-modal",
                         icon: {
                             glyph: 'fas fa-question-circle',
-                            fa: 'fa fa-question-circle',
+                            fa: 'fas fa-question-circle',
                             'fa-3': 'icon-question-sign'
                         },
                         callback: function(e) {
@@ -15315,8 +17126,20 @@ jQuery(document).ready(function() {
         openModal(frmTwoFactorActivation.attr('action'), frmTwoFactorActivation.serialize(), 'Loading...');
     });
 
-    jQuery('#frmPayment').find('#btnSubmit').on('click', function(){
-        jQuery(this).find('span').toggleClass('hidden');
+    $.fn.setInputError = function(error) {
+        this.parents('.form-group').addClass('has-error').find('.field-error-msg').text(error);
+        return this;
+    };
+
+    jQuery.fn.showInputError = function () {
+        this.parents('.form-group').addClass('has-error').find('.field-error-msg').show();
+        return this;
+    };
+
+    jQuery('#frmPayment').on('submit', function() {
+        var btn = jQuery('#btnSubmit');
+            btn.find('span').toggleClass('hidden');
+            btn.prop('disabled', true).addClass('disabled');
     });
 
     // SSL Manage Action Button.
@@ -15341,10 +17164,15 @@ jQuery(document).ready(function() {
     jQuery(".tld-filters a").click(function(e) {
         e.preventDefault();
 
+        var noTlds = jQuery('.tld-row.no-tlds');
+
         if (jQuery(this).hasClass('label-success')) {
             jQuery(this).removeClass('label-success');
         } else {
             jQuery(this).addClass('label-success');
+        }
+        if (noTlds.is(':visible')) {
+            noTlds.hide();
         }
 
         jQuery('.tld-row').removeClass('filtered-row');
@@ -15354,14 +17182,16 @@ jQuery(document).ready(function() {
         });
         jQuery(".filtered-row:even").removeClass('highlighted');
         jQuery(".filtered-row:odd").addClass('highlighted');
-        jQuery('.tld-row:not(".filtered-row")').fadeOut('', function() {
-            if (jQuery('.filtered-row').size() === 0) {
-                jQuery('.tld-row.no-tlds').show();
+
+        var rowsToHide = jQuery('.tld-row:not(".filtered-row")');
+        rowsToHide.fadeOut('fast');
+        rowsToHide.promise().done(function () {
+            if (jQuery('.filtered-row').length === 0) {
+                noTlds.show();
             } else {
-                jQuery('.tld-row.no-tlds').hide();
+                jQuery('.tld-row.filtered-row').show();
             }
         });
-        jQuery('.tld-row.filtered-row').fadeIn();
     });
     jQuery(".filtered-row:even").removeClass('highlighted');
     jQuery(".filtered-row:odd").addClass('highlighted');
@@ -15371,6 +17201,8 @@ jQuery(document).ready(function() {
 
     // Bootstrap Confirmation popup auto object registration
     WHMCS.ui.confirmation.register();
+
+    WHMCS.ui.jsonForm.initAll();
 
     jQuery('#frmReply').submit(function(e) {
         jQuery('#frmReply').find('input[type="submit"]').addClass('disabled').prop('disabled', true);
@@ -15425,6 +17257,12 @@ jQuery(document).ready(function() {
     var homepageHasRecaptcha = jQuery(dynamicRecaptchaContainer).length > 0;
     var homepageHasInvisibleRecaptcha = homepageHasRecaptcha && jQuery(dynamicRecaptchaContainer).data('size') === 'invisible';
 
+    var frmDomainHomepage = jQuery('#frmDomainHomepage');
+
+    jQuery(frmDomainHomepage).find('#btnTransfer').click(function () {
+        jQuery(frmDomainHomepage).find('input[name="transfer"]').val('1');
+    });
+
     if (homepageHasRecaptcha && !homepageHasInvisibleRecaptcha) {
         jQuery('section#home-banner').addClass('with-recaptcha');
     }
@@ -15432,9 +17270,8 @@ jQuery(document).ready(function() {
     if (jQuery('.domainchecker-homepage-captcha').length && !homepageHasInvisibleRecaptcha) {
         // invisible reCaptcha doesn't play well with onsubmit() handlers on all submissions following a prevented one
 
-        jQuery('#frmDomainHomepage').submit(function (e) {
-            var frmDomain = jQuery('#frmDomainHomepage'),
-                inputDomain = jQuery(frmDomain).find('input[name="domain"]'),
+        jQuery(frmDomainHomepage).submit(function (e) {
+            var inputDomain = jQuery(frmDomainHomepage).find('input[name="domain"]'),
                 reCaptchaContainer = jQuery('#divDynamicRecaptcha'),
                 reCaptcha = jQuery('#g-recaptcha-response'),
                 captcha = jQuery('#inputCaptcha');
@@ -15454,6 +17291,23 @@ jQuery(document).ready(function() {
             }
         });
     }
+
+    $('.icheck-button').iCheck({
+        inheritID: true,
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%'
+    });
+
+    jQuery('#inputNoStore').on('switchChange.bootstrapSwitch', function(event, state) {
+        var descContainer = jQuery('#inputDescription');
+        if (!state) {
+            descContainer.prop('disabled', true).addClass('disabled');
+        }
+        if (state) {
+            descContainer.removeClass('disabled').prop('disabled', false);
+        }
+    });
 });
 
 /**
@@ -15661,12 +17515,12 @@ function useCustomWhois(regType) {
     jQuery('#' + regType.substr(0, regType.length - 1) + '2').attr("checked", "checked");
 }
 
-/**
- * Used to toggle display of editable billing address fields.
- */
-function editBillingAddress() {
-    jQuery("#billingAddressSummary").hide();
-    jQuery(".cc-billing-address").hide().removeClass('hidden').fadeIn();
+function showNewBillingAddressFields() {
+    jQuery('#newBillingAddress').slideDown();
+}
+
+function hideNewBillingAddressFields() {
+    jQuery('#newBillingAddress').slideUp();
 }
 
 /**
@@ -15677,20 +17531,67 @@ function showNewCardInputFields() {
         jQuery(".cc-details").hide().removeClass("hidden");
     }
     jQuery(".cc-details").slideDown();
-    jQuery("#btnEditBillingAddress").removeAttr("disabled");
+
+    jQuery("#billingAddressChoice")
+        .slideDown()
+        .find('input[name="billingcontact"]')
+        .first()
+        .iCheck('check');
+}
+
+/**
+ * Show new bank account input fields.
+ */
+function showNewAccountInputFields() {
+    if (jQuery(".bank-details").hasClass("hidden")) {
+        jQuery(".bank-details").hide().removeClass("hidden");
+    }
+    jQuery(".bank-details").slideDown();
+
+    jQuery("#billingAddressChoice")
+        .slideDown()
+        .find('input[name="billingcontact"]')
+        .first()
+        .iCheck('check');
 }
 
 /**
  * Hide new credit card input fields.
  */
 function hideNewCardInputFields() {
-    jQuery(".cc-billing-address").slideUp();
+    hideNewBillingAddressFields();
+
     jQuery(".cc-details").slideUp();
-    jQuery("#btnEditBillingAddress").attr("disabled", "disabled");
-    if (jQuery("#billingAddressSummary").hasClass('hidden')) {
-        jQuery("#billingAddressSummary").hide().removeClass('hidden').slideDown();
-    } else {
-        jQuery("#billingAddressSummary").slideDown();
+    jQuery("#billingAddressChoice").slideUp();
+
+    var selectedCcInfo = jQuery('input[name="ccinfo"]:checked');
+
+    var selectedCcBillingContactId = jQuery(selectedCcInfo).data('billing-contact-id');
+
+    var selectedBillingContactData = jQuery('.billing-contact-info[data-billing-contact-id="' + selectedCcBillingContactId + '"]');
+
+    if (selectedBillingContactData.length) {
+        jQuery('.billing-contact-info').hide();
+        jQuery(selectedBillingContactData).show();
+    }
+}
+
+/**
+ * Hide new bank account input fields.
+ */
+function hideNewAccountInputFields() {
+    hideNewBillingAddressFields();
+
+    jQuery(".bank-details").slideUp();
+    jQuery("#billingAddressChoice").slideUp();
+
+    var selectedAccount = jQuery('input[name="paymethod"]:checked'),
+        selectedContactId = jQuery(selectedAccount).data('billing-contact-id'),
+        selectedContactData = jQuery('.billing-contact-info[data-billing-contact-id="' + selectedContactId + '"]');
+
+    if (selectedContactData.length) {
+        jQuery('.billing-contact-info').hide();
+        jQuery(selectedContactData).show();
     }
 }
 
@@ -15724,8 +17625,7 @@ function smoothScroll(element) {
     }, 500);
 }
 
-function irtpSubmit()
-{
+function irtpSubmit() {
     allowSubmit = true;
     var optOut = 0,
         optOutCheckbox = jQuery('#modalIrtpOptOut'),
@@ -15741,12 +17641,22 @@ function irtpSubmit()
     jQuery('#frmDomainContactModification').submit();
 }
 
+function showOverlay(msg) {
+    jQuery('#fullpage-overlay .msg').html(msg);
+    jQuery('#fullpage-overlay').removeClass('hidden').show();
+}
+
+function hideOverlay() {
+    jQuery('#fullpage-overlay').hide();
+}
+
 /*!
  * WHMCS Ajax Driven Modal Framework
  *
- * @copyright Copyright (c) WHMCS Limited 2005-2016
+ * @copyright Copyright (c) WHMCS Limited 2005-2019
  * @license http://www.whmcs.com/license/ WHMCS Eula
  */
+var ajaxModalSubmitEvents = [];
 jQuery(document).ready(function(){
     jQuery(document).on('click', '.open-modal', function(e) {
         e.preventDefault();
@@ -15839,6 +17749,11 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
     }, 'json').fail(function() {
         jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
         jQuery('#modalAjax .loader').fadeOut();
+    }).always(function () {
+        if (successDataTable) {
+            var modalForm = jQuery('#modalAjax').find('form');
+            modalForm.data('successDataTable', successDataTable);
+        }
     });
 
     //define modal submit button click
@@ -15854,38 +17769,73 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
          */
         var submitButton = jQuery('#' + submitId);
         submitButton.off('click');
-        submitButton.on('click', function() {
-            var modalForm = jQuery('#modalAjax').find('form');
-            jQuery('#modalAjax .loader').show();
-            var modalPost = WHMCS.http.jqClient.post(
-                modalForm.attr('action'),
-                modalForm.serialize(),
-                function(data) {
-                    if (successDataTable) {
-                        data.successDataTable = successDataTable;
-                    }
-                    updateAjaxModal(data);
-                },
-                'json'
-            ).fail(function(xhr) {
-                var data = xhr.responseJSON;
-                var genericErrorMsg = 'An error occurred while communicating with the server. Please try again.';
-                if (data && data.data) {
-                    data = data.data;
-                    if (data.errorMsg) {
-                        jQuery.growl.warning({ title: data.errorMsgTitle, message: data.errorMsg });
-                    } else if (data.data.body) {
-                        jQuery('#modalAjax .modal-body').html(data.body);
-                    } else {
-                        jQuery('#modalAjax .modal-body').html(genericErrorMsg);
-                    }
-                } else {
-                    jQuery('#modalAjax .modal-body').html(genericErrorMsg);
-                }
-                jQuery('#modalAjax .loader').fadeOut();
-            });
-        })
+        submitButton.on('click', submitIdAjaxModalClickEvent);
     }
+}
+
+function submitIdAjaxModalClickEvent ()
+{
+    if (jQuery(this).hasClass('disabled')) {
+        return;
+    }
+    var canContinue = true,
+        btn = jQuery(this);
+    btn.addClass('disabled');
+    jQuery('#modalAjax .loader').show();
+    if (ajaxModalSubmitEvents.length) {
+        jQuery.each(ajaxModalSubmitEvents, function (index, value) {
+            var fn = window[value];
+            if (canContinue && typeof fn === 'function') {
+                canContinue = fn();
+            }
+        });
+    }
+    if (!canContinue) {
+        btn.removeClass('disabled');
+        jQuery('#modalAjax .loader').hide();
+        return;
+    }
+    var modalForm = jQuery('#modalAjax').find('form');
+    var modalBody = jQuery('#modalAjax .modal-body');
+    var modalErrorContainer = jQuery(modalBody).find('.admin-modal-error');
+
+    jQuery(modalErrorContainer).slideUp();
+
+    var modalPost = WHMCS.http.jqClient.post(
+        modalForm.attr('action'),
+        modalForm.serialize(),
+        function(data) {
+            if (modalForm.data('successDataTable')) {
+                data.successDataTable = modalForm.data('successDataTable');
+            }
+            updateAjaxModal(data);
+        },
+        'json'
+    ).fail(function(xhr) {
+        var data = xhr.responseJSON;
+        var genericErrorMsg = 'An error occurred while communicating with the server. Please try again.';
+        if (data && data.data) {
+            data = data.data;
+            if (data.errorMsg) {
+                if (modalErrorContainer.length > 0) {
+                    jQuery(modalErrorContainer)
+                        .html(data.errorMsg)
+                        .slideDown();
+                } else {
+                    jQuery.growl.warning({title: data.errorMsgTitle, message: data.errorMsg});
+                }
+            } else if (data.data.body) {
+                jQuery(modalBody).html(data.body);
+            } else {
+                jQuery(modalBody).html(genericErrorMsg);
+            }
+        } else {
+            jQuery(modalBody).html(genericErrorMsg);
+        }
+        jQuery('#modalAjax .loader').fadeOut();
+    }).always(function () {
+        btn.removeClass('disabled');
+    });
 }
 
 function updateAjaxModal(data) {
@@ -15900,6 +17850,13 @@ function updateAjaxModal(data) {
     if (data.successDataTable) {
         WHMCS.ui.dataTable.getTableById(data.successDataTable, undefined).ajax.reload();
     }
+    if (data.redirect) {
+        window.location = data.redirect;
+        dialogClose();
+    }
+    if (data.successWindow && typeof window[data.successWindow] === "function") {
+        window[data.successWindow]();
+    }
     if (data.dismiss) {
         dialogClose();
     }
@@ -15907,7 +17864,15 @@ function updateAjaxModal(data) {
         jQuery.growl.notice({ title: data.successMsgTitle, message: data.successMsg });
     }
     if (data.errorMsg) {
-        jQuery.growl.warning({ title: data.errorMsgTitle, message: data.errorMsg });
+        var inModalErrorContainer = jQuery('#modalAjax .modal-body .admin-modal-error');
+
+        if (inModalErrorContainer.length > 0 && !data.dismiss) {
+            jQuery(inModalErrorContainer)
+                .html(data.errorMsg)
+                .slideDown();
+        } else {
+            jQuery.growl.warning({title: data.errorMsgTitle, message: data.errorMsg});
+        }
     }
     if (data.title) {
         jQuery('#modalAjax .modal-title').html(data.title);
@@ -15943,18 +17908,7 @@ function updateAjaxModal(data) {
          */
         var submitButton = jQuery('#' + data.submitId);
         submitButton.off('click');
-        submitButton.on('click', function() {
-            var modalForm = jQuery('#modalAjax').find('form');
-            jQuery('#modalAjax .loader').show();
-            var modalPost = WHMCS.http.jqClient.post(modalForm.attr('action'), modalForm.serialize(),
-                function(data) {
-                    updateAjaxModal(data);
-                }, 'json').fail(function() {
-                    jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
-                    jQuery('#modalAjax .loader').fadeOut();
-                }
-            );
-        })
+        submitButton.on('click', submitIdAjaxModalClickEvent);
     }
 
     jQuery('#modalAjax .loader').fadeOut();
@@ -15966,7 +17920,8 @@ function updateAjaxModal(data) {
 function dialogSubmit() {
     jQuery('#modalAjax .modal-submit').prop("disabled", true);
     jQuery('#modalAjax .loader').show();
-    WHMCS.http.jqClient.post('', jQuery('#modalAjax').find('form').serialize(),
+    var postUrl = jQuery('#modalAjax').find('form').attr('action');
+    WHMCS.http.jqClient.post(postUrl, jQuery('#modalAjax').find('form').serialize(),
         function(data) {
             updateAjaxModal(data);
         }, 'json').fail(function() {
@@ -15977,6 +17932,21 @@ function dialogSubmit() {
 
 function dialogClose() {
     jQuery('#modalAjax').modal('hide');
+}
+
+function addAjaxModalSubmitEvents(functionName) {
+    if (functionName) {
+        ajaxModalSubmitEvents.push(functionName);
+    }
+}
+
+function removeAjaxModalSubmitEvents(functionName) {
+    if (functionName) {
+        var index = ajaxModalSubmitEvents.indexOf(functionName);
+        if (index >= 0) {
+            ajaxModalSubmitEvents.splice(index, 1);
+        }
+    }
 }
 
 /* ========================================================================
@@ -38298,13 +40268,13 @@ v("intlTelInputUtils.numberType",{FIXED_LINE:0,MOBILE:1,FIXED_LINE_OR_MOBILE:2,T
  *
  * Using https://github.com/jackocnr/intl-tel-input
  *
- * @copyright Copyright (c) WHMCS Limited 2005-2017
- * @license http://www.whmcs.com/license/ WHMCS Eula
+ * @copyright Copyright (c) WHMCS Limited 2005-2019
+ * @license https://www.whmcs.com/license/ WHMCS Eula
  */
 
 jQuery(document).ready(function() {
     if (jQuery('body').data('phone-cc-input')) {
-        var phoneInput = jQuery('input[name^="phone"], input[name$="phone"]').not('input[type="hidden"]');
+        var phoneInput = jQuery('input[name^="phone"], input[name$="phone"], input[name="domaincontactphonenumber"]').not('input[type="hidden"]');
         if (phoneInput.length) {
             var countryInput = jQuery('[name^="country"], [name$="country"]'),
                 initialCountry = 'us';
@@ -38318,6 +40288,9 @@ jQuery(document).ready(function() {
             phoneInput.each(function(){
                 var thisInput = jQuery(this),
                     inputName = thisInput.attr('name');
+                if (inputName === 'domaincontactphonenumber') {
+                    initialCountry = jQuery('[name="domaincontactcountry"]').val().toLowerCase();
+                }
                 jQuery(this).before(
                     '<input id="populatedCountryCode' + inputName + '" type="hidden" name="country-calling-code-' + inputName + '" value="" />'
                 );

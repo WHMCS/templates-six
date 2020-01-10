@@ -10,6 +10,17 @@
     {include file="$template/includes/alert.tpl" type="error" msg=$LANG.cancellationrequestedexplanation textcenter=true idname="alertPendingCancellation"}
 {/if}
 
+{if $unpaidInvoice}
+    <div class="alert alert-{if $unpaidInvoiceOverdue}danger{else}warning{/if}" id="alert{if $unpaidInvoiceOverdue}Overdue{else}Unpaid{/if}Invoice">
+        <div class="pull-right">
+            <a href="viewinvoice.php?id={$unpaidInvoice}" class="btn btn-xs btn-default">
+                {lang key='payInvoice'}
+            </a>
+        </div>
+        {$unpaidInvoiceMessage}
+    </div>
+{/if}
+
 <div class="tab-content margin-bottom">
     <div class="tab-pane fade in active" id="tabOverview">
 
@@ -110,8 +121,13 @@
                                     <a href="#configoptions" data-toggle="tab"><i class="fas fa-cubes fa-fw"></i> {$LANG.orderconfigpackage}</a>
                                 </li>
                             {/if}
-                            {if $customfields}
+                            {if $metricStats}
                                 <li{if !$domain && !$moduleclientarea && !$configurableoptions} class="active"{/if}>
+                                    <a href="#metrics" data-toggle="tab"><i class="fas fa-chart-line fa-fw"></i> {$LANG.metrics.title}</a>
+                                </li>
+                            {/if}
+                            {if $customfields}
+                                <li{if !$domain && !$moduleclientarea && !$metricStats && !$configurableoptions} class="active"{/if}>
                                     <a href="#additionalinfo" data-toggle="tab"><i class="fas fa-info fa-fw"></i> {$LANG.additionalInfo}</a>
                                 </li>
                             {/if}
@@ -306,8 +322,13 @@
                             {/foreach}
                         </div>
                     {/if}
+                    {if $metricStats}
+                        <div class="tab-pane fade{if !$domain && !$moduleclientarea && !$configurableoptions} in active{/if}" id="metrics">
+                            {include file="$template/clientareaproductusagebilling.tpl"}
+                        </div>
+                    {/if}
                     {if $customfields}
-                        <div class="tab-pane fade{if !$domain && !$moduleclientarea && !$configurableoptions} in active{/if} text-center" id="additionalinfo">
+                        <div class="tab-pane fade{if !$domain && !$moduleclientarea && !$configurableoptions && !$metricStats} in active{/if} text-center" id="additionalinfo">
                             {foreach from=$customfields item=field}
                                 <div class="row">
                                     <div class="col-sm-5">
@@ -432,16 +453,21 @@
             <input type="hidden" name="modulechangepassword" value="true" />
 
             <div id="newPassword1" class="form-group has-feedback">
-                <label for="inputNewPassword1" class="col-sm-5 control-label">{$LANG.newpassword}</label>
-                <div class="col-sm-6">
+                <label for="inputNewPassword1" class="col-sm-4 control-label">{$LANG.newpassword}</label>
+                <div class="col-sm-5">
                     <input type="password" class="form-control" id="inputNewPassword1" name="newpw" autocomplete="off" />
                     <span class="form-control-feedback glyphicon"></span>
                     {include file="$template/includes/pwstrength.tpl"}
                 </div>
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-default generate-password" data-targetfields="inputNewPassword1,inputNewPassword2">
+                        {$LANG.generatePassword.btnLabel}
+                    </button>
+                </div>
             </div>
             <div id="newPassword2" class="form-group has-feedback">
-                <label for="inputNewPassword2" class="col-sm-5 control-label">{$LANG.confirmnewpassword}</label>
-                <div class="col-sm-6">
+                <label for="inputNewPassword2" class="col-sm-4 control-label">{$LANG.confirmnewpassword}</label>
+                <div class="col-sm-5">
                     <input type="password" class="form-control" id="inputNewPassword2" name="confirmpw" autocomplete="off" />
                     <span class="form-control-feedback glyphicon"></span>
                     <div id="inputNewPassword2Msg">

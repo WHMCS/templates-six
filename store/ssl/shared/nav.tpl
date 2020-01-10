@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-ssl" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">{lang key='store.toggleNav'}</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -11,18 +11,18 @@
     <div class="collapse navbar-collapse" id="nav-ssl">
       <ul class="nav navbar-nav">
         {if count($certificates.dv) > 0 || $inPreview}
-            <li{if $current == 'dv'} class="active"{/if}><a href="{routePath('store-ssl-certificates-dv')}">Standard SSL (DV)</a></li>
+            <li{if $current == 'dv'} class="active"{/if}><a href="{routePath('store-ssl-certificates-dv')}">{lang key='store.ssl.shared.dvSsl'}</a></li>
         {/if}
         {if count($certificates.ov) > 0 || $inPreview}
-            <li{if $current == 'ov'} class="active"{/if}><a href="{routePath('store-ssl-certificates-ov')}">Organisation Validation (OV)</a></li>
+            <li{if $current == 'ov'} class="active"{/if}><a href="{routePath('store-ssl-certificates-ov')}">{lang key='store.ssl.shared.ovSsl'}</a></li>
         {/if}
         {if count($certificates.ev) > 0 || $inPreview}
-            <li{if $current == 'ev'} class="active"{/if}><a href="{routePath('store-ssl-certificates-ev')}">Extended Validation (EV)</a></li>
+            <li{if $current == 'ev'} class="active"{/if}><a href="{routePath('store-ssl-certificates-ev')}">{lang key='store.ssl.shared.evSsl'}</a></li>
         {/if}
         {if count($certificates.wildcard) > 0 || $inPreview}
-            <li{if $current == 'wildcard'} class="active"{/if}><a href="{routePath('store-ssl-certificates-wildcard')}">Wildcard</a></li>
+            <li{if $current == 'wildcard'} class="active"{/if}><a href="{routePath('store-ssl-certificates-wildcard')}">{lang key='store.ssl.shared.wildcardSsl'}</a></li>
         {/if}
-        <li{if $current == 'competitiveupgrade'} class="active"{/if}><a href="{routePath('store-ssl-certificates-competitiveupgrade')}">Switch to Us</a></li>
+        <li{if $current == 'competitiveupgrade'} class="active"{/if}><a href="{routePath('store-ssl-certificates-competitiveupgrade')}">{lang key='store.ssl.shared.switch'}</a></li>
       </ul>
     </div>
   </div>

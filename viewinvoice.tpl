@@ -7,7 +7,9 @@
     <title>{$companyname} - {$pagetitle}</title>
 
     <link href="{$WEB_ROOT}/templates/{$template}/css/all.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
     <link href="{$WEB_ROOT}/templates/{$template}/css/invoice.css" rel="stylesheet">
+    <script src="{$WEB_ROOT}/templates/{$template}/js/scripts.min.js?v={$versionHash}"></script>
 
 </head>
 <body>
@@ -69,6 +71,8 @@
                 {include file="$template/includes/panel.tpl" type="success" headerTitle=$LANG.success bodyContent=$LANG.invoicePaymentSuccessAwaitingNotify bodyTextCenter=true}
             {elseif $paymentSuccess}
                 {include file="$template/includes/panel.tpl" type="success" headerTitle=$LANG.success bodyContent=$LANG.invoicepaymentsuccessconfirmation bodyTextCenter=true}
+            {elseif $paymentInititated}
+                {include file="$template/includes/panel.tpl" type="info" headerTitle=$LANG.success bodyContent=$LANG.invoicePaymentInitiated bodyTextCenter=true}
             {elseif $pendingReview}
                 {include file="$template/includes/panel.tpl" type="info" headerTitle=$LANG.success bodyContent=$LANG.invoicepaymentpendingreview bodyTextCenter=true}
             {elseif $paymentFailed}
@@ -109,13 +113,13 @@
             <div class="row">
                 <div class="invoice-col right">
                     <strong>{$LANG.paymentmethod}</strong><br>
-                    <span class="small-text">
+                    <span class="small-text" data-role="paymethod-info">
                         {if $status eq "Unpaid" && $allowchangegateway}
                             <form method="post" action="{$smarty.server.PHP_SELF}?id={$invoiceid}" class="form-inline">
                                 {$gatewaydropdown}
                             </form>
                         {else}
-                            {$paymentmethod}
+                            {$paymentmethod}{if $paymethoddisplayname} ({$paymethoddisplayname}){/if}
                         {/if}
                     </span>
                     <br /><br />
@@ -182,13 +186,13 @@
                                     <td class="total-row text-right"><strong>{$LANG.invoicessubtotal}</strong></td>
                                     <td class="total-row text-center">{$subtotal}</td>
                                 </tr>
-                                {if $taxrate}
+                                {if $taxname}
                                     <tr>
                                         <td class="total-row text-right"><strong>{$taxrate}% {$taxname}</strong></td>
                                         <td class="total-row text-center">{$tax}</td>
                                     </tr>
                                 {/if}
-                                {if $taxrate2}
+                                {if $taxname2}
                                     <tr>
                                         <td class="total-row text-right"><strong>{$taxrate2}% {$taxname2}</strong></td>
                                         <td class="total-row text-center">{$tax2}</td>
@@ -255,6 +259,16 @@
     </div>
 
     <p class="text-center hidden-print"><a href="clientarea.php">{$LANG.invoicesbacktoclientarea}</a></a></p>
+
+    <div id="fullpage-overlay" class="hidden">
+        <div class="outer-wrapper">
+            <div class="inner-wrapper">
+                <img src="{$WEB_ROOT}/assets/img/overlay-spinner.svg">
+                <br>
+                <span class="msg"></span>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

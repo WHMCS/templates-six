@@ -4,8 +4,8 @@
 
     <div class="hero">
         <div class="container">
-            <h2>Switch to Symantec SSL</h2>
-            <h3>Replace your current SSL Certificate without losing any time or money</h3>
+            <h2>{lang key='store.ssl.competitiveUpgrades.switch'}</h2>
+            <h3>{lang key='store.ssl.competitiveUpgrades.replace'}</h3>
         </div>
     </div>
 
@@ -15,20 +15,20 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <h4>Buy a new SSL Certificate from us and we'll add any remaining time you have on your current SSL Certificate up to a maximum of an additional 12 months <strong>free of charge</strong>.</h4>
+                    <h4>{lang key='store.ssl.competitiveUpgrades.buyWithTime'} <strong>{lang key='store.ssl.competitiveUpgrades.foc'}</strong>.</h4>
 
                     <div class="alert alert-warning text-left">
-                        <strong><i class="fas fa-star fa-5x pull-left"></i> Example Scenario</strong><br>
-                        Your current 2 year certificate has 11 months left to run.
-                        You make the switch and your new certificate will be valid for <strong>1 year AND 11 months</strong>.
-                        The fee for the new certificate will <strong>ONLY</strong> be for 1 year.
+                        <strong><i class="fas fa-star fa-5x pull-left"></i> {lang key='store.ssl.competitiveUpgrades.exampleScenario'}</strong><br>
+                        {lang key='store.ssl.competitiveUpgrades.example.line1'}
+                        {lang key='store.ssl.competitiveUpgrades.example.line2'}
+                        {lang key='store.ssl.competitiveUpgrades.example.line3'}
                     </div>
 
-                    <p>This special upgrade offer is available for SSL Certificates issued by one of the supported competitor SSL providers*. Enter your domain name below to validate your eligibility and see how much you could save.</p>
+                    <p>{lang key='store.ssl.competitiveUpgrades.eligibilityCheck'}</p>
 
                     {if $connectionError}
                         <div class="alert alert-danger">
-                            Unable to connect to the validation API. Please try again later or contact support.
+                            {lang key='store.ssl.competitiveUpgrades.checkFailed'}
                         </div>
                     {elseif $error}
                         <div class="alert alert-danger">
@@ -43,34 +43,34 @@
                         {if $validated}
                             {if $eligible}
                                 <div class="alert alert-success text-center">
-                                    Congratulations! Your domain is eligible for the Symantec Competitive Upgrade Offer.
+                                    {lang key='store.ssl.competitiveUpgrades.eligible'}
                                 </div>
                                 <table class="table table-striped">
                                     <tr>
-                                        <td>Current Expiration Date</td>
+                                        <td>{lang key='store.ssl.competitiveUpgrades.expirationDate'}</td>
                                         <td>{$expirationDate}</td>
                                     </tr>
                                     <tr>
-                                        <td>Months Remaining</td>
-                                        <td>{$monthsRemaining} Months</td>
+                                        <td>{lang key='store.ssl.competitiveUpgrades.monthsRemaining'}</td>
+                                        <td>{lang key='store.ssl.competitiveUpgrades.months' months=$monthsRemaining}</td>
                                     </tr>
                                     <tr>
-                                        <td>Free Extension Eligibility</td>
-                                        <td>{$freeExtensionMonths} Months{if $freeExtensionMonths < $monthsRemaining} (Maximum of 12 months offered){/if}</td>
+                                        <td>{lang key='store.ssl.competitiveUpgrades.freeExtension'}</td>
+                                        <td>{lang key='store.ssl.competitiveUpgrades.months' months=$freeExtensionMonths}{if $freeExtensionMonths < $monthsRemaining} ({lang key='store.ssl.competitiveUpgrades.maxMonths'}){/if}</td>
                                     </tr>
                                     {if isset($maxPotentialSavingAmount)}
                                         <tr>
-                                            <td>Potential Saving</td>
-                                            <td>Save up to <strong>{$maxPotentialSavingAmount}</strong> on a new certificate!</td>
+                                            <td>{lang key='store.ssl.competitiveUpgrades.saving'}</td>
+                                            <td>{lang key='store.ssl.competitiveUpgrades.savingDescription' saveAmount=$maxPotentialSavingAmount}</td>
                                         </tr>
                                     {/if}
                                 </table>
                                 <a class="btn btn-primary btn-lg" href="{routePath('store-ssl-certificates-ev')}">
-                                    Continue to Choose SSL Certificate
+                                    {lang key='store.ssl.competitiveUpgrades.continue'}
                                 </a>
                             {else}
                                 <div class="alert alert-warning text-center">
-                                    Unfortunately the domain you entered is not eligible for the Symantec Competitive Upgrade Offer. Please verify the domain is entered correctly and has an active and current SSL Certificate from one of the supported vendors*.
+                                    {lang key='store.ssl.competitiveUpgrades.ineligible'}*.
                                 </div>
                             {/if}
                         {/if}
@@ -78,14 +78,14 @@
                         {if !$validated || !$eligible}
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon">https://</span>
-                                <input type="text" name="url" value="{$url}" class="form-control" placeholder="Enter your domain here">
+                                <input type="text" name="url" value="{$url}" class="form-control" placeholder="{lang key='store.ssl.competitiveUpgrades.enterDomain'}">
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary">
-                                        Validate
+                                        {lang key='store.ssl.competitiveUpgrades.validate'}
                                     </button>
                                 </span>
                             </div>
-                            <p><small>* Offer valid for Comodo, GlobalSign, Entrust, and GoDaddy SSL Certificates.</small></p>
+                            <p><small>* {lang key='store.ssl.competitiveUpgrades.competitors'}</small></p>
                         {/if}
                     </form>
 

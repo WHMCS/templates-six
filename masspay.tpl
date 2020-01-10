@@ -12,7 +12,7 @@
             {foreach from=$invoiceitems key=invid item=invoiceitem}
                 <tr>
                     <td colspan="2" class="bg-info">
-                        <strong>{$LANG.invoicenumber} {$invid}</strong>
+                        <strong>{$LANG.invoicenumber} {if $invoiceitem.0.invoicenum}{$invoiceitem.0.invoicenum}{else}{$invid}{/if}</strong>
                         <input type="hidden" name="invoiceids[]" value="{$invid}" />
                     </td>
                 </tr>

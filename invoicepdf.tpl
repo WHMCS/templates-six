@@ -51,7 +51,7 @@ foreach ($companyaddress as $addressLine) {
     $pdf->SetFont($pdfFont, '', 9);
 }
 if ($taxCode) {
-    $pdf->Cell(180, 4, trim($taxCode), 0, 1, 'R');
+    $pdf->Cell(180, 4, $taxIdLabel . ': ' . trim($taxCode), 0, 1, 'R');
 }
 $pdf->Ln(5);
 
@@ -92,7 +92,7 @@ if ($clientsdetails["address2"]) {
 $pdf->Cell(0, 4, $clientsdetails["city"] . ", " . $clientsdetails["state"] . ", " . $clientsdetails["postcode"], 0, 1, 'L');
 $pdf->Cell(0, 4, $clientsdetails["country"], 0, 1, 'L');
 if (array_key_exists('tax_id', $clientsdetails) && $clientsdetails['tax_id']) {
-    $pdf->Cell(0, 4, $clientsdetails['tax_id'], 0, 1, 'L');
+    $pdf->Cell(0, 4, $taxIdLabel . ': ' . $clientsdetails['tax_id'], 0, 1, 'L');
 }
 if ($customfields) {
     $pdf->Ln();
