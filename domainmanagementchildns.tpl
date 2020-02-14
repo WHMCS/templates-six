@@ -138,10 +138,14 @@
 						<input type="hidden" name="oldcns" value="{$dnsname.0}"/>
 						<input type="hidden" name="domainid" value="{$domainid}"/>
 						<input type="hidden" name="domain" value="{$domain}"/>
-						<input name="newcns" type="text" class="form-control"  value="{$dnsname.0}" size="25"/>
-						<span class="input-group-btn">
-							<button name="submit" type="submit" class="btn btn-success">{$LANG.rcdom_modcnsbutton}</button>
-						</span>
+						<div class="col-lg-12">
+							<div class="input-group">						
+								<input name="newcns" type="text" class="form-control"  value="{$dnsname.0}" size="25"/>
+								<span class="input-group-btn">
+									<button name="submit" type="submit" class="btn btn-success">{$LANG.rcdom_modcnsbutton}</button>
+								</span>
+							</div>
+						</div>
 					</form>
 				</div>
 			</td>
@@ -156,10 +160,14 @@
 							<input type="hidden" name="oldip" value="{$dnsip}"/>
 							<input type="hidden" name="domainid" value="{$domainid}"/>
 							<input type="hidden" name="domain" value="{$domain}"/>
-							<input class="form-control"  name="newip" type="text" value="{$dnsip}" size="15"/>
-							<span class="input-group-btn">
-								<button class="btn btn-success" type="submit">{$LANG.rcdom_modcnsipbutton}</button>
-							</span>
+							<div class="col-lg-12">
+								<div class="input-group">						
+									<input class="form-control"  name="newip" type="text" value="{$dnsip}" size="15"/>
+									<span class="input-group-btn">
+										<button class="btn btn-success" type="submit">{$LANG.rcdom_modcnsipbutton}</button>
+									</span>
+								</div>
+							</div>
 						</form>
 					</div>
 					<br />
