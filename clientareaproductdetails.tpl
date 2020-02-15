@@ -1,3 +1,122 @@
+<script language="JavaScript" type="text/javascript">
+{literal}
+function viewPassword()
+{
+var passwordInput = document.getElementById('password-field');
+var passStatus = document.getElementById('pass-status');
+
+if (passwordInput.type == 'password'){
+passwordInput.type='text';
+passStatus.className='fa fa-eye-slash';
+
+}
+else{
+passwordInput.type='password';
+passStatus.className='fa fa-eye';
+}
+}
+{/literal}
+</script>
+
+{if $producttype=="other"}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> VPN Login Credentials</h3>
+      </div>
+      <div class="panel-body">
+        <div class="vpn-package-details">
+          <div class="row">
+            <div class="col-sm-5 text-right">
+              <strong>Username:</strong>
+            </div>
+            <div class="col-sm-7 text-left">
+              {$username}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 text-right">
+              <strong>Password:</strong>
+            </div>
+            <div class="col-sm-7 text-left">
+              <input type="password" id="password-field" value="{$password}">
+              <i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{elseif $producttype=="hostingaccount"}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Hosting Login Credentials</h3>
+      </div>
+      <div class="panel-body">
+        <div class="hosting-package-details">
+          <div class="row">
+            <div class="row">
+              <div class="col-sm-5 text-right">
+                <strong>Username:</strong>
+              </div>
+              <div class="col-sm-7 text-left">
+                {$username}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5 text-right">
+                <strong>Password:</strong>
+              </div>
+              <div class="col-sm-7 text-left">
+                <input type="password" id="password-field" value="{$password}">
+                <i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{elseif $producttype=="server"}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Server Login Credentials</h3>
+      </div>
+      <div class="panel-body">
+        <div class="hosting-package-details">
+          <div class="row">
+            <div class="row">
+              <div class="col-sm-5 text-right">
+                <strong>Username:</strong>
+              </div>
+              <div class="col-sm-7 text-left">
+                root
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5 text-right">
+                <strong>Password:</strong>
+              </div>
+              <div class="col-sm-7 text-left">
+                <input type="password" id="password-field" value="{$password}">
+                <i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/if}
+
 {if $modulecustombuttonresult}
     {if $modulecustombuttonresult == "success"}
         {include file="$template/includes/alert.tpl" type="success" msg=$LANG.moduleactionsuccess textcenter=true idname="alertModuleCustomButtonSuccess"}
@@ -20,7 +139,17 @@
         {$unpaidInvoiceMessage}
     </div>
 {/if}
-
+<!-- Uptime Robot Modification by WHMCSSERVICES.COM -->
+<script type="text/javascript" src="{$systemurl}/assets/whmcsservices/Chart.js"></script>
+<style>
+    .tile .stat {
+        margin-top : 20px;
+        font-size: 20px;
+        line-height: 1;
+        color: #31708f;
+    }
+</style>
+<!-- End Uptime Robot Modification by WHMCSSERVICES.COM -->
 <div class="tab-content margin-bottom">
     <div class="tab-pane fade in active" id="tabOverview">
 
@@ -136,11 +265,114 @@
                                     <a href="#resourceusage" data-toggle="tab"><i class="fas fa-inbox fa-fw"></i> {$LANG.resourceUsage}</a>
                                 </li>
                             {/if}
+                            <!-- Uptime Robot Modification by WHMCSSERVICES.COM -->
+                            <li>
+                                <a href="#monitor" data-toggle="tab" {if $monitoring} class="active"{/if}><i class="fas fa-inbox fa-fw"></i> Uptime Monitoring</a>
+                            </li>
+                            <!-- End Uptime Robot Modification by WHMCSSERVICES.COM -->
                         </ul>
                     </div>
                 </div>
 
                 <div class="tab-content product-details-tab-container">
+                  <!-- Uptime Robot Modification by WHMCSSERVICES.COM -->
+                  <div class="tab-pane fade in" id="monitor">
+                      <div class="row clearfix">
+                          <div class="col-xs-12">
+                              <ul class="nav nav-tabs nav-tabs-overflow">
+                                  {foreach name=hosts from=$monitors key=myId item=data}
+                                      <li {if $smarty.foreach.hosts.first}class="active"{/if}><a href="#{$data.id}" data-toggle="tab"><i class="fa fa-globe fa-fw"></i> {$data.friendlyName}</a></li>
+
+                                  {/foreach}
+
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="tab-content product-details-tab-container">
+                          {foreach name=hosts from=$monitors key=myId item=data}
+                              <div class="tab-pane fade in {if $smarty.foreach.hosts.first}active{/if} text-center" id="{$data.id}">
+
+                                  <div class="tiles clearfix">
+                                      <div class="row">
+                                          <div class="col-sm-3 col-xs-6 tile">
+                                              <div class="stat">{$data.uptime24Hours}%</div>
+                                              <div class="title">{$addonLang.uptimeLast24}</div>
+                                              <div class="highlight bg-color-blue"></div>
+                                          </div>
+                                          <div class="col-sm-3 col-xs-6 tile">
+                                              <div class="stat">{$data.uptimeBar7Days}%</div>
+                                              <div class="title">{$addonLang.last7Days}</div>
+                                              <div class="highlight bg-color-blue"></div>
+                                          </div>
+                                          <div class="col-sm-3 col-xs-6 tile">
+                                              <div class="stat">{$data.uptimeBar30Days}%</div>
+                                              <div class="title">{$addonLang.last30Days}</div>
+                                              <div class="highlight bg-color-blue"></div>
+                                          </div>
+                                          <div class="col-sm-3 col-xs-6 tile">
+                                              <div class="stat">{$data.uptimeBar365Days}%</div>
+                                              <div class="title">{$addonLang.last365Days}</div>
+                                              <div class="highlight bg-color-blue"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-md-6"> <div class="panel panel-{$data.statuspanelSort}"> <div class="panel-heading">{$addonLang.currentStatus}</div>
+                                              <div class="panel-body">{$addonLang.currentStatusText} {$data.currentStatus}<br/>{$addonLang.monitorStartedText} {$data.monitorStarted}<br/>{$addonLang.upSinceText} {$data.upSince}
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6"> <div class="panel panel-warning"> <div class="panel-heading">{$addonLang.lastDowntime}</div>
+                                              <div class="panel-body">{$addonLang.lastDowntimeText} {$data.lastDowntime}
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-md-12"> <div class="panel panel-success"> <div class="panel-heading">{$addonLang.responseTimes}</div>
+                                              <div class="panel-body">
+                                                  <canvas id="myChart{$data.id}" width="400" height="400"></canvas>
+                                                  <script>
+                                                      var ctx = document.getElementById("myChart{$data.id}").getContext('2d');
+                                                      var myChart = new Chart(ctx, {
+                                                          type: 'line',
+                                                          data: {
+                                                              labels: [{$data.chartLabel}],
+                                                              datasets: [{
+                                                                      label: '{$addonLang.responseTimesChart}',
+                                                                      data: [{$data.chartData}],
+                                                                      borderWidth: 1
+                                                                  }]
+                                                          },
+                                                          options: {
+                                                              scales: {
+                                                                  yAxes: [{
+                                                                          ticks: {
+                                                                              beginAtZero: true
+                                                                          }
+                                                                      }]
+                                                              }
+                                                          }
+                                                      });
+                                                  </script>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          {foreachelse}
+
+                              <div class="alert alert-warning" role="alert">{$addonLang.caNoMonitors}</div>
+
+                          {/foreach}
+                      </div>
+
+
+                  </div>
+
+                  <!-- End Uptime Robot Modification by WHMCSSERVICES.COM -->
                     {if $domain}
                         <div class="tab-pane fade in active text-center" id="domain">
                             {if $type eq "server"}

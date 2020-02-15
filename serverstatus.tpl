@@ -1,3 +1,4 @@
+<h1 style="text-align: center;"><strong><span style="color: #0000ff;"><a style="color: #0000ff;" href="https://status.whattheserver.com/" target="_blank" rel="noopener">See our Uptime and Server Stats by clicking here</a></span></strong></h1>
 {foreach from=$issues item=issue}
 
     <div class="panel {if $issue.clientaffected}panel-warning{else}panel-info{/if}">

@@ -10,13 +10,6 @@
     </div>
 </section>
 
-<section id="footer">
-    <div class="container">
-        <a href="#" class="back-to-top"><i class="fas fa-chevron-up"></i></a>
-        <p>{lang key="copyrightFooterNotice" year=$date_year company=$companyname}</p>
-    </div>
-</section>
-
 <div id="fullpage-overlay" class="hidden">
     <div class="outer-wrapper">
         <div class="inner-wrapper">
