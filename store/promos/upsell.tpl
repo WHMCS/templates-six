@@ -11,7 +11,7 @@
             <h3>
                 {$promotion->getHeadline()}
                 {if $promotion->getLearnMoreRoute()}
-                    <small><a href="{routePath($promotion->getLearnMoreRoute())}">Learn more...</a></small>
+                    <small><a href="{routePath($promotion->getLearnMoreRoute())}">{lang key="learnMore"}...</a></small>
                 {/if}
             </h3>
             <h4>{$promotion->getTagline()}</h4>
@@ -37,7 +37,7 @@
                     {if $product->isFree()}
                         {lang key="orderfree"}
                     {else}
-                        from just
+                        {lang key="fromJust"}
                         {if $product->pricing()->first()->isYearly()}
                             {$product->pricing()->first()->yearlyPrice()}
                         {else}

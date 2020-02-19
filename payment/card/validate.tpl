@@ -77,7 +77,12 @@
         jQuery(document).ready(function() {
             jQuery('.paymethod-info input[name="ccinfo"]').on('ifChecked', function() {
                 if (jQuery(this).val() === 'new') {
-                    window.location = window.location + '&new=1';
+                    if (window.location.toString().match(/\?/)) {
+                        window.location = window.location + '&ccinfo=new';
+                    } else {
+                        window.location = window.location + '?ccinfo=new';
+                    }
+
                     return true;
                 }
             });
