@@ -11,7 +11,7 @@
             <h3>
                 {$promotion->getHeadline()}
                 {if $promotion->getLearnMoreRoute()}
-                    <small><a href="{routePath($promotion->getLearnMoreRoute())}">{lang key="learnMore"}...</a></small>
+                    <small><a href="{routePath($promotion->getLearnMoreRoute())}">{lang key='learnmore'}...</a></small>
                 {/if}
             </h3>
             <h4>{$promotion->getTagline()}</h4>

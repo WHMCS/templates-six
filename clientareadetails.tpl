@@ -113,6 +113,20 @@
             {/if}
 
         </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <h3>{$LANG.clientareacontactsemails}</h3>
+                <div class="controls checkbox">
+                    {foreach $emailPreferences as $emailType => $value}
+                        <label>
+                            <input type="hidden" name="email_preferences[{$emailType}]" value="0">
+                            <input type="checkbox" name="email_preferences[{$emailType}]" id="{$emailType}Emails" value="1"{if $value} checked="checked"{/if} />
+                            {lang key="emailPreferences."|cat:$emailType}
+                        </label>{if !($emailType@last)}<br />{/if}
+                    {/foreach}
+                </div>
+            </div>
+        </div>
     </div>
 
     {if $showMarketingEmailOptIn}

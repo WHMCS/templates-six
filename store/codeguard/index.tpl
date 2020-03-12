@@ -10,7 +10,9 @@
 
     <div class="hero">
         <div class="container">
-            <img src="{$WEB_ROOT}/assets/img/marketconnect/codeguard/logo.png">
+            <div class="logo-container">
+                <img src="{$WEB_ROOT}/assets/img/marketconnect/codeguard/logo.png">
+            </div>
             <h2 class="strong-green">{lang key="store.codeGuard.headline"}</h2>
             <h3>{lang key="store.codeGuard.tagline"}</h3>
         </div>
@@ -305,7 +307,7 @@
         jQuery("#selectedProductId").val(allProducts[i].pid);
         jQuery("#productDescription").html(allProducts[i].desc);
         jQuery("#pricingAmount").html(allProducts[i].price);
-        jQuery("#pricingCycle").html(allProducts[i].cycle);        
+        jQuery("#pricingCycle").html(allProducts[i].cycle);
     }
 
     jQuery("#codeGuardPlanSelector").ionRangeSlider(rangeSliderValues);

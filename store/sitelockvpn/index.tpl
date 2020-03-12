@@ -67,6 +67,7 @@
                     <h3>{lang key='store.sitelockvpn.feature3.title'}</h3>
                     <p>{lang key='store.sitelockvpn.feature3.subtitle'}</p>
                     <p>{lang key='store.sitelockvpn.feature3.subtitle2'}</p>
+                    <p><sup class='text-muted'>{lang key='store.sitelockvpn.feature3.subtitle3'}</sup></p>
                 </div>
             </div>
             <div class="logos">

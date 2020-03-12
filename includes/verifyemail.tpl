@@ -17,7 +17,7 @@
                     <span class="text">{$LANG.emailKeyExpired}</span>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-3 col-sm-pull-1">
-                    <button id="btnResendVerificationEmail" class="btn btn-default btn-sm btn-block">
+                    <button id="btnResendVerificationEmail" class="btn btn-default btn-sm btn-block" data-email-sent="{$LANG.emailSent}">
                     {$LANG.resendEmail}
                 </button>
                 </div>
@@ -36,7 +36,7 @@
                     <span class="text">{$LANG.verifyEmailAddress}</span>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-3 col-sm-pull-1">
-                    <button id="btnResendVerificationEmail" class="btn btn-default btn-sm btn-block btn-resend-verify-email">
+                    <button id="btnResendVerificationEmail" class="btn btn-default btn-sm btn-block btn-resend-verify-email" data-email-sent="{$LANG.emailSent}">
                         {$LANG.resendEmail}
                     </button>
                 </div>

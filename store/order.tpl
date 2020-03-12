@@ -40,7 +40,7 @@
 
             <ul class="nav nav-tabs store-domain-tabs" role="tablist">
                 {if $requireDomain}
-                    {if (count($domains) > 0 || !$loggedin)}
+                    {if (count($domains) > 0 && $loggedin)}
                         <li role="presentation" class="active"><a href="#existing-domain" aria-controls="existing-domain" role="tab" data-toggle="tab">{lang key='store.chooseExistingDomain'}</a></li>
                     {/if}
                     {if $allowSubdomains}

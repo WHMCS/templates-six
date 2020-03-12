@@ -11152,6 +11152,13 @@ div.md-editor.active {
     background-color: #555;
 }
 
+.promo-banner.marketgoo {
+    border-top: 3px solid #3090e0;
+}
+.promo-banner.marketgoo .btn {
+    background-color: #3090e0;
+}
+
 .mc-panel-promo {
     font-size: 0.95em;
 }

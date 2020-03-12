@@ -15721,11 +15721,11 @@ var recaptchaLoadComplete = false;
                 };
                 recaptchaContent.attr('data-callback', funcName);
 
-                // alter submit button to integrate invisible recaptcha
-                // otherwise setup a callback to twiddle UI after grecaptcha
-                // has inject DOM
+                // setup an on form submit event to ensure that we
+                // are allowing required field validation to occur before
+                // we do the invisible recaptcha checking
                 if (isInvisible) {
-                    btnRecaptcha.on('click', function (event) {
+                    frm.on('submit', function (event) {
                         if (!grecaptcha.getResponse().trim()) {
                             event.preventDefault();
                             grecaptcha.execute();
@@ -16841,6 +16841,9 @@ jQuery(document).ready(function() {
     // Prevent malicious window.opener activity from auto-linked URLs
     jQuery('a.autoLinked').click(function (e) {
         e.preventDefault();
+        if (jQuery(this).hasClass('disabled')) {
+            return false;
+        }
 
         var child = window.open();
         child.opener = null;
@@ -17060,14 +17063,16 @@ jQuery(document).ready(function() {
         });
     });
 
+    var btnResendEmail = jQuery('#btnResendVerificationEmail');
+
     // Email verification
-    jQuery('#btnResendVerificationEmail').click(function() {
+    jQuery(btnResendEmail).click(function() {
         WHMCS.http.jqClient.post('clientarea.php',
             {
                 'token': csrfToken,
                 'action': 'resendVerificationEmail'
             }).done(function(data) {
-                jQuery('#btnResendVerificationEmail').html('Email Sent').prop('disabled', true);
+                jQuery(btnResendEmail).text(jQuery(btnResendEmail).data('email-sent')).prop('disabled', true);
             });
     });
 

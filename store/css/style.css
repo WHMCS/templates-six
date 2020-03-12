@@ -12,6 +12,10 @@ section#main-body {
     font-weight: 300;
 }
 
+.landing-page img {
+    max-width: 100%;
+}
+
 .landing-page .hero {
     padding: 60px 0;
     text-align: center;
@@ -27,8 +31,11 @@ section#main-body {
     font-size: 1.7em;
     font-weight: 300;
 }
-.landing-page .hero img {
+.landing-page .hero .logo-container {
+    margin: 0 auto;
     max-width: 500px;
+}
+.landing-page .hero img {
     padding-bottom: 25px;
 }
 
@@ -324,6 +331,15 @@ section#main-body {
 }
 
 @media (max-width: 767px) {
+    .landing-page .hero {
+        padding: 30px 0;
+    }
+    .landing-page .hero h2 {
+        font-size: 2em;
+    }
+    .landing-page .hero h3 {
+        font-size: 1.6em;
+    }
     .landing-page .standout-features p {
         margin: 0 20px 50px;
     }
@@ -1443,4 +1459,222 @@ section#main-body {
 .landing-page.sitelockvpn .feature.countries img {
     margin: 0;
     max-width: 100%;
+}
+
+.landing-page.marketgoo .hero .logo {
+    margin: 0 auto;
+    max-width: 550px;
+}
+.landing-page.marketgoo h3 {
+    font-size: 2.8em;
+}
+.landing-page.marketgoo h3 em {
+    font-style: normal;
+    font-weight: bold;
+}
+.landing-page.marketgoo .video-banner {
+    background-color: #5ec9f8;
+    min-height: 300px;
+    line-height: 300px;
+    text-align: center;
+    color: #fff;
+}
+.landing-page.marketgoo .feature-blocks {
+    margin: 10px 0;
+    padding: 10px 0;
+}
+.landing-page.marketgoo .feature-blocks .block {
+    padding: 10px;
+    text-align: center;
+}
+.landing-page.marketgoo .feature-blocks .block img {
+    display: block;
+    margin: 0 auto;
+    max-width: 150px;
+}
+.landing-page.marketgoo .feature-blocks .block span {
+    font-size: 1.6em;
+}
+.landing-page.marketgoo .feature-blocks .block p {
+    font-size: 1.2em;
+    font-weight: 300;
+    padding: 10px 20px;
+}
+.landing-page.marketgoo .feature-wrapper {
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f2f4;
+    border-radius: 15px;
+}
+.landing-page.marketgoo .plan {
+    float: left;
+    margin: 0 0 20px 0;
+    width: 30%;
+    font-size: 1.15em;
+    text-align: center;
+}
+.landing-page.marketgoo .plan.labels {
+    float: left;
+    width: 40%;
+    display: none;
+}
+.landing-page.marketgoo .plan.labels:first-child {
+    display: block;
+}
+.landing-page.marketgoo .plan .header {
+    height: 110px;
+}
+.landing-page.marketgoo .plan.marketgoo_pro .header h4 {
+    color: #ac18b4;
+    text-transform: uppercase;
+}
+.landing-page.marketgoo .plan .header .best-value {
+    margin: 0;
+    padding: 3px 10px;
+    position: relative;
+    top: -9px;
+    background-color: #ac18b4;
+    border-radius: 4px;
+    text-transform: initial;
+    color: #fff;
+    font-size: 0.3em;
+    display: none;
+}
+.landing-page.marketgoo .plan.marketgoo_pro .header .best-value {
+    display: inline-block;
+}
+.landing-page.marketgoo .plan .header h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.4em;
+    font-weight: bold;
+}
+.landing-page.marketgoo .plan .pricing {
+    font-size: 1.2em;
+    color: #57657a;
+}
+.landing-page.marketgoo .plan ul {
+    list-style: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+    border-top: 1px solid #bbc2ce;
+}
+.landing-page.marketgoo .plan ul li {
+    padding: 0 20px;
+    height: 55px;
+    line-height: 55px;
+    border-bottom: 1px solid #bbc2ce;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.landing-page.marketgoo .plan.labels ul li {
+    font-weight: bold;
+    text-align: left;
+    border-right: 1px solid #bbc2ce;
+}
+.landing-page.marketgoo .plan ul li span {
+    font-weight: bold;
+}
+.landing-page.marketgoo .plan.marketgoo_pro ul {
+    background-color: #eee;
+}
+.landing-page.marketgoo .plan .btn-signup {
+    padding: 8px 20px;
+    background-color: #5ec9f8;
+    border-color: #5ec9f8;
+    color: #fff;
+    font-size: 1.05em;
+}
+.landing-page.marketgoo .carousel .carousel-indicators {
+  bottom:-50px;
+}
+.landing-page.marketgoo .carousel .carousel-indicators li {
+  background-color:#ddd;
+}
+.landing-page.marketgoo .carousel .carousel-inner {
+   margin-bottom:50px;
+}
+.landing-page.marketgoo .testimonials .testimonial {
+    margin: 0 auto;
+    max-width: 650px;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.3em;
+    font-style: italics;
+    color: #57657a;
+    text-align: center;
+}
+.landing-page.marketgoo .testimonials .user {
+    margin: 20px auto;
+    max-width: 350px;
+    text-align: center;
+}
+.landing-page.marketgoo .testimonials .user img {
+    max-width: 100px;
+}
+.landing-page.marketgoo .testimonials .user span {
+    display: block;
+    padding: 15px 0 0 0;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.landing-page.marketgoo .testimonials .user em {
+    display: block;
+    margin: 0 0 5px 0;
+    font-style: normal;
+}
+.landing-page.marketgoo .faqs {
+    background-color: #f0f2f4;
+}
+.landing-page.marketgoo .embed-responsive {
+    padding-bottom: 45%;
+}
+@media (min-width: 768px) {
+    .landing-page.marketgoo .feature-blocks .block {
+        padding: 20px 20px;
+    }
+    .landing-page.marketgoo .feature-blocks .block img {
+        max-width: 250px;
+    }
+    .landing-page.marketgoo .feature-blocks .block p {
+        padding: 10px 40px;
+    }
+    .landing-page.marketgoo .feature-wrapper {
+        padding: 20px 80px;
+    }
+    .landing-page.marketgoo .plan .header {
+        height: 90px;
+    }
+    .landing-page.marketgoo .testimonials .testimonial {
+        font-size: 1.5em;
+    }
+    .landing-page.marketgoo .testimonials .user .bio {
+        margin-left: 120px;
+    }
+    .landing-page.marketgoo .testimonials .user {
+        text-align: left;
+    }
+    .landing-page.marketgoo .testimonials .user img {
+        float: left;
+        max-width: 100px;
+    }
+    .landing-page.marketgoo .faqs .faq {
+        padding: 0 20px;
+    }
+}
+@media (max-width: 767px) {
+    .landing-page.marketgoo .plan .header span {
+        display: block;
+    }
+    .landing-page.marketgoo .plan {
+        font-size: 1em;
+    }
+    .landing-page.marketgoo .plan {
+        width: 40%;
+    }
+    .landing-page.marketgoo .plan.labels {
+        display: block;
+        width: 60%;
+    }
 }
