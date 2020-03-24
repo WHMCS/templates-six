@@ -168,26 +168,13 @@
         <div class="form-group">
             <h3>{$LANG.clientareacontactsemails}</h3>
             <div class="controls checkbox">
-                <label>
-                    <input type="checkbox" name="generalemails" id="generalemails" value="1"{if $generalemails} checked{/if} />
-                    {$LANG.clientareacontactsemailsgeneral}
-                </label><br />
-                <label>
-                    <input type="checkbox" name="productemails" id="productemails" value="1"{if $productemails} checked{/if} />
-                    {$LANG.clientareacontactsemailsproduct}
-                </label><br />
-                <label>
-                    <input type="checkbox" name="domainemails" id="domainemails" value="1"{if $domainemails} checked{/if} />
-                    {$LANG.clientareacontactsemailsdomain}
-                </label><br />
-                <label>
-                    <input type="checkbox" name="invoiceemails" id="invoiceemails" value="1"{if $invoiceemails} checked{/if} />
-                    {$LANG.clientareacontactsemailsinvoice}
-                </label><br />
-                <label>
-                    <input type="checkbox" name="supportemails" id="supportemails" value="1"{if $supportemails} checked{/if} />
-                    {$LANG.clientareacontactsemailssupport}
-                </label>
+                {foreach $emailPreferences as $emailType => $value}
+                    <label>
+                    <input type="hidden" name="email_preferences[{$emailType}]" value="0">
+                    <input type="checkbox" name="email_preferences[{$emailType}]" id="{$emailType}emails" value="1"{if $value} checked="checked"{/if} />
+                    {lang key="clientareacontactsemails"|cat:$emailType}
+                    </label>{if !($emailType@last)}<br />{/if}
+                {/foreach}
             </div>
         </div>
 

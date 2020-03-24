@@ -3,8 +3,8 @@
         <div class="row text-center">
             {if $type == 'ev'}
                 <div class="col-sm-4">
-                    <h4>{lang key='store.ssl.shared.ev.greenBar'}</h4>
-                    <p>{lang key='store.ssl.shared.ev.greenBarDescription'}</p>
+                    <h4>{lang key='store.ssl.shared.ev.visualVerification'}</h4>
+                    <p>{lang key='store.ssl.shared.ev.visualVerificationDescription'}</p>
                 </div>
             {elseif $type == 'ov'}
                 <div class="col-sm-4">

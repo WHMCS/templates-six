@@ -160,6 +160,11 @@
                 {/foreach}
             </div>
         </div>
+        {if $inPreview}
+            <div class="col-xs-12 lead text-center">
+                {lang key="store.marketgoo.adminPreview"}
+            </div>
+        {/if}
     </div>
 
     <div class="content-block testimonials" id="testimonials">

@@ -100,6 +100,10 @@
                         </form>
                     </div>
                 </div>
+            {elseif $inPreview}
+                <div class="col-xs-12 lead text-center">
+                    {lang key="store.sitelockvpn.adminPreview"}
+                </div>
             {/if}
             <div class="row">
                 {foreach $plans as $plan}
