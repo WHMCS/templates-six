@@ -90,81 +90,82 @@
 
     <div class="content-block" id="features">
         <div class="container">
-            <div class="visible-xs">
-                <form method="post" action="">
-                    <select name="currency" class="form-control" onchange="submit()">
-                        <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
-                        {foreach $currencies as $currency}
-                            <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
-                        {/foreach}
-                    </select>
-                </form>
-                <br><br>
-            </div>
-            <div class="plan-container">
-                {foreach $plans as $plan}
-                    <div class="plan labels">
-                        <div class="header">
-                            {if !$loggedin && $currencies}
-                                <br>
-                                <form method="post" action="" class="hidden-xs">
-                                    <select name="currency" class="form-control currency-selector" onchange="submit()">
-                                        <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
-                                        {foreach $currencies as $currency}
-                                            <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
-                                        {/foreach}
-                                    </select>
-                                </form>
-                            {/if}
-                        </div>
-                        <ul>
-                            {foreach $plan->features as $label => $value}
-                                <li><span>{lang key="store.marketgoo.featurematrix."|cat:$value@iteration}</span></li>
+            {if count($plans) > 0}
+                <div class="visible-xs">
+                    <form method="post" action="">
+                        <select name="currency" class="form-control" onchange="submit()">
+                            <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
+                            {foreach $currencies as $currency}
+                                <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
                             {/foreach}
-                        </ul>
-                    </div>
-                    <div class="plan {$plan->configoption1}">
-                        <div class="header">
-                            <h4>
-                                <span>{$plan->name}</span>
-                                <span class="best-value">Best value!</span>
-                            </h4>
-                            <span class="pricing">
-                                {if $plan->isFree()}
-                                    {lang key='orderpaymenttermfree'}
-                                {elseif $plan->pricing()->first()}
-                                    {$plan->pricing()->first()->toPrefixedString()}
-                                {else}
-                                    -
+                        </select>
+                    </form>
+                    <br><br>
+                </div>
+                <div class="plan-container">
+                    {foreach $plans as $plan}
+                        <div class="plan labels">
+                            <div class="header">
+                                {if !$loggedin && $currencies}
+                                    <br>
+                                    <form method="post" action="" class="hidden-xs">
+                                        <select name="currency" class="form-control currency-selector" onchange="submit()">
+                                            <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
+                                            {foreach $currencies as $currency}
+                                                <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
+                                            {/foreach}
+                                        </select>
+                                    </form>
                                 {/if}
-                            </span>
+                            </div>
+                            <ul>
+                                {foreach $plan->features as $label => $value}
+                                    <li><span>{lang key="store.marketgoo.featurematrix."|cat:$value@iteration}</span></li>
+                                {/foreach}
+                            </ul>
                         </div>
-                        <ul>
-                            {foreach $plan->features as $label => $value}
-                                <li>
-                                    {if is_bool($value)}
-                                        <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/icon-check.svg">
+                        <div class="plan {$plan->configoption1}">
+                            <div class="header">
+                                <h4>
+                                    <span>{$plan->name}</span>
+                                    <span class="best-value">Best value!</span>
+                                </h4>
+                                <span class="pricing">
+                                    {if $plan->isFree()}
+                                        {lang key='orderpaymenttermfree'}
+                                    {elseif $plan->pricing()->first()}
+                                        {$plan->pricing()->first()->toPrefixedString()}
                                     {else}
-                                        {$value}
+                                        -
                                     {/if}
-                                </li>
-                            {/foreach}
-                        </ul>
-                        <form action="{routePath('store-order')}" method="post">
-                            <input type="hidden" name="pid" value="{$plan->id}">
-                            <button type="submit" class="btn btn-primary btn-signup">
-                                {lang key='store.marketgoo.signup'}
-                            </button>
-                        </form>
-                    </div>
-                {/foreach}
-            </div>
+                                </span>
+                            </div>
+                            <ul>
+                                {foreach $plan->features as $label => $value}
+                                    <li>
+                                        {if is_bool($value)}
+                                            <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/icon-check.svg">
+                                        {else}
+                                            {$value}
+                                        {/if}
+                                    </li>
+                                {/foreach}
+                            </ul>
+                            <form action="{routePath('store-order')}" method="post">
+                                <input type="hidden" name="pid" value="{$plan->id}">
+                                <button type="submit" class="btn btn-primary btn-signup">
+                                    {lang key='store.marketgoo.signup'}
+                                </button>
+                            </form>
+                        </div>
+                    {/foreach}
+                </div>
+            {elseif $inPreview}
+                <div class="lead text-center">
+                    {lang key="store.marketgoo.adminPreview"}
+                </div>
+            {/if}
         </div>
-        {if $inPreview}
-            <div class="col-xs-12 lead text-center">
-                {lang key="store.marketgoo.adminPreview"}
-            </div>
-        {/if}
     </div>
 
     <div class="content-block testimonials" id="testimonials">

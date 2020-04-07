@@ -33,10 +33,11 @@
                     <input type="hidden" name="{$key}" value="{$value}">
                 {/foreach}
                 <button type="submit" class="btn btn-success">
-                    {$promotion->getCta()} {$product->name}
                     {if $product->isFree()}
+                        {$promotion->getCta()}
                         {lang key="orderfree"}
                     {else}
+                        {$promotion->getCta()} {$product->name}
                         {lang key="fromJust"}
                         {if $product->pricing()->first()->isYearly()}
                             {$product->pricing()->first()->yearlyPrice()}

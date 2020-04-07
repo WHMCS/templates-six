@@ -323,11 +323,13 @@ section#main-body {
     border: 1px solid #a7cdec;
 }
 
-.landing-page.weebly .pricing-item ul {
-    height: 290px;
-}
-.landing-page.weebly .pricing-item ul.ecommerce-features {
-    height: 265px;
+@media (min-width: 768px) {
+    .landing-page.weebly .pricing-item ul {
+        height: 290px;
+    }
+    .landing-page.weebly .pricing-item ul.ecommerce-features {
+        height: 265px;
+    }
 }
 
 @media (max-width: 767px) {

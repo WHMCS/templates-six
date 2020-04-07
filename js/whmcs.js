@@ -319,7 +319,7 @@ jQuery(document).ready(function() {
                 button.find('.loading').hide().end().removeAttr('disabled');
                 form.find('.login-feedback').html('');
                 if (data.error) {
-                    form.find('.login-feedback').html(data.error);
+                    form.find('.login-feedback').html(data.error).hide().removeClass('hidden').slideDown();
                 }
                 if (data.redirect !== undefined && data.redirect.substr(0, 7) === 'window|') {
                     window.open(data.redirect.substr(7), '_blank');

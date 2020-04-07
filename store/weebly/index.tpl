@@ -148,6 +148,10 @@
                             <h4 class="pricing-text {$pricing->cycle()}{if !$pricing@first} hidden{/if}">
                                 {$pricing->toFullString()}
                             </h4>
+                        {foreachelse}
+                            {if $inPreview}
+                                -
+                            {/if}
                         {/foreach}
                         <h4 class="pricing-text not-available hidden">-</h4>
                     </div>
@@ -178,6 +182,10 @@
                                         <span class="pricing-text {$pricing->cycle()}{if !$pricing@first} hidden{/if}">
                                             {$pricing->toFullString()}
                                         </span>
+                                    {foreachelse}
+                                        {if $inPreview}
+                                            -
+                                        {/if}
                                     {/foreach}
                                     <span class="pricing-text not-available hidden">
                                         -

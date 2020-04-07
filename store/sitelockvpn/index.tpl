@@ -87,65 +87,92 @@
                 {lang key='store.sitelockvpn.pricing.oneSubscription'}<br>
                 <strong>{lang key='store.sitelockvpn.pricing.fiveDevices'}</strong>
             </h2>
-            {if !$loggedin && $currencies}
-                <div class="row">
-                    <div class="col-md-3 col-md-offset-9">
-                        <form method="post" action="">
-                            <select name="currency" class="form-control currency-selector" onchange="submit()">
-                                <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
-                                {foreach $currencies as $currency}
-                                    <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
-                                {/foreach}
-                            </select>
-                        </form>
-                    </div>
-                </div>
-            {elseif $inPreview}
-                <div class="col-xs-12 lead text-center">
-                    {lang key="store.sitelockvpn.adminPreview"}
-                </div>
-            {/if}
-            <div class="row">
-                {foreach $plans as $plan}
-                    {foreach $plan->pricing()->allAvailableCycles() as $pricing}
-                        <div class="{if $pricing@total == 1}col-sm-4 col-sm-offset-4{elseif $pricing@total == 2}col-sm-6{elseif $pricing@total == 2}col-sm-6{elseif $pricing@total == 3}col-md-4 col-sm-4{elseif $pricing@total == 4}col-lg-3 col-sm-6{elseif $pricing@total == 5}col-md-4 col-sm-6{else}col-lg-3 col-sm-4{/if}">
-                            <div class="pricing-box">
-                                <div class="cycle">
-                                    {if $pricing->isYearly()}
-                                        {$pricing->cycleInYears()}
-                                    {else}
-                                        {$pricing->cycleInMonths()}
-                                    {/if}
-                                    {if $pricing->calculatePercentageDifference($highestMonthlyPrice) > 0}
-                                        <span class="label label-info">
-                                            {lang key='store.save' saving=$pricing->calculatePercentageDifference($highestMonthlyPrice)}
-                                        </span>
-                                    {/if}
-                                </div>
-                                <div class="price">
-                                    {$pricing->toPrefixedString()}
-                                </div>
-                                <ul>
-                                    {foreach $plan->planFeatures as $langKey => $feature}
-                                        <li>
-                                            {lang key="store.sitelockvpn.pricing.features.$langKey"}
-                                        </li>
+            {if count($plans) > 0}
+                {if !$loggedin && $currencies}
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-9">
+                            <form method="post" action="">
+                                <select name="currency" class="form-control currency-selector" onchange="submit()">
+                                    <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
+                                    {foreach $currencies as $currency}
+                                        <option value="{$currency['id']}">{$currency['prefix']} {$currency['code']}</option>
                                     {/foreach}
-                                </ul>
-                                <div class="signup">
-                                    <form method="post" action="{routePath('store-order')}">
-                                        <input type="hidden" name="pid" value="{$plan->id}">
-                                        <input type="hidden" name="billingcycle" value="{$pricing->cycle()}">
-                                        <button type="submit" class="btn btn-block btn-signup{if $pricing@iteration == ($pricing@total - 1)} highlight1{elseif $pricing@iteration == $pricing@total} highlight2{/if}">
-                                            {lang key="signup"}
-                                        </button>
-                                    </form>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                {/if}
+                <div class="row">
+                    {foreach $plans as $plan}
+                        {foreach $pricings[$plan->id] as $pricing}
+                            <div class="{if $pricing@total == 1}col-sm-4 col-sm-offset-4{elseif $pricing@total == 2}col-sm-6{elseif $pricing@total == 2}col-sm-6{elseif $pricing@total == 3}col-md-4 col-sm-4{elseif $pricing@total == 4}col-lg-3 col-sm-6{elseif $pricing@total == 5}col-md-4 col-sm-6{else}col-lg-3 col-sm-4{/if}">
+                                <div class="pricing-box">
+                                    <div class="cycle">
+                                        {if $inPreview && is_array($pricing)}
+                                            {$pricing['term']}
+                                            {if $pricing@last}
+                                                <span class="label label-info">
+                                                    {lang key='store.save' saving='-'}
+                                                </span>
+                                            {/if}
+                                        {else}
+                                            {if $pricing->isYearly()}
+                                                {$pricing->cycleInYears()}
+                                            {else}
+                                                {$pricing->cycleInMonths()}
+                                            {/if}
+                                            {if $pricing->calculatePercentageDifference($highestMonthlyPrice) > 0}
+                                                <span class="label label-info">
+                                                    {lang key='store.save' saving=$pricing->calculatePercentageDifference($highestMonthlyPrice)}
+                                                </span>
+                                            {/if}
+                                        {/if}
+                                    </div>
+                                    <div class="price">
+                                        {if $inPreview && is_array($pricing)}
+                                            {$pricing['price']}
+                                        {else}
+                                            {$pricing->toPrefixedString()}
+                                        {/if}
+                                    </div>
+                                    <ul>
+                                        {if $inPreview}
+                                            <li>
+                                                <strong>{lang key='store.sampleProduct'}</strong>
+                                            </li>
+                                        {/if}
+                                        {foreach $plan->planFeatures as $langKey => $feature}
+                                            <li>
+                                                {lang key="store.sitelockvpn.pricing.features.$langKey"}
+                                            </li>
+                                        {/foreach}
+                                        {if $inPreview}
+                                            <li>
+                                                <strong>{lang key='store.sampleProduct'}</strong>
+                                            </li>
+                                        {/if}
+                                    </ul>
+                                    <div class="signup">
+                                        <form method="post" action="{routePath('store-order')}">
+                                            <input type="hidden" name="pid" value="{$plan->id}">
+                                            {if !$inPreview}
+                                                <input type="hidden" name="billingcycle" value="{$pricing->cycle()}">
+                                            {/if}
+                                            <button type="submit" class="btn btn-block btn-signup{if $pricing@iteration == ($pricing@total - 1)} highlight1{elseif $pricing@iteration == $pricing@total} highlight2{/if}">
+                                                {lang key="signup"}
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {/foreach}
                     {/foreach}
-                {/foreach}
-            </div>
+                </div>
+            {elseif $inPreview}
+                <h2 class="lead text-center">
+                    {lang key="store.sitelockvpn.adminPreview"}
+                </h2>
+            {/if}
         </div>
     </div>
 
