@@ -13,7 +13,7 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-landing-page" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">{lang key="store.toggleNav"}</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -21,10 +21,10 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-landing-page">
           <ul class="nav navbar-nav">
-            <li><a href="#" onclick="smoothScroll('#overview');return false">Overview</a></li>
-            <li><a href="#" onclick="smoothScroll('#howitworks');return false">How It Works</a></li>
-            <li><a href="#" onclick="smoothScroll('#pricing');return false">Pricing</a></li>
-            <li><a href="#" onclick="smoothScroll('#faq');return false">FAQ</a></li>
+            <li><a href="#" onclick="smoothScroll('#overview');return false">{lang key="store.emailServices.tab.overview"}</a></li>
+            <li><a href="#" onclick="smoothScroll('#howitworks');return false">{lang key="store.emailServices.tab.howitworks"}</a></li>
+            <li><a href="#" onclick="smoothScroll('#pricing');return false">{lang key="store.emailServices.tab.pricing"}</a></li>
+            <li><a href="#" onclick="smoothScroll('#faq');return false">{lang key="store.emailServices.tab.faq"}</a></li>
           </ul>
         </div>
       </div>
@@ -37,22 +37,22 @@
                     {if $products.incoming}
                         <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
                             <div class="item">
-                                <h4>Incoming Email Filtering</h4>
+                                <h4>{lang key="store.emailServices.incoming.title"}</h4>
                                 <div class="icon">
                                     <i class="far fa-envelope-open"></i>
                                 </div>
-                                <span>Protect your network</span>
-                                <p>Eliminate Spam & Viruses from email before they ever reach your network</p>
+                                <span>{lang key="store.emailServices.overview.incoming.headline"}</span>
+                                <p>{lang key="store.emailServices.overview.incoming.tagline"}</p>
                                 {if $products.incoming->pricing()->best()}
-                                    <div class="price">From {$products.incoming->pricing()->best()->toFullString()}/domain</div>
+                                    <div class="price">{lang key="from"} {$products.incoming->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $inPreview}
                                     <div class="price">-</div>
                                 {/if}
                                 <a href="#" class="btn btn-learn-more" data-target="incoming">
-                                    Learn more
+                                    {lang key="store.emailServices.overview.learn"}
                                 </a>
                                 <a href="#" class="btn btn-buy" data-target="incoming">
-                                    Buy
+                                    {lang key="store.emailServices.overview.buy"}
                                 </a>
                             </div>
                         </div>
@@ -60,22 +60,22 @@
                     {if $products.outgoing}
                         <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
                             <div class="item">
-                                <h4>Outgoing Email Filtering</h4>
+                                <h4>{lang key="store.emailServices.outgoing.title"}</h4>
                                 <div class="icon">
                                     <i class="fas fa-envelope-open"></i>
                                 </div>
-                                <span>Safeguard your reputation</span>
-                                <p>Prevent Spam & Viruses from ever unknowingly leaving your network</p>
+                                <span>{lang key="store.emailServices.overview.outgoing.headline"}</span>
+                                <p>{lang key="store.emailServices.overview.outgoing.tagline"}</p>
                                 {if $products.outgoing->pricing()->best()}
-                                    <div class="price">From {$products.outgoing->pricing()->best()->toFullString()}/domain</div>
+                                    <div class="price">{lang key="from"} {$products.outgoing->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $inPreview}
                                     <div class="price">-</div>
                                 {/if}
                                 <a href="#" class="btn btn-learn-more" data-target="outgoing">
-                                    Learn more
+                                    {lang key="store.emailServices.overview.learn"}
                                 </a>
                                 <a href="#" class="btn btn-buy" data-target="outgoing">
-                                    Buy
+                                    {lang key="store.emailServices.overview.buy"}
                                 </a>
                             </div>
                         </div>
@@ -83,26 +83,26 @@
                     {if $products.incomingarchiving || $products.outgoingarchiving || $products.incomingoutgoingarchiving}
                         <div class="{if $numberOfFeaturedProducts == 1}col-sm-6 col-sm-offset-3{elseif $numberOfFeaturedProducts == 2}col-sm-6{else}col-sm-6 col-md-4{/if}">
                             <div class="item">
-                                <h4>Email Archiving</h4>
+                                <h4>{lang key="store.emailServices.archiving.title"}</h4>
                                 <div class="icon">
                                     <i class="fas fa-cube"></i>
                                 </div>
-                                <span>Backup and Compliance</span>
-                                <p>Never lose an email again and ensure email data integrity for legal compliance</p>
+                                <span>{lang key="store.emailServices.overview.archiving.headline"}</span>
+                                <p>{lang key="store.emailServices.overview.archiving.tagline"}</p>
                                 {if $products.incomingarchiving && $products.incomingarchiving->pricing()->best()}
-                                    <div class="price">From {$products.incomingarchiving->pricing()->best()->toFullString()}/domain</div>
+                                    <div class="price">{lang key="from"} {$products.incomingarchiving->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $products.outgoingarchiving && $products.outgoingarchiving->pricing()->best()}
-                                    <div class="price">From {$products.outgoingarchiving->pricing()->best()->toFullString()}/domain</div>
+                                    <div class="price">{lang key="from"} {$products.outgoingarchiving->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $products.incomingoutgoingarchiving->pricing()->best()}
-                                    <div class="price">From {$products.incomingoutgoingarchiving->pricing()->best()->toFullString()}/domain</div>
+                                    <div class="price">{lang key="from"} {$products.incomingoutgoingarchiving->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $inPreview}
                                     <div class="price">-</div>
                                 {/if}
                                 <a href="#" class="btn btn-learn-more" data-target="archiving">
-                                    Learn more
+                                    {lang key="store.emailServices.overview.learn"}
                                 </a>
                                 <a href="#" class="btn btn-buy" data-target="incomingoutgoingarchiving">
-                                    Buy
+                                    {lang key="store.emailServices.overview.buy"}
                                 </a>
                             </div>
                         </div>
@@ -128,17 +128,17 @@
                 <ul class="nav nav-tabs" role="tablist">
                     {if $products.incoming || $inPreview}
                         <li role="presentation" class="active">
-                            <a href="#incoming" aria-controls="incoming" role="tab" data-toggle="tab">Incoming Email Filtering</a>
+                            <a href="#incoming" aria-controls="incoming" role="tab" data-toggle="tab">{lang key="store.emailServices.incoming.title"}</a>
                         </li>
                     {/if}
                     {if $products.outgoing || $inPreview}
                         <li role="presentation">
-                            <a href="#outgoing" aria-controls="outgoing" role="tab" data-toggle="tab">Outgoing Email Filtering</a>
+                            <a href="#outgoing" aria-controls="outgoing" role="tab" data-toggle="tab">{lang key="store.emailServices.outgoing.title"}</a>
                         </li>
                     {/if}
                     {if $products.incomingarchiving || $products.outgoingarchiving || $inPreview}
                         <li role="presentation">
-                            <a href="#archiving" aria-controls="archiving" role="tab" data-toggle="tab">Email Archiving</a>
+                            <a href="#archiving" aria-controls="archiving" role="tab" data-toggle="tab">{lang key="store.emailServices.archiving.title"}</a>
                         </li>
                     {/if}
                 </ul>
@@ -146,140 +146,134 @@
                     <div role="tabpanel" class="tab-pane active" id="incoming">
 
                         <div class="benefits">
-                            <h3>Incoming email filtering gives you all these benefits...</h3>
+                            <h3>{lang key="store.emailServices.benefits.incoming.title"}</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Full Inbox protection at competitive prices
+                                    {lang key="store.emailServices.benefits.incoming.1"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Extremely accurate filtering
+                                    {lang key="store.emailServices.benefits.incoming.2"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Easy configuration
+                                    {lang key="store.emailServices.benefits.incoming.3"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Increase inbound email continuity & redundancy
+                                    {lang key="store.emailServices.benefits.incoming.4"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Various reporting options
+                                    {lang key="store.emailServices.benefits.incoming.5"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Friendly interface to keep you in full control over your email
+                                    {lang key="store.emailServices.benefits.incoming.6"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Increase employee productivity
+                                    {lang key="store.emailServices.benefits.incoming.7"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Compatible with any mail server
+                                    {lang key="store.emailServices.benefits.incoming.8"}
                                 </div>
                             </div>
                         </div>
 
-                        <h3>Why Choose SpamExperts Incoming Filter?</h3>
-                        <p>Incoming Email Filtering filters all inbound email and eliminates spam & viruses before these threats reach your network at a nearly 100% accuracy rate. The extensive control-panel allows you to remain in full control. Moreover, in case your email server is down, your email will be queued. Queued email can be accessed, read, and replied to via the web-interface adding to your inbound email continuity!</p>
+                        <h3{lang key="store.emailServices.benefits.incoming.q1"}</h3>
+                        <p>{lang key="store.emailServices.benefits.incoming.a1"}</p>
 
-                        <h3>Why do you need a professional Incoming Filter?</h3>
+                        <h3>{lang key="store.emailServices.benefits.incoming.q2"}</h3>
+                        <p>{lang key="store.emailServices.benefits.incoming.a2"}</p>
 
-                        <p>Stop running the risk of IT network threats. If your Inbox is crowded with unsolicited bulk mail every day, then that's a sign you need a professional Incoming Filter solution. Get full protection for your Inbox and say goodbye to spam, virus and malware threats!</p>
-
-                        <h3>How it works</h3>
-
-                        <p>Once your domain is (automatically) deployed to the Incoming Filter, and filtering is activated, email will pass through the SpamExperts filtering cloud. Incoming emails are securely analyzed and scanned in real time. No training or configurations are required and everything works out of the box. Any message detected as spam is moved to the quarantine, while non-spam is sent to your email server. The quarantine can be monitored in the user-friendly SpamPanel, through email-reports, or even directly in your email client! No more wasted time in dealing with spam, simply focus your energy on business tasks, while you remain in full control.</p>
+                        <h3>{lang key="store.emailServices.benefits.incoming.q3"}</h3>
+                        <p>{lang key="store.emailServices.benefits.incoming.a3"}</p>
 
                     </div>
                     <div role="tabpanel" class="tab-pane" id="outgoing">
 
                         <div class="benefits">
-                            <h3>Outgoing email filtering gives you all these benefits...</h3>
+                            <h3>{lang key="store.emailServices.benefits.outgoing.title"}</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    No more blacklisting
+                                    {lang key="store.emailServices.benefits.outgoing.1"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Protect the reputation of your brand and IT-systems
+                                    {lang key="store.emailServices.benefits.outgoing.2"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Avoid de-listing related costs
+                                    {lang key="store.emailServices.benefits.outgoing.3"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Increase outbound email continuity and delivery
+                                    {lang key="store.emailServices.benefits.outgoing.4"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Enhance employee productivity
+                                    {lang key="store.emailServices.benefits.outgoing.5"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Improve abuse manageability
+                                    {lang key="store.emailServices.benefits.outgoing.6"}
                                 </div>
                             </div>
                         </div>
 
-                        <h3>What is outgoing filtering?</h3>
+                        <h3>{lang key="store.emailServices.benefits.outgoing.q1"}</h3>
+                        <p>{lang key="store.emailServices.benefits.outgoing.a1"}</p>
 
-                        <p>Outgoing Email Filtering is vital to safeguard your IT infrastructure reputation and ensure all your outgoing email arrives safely where it should. This professional solution will block spam & viruses from leaving your network and prevent your IP(s) from being blacklisted ever again. Moreover, the SpamExperts Outgoing Filter gives you the reporting and tools to detect compromised accounts and lock-down spamming users.</p>
-
-                        <h3>Why you need it?</h3>
-
-                        <p>Has your network ever sent out spam email without your knowledge? Due to network weaknesses almost any device can be compromised to transmit outbound SMTP, allowing spam or malware to be sent out from your network without you even knowing it! Therefore, it's critical you invest in a professional Outgoing Filter solution. Maintain your company’s good reputation, stop spam from leaving your network and prevent being blacklisted so that your email always arrives where it is meant to go.</p>
+                        <h3>{lang key="store.emailServices.benefits.outgoing.q2"}</h3>
+                        <p>{lang key="store.emailServices.benefits.outgoing.a2"}</p>
 
                     </div>
                     <div role="tabpanel" class="tab-pane" id="archiving">
 
                         <div class="benefits">
-                            <h3>Email archiving gives you all these benefits...</h3>
+                            <h3>{lang key="store.emailServices.benefits.archiving.title"}</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Includes Incoming & Outcoming Email Filtering!
+                                    {lang key="store.emailServices.benefits.archiving.1"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Never lose an email again!
+                                    {lang key="store.emailServices.benefits.archiving.2"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Achieve legal compliance
+                                    {lang key="store.emailServices.benefits.archiving.3"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Improve IT system performance
+                                    {lang key="store.emailServices.benefits.archiving.4"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    User friendly data-protection management
+                                    {lang key="store.emailServices.benefits.archiving.5"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Added email continuity, journaling support, and easy re-delivery
+                                    {lang key="store.emailServices.benefits.archiving.6"}
                                 </div>
                                 <div class="col-md-6">
                                     <i class="fas fa-check"></i>
-                                    Compressed, encrypted and secure archive
+                                    {lang key="store.emailServices.benefits.archiving.7"}
                                 </div>
                             </div>
                         </div>
 
-                        <h3>Email Archiving</h3>
+                        <h3>{lang key="store.emailServices.benefits.archiving.q1"}</h3>
+                        <p>{lang key="store.emailServices.benefits.archiving.a1"}</p>
 
-                        <p>Email Archiving preserves and protects all inbound and outbound email messages for later access. It is a great way to recover lost or accidentally deleted emails, accelerate audit response, secure intellectual property emails and attachments, as well as for “eDiscovery” purposes in case of litigation.</p>
-
-                        <h3>Why you need it</h3>
-
-                        <p>Are you desperately looking for an important email from last year, but can’t seem to find it and you’re risking a fine or losing an important business deal as the result of this? Prevent this with a professional Email Archiving solution. Email Archiving is a critical tool to preserve a secure backup of all email and be legally compliant.</p>
-                        <p>At the same time, as email exchanges have judicial power and are legally binding, email compliance has become an extremely important concern for organizations. Therefore it is mandatory in certain industries to preserve a secure backup of all email messages and be legally compliant.</p>
+                        <h3>{lang key="store.emailServices.benefits.archiving.q2"}</h3>
+                        <p>{lang key="store.emailServices.benefits.archiving.a2a"}</p>
+                        <p>{lang key="store.emailServices.benefits.archiving.a2b"}</p>
 
                     </div>
                 </div>
@@ -292,32 +286,32 @@
                 <input type="hidden" name="productkey" value="{$products.incoming->productKey}" id="productKey">
                 <div class="row">
                     <div class="col-sm-8">
-                        <h2>Signup and Get Started</h2>
-                        <h4>Choose Product</h4>
+                        <h2>{lang key="store.emailServices.signup.title"}</h2>
+                        <h4>{lang key="store.emailServices.signup.choose"}</h4>
                         {if $numberOfFeaturedProducts > 0}
                             <div class="btn-group choose-product" role="group">
                                 {if $products.incoming}
-                                    <button type="button" class="btn btn-default active" data-product="incoming">Incoming Filtering</button>
+                                    <button type="button" class="btn btn-default active" data-product="incoming">{lang key="store.emailServices.options.incomingFilter"}</button>
                                 {/if}
                                 {if $products.outgoing}
-                                    <button type="button" class="btn btn-default" data-product="outgoing">Outgoing Filtering</button>
+                                    <button type="button" class="btn btn-default" data-product="outgoing">{lang key="store.emailServices.options.outgoingFilter"}</button>
                                 {/if}
                             </div>
                         {elseif $inPreview}
-                            Email service products you activate will display here
+                            {lang key="store.emailServices.preview"}
                         {/if}
                         <br><br>
-                        <h4>Additional Options</h4>
+                        <h4>{lang key="store.emailServices.signup.additional"}</h4>
                         <div class="additional-options">
                             {foreach $productOptions as $productKey => $options}
                                 <div class="option options-{$productKey}">
                                     {foreach $options as $option}
                                         <label class="checkbox-inline">
                                             <input type="checkbox" name="options" value="{$option.product}">
-                                            {$option.description} for <span>just {$option.pricing->toFullString()} more</span>
+                                            {lang key="store.emailServices.options.addFor" description=$option.description pricing=$option.pricing->toFullString()}
                                         </label><br>
                                     {foreachelse}
-                                        None available
+                                        {lang key="store.emailServices.signup.none"}
                                     {/foreach}
                                 </div>
                             {/foreach}
@@ -344,7 +338,7 @@
                         {/if}
                         <br><br><br><br><br>
                         <button type="submit" class="btn btn-order-now btn-lg">
-                            Order Now
+                            {lang key="store.emailServices.signup.order"}
                         </button>
                     </div>
                 </div>
@@ -367,30 +361,30 @@
 
     <div class="content-block faq" id="faq">
         <div class="container">
-            <h3 class="text-center">Frequently Asked Questions</h3>
+            <h3 class="text-center">{lang key="store.emailServices.faqs.title"}</h3>
             <div class="row">
                 <div class="col-md-4">
-                <h4>How does it work?</h4>
-                <p>Email is routed through SpamExperts intelligent self-learning servers that will detect and block spam before it ever reaches you.</p>
+                <h4>{lang key="store.emailServices.faqs.q1"}</h4>
+                <p>{lang key="store.emailServices.faqs.a1"}</p>
                 <hr>
-                <h4>How accurate is the filtering?</h4>
-                <p>Thanks to processing millions of emails every day, our email filters have an industry leading rate with close to 100% accuracy.</p>
+                <h4>{lang key="store.emailServices.faqs.q2"}</h4>
+                <p>{lang key="store.emailServices.faqs.a2"}</p>
                 <div class="hidden-md hidden-lg"><hr></div>
                 </div>
                 <div class="col-md-4">
-                <h4>Can I recover messages that get blocked?</h4>
-                <p>Yes, a comprehensive control panel with log-search, quarantine, and many other tools allows you to check the status of any email which passed through the system.</p>
+                <h4>{lang key="store.emailServices.faqs.q3"}</h4>
+                <p>{lang key="store.emailServices.faqs.a3"}</p>
                 <hr>
-                <h4>How long does it take to setup?</h4>
-                <p>Setup is fast, automated and it will be up and running protecting your email in minutes.</p>
+                <h4>{lang key="store.emailServices.faqs.q4"}</h4>
+                <p>{lang key="store.emailServices.faqs.a4"}</p>
                 <div class="hidden-md hidden-lg"><hr></div>
                 </div>
                 <div class="col-md-4">
-                <h4>What is Email Archiving?</h4>
-                <p>Email is so important nowadays, with archiving email is securely stored, giving you extra confidence and peace of mind.</p>
+                <h4>{lang key="store.emailServices.faqs.q5"}</h4>
+                <p>{lang key="store.emailServices.faqs.a5"}</p>
                 <hr>
-                <h4>How much email can I store?</h4>
-                <p>Email Archiving includes 10GB of compressed email storage by default. If you need more storage, additional 10GB licenses can be added.</p>
+                <h4>{lang key="store.emailServices.faqs.q6"}</h4>
+                <p>{lang key="store.emailServices.faqs.a6"}</p>
                 </div>
             </div>
         </div>

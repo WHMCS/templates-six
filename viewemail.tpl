@@ -11,9 +11,16 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="popup-header-padding"><i class='far fa-envelope'>&nbsp;</i>{$subject}</h2>
+            {if count($attachments) > 0}
+                <div class="popup-header-padding">
+                    {foreach $attachments as $attachedFile}
+                        <i class="fal fa-paperclip"></i> {$attachedFile}{if !$attachedFile@last}<br>{/if}
+                    {/foreach}
+                </div>
+            {/if}
         </div>
         <div class="panel-body main-content">
-            {$message}
+            <iframe width="100%" height="300" frameborder="0" srcdoc="{$message|escape}"></iframe>
         </div>
         <div class="panel-footer">
             <p class="text-center">

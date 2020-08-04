@@ -6,11 +6,11 @@
     <table id="tableSslList" class="table table-list">
         <thead>
             <tr>
-                <th>Domain</th>
-                <th>SSL Product</th>
-                <th>Order Date</th>
-                <th>Renewal Date</th>
-                <th>Actions</th>
+                <th>{lang key='ssldomain'}</th>
+                <th>{lang key='sslproduct'}</th>
+                <th>{lang key='sslorderdate'}</th>
+                <th>{lang key='sslrenewaldate'}</th>
+                <th>{lang key='actions'}</th>
             </tr>
         </thead>
         <tbody>
@@ -19,14 +19,14 @@
                     {if $sslProduct->addonId && $sslProduct->addonId > 0}
                         <td>
                             {if $sslProduct->status == $sslStatusAwaitingConfiguration}
-                                <label class="label label-info">Awaiting Configuration</label>
+                                <label class="label label-info">{lang key='sslawaitingconfig'}</label>
                             {else}
                                 {if $sslProduct->addon->service->domain}{$sslProduct->addon->service->domain}{else}-{/if}
                                 {if $sslProduct->addon->nextDueDate instanceof Carbon}
                                     {if $sslProduct->addon->nextDueDate->isPast()}
-                                        <label class="label label-default">Expired</label>
+                                        <label class="label label-default">{lang key='clientareaexpired'}</label>
                                     {elseif $sslProduct->addon->nextDueDate->diffInDays() < 60}
-                                        <label class="label label-danger">Expiring Soon!</label>
+                                        <label class="label label-danger">{lang key='expiringsoon'}</label>
                                     {/if}
                                 {/if}
                             {/if}
@@ -41,28 +41,28 @@
                         <td>{if $sslProduct->addon->nextDueDate instanceof Carbon}<span class="hidden">{$sslProduct->addon->nextDueDate->toDateString()}</span>{$sslProduct->addon->nextDueDate->format({$smarty.const.CLIENT_DATE_FORMAT})}{/if}</td>
                         <td>
                             {if $sslProduct->status == $sslStatusAwaitingIssuance}
-                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('store-ssl-certificates-resend-approver-email')}" data-addonid="{$sslProduct->addonId}">Resend Email</button>
+                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('store-ssl-certificates-resend-approver-email')}" data-addonid="{$sslProduct->addonId}">{lang key='sslresendmail'}</button>
                             {/if}
                             {if $sslProduct->status == $sslStatusAwaitingConfiguration}
-                                <a href="{$sslProduct->getConfigurationUrl()}" class="btn btn-default btn-sm">Configure</a>
+                                <a href="{$sslProduct->getConfigurationUrl()}" class="btn btn-default btn-sm">{lang key='sslconfigure'}</a>
                             {/if}
                             {if $sslProduct->addon->nextDueDate instanceof Carbon &&  $sslProduct->addon->nextDueDate->subDay()->isFuture()}
                                 <form action="{$sslProduct->getUpgradeUrl()}" method="post">
                                     <input type="hidden" name="id" value="{$sslProduct->id}">
-                                    <button type="submit" class="btn btn-default btn-sm"{if $sslProduct->validationType == 'EV'} disabled="disabled"{/if}>Upgrade</button>
+                                    <button type="submit" class="btn btn-default btn-sm"{if $sslProduct->validationType == 'EV'} disabled="disabled"{/if}>{lang key='upgrade'}</button>
                                 </form>
                             {/if}
                         </td>
                     {else}
                         <td>
                             {if $sslProduct->status == $sslStatusAwaitingConfiguration}
-                                <label class="label label-info">Awaiting Configuration</label>
+                                <label class="label label-info">{lang key='sslawaitingconfig'}</label>
                             {else}
                                 {if $sslProduct->service->domain}{$sslProduct->service->domain}{else}-{/if}
                                 {if $sslProduct->service->nextDueDate instanceof Carbon && $sslProduct->service->nextDueDate->isPast()}
-                                    <label class="label label-default">Expired</label>
+                                    <label class="label label-default">{lang key='clientareaexpired'}</label>
                                 {elseif $sslProduct->service->nextDueDate instanceof Carbon && $sslProduct->service->nextDueDate->diffInDays() < 60}
-                                    <label class="label label-danger">Expiring Soon!</label>
+                                    <label class="label label-danger">{lang key='expiringsoon'}</label>
                                 {/if}
                             {/if}
                         </td>
@@ -76,10 +76,10 @@
                         <td>{if $sslProduct->service->nextDueDate instanceof Carbon}<span class="hidden">{$sslProduct->service->nextDueDate->toDateString()}</span>{$sslProduct->service->nextDueDate->format({$smarty.const.CLIENT_DATE_FORMAT})}{/if}</td>
                         <td>
                             {if $sslProduct->status == $sslStatusAwaitingIssuance}
-                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('store-ssl-certificates-resend-approver-email')}" data-serviceid="{$sslProduct->serviceId}">Resend Email</button>
+                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('store-ssl-certificates-resend-approver-email')}" data-serviceid="{$sslProduct->serviceId}">{lang key='sslresendmail'}</button>
                             {/if}
                             {if $sslProduct->status == $sslStatusAwaitingConfiguration}
-                                <a href="{$sslProduct->getConfigurationUrl()}" class="btn btn-default btn-sm">Configure</a>
+                                <a href="{$sslProduct->getConfigurationUrl()}" class="btn btn-default btn-sm">{lang key='sslconfigure'}</a>
                             {/if}
                         </td>
                     {/if}

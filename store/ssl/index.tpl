@@ -289,7 +289,7 @@
                                             </div>
                                             <div class="col-sm-3 col-sm-offset-1">
                                                 <div class="padded-cell price">
-                                                    from<br>
+                                                    {lang key="startingfrom"}<br>
                                                     <strong>{$product->pricing()->best()->yearlyPrice()}</strong>
                                                 </div>
                                             </div>

@@ -217,9 +217,11 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <button type="button" class="btn btn-default btn-sm generate-password" data-targetfields="inputNewPassword1,inputNewPassword2">
-                        {$LANG.generatePassword.btnLabel}
-                    </button>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default btn-sm btn-xs-block generate-password" data-targetfields="inputNewPassword1,inputNewPassword2">
+                            {$LANG.generatePassword.btnLabel}
+                        </button>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="password-strength-meter">

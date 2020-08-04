@@ -1777,6 +1777,32 @@ table.dtr-inline.collapsed .responsive-edit-button {
 
 /**
  * -------------------------
+ * @section Requestor Types
+ * -------------------------
+ */
+
+.requestor-type-operator {
+    background-color: #5bc0de;
+}
+.requestor-type-owner {
+    background-color: #5cb85c;
+}
+.requestor-type-authorizeduser {
+    background-color: #777;
+}
+.requestor-type-externaluser {
+    background-color: #f0ad4e;
+}
+.requestor-type-subaccount {
+    background-color: #777;
+}
+.requestor-type-guest {
+    background-color: #ccc;
+}
+
+
+/**
+ * -------------------------
  * @section Support Ticket Feedback
  * -------------------------
  */
@@ -3306,6 +3332,13 @@ div.md-editor.active {
     border-radius: 3px;
 }
 
+@media (max-width: 767px) {
+    .btn-xs-block {
+        display: block;
+        width: 100%;
+    }
+}
+
 /*
  * Section Dividers
  */
@@ -3633,4 +3666,46 @@ form[data-role="json-form"] .has-error .tooltip.top .tooltip-arrow {
 
 .modal-metric-pricing .modal-footer {
     padding-bottom: 45px;
+}
+
+/**
+ * Select Account
+ */
+
+.select-account {
+    margin: 20px auto;
+    padding: 0;
+    border-top: 1px solid #ddd;
+}
+.select-account a {
+    display: block;
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
+}
+.select-account a.disabled {
+    opacity: 0.5;
+}
+.select-account a:hover {
+    background-color: #f6f6f6;
+}
+
+.continue-container {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border: 1px solid #eee;
+    max-width: 500px;
+}
+
+/**
+ * Invites
+ */
+
+.invite-box {
+    margin: 20px 0;
+    padding: 20px;
+    background-color:#f6f6f6;
+    border:1px solid #eee;
 }

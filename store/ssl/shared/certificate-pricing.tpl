@@ -53,7 +53,7 @@
                                 </ul>
                                 <form method="post" action="{routePath('store-order')}">
                                     <input type="hidden" name="pid" value="{$product->id}">
-                                    <button type="submit" class="btn btn-block">Buy Now</button>
+                                    <button type="submit" class="btn btn-block">{lang key='store.ssl.landingPage.buyNow'}</button>
                                 </form>
                             </div>
                         {/foreach}

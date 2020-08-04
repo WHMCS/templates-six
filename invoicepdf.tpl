@@ -61,7 +61,7 @@ $pdf->Ln(5);
  * Invoice header
  *
  * You can optionally define a header/footer in a way that is repeated across page breaks.
- * For more information, see http://docs.whmcs.com/PDF_Invoice#Header.2FFooter
+ * For more information, see https://docs.whmcs.com/PDF_Invoice#Header.2FFooter
  */
 
 $pdf->SetFont($pdfFont, 'B', 15);

@@ -1,9 +1,6 @@
 {if $invalidTicketId}
-
     {include file="$template/includes/alert.tpl" type="danger" title=$LANG.thereisaproblem msg=$LANG.supportticketinvalid textcenter=true}
-
 {else}
-
     {if $closedticket}
         {include file="$template/includes/alert.tpl" type="warning" msg=$LANG.supportticketclosedmsg textcenter=true}
     {/if}
@@ -11,11 +8,9 @@
     {if $errormessage}
         {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
     {/if}
-
 {/if}
 
 {if !$invalidTicketId}
-
     <div class="panel panel-info panel-collapsable{if !$postingReply} panel-collapsed{/if} hidden-print">
         <div class="panel-heading" id="ticketReply">
             <div class="collapse-icon pull-right">
@@ -32,21 +27,17 @@
                 <div class="row">
                     <div class="form-group col-sm-4">
                         <label for="inputName">{$LANG.supportticketsclientname}</label>
-                        {if $loggedin}
-                            <input class="form-control disabled" type="text" id="inputName" value="{$clientname}" disabled="disabled" />{else}<input class="form-control" type="text" name="replyname" id="inputName" value="{$replyname}" />
-                        {/if}
+                        <input class="form-control" type="text" name="replyname" id="inputName" value="{$replyname}"{if $loggedin} disabled="disabled"{/if}>
                     </div>
                     <div class="form-group col-sm-5">
                         <label for="inputEmail">{$LANG.supportticketsclientemail}</label>
-                        {if $loggedin}
-                            <input class="form-control disabled" type="text" id="inputEmail" value="{$email}" disabled="disabled" />{else}<input class="form-control" type="text" name="replyemail" id="inputEmail" value="{$replyemail}" />
-                        {/if}
+                        <input class="form-control" type="text" name="replyemail" id="inputEmail" value="{$replyemail}"{if $loggedin} disabled="disabled"{/if}>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputMessage">{$LANG.contactmessage}</label>
-                    <textarea name="replymessage" id="inputMessage" rows="12" class="form-control markdown-editor" data-auto-save-name="client_ticket_reply_{$tid}">{$replymessage}</textarea>
+                    <textarea name="replymessage" id="inputMessage" rows="12" class="form-control markdown-editor" data-auto-save-name="ctr{$tid}">{$replymessage}</textarea>
                 </div>
 
                 <div class="row form-group">
@@ -100,7 +91,7 @@
         </div>
     </div>
 
-    {foreach from=$descreplies key=num item=reply}
+    {foreach $descreplies as $reply}
         <div class="ticket-reply markdown-content{if $reply.admin} staff{/if}">
             <div class="date">
                 {$reply.date}
@@ -108,17 +99,28 @@
             <div class="user">
                 <i class="fas fa-user"></i>
                 <span class="name">
-                    {$reply.name}
+                    {$reply.requestor.name}
+                    <span class="label requestor-type-{$reply.requestor.type_normalised}">
+                        {if $reply.requestor.type_normalised eq 'operator'}
+                            {lang key='support.requestor.operator'}
+                        {elseif $reply.requestor.type_normalised eq 'owner'}
+                            {lang key='support.requestor.owner'}
+                        {elseif $reply.requestor.type_normalised eq 'authorizeduser'}
+                            {lang key='support.requestor.authorizeduser'}
+                        {elseif $reply.requestor.type_normalised eq 'externaluser'}
+                            {lang key='support.requestor.externaluser'}
+                        {elseif $reply.requestor.type_normalised eq 'subaccount'}
+                            {lang key='support.requestor.subaccount'}
+                        {elseif $reply.requestor.type_normalised eq 'guest'}
+                            {lang key='support.requestor.guest'}
+                        {/if}
+                    </span>
                 </span>
                 <span class="type">
                     {if $reply.admin}
                         {$LANG.supportticketsstaff}
-                    {elseif $reply.contactid}
-                        {$LANG.supportticketscontact}
-                    {elseif $reply.userid}
-                        {$LANG.supportticketsclient}
                     {else}
-                        {$reply.email}
+                        {$reply.requestor.email}
                     {/if}
                 </span>
             </div>
@@ -150,7 +152,7 @@
                     <strong>{$LANG.supportticketsticketattachments} ({$reply.attachments|count})</strong>
                     {if $reply.attachments_removed}({lang key='support.attachmentsRemoved'}){/if}
                     <ul>
-                        {foreach from=$reply.attachments key=num item=attachment}
+                        {foreach $reply.attachments as $num => $attachment}
                             {if $reply.attachments_removed}
                                 <li>
                                     <i class="far fa-file-minus"></i>
@@ -171,5 +173,4 @@
             {/if}
         </div>
     {/foreach}
-
 {/if}

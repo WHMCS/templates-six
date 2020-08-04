@@ -1,5 +1,5 @@
 {if $captcha->isEnabled() && $captcha->isEnabledForForm($captchaForm)}
-    <div class="row">
+    <div class="{if $containerClass}{$containerClass}{else}row{/if}">
         {if $templatefile == 'homepage'}
             <div class="domainchecker-homepage-captcha">
         {/if}
@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="col-xs-6">
-                        <input id="inputCaptcha" type="text" name="code" maxlength="5" class="form-control {if $filename == 'register'}pull-left{/if}"
+                        <input id="inputCaptcha" type="text" name="code" maxlength="6" class="form-control {if $filename == 'register'}pull-left{/if}"
                                data-toggle="tooltip" data-placement="right" data-trigger="manual" title="{lang key='orderForm.required'}"/>
                     </div>
                 </div>

@@ -69,21 +69,49 @@
         {if $sslStatus}
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-5{if $sslStatus->isInactive()} ssl-inactive{/if}">
-                    <h4><strong>{$LANG.sslState.sslStatus}</strong></h4> <img src="{$sslStatus->getImagePath()}" width="16"> {$sslStatus->getStatusDisplayLabel()}
+                    <h4><strong>{$LANG.sslState.sslStatus}</strong></h4> <img src="{$sslStatus->getImagePath()}" width="16" data-type="domain" data-domain="{$domain}" data-showlabel="1" class="{$sslStatus->getClass()}"/>
+                    <span id="statusDisplayLabel">
+                        {if !$sslStatus->needsResync()}
+                            {$sslStatus->getStatusDisplayLabel()}
+                        {else}
+                            {$LANG.loading}
+                        {/if}
+                    </span>
                 </div>
-                {if $sslStatus->isActive()}
+                {if $sslStatus->isActive() || $sslStatus->needsResync()}
                     <div class="col-sm-6">
-                        <h4><strong>{$LANG.sslState.startDate}</strong></h4> {$sslStatus->startDate->toClientDateFormat()}
+                        <h4><strong>{$LANG.sslState.startDate}</strong></h4>
+                        <span id="ssl-startdate">
+                            {if !$sslStatus->needsResync() || $sslStatus->startDate}
+                                {$sslStatus->startDate->toClientDateFormat()}
+                            {else}
+                                {$LANG.loading}
+                            {/if}
+                        </span>
                     </div>
                 {/if}
             </div>
-            {if $sslStatus->isActive()}
+            {if $sslStatus->isActive() || $sslStatus->needsResync()}
                 <div class="row">
                     <div class="col-sm-offset-1 col-sm-5">
-                        <h4><strong>{$LANG.sslState.issuerName}</strong></h4> {$sslStatus->issuerName}
+                        <h4><strong>{$LANG.sslState.issuerName}</strong></h4>
+                        <span id="ssl-issuer">
+                            {if !$sslStatus->needsResync() || $sslStatus->issuerName}
+                                {$sslStatus->issuerName}
+                            {else}
+                                {$LANG.loading}
+                            {/if}
+                        </span>
                     </div>
                     <div class="col-sm-6">
-                        <h4><strong>{$LANG.sslState.expiryDate}</strong></h4> {$sslStatus->expiryDate->toClientDateFormat()}
+                        <h4><strong>{$LANG.sslState.expiryDate}</strong></h4>
+                        <span id="ssl-expirydate">
+                            {if !$sslStatus->needsResync() || $sslStatus->expiryDate}
+                                {$sslStatus->expiryDate->toClientDateFormat()}
+                            {else}
+                                {$LANG.loading}
+                            {/if}
+                        </span>
                     </div>
                 </div>
             {/if}

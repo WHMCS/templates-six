@@ -25,7 +25,7 @@
             {foreach from=$emails item=email}
             <tr onclick="popupWindow('viewemail.php?id={$email.id}', 'emailWin', '650', '450')">
                 <td class="text-center"><span class="hidden">{$email.normalisedDate}</span>{$email.date}</td>
-                <td>{$email.subject}</td>
+                <td>{$email.subject}{if $email.attachmentCount > 0} <i class="fal fa-paperclip"></i>{/if}</td>
                 <td class="text-center"><input type="button" class="btn btn-info btn-sm" value="{$LANG.emailviewmessage}" onclick="popupWindow('viewemail.php?id={$email.id}', 'emailWin', '650', '450', 'scrollbars=1,')" /></td>
             </tr>
             {/foreach}

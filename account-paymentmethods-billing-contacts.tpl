@@ -1,6 +1,13 @@
 <div id="innerBillingContactsContainer">
 <label class="radio-inline icheck-label billing-contact-0">
-    <input type="radio" class="icheck-button" name="billingcontact" value="0"{if $payMethod->getContactId() == $client->billingContactId || $payMethod->getContactId() == 0} checked{/if}>
+    <input
+        type="radio"
+        class="icheck-button"
+        name="billingcontact"
+        value="0"
+        {if $payMethod->contactType == 'Client' || ($payMethod->contactType === null && $client->billingContactId === 0)}
+            checked
+        {/if}>
     <strong class="name">{$client->fullName}</strong>
     <span class="address1">{$client->address1}</span>,
     {if $client->address2}<span class="address2">{$client->address2}</span>,{/if}
@@ -12,7 +19,18 @@
 <br>
 {foreach $client->contacts()->orderBy('firstname', 'asc')->orderBy('lastname', 'asc')->get() as $contact}
     <label class="radio-inline icheck-label billing-contact-{$contact->id}">
-        <input type="radio" class="icheck-button" name="billingcontact" value="{$contact->id}"{if $contact->id == $client->billingContactId || $contact->id == $selectedContactId} checked{/if}>
+        <input
+            type="radio"
+            class="icheck-button"
+            name="billingcontact"
+            value="{$contact->id}"
+            {if $payMethod->contactType == 'Contact' && $contact->id == $payMethod->getContactId()}
+                checked
+            {elseif $payMethod->contactType === null && $client->billingContactId > 0}
+                {if $contact->id == $client->billingContactId || $contact->id == $selectedContactId}
+                    checked
+                {/if}
+            {/if}>
         <strong class="name">{$contact->fullName}</strong>
         <span class="address1">{$contact->address1}</span>,
         {if $contact->address2}<span class="address2">{$contact->address2}</span>,{/if}

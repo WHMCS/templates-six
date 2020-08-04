@@ -1,3 +1,5 @@
+{include file="$template/includes/flashmessage.tpl"}
+
 <div class="tiles clearfix">
     <div class="row">
         <div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=services'">

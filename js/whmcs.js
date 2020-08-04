@@ -346,13 +346,6 @@ jQuery(document).ready(function() {
         }
     });
 
-    // Email verification close
-    jQuery('.email-verification .btn.close').click(function(e) {
-        e.preventDefault();
-        WHMCS.http.jqClient.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
-        jQuery('.email-verification').hide();
-    });
-
     // Back to top animated scroll
     jQuery('.back-to-top').click(function(e) {
         e.preventDefault();
@@ -396,6 +389,8 @@ jQuery(document).ready(function() {
                 jQuery('#' + targetFields[i]).val(jQuery('#inputGeneratePasswordOutput').val())
                     .trigger('keyup');
             }
+            // Remove the generated password.
+            jQuery('#inputGeneratePasswordOutput').val('');
         });
 
     /**
@@ -497,17 +492,30 @@ jQuery(document).ready(function() {
         });
     });
 
-    var btnResendEmail = jQuery('#btnResendVerificationEmail');
-
     // Email verification
+    var btnResendEmail = jQuery('.btn-resend-verify-email');
     jQuery(btnResendEmail).click(function() {
-        WHMCS.http.jqClient.post('clientarea.php',
+        $(this).prop('disabled', true).find('.loader').removeClass('hidden').show();
+        WHMCS.http.jqClient.post(
+            jQuery(this).data('uri'),
             {
                 'token': csrfToken,
-                'action': 'resendVerificationEmail'
             }).done(function(data) {
-                jQuery(btnResendEmail).text(jQuery(btnResendEmail).data('email-sent')).prop('disabled', true);
+                btnResendEmail.find('.loader').hide();
+                if (data.success) {
+                    btnResendEmail.text(btnResendEmail.data('email-sent'));
+                } else {
+                    btnResendEmail.text(btnResendEmail.data('error-msg'));
+                }
             });
+    });
+    jQuery('#btnEmailVerificationClose').click(function(e) {
+        e.preventDefault();
+        WHMCS.http.jqClient.post(jQuery(this).data('uri'),
+            {
+                'token': csrfToken,
+            });
+        jQuery('.email-verification').hide();
     });
 
     /**
@@ -666,25 +674,47 @@ jQuery(document).ready(function() {
     });
 
     jQuery('.ssl-state.ssl-sync').each(function () {
-        var self = jQuery(this);
+        var self = jQuery(this),
+            type = getSslAttribute(self, 'type'),
+            domain = getSslAttribute(self, 'domain');
         WHMCS.http.jqClient.post(
             WHMCS.utils.getRouteUrl('/domain/ssl-check'),
             {
-                'type': self.parent('td').data('type'),
-                'domain': self.parent('td').data('domain'),
+                'type': type,
+                'domain': domain,
                 'token': csrfToken
             },
             function (data) {
                 if (data.invalid) {
                     self.hide();
                 } else {
+                    var width = '',
+                        statusDisplayLabel = '';
+                    if (self.attr('width')) {
+                        width = ' width="' + self.attr('width') + '"';
+                    }
+                    if (self.data('showlabel')) {
+                        statusDisplayLabel = ' ' + data.statusDisplayLabel;
+                    }
                     self.replaceWith(
-                        '<img src="' + data.image + '" data-toggle="tooltip" title="' + data.tooltip + '" class="' + data.class + '">'
+                        '<img src="' + data.image + '" data-toggle="tooltip" title="' + data.tooltip + '" class="' + data.class + '"' + width + '>'
                     );
+                    if (data.ssl.status === 'active') {
+                        jQuery('#ssl-startdate').text(data.ssl.startDate);
+                        jQuery('#ssl-expirydate').text(data.ssl.expiryDate);
+                        jQuery('#ssl-issuer').text(data.ssl.issuer);
+                    } else {
+                        jQuery('#ssl-startdate').parent('div').hide();
+                        jQuery('#ssl-expirydate').parent('div').hide();
+                        jQuery('#ssl-issuer').parent('div').hide();
+                    }
+
+                    jQuery('#statusDisplayLabel').text(statusDisplayLabel);
                 }
             }
         );
     });
+
     jQuery(document).on('click', '.ssl-state.ssl-inactive', function(e) {
         e.preventDefault();
         window.location.href = WHMCS.utils.getRouteUrl('/ssl-purchase');
@@ -748,6 +778,25 @@ jQuery(document).ready(function() {
         }
     });
 });
+
+/**
+ * Control disabled/enabled state of elements by class name.
+ *
+ * @param {string} className     Common element class name.
+ * @param {bool} disabledState   Whether the elements should be disabled or not.
+ */
+function disableFields(className, disabledState) {
+    if (className[0] != '.') {
+        className = '.' + className;
+    }
+    var elements = jQuery(className);
+    elements.prop('disabled', disabledState);
+    if (disabledState) {
+        elements.addClass('disabled');
+    } else {
+        elements.removeClass('disabled');
+    }
+}
 
 /**
  * Check all checkboxes with a given class.
@@ -1087,4 +1136,11 @@ function showOverlay(msg) {
 
 function hideOverlay() {
     jQuery('#fullpage-overlay').hide();
+}
+
+function getSslAttribute(element, attribute) {
+    if (element.data(attribute)) {
+        return element.data(attribute);
+    }
+    return element.parent('td').data(attribute);
 }

@@ -27,7 +27,7 @@
         <fieldset>
             <div class="form-group">
                 <label for="cancellationreason">{$LANG.clientareacancelreason}</label>
-                <textarea name="cancellationreason" id="cancellationreason" class="form-control" rows="6" class="fullwidth"></textarea>
+                <textarea name="cancellationreason" id="cancellationreason" class="form-control fullwidth" rows="6"></textarea>
             </div>
 
             {if $domainid}

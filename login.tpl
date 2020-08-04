@@ -2,22 +2,14 @@
 
     {include file="$template/includes/pageheader.tpl" title=$LANG.login desc="{$LANG.restrictedpage}"}
 
-    {if $incorrect}
-        {include file="$template/includes/alert.tpl" type="error" msg=$LANG.loginincorrect textcenter=true}
-    {elseif $verificationId && empty($transientDataName)}
-        {include file="$template/includes/alert.tpl" type="error" msg=$LANG.verificationKeyExpired textcenter=true}
-    {elseif $ssoredirect}
-        {include file="$template/includes/alert.tpl" type="info" msg=$LANG.sso.redirectafterlogin textcenter=true}
-    {elseif $invalid}
-        {include file="$template/includes/alert.tpl" type="error" msg=$LANG.googleRecaptchaIncorrect textcenter=true}
-    {/if}
+    {include file="$template/includes/flashmessage.tpl"}
 
     <div class="providerLinkingFeedback"></div>
 
     <div class="row">
         <div class="col-sm-{if $linkableProviders}7{else}12{/if}">
 
-            <form method="post" action="{$systemurl}dologin.php" class="login-form" role="form">
+            <form method="post" action="{routePath('login-validate')}" class="login-form" role="form">
                 <div class="form-group">
                     <label for="inputEmail">{$LANG.clientareaemail}</label>
                     <input type="email" name="username" class="form-control" id="inputEmail" placeholder="{$LANG.enteremail}" autofocus>
