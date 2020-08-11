@@ -12,7 +12,7 @@
             <label for="inputContactId" class="col-sm-3 control-label">{$LANG.clientareachoosecontact}</label>
             <div class="col-sm-6">
                 <select name="contactid" id="inputContactId" onchange="submit()" class="form-control">
-                    {foreach item=contact from=$contacts}
+                    {foreach $contacts as $contact}
                         <option value="{$contact.id}"{if $contact.id eq $contactid} selected="selected"{/if}>{$contact.name} - {$contact.email}</option>
                     {/foreach}
                     <option value="new">{$LANG.clientareanavaddcontact}</option>

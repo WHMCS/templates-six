@@ -12,7 +12,7 @@
     <br>
 {/if}
 
-{if $showSsoSetting && !$twofaactivation}
+{if $showSsoSetting}
 
     <h2>{$LANG.sso.title}</h2>
 

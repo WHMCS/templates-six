@@ -7,7 +7,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="well text-left">
                     <ul>
-                        {foreach from=$allowedpermissions item=permission}
+                        {foreach $allowedpermissions as $permission}
                             <li>{$permission}</li>
                         {/foreach}
                     </ul>

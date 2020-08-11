@@ -1,6 +1,6 @@
 {include file="$template/includes/flashmessage.tpl"}
 
-<h2>Profile</h2>
+<h2>{$LANG.userProfile.profile}</h2>
 
 <form method="post" action="{routePath('user-profile-save')}">
     <div class="row">
@@ -29,13 +29,13 @@
 
 <br>
 
-<h2>Change Email Address</h2>
+<h2>{$LANG.userProfile.changeEmail}</h2>
 
 <p>
     {if $user->needsToCompleteEmailVerification()}
-        <span class="label label-default">Email Not Verified</span>
+        <span class="label label-default">{$LANG.userProfile.notVerified}</span>
     {elseif $user->emailVerified()}
-        <span class="label label-success">Email Verified</span>
+        <span class="label label-success">{$LANG.userProfile.verified}</span>
     {/if}
 </p>
 
