@@ -17849,8 +17849,12 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
         jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
         jQuery('#modalAjax .loader').fadeOut();
     }).always(function () {
+        var modalForm = jQuery('#modalAjax').find('form');
+        modalForm.submit(function (event) {
+            submitIdAjaxModalClickEvent();
+            return false;
+        });
         if (successDataTable) {
-            var modalForm = jQuery('#modalAjax').find('form');
             modalForm.data('successDataTable', successDataTable);
         }
     });
@@ -17967,7 +17971,6 @@ function updateAjaxModal(data) {
     }
     if (data.redirect) {
         window.location = data.redirect;
-        dialogClose();
     }
     if (data.successWindow && typeof window[data.successWindow] === "function") {
         window[data.successWindow]();
@@ -18026,8 +18029,11 @@ function updateAjaxModal(data) {
         submitButton.on('click', submitIdAjaxModalClickEvent);
     }
 
-    jQuery('#modalAjax .loader').fadeOut();
-    jQuery('#modalAjax .modal-submit').removeProp('disabled');
+    if (data.disableSubmit) {
+        disableSubmit();
+    } else {
+        enableSubmit();
+    }
 }
 
 // backwards compat for older dialog implementations
@@ -18077,6 +18083,18 @@ function removeAjaxModalPostSubmitEvents(functionName) {
             ajaxModalPostSubmitEvents.splice(index, 1);
         }
     }
+}
+
+function disableSubmit()
+{
+    jQuery('#modalAjax .modal-submit').prop("disabled", true);
+    jQuery('#modalAjax .loader').show();
+}
+
+function enableSubmit()
+{
+    jQuery('#modalAjax .loader').fadeOut();
+    jQuery('#modalAjax .modal-submit').removeProp('disabled');
 }
 
 /* ========================================================================

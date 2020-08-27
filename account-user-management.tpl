@@ -15,9 +15,9 @@
                     <span class="label label-info">{lang key="clientOwner"}</span>
                 {/if}
                 {if $user->hasTwoFactorAuthEnabled()}
-                    <i class="fas fa-shield text-success"></i>
+                    <i class="fas fa-shield text-success" data-toggle="tooltip" data-placement="auto right" title="{lang key='twoFactor.enabled'}"></i>
                 {else}
-                    <i class="fas fa-shield text-grey"></i>
+                    <i class="fas fa-shield text-grey" data-toggle="tooltip" data-placement="auto right" title="{lang key='twoFactor.disabled'}"></i>
                 {/if}
                 <br>
                 <small>
