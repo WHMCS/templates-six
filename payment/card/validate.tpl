@@ -77,12 +77,12 @@
         jQuery(document).ready(function() {
             jQuery('.paymethod-info input[name="ccinfo"]').on('ifChecked', function() {
                 if (jQuery(this).val() === 'new') {
-                    if (window.location.toString().match(/\?/)) {
-                        window.location = window.location + '&ccinfo=new';
-                    } else {
-                        window.location = window.location + '?ccinfo=new';
+                    var route = '{$newCardRoute}';
+                    var delimiter = '?';
+                    if (route.indexOf('?') !== -1) {
+                        delimiter = '&';
                     }
-
+                    window.location = route + delimiter + 'ccinfo=new';
                     return true;
                 }
             });

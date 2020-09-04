@@ -303,17 +303,21 @@ jQuery(document).ready(function() {
 
         var form = button.parents('form');
 
-        if (form.length == 0) {
+        if (form.length === 0) {
             form = button.find('form');
         }
-        if (form.hasClass('disabled')) {
+        if (form.hasClass('disabled') || button.hasClass('disabled')) {
             return;
         }
+        var url = form.data('href');
+        if (!url) {
+            url = window.location.href;
+        }
 
-        button.find('.loading').removeClass('hidden').show().end()
-            .attr('disabled', 'disabled');
+        button.attr('disabled', 'disabled').addClass('disabled');
+        button.find('.loading').removeClass('hidden').show().end();
         WHMCS.http.jqClient.post(
-            window.location.href,
+            url,
             form.serialize(),
             function (data) {
                 button.find('.loading').hide().end().removeAttr('disabled');
@@ -326,7 +330,10 @@ jQuery(document).ready(function() {
                 }
             },
             'json'
-        );
+        ).always(function() {
+            button.removeAttr('disabled').removeClass('disabled');
+            button.find('.loading').hide().end();
+        });
     });
     jQuery('.btn-sidebar-form-submit').on('click', function(e) {
         e.preventDefault();

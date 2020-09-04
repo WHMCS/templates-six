@@ -267,6 +267,13 @@ div.header-lined small {
     max-width: 400px;
 }
 
+.compact-control-bar {
+    margin: 0;
+    padding: 5px;
+    background-color: #eee;
+    border-radius: 3px;
+}
+
 /**
  * -------------------------
  * @section Margin Classes
@@ -3158,6 +3165,16 @@ div.md-editor.active {
 }
 .promo-banner.marketgoo .btn {
     background-color: #3090e0;
+}
+
+.promo-banner.ox {
+    border-top: 3px solid #666;
+}
+.promo-banner.ox a {
+    color: #666;
+}
+.promo-banner.ox .btn {
+    background-color: #666;
 }
 
 .mc-panel-promo {

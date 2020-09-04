@@ -201,6 +201,12 @@ input[type='file'].form-control {
     color: #808080;
 }
 
+.has-error button {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
 /*
  * Language strings which are too long to fit into buttons should be "chopped off" inside the div
  * of that button, instead of "overflowing" outside of the button.  CORE-9272

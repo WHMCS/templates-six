@@ -22,7 +22,6 @@
         {if count($certificates.wildcard) > 0 || $inPreview}
             <li{if $current == 'wildcard'} class="active"{/if}><a href="{routePath('store-ssl-certificates-wildcard')}">{lang key='store.ssl.shared.wildcardSsl'}</a></li>
         {/if}
-        <li{if $current == 'competitiveupgrade'} class="active"{/if}><a href="{routePath('store-ssl-certificates-competitiveupgrade')}">{lang key='store.ssl.shared.switch'}</a></li>
       </ul>
     </div>
   </div>

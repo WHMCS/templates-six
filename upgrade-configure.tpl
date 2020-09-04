@@ -77,9 +77,17 @@
                         </ul>
                         <div class="footer">
                             <form method="post" action="{routePath('upgrade-add-to-cart')}">
-                                <input type="hidden" name="isservice" value="{$isService}">
+                                <input type="hidden" name="isproduct" value="{$isService}">
                                 <input type="hidden" name="serviceid" value="{$serviceToBeUpgraded->id}">
                                 <input type="hidden" name="productid" value="{$product->id}">
+                                {if $allowMultipleQuantities}
+                                    <div class="text-right margin-bottom-5">
+                                        <label class="checkbox-inline">
+                                            {lang key='orderForm.qty'}
+                                            <input type="number" name="qty" min="{$minimumQuantity}" value="{$currentQuantity}" class="form-control input-inline input-inline-100">
+                                        </label>
+                                    </div>
+                                {/if}
                                 <select name="billingcycle" class="form-control">
                                     {foreach $product->pricing()->allAvailableCycles() as $cycle}
                                         {if is_null($permittedBillingCycles) || in_array($cycle->cycle(), $permittedBillingCycles)}
