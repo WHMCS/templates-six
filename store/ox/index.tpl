@@ -64,7 +64,7 @@
                         <p>{lang key="store.ox.feature2.detail"}</p>
                     </div>
                     <div class="feature-block">
-                        <img src="assets/img/marketconnect/ox/icon-dark-migration.png">
+                        <img src="assets/img/marketconnect/ox/icon-dark-email.png">
                         <p class="title">{lang key="store.ox.feature3.title"}</p>
                         <p>{lang key="store.ox.feature3.detail"}</p>
                     </div>
@@ -127,7 +127,7 @@
                                         {/if}
                                     </div>
 
-                                    <form method="post" action="{routePath('store-order')}">
+                                    <form method="post" action="{routePath('cart-order')}">
                                         <input type="hidden" name="pid" value="{$plan->id}">
                                         <button type="submit" class="btn btn-primary">
                                             {lang key="store.ssl.landingPage.buyNow"}

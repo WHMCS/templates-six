@@ -38,7 +38,7 @@
                         <br>
                     {/if}
 
-                    <form method="post" action="{routePath('store-ssl-certificates-competitiveupgrade-validate')}">
+                    <form method="post" action="{routePath('cart-ssl-certificates-competitiveupgrade-validate')}">
 
                         {if $validated}
                             {if $eligible}
@@ -65,7 +65,7 @@
                                         </tr>
                                     {/if}
                                 </table>
-                                <a class="btn btn-primary btn-lg" href="{routePath('store-ssl-certificates-ev')}">
+                                <a class="btn btn-primary btn-lg" href="{routePath('store-product-group', $productGroupSlug, 'ev')}">
                                     {lang key='store.ssl.competitiveUpgrades.continue'}
                                 </a>
                             {else}

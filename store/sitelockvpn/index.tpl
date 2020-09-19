@@ -153,7 +153,7 @@
                                         {/if}
                                     </ul>
                                     <div class="signup">
-                                        <form method="post" action="{routePath('store-order')}">
+                                        <form method="post" action="{routePath('cart-order')}">
                                             <input type="hidden" name="pid" value="{$plan->id}">
                                             {if !$inPreview}
                                                 <input type="hidden" name="billingcycle" value="{$pricing->cycle()}">

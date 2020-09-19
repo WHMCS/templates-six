@@ -1,7 +1,7 @@
 <div class="container">
     <div class="store-order-container">
 
-        <form method="post" action="{routePath('store-order-addtocart')}" id="frmAddToCart">
+        <form method="post" action="{routePath('cart-order-addtocart')}" id="frmAddToCart">
             <input type="hidden" name="pid" value="{$product->id}">
             <input type="hidden" name="domain_type" value="" id="inputDomainType">
 
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             {else}
-                                <a href="{routePath('store-order-login')}">{lang key='store.login'}</a> {lang key='store.addToExistingPackage'}
+                                <a href="{routePath('cart-order-login')}">{lang key='store.login'}</a> {lang key='store.addToExistingPackage'}
                             {/if}
                         </div>
                     {/if}
@@ -165,7 +165,7 @@
                             {/foreach}
                         </ul>
                     {/if}
-                    <form method="post" action="{routePath('store-order')}">
+                    <form method="post" action="{routePath('cart-order')}">
                         <input type="hidden" name="pid" value="{$upsellProduct->id}">
                         <button type="submit" class="btn btn-success">
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
@@ -204,7 +204,7 @@ jQuery(document).ready(function(){
 
           var domainName = jQuery('.subdomain-input').val() + '.' + jQuery('#existing_sld_for_subdomain').val();
 
-          WHMCS.http.jqClient.post('{routePath('store-order-validate')}', 'domain=' + domainName, function(data) {
+          WHMCS.http.jqClient.post('{routePath('cart-order-validate')}', 'domain=' + domainName, function(data) {
               if (data.valid) {
                   jQuery('.subdomain-validation').html('<i class="fas fa-check"></i> Valid').addClass('ok');
                   jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
@@ -228,7 +228,7 @@ jQuery(document).ready(function(){
         delay2(function(){
           jQuery('.domain-input-validation').html('<i class="fas fa-spinner fa-spin"></i> Validating...').removeClass('ok');
           jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
-          WHMCS.http.jqClient.post('{routePath('store-order-validate')}', 'domain=' + jQuery('.domain-input').val(), function(data) {
+          WHMCS.http.jqClient.post('{routePath('cart-order-validate')}', 'domain=' + jQuery('.domain-input').val(), function(data) {
             if (data.valid) {
                 jQuery('.domain-input-validation').html('<i class="fas fa-check"></i> Valid').addClass('ok');
                 jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');

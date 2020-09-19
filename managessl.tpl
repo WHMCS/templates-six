@@ -41,7 +41,7 @@
                         <td>{if $sslProduct->addon->nextDueDate instanceof Carbon}<span class="hidden">{$sslProduct->addon->nextDueDate->toDateString()}</span>{$sslProduct->addon->nextDueDate->format({$smarty.const.CLIENT_DATE_FORMAT})}{/if}</td>
                         <td>
                             {if $sslProduct->status == $sslStatusAwaitingIssuance}
-                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('store-ssl-certificates-resend-approver-email')}" data-addonid="{$sslProduct->addonId}">{lang key='sslresendmail'}</button>
+                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('clientarea-ssl-certificates-resend-approver-email')}" data-addonid="{$sslProduct->addonId}">{lang key='sslresendmail'}</button>
                             {/if}
                             {if $sslProduct->status == $sslStatusAwaitingConfiguration}
                                 <a href="{$sslProduct->getConfigurationUrl()}" class="btn btn-default btn-sm">{lang key='sslconfigure'}</a>
@@ -76,7 +76,7 @@
                         <td>{if $sslProduct->service->nextDueDate instanceof Carbon}<span class="hidden">{$sslProduct->service->nextDueDate->toDateString()}</span>{$sslProduct->service->nextDueDate->format({$smarty.const.CLIENT_DATE_FORMAT})}{/if}</td>
                         <td>
                             {if $sslProduct->status == $sslStatusAwaitingIssuance}
-                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('store-ssl-certificates-resend-approver-email')}" data-serviceid="{$sslProduct->serviceId}">{lang key='sslresendmail'}</button>
+                                <button class="btn btn-default btn-sm btn-resend-approver-email" data-url="{routePath('clientarea-ssl-certificates-resend-approver-email')}" data-serviceid="{$sslProduct->serviceId}">{lang key='sslresendmail'}</button>
                             {/if}
                             {if $sslProduct->status == $sslStatusAwaitingConfiguration}
                                 <a href="{$sslProduct->getConfigurationUrl()}" class="btn btn-default btn-sm">{lang key='sslconfigure'}</a>

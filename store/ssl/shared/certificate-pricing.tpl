@@ -51,7 +51,7 @@
                                         <li class="price 2yr na">-</li>
                                     {/if}
                                 </ul>
-                                <form method="post" action="{routePath('store-order')}">
+                                <form method="post" action="{routePath('cart-order')}">
                                     <input type="hidden" name="pid" value="{$product->id}">
                                     <button type="submit" class="btn btn-block">{lang key='store.ssl.landingPage.buyNow'}</button>
                                 </form>
@@ -68,7 +68,7 @@
                 <br>
                 <div class="row">
                     <div class="{if count($certificates.$type) == 1}col-sm-6 col-sm-offset-6{elseif count($certificates.$type) == 2}col-sm-8 col-sm-offset-4{else}col-sm-9 col-sm-offset-3{/if} text-center">
-                        <a href="{routePath('store-ssl-certificates-index')}#helpmechoose" class="help-me-choose">
+                        <a href="{routePath('store-product-group', $routePathSlug)}#helpmechoose" class="help-me-choose">
                             <i class="fas fa-question-circle"></i>
                             {lang key='store.ssl.shared.helpMeChoose'}
                         </a>

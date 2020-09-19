@@ -282,7 +282,7 @@
 
     <div class="content-block get-started" id="pricing">
         <div class="container">
-            <form method="post" action="{routePath('store-order')}">
+            <form method="post" action="{routePath('cart-order')}">
                 <input type="hidden" name="productkey" value="{$products.incoming->productKey}" id="productKey">
                 <div class="row">
                     <div class="col-sm-8">

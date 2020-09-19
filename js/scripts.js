@@ -17857,10 +17857,13 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
         jQuery('#modalAjax .loader').fadeOut();
     }).always(function () {
         var modalForm = jQuery('#modalAjax').find('form');
-        modalForm.submit(function (event) {
-            submitIdAjaxModalClickEvent();
-            return false;
-        });
+        // If a submitId is present, then we're working with a form and need to override the default event
+        if (submitId) {
+            modalForm.submit(function (event) {
+                submitIdAjaxModalClickEvent();
+                return false;
+            });
+        }
         if (successDataTable) {
             modalForm.data('successDataTable', successDataTable);
         }

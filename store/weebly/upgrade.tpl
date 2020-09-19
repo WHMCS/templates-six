@@ -39,7 +39,7 @@
                                             {/foreach}
                                         </ul>
                                     {/if}
-                                    <form method="post" action="{routePath('store-weebly-upgrade-order')}">
+                                    <form method="post" action="{routePath('cart-weebly-upgrade-order')}">
                                         <select name="service" class="form-control weebly-service-select{if count($weeblyServices) == 1} hidden{/if}">
                                             {foreach $weeblyServices as $service}
                                                 <option value="{$service.type}-{$service.id}">{$service.domain}</option>
@@ -53,7 +53,7 @@
                             {else}
                                 <h3>{lang key="store.websiteBuilder.upgrade.noPlans"}</h3>
                                 <p>{lang key="store.websiteBuilder.upgrade.loggedInAs" email=$loggedinuser.email}</p>
-                                <p><a href="logout.php?redirect=store-weebly-upgrade">{lang key="store.websiteBuilder.upgrade.switchUser"}</a></p>
+                                <p><a href="logout.php?redirect=cart-weebly-upgrade">{lang key="store.websiteBuilder.upgrade.switchUser"}</a></p>
                             {/if}
                         </div>
 

@@ -1,7 +1,7 @@
 <div class="promo-banner promo-banner-rounded {$promotion->getClass()}">
     <div class="panel-body">
         <div class="icon-left">
-            <a href="{routePath($promotion->getLearnMoreRoute())}">
+            <a href="{$promotion->getLearnMoreRoute()}">
                 <img src="{$promotion->getImagePath()}">
             </a>
         </div>
@@ -11,7 +11,7 @@
             <h3>
                 {$promotion->getHeadline()}
                 {if $promotion->getLearnMoreRoute()}
-                    <small><a href="{routePath($promotion->getLearnMoreRoute())}">{lang key='learnmore'}...</a></small>
+                    <small><a href="{$promotion->getLearnMoreRoute()}">{lang key='learnmore'}...</a></small>
                 {/if}
             </h3>
             <h4>{$promotion->getTagline()}</h4>

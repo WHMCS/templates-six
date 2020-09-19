@@ -66,7 +66,7 @@
 
                 {foreach key=name item=value from=$values}
                     <div class="form-group">
-                        <label>{$name}</label>
+                        <label>{$contactdetailstranslations[$name]}</label>
                         <input type="text" name="contactdetails[{$contactdetail}][{$name}]" value="{$value}" data-original-value="{$value}" class="form-control {$contactdetail}customwhois{if array_key_exists($contactdetail, $irtpFields) && in_array($name, $irtpFields[$contactdetail])} irtp-field{/if}" />
                     </div>
                 {/foreach}

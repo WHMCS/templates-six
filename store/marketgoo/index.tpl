@@ -151,7 +151,7 @@
                                     </li>
                                 {/foreach}
                             </ul>
-                            <form action="{routePath('store-order')}" method="post">
+                            <form action="{routePath('cart-order')}" method="post">
                                 <input type="hidden" name="pid" value="{$plan->id}">
                                 <button type="submit" class="btn btn-primary btn-signup">
                                     {lang key='store.marketgoo.signup'}

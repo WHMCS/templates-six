@@ -453,10 +453,10 @@
         clone.find('.limit')
             .text(data.quota);
         clone.attr('data-account-id', data.id)
-            .attr('data-first-name', escape(data.first_name))
-            .attr('data-last-name', escape(data.last_name))
-            .attr('data-display-name', escape(data.display_name))
-            .attr('data-account', escape(data.username) + '@{$domain}');
+            .attr('data-first-name', data.first_name)
+            .attr('data-last-name', data.last_name)
+            .attr('data-display-name', data.display_name)
+            .attr('data-account', data.username + '@{$domain}');
         clone.removeClass('clone hidden');
         tableBody.append(clone);
     }
@@ -520,6 +520,10 @@
         jQuery('button.btn-add').width(function() {
             return jQuery(this).outerWidth(true);
         }).find('span.loading').toggleClass('hidden loading');
+        jQuery('#modalAddAccount,#modalSetPassword').on('shown.bs.modal', function() {
+            jQuery('.modal-backdrop.fade.in').css('zIndex', 1030);
+            jQuery(this).css('zIndex', 1035);
+        });
         jQuery(document)
             .on('click', '#btnRefresh', function() {
                 jQuery(this).addClass('disabled').prop('disabled', true);

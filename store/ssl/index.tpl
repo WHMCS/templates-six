@@ -20,7 +20,7 @@
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-dv-icon.png">
                         <span>{lang key="store.ssl.landingPage.dvSubtitle"}</span>
                         <p>{lang key="store.ssl.landingPage.dvInformation"}</p>
-                        <a href="{routePath('store-ssl-certificates-dv')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
+                        <a href="{routePath('store-product-group', $routePathSlug, 'dv')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
@@ -29,7 +29,7 @@
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-ov-icon.png">
                         <span>{lang key="store.ssl.landingPage.ovSubtitle"}</span>
                         <p>{lang key="store.ssl.landingPage.ovInformation"}</p>
-                        <a href="{routePath('store-ssl-certificates-ov')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
+                        <a href="{routePath('store-product-group', $routePathSlug, 'ov')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0">
@@ -38,7 +38,7 @@
                         <img src="{$WEB_ROOT}/assets/img/marketconnect/symantec/ssl-ev-icon.png">
                         <span>{lang key="store.ssl.landingPage.evSubtitle"}</span>
                         <p>{lang key="store.ssl.landingPage.evInformation"}</p>
-                        <a href="{routePath('store-ssl-certificates-ev')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
+                        <a href="{routePath('store-product-group', $routePathSlug, 'ev')}" class="btn">{lang key="store.ssl.landingPage.buy"}</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                         </li>
                     </ul>
 
-                    <p>{lang key="store.ssl.landingPage.certTypeInfo" dvLink=routePath('store-ssl-certificates-dv') ovLink=routePath('store-ssl-certificates-ov') evLink=routePath('store-ssl-certificates-ev')}</p>
+                    <p>{lang key="store.ssl.landingPage.certTypeInfo" dvLink=routePath('store-product-group', $routePathSlug, 'dv') ovLink=routePath('store-product-group', $routePathSlug, 'ov') evLink=routePath('store-product-group', $routePathSlug, 'ev')}</p>
 
                 </div>
             </div>
@@ -158,7 +158,7 @@
     <div class="content-block competitive-upgrade-promo">
         <div class="container">
             {lang key="store.ssl.landingPage.browser.competitiveUpgrade"}
-            <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"} &raquo;</a>
+            <a href="{routePath('cart-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"} &raquo;</a>
         </div>
     </div>
 
@@ -189,7 +189,7 @@
                 </div>
             </div>
             <br>
-            <p class="text-center"><a href="{routePath('store-ssl-certificates-ev')}" class="btn btn-default">{lang key="store.ssl.landingPage.evs.learn"}</a></p>
+            <p class="text-center"><a href="{routePath('store-product-group', $routePathSlug, 'ev')}" class="btn btn-default">{lang key="store.ssl.landingPage.evs.learn"}</a></p>
         </div>
     </div>
 
@@ -224,7 +224,7 @@
 
                             <p class="ssl-types-expl">{lang key="store.ssl.landingPage.help.dv.type"}</p>
 
-                            <a href="{routePath('store-ssl-certificates-dv')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.dv.browse"}</a>
+                            <a href="{routePath('store-product-group', $routePathSlug, 'dv')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.dv.browse"}</a>
                         </div>
                         <div class="col-sm-4">
                             <h4>{lang key="store.ssl.landingPage.help.ov.title"}</h4>
@@ -241,7 +241,7 @@
 
                             <p class="ssl-types-expl">{lang key="store.ssl.landingPage.help.ov.type"}</p>
 
-                            <a href="{routePath('store-ssl-certificates-ov')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.ov.browse"}</a>
+                            <a href="{routePath('store-product-group', $routePathSlug, 'ov')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.ov.browse"}</a>
                         </div>
                         <div class="col-sm-4">
                             <h4>{lang key="store.ssl.landingPage.help.ev.title"}</h4>
@@ -258,7 +258,7 @@
 
                             <p class="ssl-types-expl">{lang key="store.ssl.landingPage.help.ev.type"}</p>
 
-                            <a href="{routePath('store-ssl-certificates-ev')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.ev.browse"}</a>
+                            <a href="{routePath('store-product-group', $routePathSlug, 'ev')}" class="btn btn-primary btn-block">{lang key="store.ssl.landingPage.help.ev.browse"}</a>
                         </div>
                     </div>
 
@@ -295,11 +295,11 @@
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="padded-cell">
-                                                    <form method="post" action="{routePath('store-order')}">
+                                                    <form method="post" action="{routePath('cart-order')}">
                                                         <input type="hidden" name="pid" value="{$product->id}">
                                                         <button type="submit" class="btn btn-success btn-block">{lang key="store.ssl.landingPage.buyNow"}</button>
                                                     </form>
-                                                    <a href="{routePath("store-ssl-certificates-$type")}">{lang key="learnmore"}</a>
+                                                    <a href="{routePath("store-product-group', $routePathSlug, $type")}">{lang key="learnmore"}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -342,7 +342,7 @@
 
                         <h4>{lang key="store.ssl.landingPage.faq.q4"}</h4>
 
-                        <p>{lang key="store.ssl.landingPage.faq.a4"} <a href="{routePath('store-ssl-certificates-wildcard')}">{lang key="learnmore"}</a></p>
+                        <p>{lang key="store.ssl.landingPage.faq.a4"} <a href="{routePath('store-product-group', $routePathSlug, 'wildcard')}">{lang key="learnmore"}</a></p>
 
                     {/if}
 
@@ -356,7 +356,7 @@
 
                     <h4>{lang key="store.ssl.landingPage.faq.q6"}</h4>
 
-                    <p>{lang key="store.ssl.landingPage.faq.a6"} <a href="{routePath('store-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"}</a></p>
+                    <p>{lang key="store.ssl.landingPage.faq.a6"} <a href="{routePath('cart-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"}</a></p>
 
                 </div>
               </div>
