@@ -54,34 +54,34 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-block">
-                        <img src="assets/img/marketconnect/ox/icon-dark-cloud.png">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/ox/icon-dark-cloud.png">
                         <p class="title">{lang key="store.ox.feature1.title"}</p>
                         <p>{lang key="store.ox.feature1.detail"}</p>
                     </div>
                     <div class="feature-block">
-                        <img src="assets/img/marketconnect/ox/icon-dark-calendar.png">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/ox/icon-dark-calendar.png">
                         <p class="title">{lang key="store.ox.feature2.title"}</p>
                         <p>{lang key="store.ox.feature2.detail"}</p>
                     </div>
                     <div class="feature-block">
-                        <img src="assets/img/marketconnect/ox/icon-dark-email.png">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/ox/icon-dark-email.png">
                         <p class="title">{lang key="store.ox.feature3.title"}</p>
                         <p>{lang key="store.ox.feature3.detail"}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="feature-block">
-                        <img src="assets/img/marketconnect/ox/icon-dark-productivity.png">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/ox/icon-dark-productivity.png">
                         <p class="title">{lang key="store.ox.feature4.title"}</p>
                         <p>{lang key="store.ox.feature4.detail"}</p>
                     </div>
                     <div class="feature-block">
-                        <img src="assets/img/marketconnect/ox/icon-dark-apps.png">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/ox/icon-dark-apps.png">
                         <p class="title">{lang key="store.ox.feature5.title"}</p>
                         <p>{lang key="store.ox.feature5.detail"}</p>
                     </div>
                     <div class="feature-block">
-                        <img src="assets/img/marketconnect/ox/icon-dark-privacy.png">
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/ox/icon-dark-privacy.png">
                         <p class="title">{lang key="store.ox.feature6.title"}</p>
                         <p>{lang key="store.ox.feature6.detail"}</p>
                     </div>

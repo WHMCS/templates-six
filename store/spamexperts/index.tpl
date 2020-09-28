@@ -41,8 +41,8 @@
                                 <div class="icon">
                                     <i class="far fa-envelope-open"></i>
                                 </div>
-                                <span>{lang key="store.emailServices.overview.incoming.headline"}</span>
-                                <p>{lang key="store.emailServices.overview.incoming.tagline"}</p>
+                                <span>{lang key="store.emailServices.overview.incoming.tagline"}</span>
+                                <p>{lang key="store.emailServices.overview.incoming.headline"}</p>
                                 {if $products.incoming->pricing()->best()}
                                     <div class="price">{lang key="from"} {$products.incoming->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $inPreview}
@@ -64,8 +64,8 @@
                                 <div class="icon">
                                     <i class="fas fa-envelope-open"></i>
                                 </div>
-                                <span>{lang key="store.emailServices.overview.outgoing.headline"}</span>
-                                <p>{lang key="store.emailServices.overview.outgoing.tagline"}</p>
+                                <span>{lang key="store.emailServices.overview.outgoing.tagline"}</span>
+                                <p>{lang key="store.emailServices.overview.outgoing.headline"}</p>
                                 {if $products.outgoing->pricing()->best()}
                                     <div class="price">{lang key="from"} {$products.outgoing->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $inPreview}
@@ -87,8 +87,8 @@
                                 <div class="icon">
                                     <i class="fas fa-cube"></i>
                                 </div>
-                                <span>{lang key="store.emailServices.overview.archiving.headline"}</span>
-                                <p>{lang key="store.emailServices.overview.archiving.tagline"}</p>
+                                <span>{lang key="store.emailServices.overview.archiving.tagline"}</span>
+                                <p>{lang key="store.emailServices.overview.archiving.headline"}</p>
                                 {if $products.incomingarchiving && $products.incomingarchiving->pricing()->best()}
                                     <div class="price">{lang key="from"} {$products.incomingarchiving->pricing()->best()->toFullString()}/{lang key="store.emailServices.domain"}</div>
                                 {elseif $products.outgoingarchiving && $products.outgoingarchiving->pricing()->best()}

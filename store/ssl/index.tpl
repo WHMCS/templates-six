@@ -157,8 +157,7 @@
 
     <div class="content-block competitive-upgrade-promo">
         <div class="container">
-            {lang key="store.ssl.landingPage.browser.competitiveUpgrade"}
-            <a href="{routePath('cart-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"} &raquo;</a>
+            {lang key="store.ssl.landingPage.secureInMinutes"}
         </div>
     </div>
 
@@ -299,7 +298,7 @@
                                                         <input type="hidden" name="pid" value="{$product->id}">
                                                         <button type="submit" class="btn btn-success btn-block">{lang key="store.ssl.landingPage.buyNow"}</button>
                                                     </form>
-                                                    <a href="{routePath("store-product-group', $routePathSlug, $type")}">{lang key="learnmore"}</a>
+                                                    <a href="{routePath("store-product-group", $routePathSlug, $type)}">{lang key="learnmore"}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -353,11 +352,6 @@
                         <p>{lang key="store.ssl.landingPage.faq.a5"}</p>
 
                     {/if}
-
-                    <h4>{lang key="store.ssl.landingPage.faq.q6"}</h4>
-
-                    <p>{lang key="store.ssl.landingPage.faq.a6"} <a href="{routePath('cart-ssl-certificates-competitiveupgrade')}">{lang key="learnmore"}</a></p>
-
                 </div>
               </div>
             </div>
