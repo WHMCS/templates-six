@@ -119,7 +119,7 @@
                     <h3>{$LANG.clientareacontactsemails}</h3>
                     <div class="controls checkbox">
                         {foreach $emailPreferences as $emailType => $value}
-                            <input type="checkbox" name="email_preferences[{$emailType}]" id="{$emailType}Emails" value="1"{if $value} checked="checked"{/if} />
+                            <input type="checkbox" name="email_preferences[{$emailType}]" id="{$emailType}Emails"{if $value} checked="checked"{/if} />
                             <label for="{$emailType}Emails">{lang key="emailPreferences."|cat:$emailType}</label>
                             {if !($emailType@last)}<br />{/if}
                         {/foreach}
