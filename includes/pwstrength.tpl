@@ -71,7 +71,7 @@ function validatePassword2() {
         $newPassword2.removeClass('has-success')
             .addClass('has-error');
         jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-ok').addClass('glyphicon-remove');
-        jQuery("#inputNewPassword2Msg").html('<p class="help-block">{$LANG.pwdoesnotmatch|escape}</p>');
+        jQuery("#inputNewPassword2Msg").html('<p class="help-block" id="nonMatchingPasswordResult">{$LANG.pwdoesnotmatch|escape}</p>');
         {if !isset($noDisable)}jQuery('input[type="submit"]').attr('disabled', 'disabled');{/if}
     } else {
         if (password2) {

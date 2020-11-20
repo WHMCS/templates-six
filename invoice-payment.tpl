@@ -20,7 +20,7 @@
                     {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
                 {/if}
 
-                <div class="alert alert-danger text-center gateway-errors hidden"></div>
+                <div class="alert alert-danger text-center gateway-errors w-hidden"></div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">
@@ -38,7 +38,7 @@
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-lg margin-top-5" id="btnSubmit" value="{lang key='submitpayment'}">
                             <span class="pay-text">{lang key='submitpayment'}</span>
-                            <span class="click-text hidden">{lang key='pleasewait'}</span>
+                            <span class="click-text w-hidden">{lang key='pleasewait'}</span>
                         </button>
                     </div>
                 </div>

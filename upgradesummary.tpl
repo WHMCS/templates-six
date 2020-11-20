@@ -128,7 +128,7 @@
 </div>
 
 <div class="form-group text-center">
-    <input type="submit" value="{$LANG.ordercontinuebutton}" class="btn btn-primary" />
+    <input type="submit" value="{$LANG.ordercontinuebutton}" class="btn btn-primary" id="btnOrderContinue" />
 </div>
 
 </form>

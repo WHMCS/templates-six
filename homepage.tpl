@@ -6,7 +6,7 @@
         <p class="text-center"><img src="{$BASE_PATH_IMG}/loading.gif" /></p>
     </div>
 
-    <script type="text/javascript" src="templates/{$template}/js/twitter.js"></script>
+    <script type="text/javascript" src="{assetPath file='twitter.js'}"></script>
 
 {elseif $announcements}
 

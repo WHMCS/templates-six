@@ -80,7 +80,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="{$LANG.masspaymakepayment}" class="btn btn-primary btn-block" />
+                                <input type="submit" value="{$LANG.masspaymakepayment}" class="btn btn-primary btn-block" id="btnMassPayMakePayment" />
                             </div>
                         </div>
                     </fieldset>

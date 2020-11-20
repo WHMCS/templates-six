@@ -18,7 +18,7 @@
                 {foreach $accounts as $account}
                     <a href="#" data-id="{$account->id}"{if $account->status == 'Closed'} class="disabled"{/if}>
                         {$account->displayName}
-                        {if $account->autheduser->owner}
+                        {if $account->authedUserIsOwner()}
                             <span class="label label-info">{lang key="clientOwner"}</span>
                         {/if}
                         {if $account->status == 'Closed'}

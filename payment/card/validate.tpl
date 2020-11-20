@@ -39,7 +39,7 @@
             }
             if (!submit) {
                 submitButton.prop('disabled', false).removeClass('disabled')
-                    .find('span').toggleClass('hidden');
+                    .find('span').toggle();
                 e.preventDefault();
             }
         }

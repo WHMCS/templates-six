@@ -592,7 +592,7 @@ jQuery(document).ready(function() {
 
     jQuery('#frmPayment').on('submit', function() {
         var btn = jQuery('#btnSubmit');
-            btn.find('span').toggleClass('hidden');
+            btn.find('span').toggle();
             btn.prop('disabled', true).addClass('disabled');
     });
 
@@ -620,17 +620,17 @@ jQuery(document).ready(function() {
 
         var noTlds = jQuery('.tld-row.no-tlds');
 
-        if (jQuery(this).hasClass('label-success')) {
-            jQuery(this).removeClass('label-success');
+        if (jQuery(this).hasClass('badge-success')) {
+            jQuery(this).removeClass('badge-success');
         } else {
-            jQuery(this).addClass('label-success');
+            jQuery(this).addClass('badge-success');
         }
         if (noTlds.is(':visible')) {
             noTlds.hide();
         }
 
         jQuery('.tld-row').removeClass('filtered-row');
-        jQuery('.tld-filters a.label-success').each(function(index) {
+        jQuery('.tld-filters a.badge-success').each(function(index) {
             var filterValue = jQuery(this).data('category');
             jQuery('.tld-row[data-category*="' + filterValue + '"]').addClass('filtered-row');
         });
@@ -652,9 +652,6 @@ jQuery(document).ready(function() {
 
     // DataTable data-driven auto object registration
     WHMCS.ui.dataTable.register();
-
-    // Bootstrap Confirmation popup auto object registration
-    WHMCS.ui.confirmation.register();
 
     WHMCS.ui.jsonForm.initAll();
 
@@ -783,6 +780,29 @@ jQuery(document).ready(function() {
         if (state) {
             descContainer.removeClass('disabled').prop('disabled', false);
         }
+    });
+
+    jQuery(document).on('click', '#btnConfirmModalConfirmBtn', function () {
+        var confirmButton = jQuery(this),
+            confirmationModal = confirmButton.closest('div.modal'),
+            targetUrl = confirmButton.data('target-url'),
+            dataTable = confirmButton.closest('table.dataTable[data-on-draw-rebind-confirmation-modal="true"]');
+        WHMCS.http.jqClient.jsonPost(
+            {
+                url: targetUrl,
+                data: {
+                    token: csrfToken
+                },
+                success: function(data) {
+                    if (data.status === 'success' || data.status === 'okay') {
+                        if (dataTable.length > 0) {
+                            dataTable.DataTable().ajax.reload();
+                        }
+                    }
+                }
+            }
+        );
+        confirmationModal.modal('toggle');
     });
 });
 

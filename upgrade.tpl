@@ -70,7 +70,11 @@
                                     </select>
                                 {/if}
                             </div>
-                            <input type="submit" value="{$LANG.upgradedowngradechooseproduct}" class="btn btn-primary btn-block" />
+                            <input type="submit"
+                                   value="{$LANG.upgradedowngradechooseproduct}"
+                                   class="btn btn-primary btn-block"
+                                   id="btnUpgradeDowngradeChooseProduct"
+                            />
                         </form>
                     </td>
                 </tr>

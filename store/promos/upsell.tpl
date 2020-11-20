@@ -41,6 +41,8 @@
                         {lang key="fromJust"}
                         {if $product->pricing()->first()->isYearly()}
                             {$product->pricing()->first()->yearlyPrice()}
+                        {elseif $product->pricing()->first()->isOneTime()}
+                            {$product->pricing()->first()->oneTimePrice()}
                         {else}
                             {$product->pricing()->first()->monthlyPrice()}
                         {/if}

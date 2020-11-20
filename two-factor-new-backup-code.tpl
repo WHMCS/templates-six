@@ -11,7 +11,7 @@
     <p class="text-center">{$LANG.twofabackupcodeexpl}</p>
 
     <p class="text-center">
-        <a href="clientarea.php" class="btn btn-default">
+        <a href="{routePath('clientarea-home')}" class="btn btn-default">
             {$LANG.continue} &raquo;
         </a>
     </p>

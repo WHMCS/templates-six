@@ -4,7 +4,7 @@
 
     <h2 class="text-center">{$LANG.twofactorauth}</h2>
 
-    <form method="post" action="{$issuerurl}dologin.php" role="form">
+    <form method="post" action="{routePath('login-two-factor-challenge-verify')}" role="form">
 
         <div id="loginWithBackupCode"{if !$backupcode} class="hidden"{/if}>
             <div class="content-padded">

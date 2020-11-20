@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{$companyname} - {$LANG.quotenumber}{$id}</title>
 
-    <link href="{$WEB_ROOT}/templates/{$template}/css/all.min.css" rel="stylesheet">
+    <link href="{assetPath file='all.min.css'}" rel="stylesheet">
     <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
-    <link href="{$WEB_ROOT}/templates/{$template}/css/invoice.css" rel="stylesheet">
+    <link href="assetPath file='invoice.css'}" rel="stylesheet">
 
 </head>
 <body>
@@ -187,7 +187,7 @@
                     <div class="modal-body">
                         <p>{$LANG.quoteacceptagreetos}</p>
                         <p class="text-center">
-                            <label class="checkbox-inline">
+                            <label class="checkbox-inline" id="quoteAcceptAgreeTos">
                                 <input type="checkbox" name="agreetos" />
                                 {$LANG.ordertosagreement} <a href="{$tosurl}" target="_blank">{$LANG.ordertos}</a>
                             </label>

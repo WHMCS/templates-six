@@ -1,7 +1,7 @@
 {if ($linkableProviders || $hasLinkedProvidersEnabled) && $linkContext == 'linktable'}
     <table id="tableLinkedAccounts" class="table display data-driven"
            data-ajax-url="{$linkedAccountsUrl}"
-           data-on-draw-rebind-confirmation="true"
+           data-on-draw-rebind-confirmation-modal="true"
            data-lang-empty-table="{lang key='remoteAuthn.noLinkedAccounts'}"
     >
         <thead>

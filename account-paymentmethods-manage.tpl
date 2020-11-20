@@ -8,7 +8,7 @@
 </h3>
 
 <form id="frmManagePaymentMethod" class="form-horizontal frm-credit-card-input" role="form" method="post" action="{if $editMode}{routePath('account-paymentmethods-save', $payMethod->id)}{else}{routePath('account-paymentmethods-add')}{/if}">
-    <div class="alert alert-warning text-center gateway-errors assisted-cc-input-feedback hidden">
+    <div class="alert alert-warning text-center gateway-errors assisted-cc-input-feedback" style="display: none;">
         {$LANG.paymentMethodsManage.invalidCardDetails}
     </div>
 

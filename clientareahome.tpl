@@ -10,7 +10,7 @@
                 <div class="highlight bg-color-blue"></div>
             </a>
         </div>
-        {if $registerdomainenabled || $transferdomainenabled}
+        {if $clientsstats.numdomains || $registerdomainenabled || $transferdomainenabled}
             <div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=domains'">
                 <a href="clientarea.php?action=domains">
                     <div class="icon"><i class="fas fa-globe"></i></div>

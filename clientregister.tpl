@@ -148,7 +148,7 @@
                             <label for="inputTaxId" class="field-icon">
                                 <i class="fas fa-building"></i>
                             </label>
-                            <input type="text" name="tax_id" id="inputTaxId" class="field" placeholder="{lang key=\WHMCS\Billing\Tax\Vat::getLabel()} ({$LANG.orderForm.optional})" value="{$clientTaxId}">
+                            <input type="text" name="tax_id" id="inputTaxId" class="field" placeholder="{$taxLabel} ({$LANG.orderForm.optional})" value="{$clientTaxId}">
                         </div>
                     </div>
                 {/if}

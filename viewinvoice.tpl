@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{$companyname} - {$pagetitle}</title>
 
-    <link href="{$WEB_ROOT}/templates/{$template}/css/all.min.css" rel="stylesheet">
+    <link href="{assetPath file='all.min.css'}?v={$versionHash}" rel="stylesheet">
     <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
-    <link href="{$WEB_ROOT}/templates/{$template}/css/invoice.css" rel="stylesheet">
-    <script src="{$WEB_ROOT}/templates/{$template}/js/scripts.min.js?v={$versionHash}"></script>
+    <link href="{assetPath file='invoice.css'}" rel="stylesheet">
+    <script src="{assetPath file='scripts.min.js'}?v={$versionHash}"></script>
 
 </head>
 <body>
@@ -148,7 +148,11 @@
                                     <div class="input-group">
                                         <input type="text" name="creditamount" value="{$creditamount}" class="form-control" />
                                         <span class="input-group-btn">
-                                            <input type="submit" value="{$LANG.invoiceaddcreditapply}" class="btn btn-success" />
+                                            <input type="submit"
+                                                   value="{$LANG.invoiceaddcreditapply}"
+                                                   class="btn btn-success"
+                                                   id="btnInvoiceAddCreditApply"
+                                            />
                                         </span>
                                     </div>
                                 </div>
