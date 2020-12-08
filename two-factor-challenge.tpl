@@ -2,6 +2,8 @@
 
     {include file="$template/includes/pageheader.tpl" title=$LANG.twofactorauth}
 
+    {include file="$template/includes/flashmessage.tpl" align="center"}
+
     {if $newbackupcode}
         {include file="$template/includes/alert.tpl" type="success" msg=$LANG.twofabackupcodereset textcenter=true}
     {elseif $incorrect}

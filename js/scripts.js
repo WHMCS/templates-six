@@ -15191,6 +15191,11 @@ function () {
 
         var src = jQuery(element).data('src');
         jQuery(element).attr('src', src + '?nocache=' + (new Date()).getTime());
+
+        var userInput = jQuery('#inputCaptcha');
+        if (userInput.length) {
+            userInput.val('');
+        }
     };
 
     return this;
