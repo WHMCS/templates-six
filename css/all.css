@@ -10260,6 +10260,25 @@ tr.masspay-total td {
     margin-top: 0;
 }
 
+.licensing-verification .secondary-input-submit {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .licensing-verification .input-group .input-group-btn {
+        display: none;
+    }
+
+    .licensing-verification .input-group input {
+        border-radius: 0 6px 6px 0 !important;
+    }
+
+    .licensing-verification .secondary-input-submit {
+        display: block;
+        padding-top: 0.5em;
+    }
+}
+
 /**
  * -------------------------
  * Domain Checker Captchas
