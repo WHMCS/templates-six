@@ -15034,7 +15034,15 @@ jsonForm: function() {
     };
 
     this.clearFieldError = function (field) {
-        $(field).tooltip('destroy');
+        /**
+         * Try dispose first for BS 4, which will raise error
+         * on BS 3 or older, then we use destroy instead
+         */
+        try {
+            $(field).tooltip('dispose');
+        } catch (err) {
+            $(field).tooltip('destroy');
+        }
         $(field).parents('.form-group').removeClass('has-error');
     };
 
@@ -15185,16 +15193,20 @@ function () {
 
     this.reloadCaptcha = function (element)
     {
-        if (!element) {
-            element = jQuery('#inputCaptchaImage');
-        }
+        if (typeof grecaptcha !== 'undefined') {
+            grecaptcha.reset();
+        } else {
+            if (!element) {
+                element = jQuery('#inputCaptchaImage');
+            }
 
-        var src = jQuery(element).data('src');
-        jQuery(element).attr('src', src + '?nocache=' + (new Date()).getTime());
+            var src = jQuery(element).data('src');
+            jQuery(element).attr('src', src + '?nocache=' + (new Date()).getTime());
 
-        var userInput = jQuery('#inputCaptcha');
-        if (userInput.length) {
-            userInput.val('');
+            var userInput = jQuery('#inputCaptcha');
+            if (userInput.length) {
+                userInput.val('');
+            }
         }
     };
 
@@ -15208,7 +15220,9 @@ function () {
  * @license http://www.whmcs.com/license/ WHMCS Eula
  */
 var recaptchaLoadComplete = false,
-    recaptchaCount = 0;
+    recaptchaCount = 0,
+    recaptchaType = 'recaptcha',
+    recaptchaValidationComplete = false;
 
 (function(module) {
     if (!WHMCS.hasModule('recaptcha')) {
@@ -15282,11 +15296,15 @@ var recaptchaLoadComplete = false,
                 // are allowing required field validation to occur before
                 // we do the invisible recaptcha checking
                 if (isInvisible) {
-                    frm.on('submit', function (event) {
+                    recaptchaType = 'invisible';
+                    frm.on('submit.recaptcha', function (event) {
                         var recaptchaId = frm.find('.g-recaptcha').data('recaptcha-id');
                         if (!grecaptcha.getResponse(recaptchaId).trim()) {
                             event.preventDefault();
                             grecaptcha.execute(recaptchaId);
+                            recaptchaValidationComplete = false;
+                        } else {
+                            recaptchaValidationComplete = true;
                         }
                     });
                 } else {
@@ -17331,12 +17349,13 @@ jQuery(document).ready(function(){
             modalTitle = jQuery(this).data('modal-title'),
             submitId = jQuery(this).data('btn-submit-id'),
             submitLabel = jQuery(this).data('btn-submit-label'),
+            submitColor = jQuery(this).data('btn-submit-color'),
             hideClose = jQuery(this).data('btn-close-hide'),
             disabled = jQuery(this).attr('disabled'),
             successDataTable = jQuery(this).data('datatable-reload-success');
 
         if (!disabled) {
-            openModal(url, '', modalTitle, modalSize, modalClass, submitLabel, submitId, hideClose, successDataTable);
+            openModal(url, '', modalTitle, modalSize, modalClass, submitLabel, submitId, submitColor, hideClose, successDataTable);
         }
     });
 
@@ -17367,7 +17386,7 @@ jQuery(document).ready(function(){
     });
 });
 
-function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel, submitId, hideClose, successDataTable) {
+function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel, submitId, submitColor, hideClose, successDataTable) {
     //set the text of the modal title
     jQuery('#modalAjax .modal-title').html(modalTitle);
 
@@ -17398,6 +17417,11 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
 
     if (hideClose) {
         jQuery('#modalAjaxClose').hide();
+    }
+
+    if (submitColor) {
+        jQuery('#modalAjax .modal-submit').removeClass('btn-primary')
+            .addClass('btn-' + submitColor);
     }
 
     jQuery('#modalAjax .modal-body').html('');
@@ -17603,6 +17627,10 @@ function updateAjaxModal(data) {
     } else {
         enableSubmit();
     }
+
+    if (data.hideSubmit) {
+        ajaxModalHideSubmit();
+    }
 }
 
 // backwards compat for older dialog implementations
@@ -17664,6 +17692,11 @@ function enableSubmit()
 {
     jQuery('#modalAjax .loader').fadeOut();
     jQuery('#modalAjax .modal-submit').removeProp('disabled');
+}
+
+function ajaxModalHideSubmit()
+{
+    jQuery('#modalAjax .modal-submit').hide();
 }
 
 /**

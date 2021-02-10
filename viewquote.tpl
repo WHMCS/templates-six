@@ -8,7 +8,7 @@
 
     <link href="{assetPath file='all.min.css'}" rel="stylesheet">
     <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
-    <link href="assetPath file='invoice.css'}" rel="stylesheet">
+    <link href="{assetPath file='invoice.css'}" rel="stylesheet">
 
 </head>
 <body>
