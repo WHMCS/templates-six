@@ -78,7 +78,7 @@
             </button>
         </div>
         <div class="col-xs-12 ticket-attachments-message text-muted">
-            {$LANG.supportticketsallowedextensions}: {$allowedfiletypes}
+            {$LANG.supportticketsallowedextensions}: {$allowedfiletypes} ({lang key="maxFileSize" fileSize="$uploadMaxFileSize"})
         </div>
     </div>
 

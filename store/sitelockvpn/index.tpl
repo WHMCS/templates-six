@@ -75,7 +75,6 @@
                 <img src="{$WEB_ROOT}/assets/img/marketconnect/sitelockvpn/logo-apple.png">
                 <img src="{$WEB_ROOT}/assets/img/marketconnect/sitelockvpn/logo-windows.png">
                 <img src="{$WEB_ROOT}/assets/img/marketconnect/sitelockvpn/logo-android.png">
-                <img src="{$WEB_ROOT}/assets/img/marketconnect/sitelockvpn/logo-linux.png">
             </div>
         </div>
     </div>

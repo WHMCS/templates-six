@@ -26,7 +26,7 @@
                 <p>{$kbcat.description}</p>
             </div>
             {if $smarty.foreach.kbcats.iteration mod 3 == 0}
-                </div><div class="row">
+                </div><div class="row kbcategories">
             {/if}
         {/foreach}
     </div>

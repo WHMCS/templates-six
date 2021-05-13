@@ -29,7 +29,7 @@
                         {foreach $certificates.$type as $product}
                             <div class="col-sm-{if count($certificates.$type) == 1}6{elseif count($certificates.$type) == 2}4{else}3{/if}">
                                 <div class="header">
-                                    <h4>{$product->name}</h4>
+                                    <h4>{$certificateFeatures.{$product->configoption1}.displayName}</h4>
                                 </div>
                                 <ul>
                                     <li><i class="fas fa-check"></i></li>

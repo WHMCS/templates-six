@@ -34,7 +34,7 @@
             </div>
 
         </div>
-        <div class="col-sm-6 col-xs-12 pull-right">
+        <div class="col-sm-6 pull-sm-right">
 
             <div class="form-group">
                 <label for="inputAddress1" class="control-label">{$LANG.clientareaaddress1}</label>
@@ -72,7 +72,7 @@
             </div>
 
         </div>
-        <div class="col-sm-6 col-xs-12 pull-left">
+        <div class="col-sm-6 pull-sm-left">
 
             <div class="form-group">
                 <label for="inputPaymentMethod" class="control-label">{$LANG.paymentmethod}</label>
@@ -90,6 +90,18 @@
                     <option value="0">{$LANG.usedefaultcontact}</option>
                     {foreach from=$contacts item=contact}
                     <option value="{$contact.id}"{if $contact.id eq $billingcid} selected="selected"{/if}>{$contact.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="inputLanguage" class="col-form-label">{$LANG.clientarealanguage}</label>
+                <select name="accountLanguage" id="inputAccountLanguage" class="form-control"
+                    {if in_array('language', $uneditablefields)} disabled="disabled"{/if}>
+                    <option value="">{lang key='default'}</option>
+                    {foreach $languages as $language}
+                        <option value="{$language}"{if $language eq $clientLanguage} selected="selected"{/if}
+                        >{$language|ucfirst}</option>
                     {/foreach}
                 </select>
             </div>

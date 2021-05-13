@@ -54,7 +54,7 @@
                         </button>
                     </div>
                     <div class="col-xs-12 ticket-attachments-message text-muted">
-                        {$LANG.supportticketsallowedextensions}: {$allowedfiletypes}
+                        {$LANG.supportticketsallowedextensions}: {$allowedfiletypes} ({lang key="maxFileSize" fileSize="$uploadMaxFileSize"})
                     </div>
                 </div>
 
@@ -126,6 +126,10 @@
             </div>
             <div class="message">
                 {$reply.message}
+                {if $reply.ipaddress}
+                    <hr>
+                    {lang key='support.ipAddress'}: {$reply.ipaddress}
+                {/if}
                 {if $reply.id && $reply.admin && $ratingenabled}
                     <div class="clearfix">
                         {if $reply.rating}

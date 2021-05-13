@@ -294,9 +294,15 @@
 
         <h3>{$LANG.domainrelease}</h3>
 
+        {if $releaseDomainSuccessful}
+            {include file="$template/includes/alert.tpl" type="success" msg="{lang key='changessavedsuccessfully'}" textcenter="true"}
+        {elseif !empty($error)}
+            {include file="$template/includes/alert.tpl" type="error" msg="$error" textcenter="true"}
+        {/if}
+
         {include file="$template/includes/alert.tpl" type="info" msg=$LANG.domainreleasedescription}
 
-        <form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domaindetails">
+        <form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domaindetails#tabRelease">
             <input type="hidden" name="sub" value="releasedomain">
             <input type="hidden" name="id" value="{$domainid}">
 

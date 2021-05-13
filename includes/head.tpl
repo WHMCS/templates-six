@@ -15,12 +15,12 @@
 
 <script type="text/javascript">
     var csrfToken = '{$token}',
-        markdownGuide = '{lang key="markdown.title"}',
+        markdownGuide = '{lang|addslashes key="markdown.title"}',
         locale = '{if !empty($mdeLocale)}{$mdeLocale}{else}en{/if}',
-        saved = '{lang key="markdown.saved"}',
-        saving = '{lang key="markdown.saving"}',
+        saved = '{lang|addslashes key="markdown.saved"}',
+        saving = '{lang|addslashes key="markdown.saving"}',
         whmcsBaseUrl = "{\WHMCS\Utility\Environment\WebHelper::getBaseUrl()}",
-        requiredText = '{lang key="orderForm.required"}',
+        requiredText = '{lang|addslashes key="orderForm.required"}',
         recaptchaSiteKey = "{if $captcha}{$captcha->recaptcha->getSiteKey()}{/if}";
 </script>
 <script src="{assetPath file='scripts.min.js'}?v={$versionHash}"></script>

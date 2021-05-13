@@ -399,6 +399,10 @@ jQuery(document).ready(function() {
                             jQuery('#tokenGatewayAssistedOutput').html(response.assistedOutput);
                         });
                         jQuery('.fieldgroup-auxfields').show();
+                    } else if (response.gatewayType === 'Bank') {
+                        jQuery('.fieldgroup-loading').hide();
+                        jQuery('.fieldgroup-bankaccount').show();
+                        jQuery('.fieldgroup-auxfields').show();
                     } else {
                         jQuery('.fieldgroup-creditcard').removeClass('hidden').show();
                         jQuery('.fieldgroup-auxfields').show();

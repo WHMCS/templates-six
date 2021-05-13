@@ -9,7 +9,7 @@
         </span>
         <input type="hidden" name="isproduct" value="{$isService}">
         <input type="hidden" name="serviceid" value="{$model->id}">
-        <button type="submit" class="btn btn-link no-padding">{lang key='upgrade'}</button>
+        <button type="submit" class="btn-link no-padding">{lang key='upgrade'}</button>
     </form>
 </p>
 
@@ -73,6 +73,12 @@
         <a href="#usage" data-toggle="tab">
             <i class="far fa-file-alt fa-fw"></i>
             {lang key='ox.settings.usageInstructions'}
+        </a>
+    </li>
+    <li class="hidden" id="migrationNav">
+        <a href="#migration" data-toggle="tab">
+            <i class="far fa-file-alt fa-fw"></i>
+            {lang key='ox.settings.migrationTitle'}
         </a>
     </li>
 </ul>
@@ -159,6 +165,13 @@
             <tbody id="tablePanelUsage">
             </tbody>
         </table>
+    </div>
+    <div class="tab-pane fade hidden" id="migration">
+        <p>{lang key="ox.settings.migrationIntro"}</p>
+        <div>
+            <a class="migration-url btn btn-info btn-block btn-lg" href="#" target="_blank"
+                >{lang key="ox.settings.migrationLaunch"}</a>
+        </div>
     </div>
 </div>
 
@@ -463,12 +476,19 @@
 
     function loadConfiguration(force)
     {
-        var tablePanelUsage = jQuery('#tablePanelUsage'),
-            tablePanelUsageHead = jQuery('#tablePanelUsageHead');
+        var tabNames = ['Usage'];
+        var tabs = [];
+        tabNames.forEach(function(tabName) {
+            var tabSpec = {
+                'panel': jQuery('#tablePanel' + tabName),
+                'header': jQuery('#tablePanel' + tabName + 'Head'),
+            };
+            tabs.push(tabSpec);
+            if (tabSpec.header.find('tr.loading').hasClass('hidden')) {
+                tabSpec.header.find('tr.loading').removeClass('hidden');
+            }
+        });
 
-        if (tablePanelUsageHead.find('tr.loading').hasClass('hidden')) {
-            tablePanelUsageHead.find('tr.loading').removeClass('hidden');
-        }
         force = force || 0;
         WHMCS.http.jqClient.jsonPost({
             url: '{$configurationUrl}',
@@ -477,6 +497,7 @@
                 token: csrfToken
             },
             success: function(data) {
+                var error = '{lang|addslashes key="unavailable"}';
                 if (data.settings) {
                     jQuery('.incoming-hostname').text(data.settings.incoming.hostname);
                     jQuery('.incoming-port').text(data.settings.incoming.port);
@@ -486,7 +507,6 @@
                     jQuery('.outgoing-port').text(data.settings.outgoing.port);
                     jQuery('.calendar-server').text(data.settings.calendar.hostname);
                 } else {
-                    var error = '{lang key="unavailable"}';
                     jQuery('.incoming-hostname').text(error);
                     jQuery('.incoming-port').text(error);
                     jQuery('.pop-hostname').text(error);
@@ -496,16 +516,23 @@
                     jQuery('.calendar-server').text(error);
                 }
                 if (data.usage) {
-                    tablePanelUsage.find('tr').remove();
-                    jQuery.each(data.usage, function(index, value) {
-                        tablePanelUsage.append(
+                    var tabSpec = tabs[tabNames.indexOf('Usage')];
+                    tabSpec.panel.find('tr').remove();
+                    jQuery.each(data.usage, function (index, value) {
+                        tabSpec.panel.append(
                             '<tr><td>' + value + '</td></tr>'
                         );
                     });
                 }
+                if (data.migration_tool) {
+                    jQuery('.migration-url').attr('href', data.migration_tool.url);
+                    jQuery('#migration, #migrationNav').removeClass('hidden');
+                }
             },
             always: function() {
-                tablePanelUsageHead.find('tr.loading').addClass('hidden');
+                tabs.forEach(function(tabSpec) {
+                    tabSpec.header.find('tr.loading').addClass('hidden');
+                });
             }
         });
     }

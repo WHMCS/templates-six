@@ -171,9 +171,9 @@
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
                                 <span class="span-upsell span-upsell-{$pricing->cycle()}">
                                     {if is_null($upsellComparison->diff({$pricing->cycle()}))}
-                                        {$promotion->getCta()} {$upsellProduct->name} from just {$upsellProduct->pricing()->best()->breakdownPrice()}
+                                        {$promotion->getCta()} {$upsellProduct->name} {lang key='store.fromJust'} {$upsellProduct->pricing()->best()->breakdownPrice()}
                                     {else}
-                                        {$promotion->getCta()} {$upsellProduct->name} for just {$upsellComparison->diff({$pricing->cycle()})->breakdownPrice()} more
+                                        {$promotion->getCta()} {$upsellProduct->name} {lang key='store.forJust'} {$upsellComparison->diff({$pricing->cycle()})->breakdownPrice()} {lang key='more'}
                                     {/if}
                                 </span>
                             {/foreach}

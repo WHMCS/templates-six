@@ -13,7 +13,7 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-landing-page" aria-expanded="false">
-            <span class="sr-only">{lang key="store.toggleNav"}</span>
+            <span class="sr-only">{lang key="toggleNav"}</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -109,10 +109,10 @@
                     {/if}
                 </div>
             {elseif $inPreview}
-                <div class="text-center lead preview-text">Email service products you activate will be displayed here</div>
+                <div class="text-center lead preview-text">{lang key="store.emailServices.preview"}</div>
             {/if}
             <div class="powered-by">
-                Powered by <img src="{$WEB_ROOT}/assets/img/marketconnect/spamexperts/logo_white.png">
+                {lang key='store.poweredBy' service=''}<img src="{$WEB_ROOT}/assets/img/marketconnect/spamexperts/logo_white.png">
             </div>
         </div>
     </div>

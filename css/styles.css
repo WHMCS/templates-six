@@ -1012,6 +1012,7 @@ div.product-details-tab-container {
     padding: 20px;
     border: 1px solid #ddd;
     border-top: 0;
+    background-color: #fff;
 }
 
 .module-client-area {
@@ -1220,7 +1221,7 @@ table.dtr-inline.collapsed .responsive-edit-button {
 .status-pending {
     color: #D9534F;
 }
-.status-pending.transfer {
+.status-pending-transfer {
     color: #A68500;
 }
 .status-active,
@@ -1239,8 +1240,13 @@ table.dtr-inline.collapsed .responsive-edit-button {
     color: #000000;
 }
 .status-expired,
-.status-transferred.away{
+.status-transferred-away {
     color: #004258;
+}
+.status-pending-registration,
+.status-redemption,
+.status-grace {
+    color: #F89406;
 }
 .status-cancelled {
     color: #9FA29A;
@@ -2327,7 +2333,7 @@ tr.masspay-total td {
  * -------------------------
  */
 
-.email-verification {
+.verification-banner {
     margin: 0;
     padding: 10px;
     font-weight: 300;
@@ -2335,39 +2341,48 @@ tr.masspay-total td {
     border-bottom: 1px solid #eee;
     color: #333;
 }
-.email-verification .text {
+.verification-banner .text {
     display: block;
     padding: 6px 0;
 }
-.email-verification .btn {
+.verification-banner .btn {
     margin: 3px 0;
     padding: 3px 10px;
-    background-color: #50525f;
-    border-color: #50525f;
-    color: #fff;
     font-style: normal;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.email-verification .btn:active,
-.email-verification .btn[disabled]:hover {
+.verification-banner.email-verification .btn.btn-action,
+.verification-banner.email-verification .btn.btn-action:active,
+.verification-banner.email-verification .btn.btn-action[disabled]:hover {
     background-color: #50525f;
     border-color: #50525f;
     color: #fff;
 }
-.email-verification .btn.close {
+.verification-banner.user-validation .btn.btn-action,
+.verification-banner.user-validation .btn.btn-action:active,
+.verification-banner.user-validation .btn.btn-action[disabled]:hover {
+    background-color: #fff;
+    border-color: #ccc;
+    color: #333;
+}
+.verification-banner.user-validation i {
+    margin-left:0.11em
+}
+.verification-banner .btn.close {
     margin-left: 10px;
     background-color: transparent;
     color: rgba(55, 55, 55, 0.5);
     font-size: 22px;
     opacity: 1;
 }
-.email-verification .btn.close:hover {
+.verification-banner .btn.close:hover {
     color: rgba(55, 55, 55, 0.8);
 }
-.email-verification .fas,
-.email-verification .far {
+.verification-banner .fas,
+.verification-banner .fal,
+.verification-banner .far {
     color: #666;
     float: left;
     padding: 2px 10px 0 0;
@@ -2375,39 +2390,42 @@ tr.masspay-total td {
 }
 
 @media (min-width: 768px) {
-    .email-verification .text {
+    .verification-banner .text {
         padding-top: 9px;
         padding-bottom: 0;
     }
-    .email-verification .btn {
+    .verification-banner .btn {
         margin: 0;
         padding: 9px 25px;
     }
-    .email-verification .button {
+    .verification-banner .button {
         float: right;
     }
-    .email-verification .fas,
-    .email-verification .far {
+    .verification-banner .fas,
+    .verification-banner .fal,
+    .verification-banner .far {
         font-size: 36px;
     }
 }
 
-.email-verification.success {
+.verification-banner.success {
     background-color: #ebfde4;
     border-bottom: 1px solid #e3f7d5;
     color: #5cb85c;
 }
-.email-verification.success .fas,
-.email-verification.success .far {
+.verification-banner.success .fas,
+.verification-banner.success .fal,
+.verification-banner.success .far {
     color: #6fbb51;
 }
-.email-verification.failed {
+.verification-banner.failed {
     background-color: #fdf8e3;
     border-bottom: 1px solid #f7f3d0;
     color: #b3a879;
 }
-.email-verification.failed .fas,
-.email-verification.failed .far {
+.verification-banner.failed .fas,
+.verification-banner.failed .fal,
+.verification-banner.failed .far {
     color: #b3a879;
 }
 
@@ -2553,6 +2571,7 @@ div.md-editor.active {
 }
 .panel-sidebar .list-group-item {
     line-height: 24px;
+    word-wrap: break-word;
 }
 .panel-sidebar .list-group-item i:not(.fa-circle):not(.fa-dot-circle):not(.no-transform) {
     float: right;
@@ -2592,6 +2611,17 @@ div.md-editor.active {
 
 .panel-sidebar .recent-ticket {
     line-height: 20px;
+}
+
+.panel-sidebar .validation-status-label {
+    font-size: initial;
+}
+.panel-sidebar .validation-submit-div {
+    margin-top: 1em;
+}
+.panel-sidebar .validation-status-container {
+    text-align: center;
+    margin-top: 5px;
 }
 
 /**
@@ -2896,6 +2926,13 @@ div.md-editor.active {
 }
 .promo-banner.ox .btn {
     background-color: #666;
+}
+
+.promo-banner.sitebuilder {
+    border-top: 3px solid #ff3377;
+}
+.promo-banner.sitebuilder .btn {
+    background-color: #ff3377;
 }
 
 .mc-panel-promo {

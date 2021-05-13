@@ -881,37 +881,46 @@ section#main-body {
     border-bottom: 1px dashed #ddd;
 }
 
+.sitebuilder-upgrade-container,
 .weebly-upgrade-container {
     margin: 30px 0 50px;
     padding: 0;
     border: 1px solid #ddd;
 }
+.sitebuilder-upgrade-container .content-padded,
 .weebly-upgrade-container .content-padded {
     padding: 70px 40px 40px;
     text-align: center;
 }
+.sitebuilder-upgrade-container img,
 .weebly-upgrade-container img {
     max-width: 100%;
     max-height: 135px;
 }
+.sitebuilder-upgrade-container .promo-wrapper,
 .weebly-upgrade-container .promo-wrapper {
     margin: 0;
     padding: 30px;
     background-color: #f6f6f6;
     min-height: 400px;
 }
+.sitebuilder-upgrade-container .promo-wrapper .logincontainer,
 .weebly-upgrade-container .promo-wrapper .logincontainer {
     margin: 30px auto 50px;
 }
+.sitebuilder-upgrade-container .promo-wrapper h3,
 .weebly-upgrade-container .promo-wrapper h3 {
     margin: 20px 0;
 }
+.sitebuilder-upgrade-container .promo-wrapper ul,
 .weebly-upgrade-container .promo-wrapper ul {
     margin: 30px 0;
 }
+.sitebuilder-upgrade-container .sitebuilder-service-select,
 .weebly-upgrade-container .weebly-service-select {
     margin-bottom: 10px;
 }
+.sitebuilder-upgrade-container .promo-wrapper .btn-success,
 .weebly-upgrade-container .promo-wrapper .btn-success {
     margin-bottom: 20px;
     padding: 15px 15px;
@@ -1819,4 +1828,240 @@ section#main-body {
     .landing-page.ox .header .header-content {
         padding: 10px 0 30px;
     }
+}
+
+.landing-page.sitebuilder .logo-container {
+    padding: 60px;
+    text-align: center;
+}
+.landing-page.sitebuilder .logo-container img {
+    max-width: 85%;
+}
+@media (min-width: 992px) {
+    .landing-page.sitebuilder .logo-container img {
+        max-width: 60%;
+    }
+}
+.landing-page.sitebuilder .hero {
+    margin-top: 80px;
+    padding: 0;
+    background-color: #293340;
+}
+.landing-page.sitebuilder .hero img {
+    margin-top: -150px;
+    padding: 0;
+}
+.landing-page.sitebuilder h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+.landing-page.sitebuilder .intro {
+    padding: 60px 0;
+    background-color: #f8f9f9;
+}
+@media (min-width: 1200px) {
+    .landing-page.sitebuilder .intro .vertical-spacer {
+        height: 80px;
+    }
+}
+.landing-page.sitebuilder .bold-line {
+    background-color: #ff3377;
+    width: 40%;
+    height: 6px;
+}
+.landing-page.sitebuilder .bold-line.slim {
+    width: 100px;
+    height: 3px;
+}
+.landing-page.sitebuilder .intro h2 {
+    text-align: left;
+}
+.landing-page.sitebuilder .intro p {
+    font-size: 1.1em;
+    line-height: 1.6em;
+}
+.landing-page.sitebuilder .intro .learn-more {
+    display: inline-block;
+    margin-top: 15px;
+}
+.landing-page.sitebuilder .features {
+    padding: 60px 0;
+    background-color: transparent;
+    text-align: left;
+}
+@media (min-width: 768px) {
+    .landing-page.sitebuilder .feature-block {
+        min-height: 260px;
+    }
+}
+.landing-page.sitebuilder .tagline {
+    text-align: center;
+}
+.landing-page.sitebuilder .features .nav-tabs > li {
+    float: none;
+    display: inline-block;
+    zoom: 1;
+}
+.landing-page.sitebuilder .features .nav-tabs {
+    text-align: center;
+}
+.landing-page.sitebuilder .features .nav-tabs > li > a {
+    text-transform: uppercase;
+    background: transparent;
+    border: 0;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.landing-page.sitebuilder .features .nav-tabs > li.active > a,
+.landing-page.sitebuilder .features .nav-tabs > li.active > a:focus,
+.landing-page.sitebuilder .features .nav-tabs > li.active > a:hover {
+    border: 0;
+    color: #ff3377;
+}
+.landing-page.sitebuilder .features img {
+    max-width: 128px;
+}
+.landing-page.sitebuilder .features .title {
+    display: block;
+    font-size: 1.5em;
+    padding-bottom: 10px;
+}
+.landing-page.sitebuilder .features p {
+    color: #666;
+}
+.landing-page.sitebuilder .btn-primary {
+    background-color: #ff3377;
+    border-color: #ff3377;
+    color: #fff;
+}
+.landing-page.sitebuilder .btn-primary.large {
+    padding: 12px 30px;
+}
+.landing-page.sitebuilder .templates {
+    padding: 60px 0;
+    border-top: 1px solid #eee;
+}
+.landing-page.sitebuilder .templates .previews {
+    padding: 50px 0;
+}
+.landing-page.sitebuilder .templates .previews img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid #ddd;
+}
+@media (max-width: 767px) {
+    .landing-page.sitebuilder .templates .previews img {
+        height: 300px;
+    }
+}
+.landing-page.sitebuilder .templates .previews .tplname {
+    display: block;
+    padding: 10px 0 20px;
+    font-size: 1.2em;
+}
+.landing-page.sitebuilder .pricing {
+    padding: 70px 0;
+    background-color: #293340;
+}
+@media (min-width: 992px) {
+    .landing-page.sitebuilder .pricing {
+        height: 850px;
+    }
+}
+.landing-page.sitebuilder .pricing h2,
+.landing-page.sitebuilder .pricing p {
+    color: #fff;
+}
+.landing-page.sitebuilder .pricing-table {
+    margin: 60px 0 0;
+    padding: 0;
+    background-color: #fff;
+    font-weight: bold;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: auto;
+}
+@media (min-width: 992px) {
+    .landing-page.sitebuilder .pricing-table {
+        overflow: hidden;
+    }
+}
+.landing-page.sitebuilder .pricing-table-row {
+    margin-left: -10px;
+    margin-right: -10px;
+    min-width: 880px;
+}
+.landing-page.sitebuilder .pricing-table-row:not(.col-heading):nth-child(even) {
+    background-color: #f6f6f6;
+}
+.landing-page.sitebuilder .pricing-table-row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.landing-page.sitebuilder .pricing-table-row .col-primary {
+    float: left;
+    width: 40%;
+    padding: 4px 40px;
+}
+.landing-page.sitebuilder .pricing-table-row .col-plans-1 {
+    float: left;
+    width: 60%;
+    padding: 4px 10px;
+    text-align: center;
+}
+.landing-page.sitebuilder .pricing-table-row .col-plans-2 {
+    float: left;
+    width: 30%;
+    padding: 4px 10px;
+    text-align: center;
+}
+.landing-page.sitebuilder .pricing-table-row .col-plans-3 {
+    float: left;
+    width: 20%;
+    padding: 4px 10px;
+    text-align: center;
+}
+.landing-page.sitebuilder .pricing-table-row .col-plans-4 {
+    float: left;
+    width: 15%;
+    padding: 4px 10px;
+    text-align: center;
+}
+.landing-page.sitebuilder .pricing-table-row .col-plans-5 {
+    float: left;
+    width: 12%;
+    padding: 4px 10px;
+    text-align: center;
+}
+.landing-page.sitebuilder .pricing-table-row.col-heading div {
+    padding: 18px 10px;
+    text-align: center;
+}
+.landing-page.sitebuilder .pricing-table i {
+    color: #bbb;
+}
+.landing-page.sitebuilder .faq {
+    padding: 80px 0;
+}
+.landing-page.sitebuilder .faq-block {
+    padding: 0 0 20px 0;
+}
+@media (min-width: 992px) {
+    .landing-page.sitebuilder .faq {
+        margin: 160px 0 0;
+    }
+    .landing-page.sitebuilder .faq-block {
+        padding: 0;
+        min-height: 150px;
+    }
+}
+.landing-page.sitebuilder .faq-title {
+    display: block;
+    padding: 20px 0;
+    font-size: 1.4em;
 }

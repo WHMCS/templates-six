@@ -155,14 +155,14 @@
             </div>
             {if $customfields || $currencies}
             <div class="sub-heading">
-                <span>{$LANG.orderadditionalrequiredinfo}</span>
+                <span>{$LANG.orderadditionalrequiredinfo}<br><i><small>{lang key='orderForm.requiredField'}</small></i></span>
             </div>
             <div class="row">
                 {if $customfields}
                 {foreach $customfields as $customfield}
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="customfield{$customfield.id}">{$customfield.name}</label>
+                            <label for="customfield{$customfield.id}">{$customfield.name} {$customfield.required}</label>
                             <div class="control">
                                 {$customfield.input}
                             {if $customfield.description}

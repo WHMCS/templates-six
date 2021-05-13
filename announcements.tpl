@@ -52,8 +52,7 @@
 {/foreach}
 
 {if $prevpage || $nextpage}
-
-    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+    <div class="col-xs-12 margin-bottom">
         <form class="form-inline" role="form">
             <div class="form-group">
                 <div class="input-group">
@@ -66,4 +65,5 @@
             </div>
         </form>
     </div>
+    <div class="clearfix"></div>
 {/if}
