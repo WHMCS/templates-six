@@ -9533,7 +9533,7 @@ table.dtr-inline.collapsed .responsive-edit-button {
 .requestor-type-authorizeduser {
     background-color: #777;
 }
-.requestor-type-externaluser {
+.requestor-type-registereduser {
     background-color: #f0ad4e;
 }
 .requestor-type-subaccount {
@@ -10961,6 +10961,9 @@ div.md-editor.active {
 
 .promo-banner.sitebuilder {
     border-top: 3px solid #ff3377;
+}
+.promo-banner.sitebuilder a {
+    color: #ff3377;
 }
 .promo-banner.sitebuilder .btn {
     background-color: #ff3377;

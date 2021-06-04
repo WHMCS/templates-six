@@ -107,8 +107,8 @@
                             {lang key='support.requestor.owner'}
                         {elseif $reply.requestor.type_normalised eq 'authorizeduser'}
                             {lang key='support.requestor.authorizeduser'}
-                        {elseif $reply.requestor.type_normalised eq 'externaluser'}
-                            {lang key='support.requestor.externaluser'}
+                        {elseif $reply.requestor.type_normalised eq 'registereduser'}
+                            {lang key='support.requestor.registereduser'}
                         {elseif $reply.requestor.type_normalised eq 'subaccount'}
                             {lang key='support.requestor.subaccount'}
                         {elseif $reply.requestor.type_normalised eq 'guest'}
