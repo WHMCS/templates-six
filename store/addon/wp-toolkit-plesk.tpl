@@ -1,0 +1,416 @@
+<link href="{assetPath file='store.css'}" rel="stylesheet">
+
+<div class="wp-toolkit">
+    <div class="hero-cta">
+        <div class="container">
+            <h1>
+                {lang key='store.addon.wptk.pleskTitle'}
+                <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/plesk.png" class="logo-plesk">
+            </h1>
+            <h2>{lang key='store.addon.wptk.pleskTagline'}</h2>
+            <button class="btn btn-success btn-cta" onclick="smoothScroll('#pricing')">
+                {lang key='store.addon.wptk.getItNow'}
+            </button>
+            {if $hasPleskWptk}
+                <p>
+                    {lang key='store.addon.wptk.switchCpanel'}
+                    <a href="{fqdnRoutePath('store-addon', 'wp-toolkit-deluxe')}">{lang key='clickHere'}</a>
+                </p>
+            {/if}
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <div class="container">
+            <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/feature-laptop-plesk.png" class="logo">
+        </div>
+    </div>
+
+    <div class="body-intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="lead">{lang key='store.addon.wptk.pleskIntroTitle'}</p>
+                    <p>{lang key='store.addon.wptk.pleskIntroBody'}</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/graphic-plesk.png" class="d-none d-lg-block">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="container">
+            <div class="smart-updates">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="feature-block">
+                            <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-how.png">
+                            <div class="title">{lang key='store.addon.wptk.smartUpdates.featureTitle1'}</div>
+                            <div class="description">{lang key='store.addon.wptk.smartUpdates.featureBody1'}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="feature-block">
+                            <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-safe.png">
+                            <div class="title">{lang key='store.addon.wptk.smartUpdates.featureTitle2'}</div>
+                            <div class="description">{lang key='store.addon.wptk.smartUpdates.featureBody2'}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature-block">
+                            <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-unsafe.png">
+                            <div class="title">{lang key='store.addon.wptk.smartUpdates.featureTitle3'}</div>
+                            <div class="description">{lang key='store.addon.wptk.smartUpdates.featureBody3'}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3>{lang key='store.addon.wptk.midTitle1' breaktag=''}</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-block">
+                        <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-create.png">
+                        <div class="title">{lang key='store.addon.wptk.plesk.featureTitle1'}</div>
+                        <div class="description">{lang key='store.addon.wptk.plesk.featureBody1'}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-block">
+                        <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-experiment.png">
+                        <div class="title">{lang key='store.addon.wptk.plesk.featureTitle2'}</div>
+                        <div class="description">{lang key='store.addon.wptk.plesk.featureBody2'}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-block">
+                        <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-security.png">
+                        <div class="title">{lang key='store.addon.wptk.plesk.featureTitle3'}</div>
+                        <div class="description">{lang key='store.addon.wptk.plesk.featureBody3'}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-block">
+                        <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-updates.png">
+                        <div class="title">{lang key='store.addon.wptk.plesk.featureTitle4'}</div>
+                        <div class="description">{lang key='store.addon.wptk.plesk.featureBody4'}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-block">
+                        <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-focus.png">
+                        <div class="title">{lang key='store.addon.wptk.plesk.featureTitle5'}</div>
+                        <div class="description">{lang key='store.addon.wptk.plesk.featureBody5'}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-block">
+                        <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/icon-star.png">
+                        <div class="title">{lang key='store.addon.wptk.plesk.featureTitle6'}</div>
+                        <div class="description">{lang key='store.addon.plesk.wptk.featureBody6'}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pre-screenshots">
+        <div class="container">
+            <div class="title">{lang key='store.addon.wptk.midTitle2'}</div>
+            <div class="row justify-content-center">
+                <div class="col-sm-10">
+                    {if $firstMatchingAddon && !$firstMatchingAddon->pricing()->first()->isFree()}
+                        {lang key='store.addon.wptk.smartUpdates.screenshotDesc' price=$firstMatchingAddon->pricing()->first()->price()}
+                    {else}
+                        {lang key='store.addon.wptk.smartUpdates.screenshotDescFree'}
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="screenshots">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="row screenshots-row">
+                        <div class="col-md-6">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-01-full.png" class="screenshot-thumb">
+                                <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-01.png">
+                                <div class="overlay">
+                                    <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-02-full.png" class="screenshot-thumb">
+                                <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-02.png">
+                                <div class="overlay">
+                                    <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-03-full.png" class="screenshot-thumb">
+                                <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-03.png">
+                                <div class="overlay">
+                                    <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-04-full.png" class="screenshot-thumb">
+                                <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-04.png">
+                                <div class="overlay">
+                                    <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal lightbox-modal fade" id="wptkLightboxModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="" class="lightbox-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pricing" id="pricing">
+        <div class="container">
+            {if $loggedin && count($clientServices)}
+                <div class="starting-from">{lang key='store.addon.wptk.smartUpdates.getStartedToday'}</div>
+                <div class="subtitle">{lang key='store.addon.wptk.chooseDomains'}</div>
+                <div class="service-selector justify-content-center">
+                    {foreach $clientServices as $service}
+                        <div class="service serviceid-{$service['service']->id}">
+                            <div class="inner-content">
+                                <div class="product-name truncate">{$service['service']->product->name}</div>
+                                <div class="divider"></div>
+                                <div class="domain-name truncate">{$service['service']->domain}</div>
+                                {if $service['addon']}
+                                    <div class="description">{lang key='store.addon.wptk.addAddonFor' addon={$service['addon']->name}}</div>
+                                    <div class="price">
+                                        {if $service['addon']->isFree()}
+                                            {lang key='orderfree'}
+                                        {else}
+                                            {$service['addonPrice']->price()}{($service['addon']->isOneTime()) ? '' : "/{$service['addonPrice']->getShortCycle()}"}
+                                        {/if}
+                                    </div>
+                                {else}
+                                    <div class="unavailable">{lang key='store.addon.wptk.unavailable'}</div>
+                                {/if}
+                            </div>
+                            {if $service['addon']}
+                                <button class="btn btn-warning btn-add-to-cart"
+                                        data-product-name="{$service['addon']->name}"
+                                        data-serviceid="{$service['service']->id}"
+                                        data-addonid="{$service['addon']->id}"
+                                        data-domain-name="{$service['service']->domain}"
+                                        data-price="{$service['addonPrice']->price()->toNumeric()}">
+                                    {lang key='addtocart'}
+                                </button>
+                            {else}
+                                <button class="btn btn-warning btn-add-to-cart disabled">
+                                    {lang key='addtocart'}
+                                </button>
+                            {/if}
+                            <div class="in-cart-indicator">
+                                <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/in-cart.png" alt="{lang key='domainchecker.alreadyincarttitle'}">
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+                <div class="cart">
+                    <form method="post" data-role="cart-form" action="{fqdnRoutePath('store-add-addons')}">
+                        <input type="hidden" name="servicemap">
+                        <div class="cart-items">
+                            <div class="item template">
+                                <div class="product-info">
+                                    <span class="product-name"></span>
+                                    {lang key='store.addon.wptk.for'}
+                                    <span class="domain-name"></span>
+                                </div>
+                                {$activeCurrency->prefix}<span class="price"></span>
+                                <button class="btn btn-remove pull-right">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cart-totals">
+                            {lang key='store.addon.wptk.totalInCart'}
+                            {$activeCurrency->prefix}<span class="cart-total-amount"></span>
+                            <button type="submit" class="btn btn-success btn-checkout pull-right">
+                                {lang key='store.addon.wptk.proceedToCheckout'}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            {else}
+                {if $firstMatchingAddon && !$firstMatchingAddon->pricing()->first()->isFree()}
+                    <div class="starting-from">{lang key='startingfrom'} {$firstMatchingAddon->pricing()->first()->price()}/{$firstMatchingAddon->pricing()->first()->getShortCycle()}</div>
+                {/if}
+                {if !$loggedin}
+                    <div class="subtitle">{lang key='store.addon.wptk.loginToSeePricing'}</div>
+                {/if}
+                <div class="action-btns">
+                    <form method="post" action="{$browsePackagesAction}">
+                        {if !$loggedin}
+                            <a href="{routePath('store-addon-login', $addonSlug, $serviceId)}" class="btn btn-success">
+                                {lang key='store.addon.wptk.loginNow'}
+                            </a>
+                        {/if}
+                        <button type="submit" class="btn btn-warning">
+                            {lang key='store.addon.wptk.browsePackages'}
+                        </button>
+                    </form>
+                </div>
+            {/if}
+        </div>
+    </div>
+
+    <div class="faqs">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-lg-5">
+                    <div class="border-line"></div>
+                    <div class="faq-title">{lang key='store.addon.wptk.faqQ1'}</div>
+                    <div class="faq-answer">{lang key='store.addon.wptk.faqA1'}</div>
+                    <div class="border-line"></div>
+                    <div class="faq-title">{lang key='store.addon.wptk.faqQ3'}</div>
+                    <div class="faq-answer">{lang key='store.addon.wptk.faqA3'}</div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="border-line"></div>
+                    <div class="faq-title">{lang key='store.addon.wptk.faqQ6'}</div>
+                    <div class="faq-answer">{lang key='store.addon.wptk.faqQ6' webRoot=$WEB_ROOT}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var cartTotal = 0;
+
+        var ssoServiceId = {if $ssoService}{$ssoService->id}{else}0{/if};
+
+        var changeServiceMap = function(callback)
+        {
+            var field = $('form[data-role="cart-form"]').find('input[name="servicemap"]');
+
+            var value = $(field).val();
+
+            try {
+                value = JSON.parse(value);
+            } catch (e) {
+                value = {};
+            }
+
+            $(field).val(
+                JSON.stringify(
+                    callback(value)
+                )
+            );
+        };
+
+        $('.wp-toolkit .service-selector .btn-add-to-cart').click(function(e) {
+            e.preventDefault();
+            if ($(this).hasClass('disabled')) {
+                return;
+            }
+
+            var serviceId = $(this).data('serviceid'),
+                addonId = $(this).data('addonid');
+
+            var row = $('.wp-toolkit .cart-items .item.template').clone()
+                .removeClass('template')
+                .find('.product-name').text($(this).data('product-name')).end()
+                .find('.domain-name').text($(this).data('domain-name')).end()
+                .find('.price').text($(this).data('price')).end()
+                .attr('data-serviceid', $(this).data('serviceid'))
+                .attr('data-price', $(this).data('price'));
+
+            changeServiceMap(function(serviceMap) {
+                serviceMap[serviceId] = addonId;
+                return serviceMap;
+            });
+
+            $('.wp-toolkit .cart-items').append(row);
+            $('.wp-toolkit .cart').slideDown();
+
+            cartTotal += parseFloat($(this).data('price'));
+            $('.wp-toolkit .cart-total-amount').text(cartTotal.toFixed(2));
+
+            $(this).closest('.service').addClass('in-cart');
+        });
+
+        $(document).on('click', '.wp-toolkit .cart-items .btn-remove', function (e) {
+            e.preventDefault();
+
+            var $removeItem = $(this).closest('.item');
+            var serviceId = $removeItem.data('serviceid');
+
+            cartTotal -= $removeItem.data('price');
+            $('.wp-toolkit .cart-total-amount').text(cartTotal.toFixed(2));
+
+            $('.serviceid-' + serviceId).removeClass('in-cart');
+
+            changeServiceMap(function(serviceMap) {
+                if (serviceMap.hasOwnProperty(serviceId)) {
+                    delete serviceMap[serviceId];
+                }
+
+                return serviceMap;
+            });
+
+            if ($('.wp-toolkit .cart-items .item:not(.template)').length <= 1) {
+                $('.wp-toolkit .cart').slideUp('', function() {
+                    $removeItem.remove();
+                });
+            } else {
+                $removeItem.slideUp('', function() {
+                    $(this).remove();
+                });
+            }
+        });
+
+        // pre-add the service we used to SSO from
+        if (ssoServiceId) {
+            $('.btn-add-to-cart[data-serviceid="' + ssoServiceId + '"]').click();
+        }
+
+        // lightbox
+        jQuery('.screenshots a.screenshot-thumb').each(function() {
+            jQuery(this).attr('data-toggle', 'modal')
+                .attr('data-target', '#wptkLightboxModal');
+        });
+        jQuery('.screenshots a.screenshot-thumb').click(function(event) {
+            event.preventDefault();
+            $('<img>').attr({
+                src: jQuery(this).attr('href'),
+                class: 'lightbox-image'
+            }).load(function() {
+                var resizePercent = ($(window).width() < 768 ? 100 : 75);
+                jQuery('.lightbox-image').replaceWith(this);
+                jQuery('#wptkLightboxModal .modal-dialog').css({
+                    'max-width': (this.width * (resizePercent/100)),
+                    'width': 'initial'
+                });
+                jQuery('#wptkLightboxModal').modal('show');
+            });
+        });
+        jQuery('#wptkLightboxModal').on('hidden.bs.modal', function() {
+            jQuery('.lightbox-image').attr('src','');
+        });
+    });
+</script>

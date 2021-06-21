@@ -9002,12 +9002,16 @@ div.product-details {
 }
 div.product-details div.product-icon {
     margin: 0;
-    padding: 0;
     background-color: #efefef;
     border-radius: 10px;
     padding: 30px;
-    font-size: 60px;
     line-height: 1em;
+    font-size: 60px;
+}
+@media (max-width: 767px) {
+    div.product-details div.product-icon {
+        font-size: 30px;
+    }
 }
 
 .product-status {
@@ -9053,6 +9057,97 @@ div.product-details-tab-container {
 .ssl-inactive {
     cursor: pointer;
 }
+
+.promo-container {
+    margin-bottom: 20px;
+}
+
+#mc-promo-widgets {
+    margin: 10px 0;
+}
+@media (min-width: 1200px) {
+    #mc-promo-widgets {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+    }
+}
+
+.mc-promo-manage,
+.mc-promo-login {
+    position: relative;
+}
+
+.mc-promo-manage .panel,
+.mc-promo-login .panel {
+    padding: 10px;
+}
+
+.mc-promo-manage .panel-title,
+.mc-promo-login .panel-title {
+    font-size: 18px;
+}
+
+.mc-promo-manage .logo,
+.mc-promo-login .logo {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 1em;
+}
+
+.mc-promo-manage .logo,
+.mc-promo-login .logo {
+    width: 130px;
+    height: 130px;
+}
+@media (max-width: 767px) {
+    .mc-promo-manage .logo,
+    .mc-promo-login .logo {
+        width: 65px;
+        height: 65px;
+    }
+}
+
+.mc-promo-manage .logo img,
+.mc-promo-login .logo img {
+    display: block;
+    margin: 0 -50% 0 auto;
+    border-radius: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 130px;
+    max-height: 130px;
+}
+@media (max-width: 767px) {
+    .mc-promo-manage .logo img,
+    .mc-promo-login .logo img {
+        max-width: 65px;
+        max-height: 65px;
+    }
+}
+
+.mc-promo-manage .logo + div,
+.mc-promo-login .logo + div {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+@media (max-width: 767px) {
+    .mc-promo-manage .panel-heading,
+    .mc-promo-login .panel-heading {
+        padding: 10px 10px 5px 10px;
+    }
+    .mc-promo-manage .panel-body,
+    .mc-promo-login .panel-body {
+        padding: 5px 10px 10px 10px;
+    }
+}
+
 
 /**
  * -------------------------
@@ -10782,30 +10877,28 @@ div.md-editor.active {
     margin: 0 20px 0 0;
 }
 .promo-banner img {
-    max-width: 300px;
-    max-height: 200px;
+    max-width: 100%;
+    max-height: 100%;
 }
 .promo-banner .icon-left {
-    margin-bottom: 10px;
     text-align: center;
+    float: left;
+    margin: 0;
+    width: 155px;
+}
+.promo-banner .content {
+    margin-left: 185px;
 }
 @media (max-width: 767px) {
     .promo-banner form {
         text-align: center;
     }
-}
-@media (min-width: 768px) {
-    .promo-banner img {
-        max-width: 100%;
-        max-height: 100%;
-    }
     .promo-banner .icon-left {
-        float: left;
-        margin: 0;
-        width: 155px;
+        width: 90px;
+        float: none;
     }
     .promo-banner .content {
-        margin-left: 185px;
+        margin: 10px 0 0 0;
     }
 }
 

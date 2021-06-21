@@ -220,47 +220,47 @@
     <div class="container">
         <div class="templates">
             <h2>{lang key="store.siteBuilder.templatesTitle"}</h2>
-            <p class="tagline">{lang key="store.siteBuilder.templatesIntro"}</p>
+            <br>
+            <ul class="nav nav-tabs justify-content-center" role="tablist">
+                <li class="nav-item">
+                    <a href="#" class="nav-link templates-filter-btn" data-type="single">{lang key="store.siteBuilder.templates.singlePage"}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link templates-filter-btn" data-type="multi">{lang key="store.siteBuilder.templates.multiPage"}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link templates-filter-btn" data-type="ecom">{lang key="store.siteBuilder.templates.eCommerce"}</a>
+                </li>
+            </ul>
             <div class="previews">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <a href="https://demos.sitebuilder.website/beauty" target="_blank">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/sitebuilder/templates/template1.png">
-                            <span class="tplname">{lang key='store.siteBuilder.templates.salon'}</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a href="https://demos.sitebuilder.website/biography" target="_blank">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/sitebuilder/templates/template2.png">
-                            <span class="tplname">{lang key='store.siteBuilder.templates.bio'}</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a href="https://demos.sitebuilder.website/movers" target="_blank">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/sitebuilder/templates/template3.png">
-                            <span class="tplname">{lang key='store.siteBuilder.templates.movers'}</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a href="https://demos.sitebuilder.website/coffee" target="_blank">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/sitebuilder/templates/template4.png">
-                            <span class="tplname">{lang key='store.siteBuilder.templates.coffee'}</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a href="https://demos.sitebuilder.website/hotel" target="_blank">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/sitebuilder/templates/template5.png">
-                            <span class="tplname">{lang key='store.siteBuilder.templates.hotel'}</span>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a href="https://demos.sitebuilder.website/pizza" target="_blank">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/sitebuilder/templates/template6.png">
-                            <span class="tplname">{lang key='store.siteBuilder.templates.pizza'}</span>
-                        </a>
-                    </div>
+                    {foreach $templates as $i => $template}
+                        {if $i == 11}
+                            <div class="col-md-6 col-lg-4 show-more">
+                                <a href="#">
+                                    <div>
+                                        <span class="icon-wrapper">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </div>
+                                    <span class="tplname">{lang key="viewMore"}</span>
+                                </a>
+                            </div>
+                        {else}
+                            <div class="col-md-6 col-lg-4 type-{$template['type']}{if $i > 11} hidden{/if}">
+                                <a href="{$template['preview']}" target="_blank">
+                                    <div class="thumb-wrapper">
+                                        <img {if $i < 11}src{else}data-src{/if}="{$template['thumbnail']}" class="deferred">
+                                        <span class="type-label">{lang key="store.siteBuilder.templates.typeLabels.{$template['type']}"}</span>
+                                    </div>
+                                    <span class="tplname">{$template['name']}</span>
+                                </a>
+                            </div>
+                        {/if}
+                    {/foreach}
                 </div>
             </div>
+            <p class="tagline">{lang key="store.siteBuilder.templatesOutro"}</p>
         </div>
     </div>
 
@@ -275,9 +275,13 @@
                 </p>
                 <br>
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary large">
-                        {lang key="store.siteBuilder.tryFreeCta"}
-                    </a>
+                    <form method="post" action="{routePath('cart-order')}">
+                        <input type="hidden" name="pid" value="{$trialPlan->id}">
+                        <input type="hidden" name="billingcycle" value="">
+                        <button type="submit" class="btn btn-primary large">
+                            {lang key='store.siteBuilder.tryFreeCta'}
+                        </button>
+                    </form>
                 </div>
             {else}
                 <h2>{lang key="store.siteBuilder.pricingTitle"}</h2>
@@ -384,3 +388,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    var baseRef = '.landing-page.sitebuilder .templates';
+    function showAllTemplates() {
+        jQuery(baseRef + ' .previews .show-more').remove();
+        jQuery(baseRef + ' .previews .hidden').hide().removeClass('hidden').fadeIn();
+        jQuery(baseRef + ' .previews img.deferred').each(function() {
+            jQuery(this).attr('src', jQuery(this).data('src'));
+        }).removeClass('deferred');
+    }
+    jQuery(document).ready(function() {
+        jQuery(baseRef + ' .templates-filter-btn').click(function(e) {
+            e.preventDefault();
+            jQuery(baseRef + ' .templates-filter-btn').removeClass('active');
+            jQuery(this).addClass('active');
+            showAllTemplates();
+            jQuery(baseRef + ' .previews .type-single,' + baseRef + ' .previews .type-multi,' + baseRef + ' .previews .type-ecom').hide();
+            jQuery(baseRef + ' .previews .type-' + jQuery(this).data('type')).show();
+        });
+        jQuery(baseRef + ' .previews .show-more a').click(function(e) {
+            e.preventDefault();
+            showAllTemplates();
+        });
+    });
+</script>
