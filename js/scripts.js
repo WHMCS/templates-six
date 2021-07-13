@@ -17675,6 +17675,13 @@ function updateAjaxModal(data) {
         enableSubmit();
     }
 
+    var dismissLoader = true;
+    if (typeof data.dismissLoader !== 'undefined') {
+        dismissLoader = data.dismissLoader;
+    }
+
+    dismissLoaderAfterRender(dismissLoader);
+
     if (data.hideSubmit) {
         ajaxModalHideSubmit();
     }
@@ -17732,18 +17739,25 @@ function removeAjaxModalPostSubmitEvents(functionName) {
 function disableSubmit()
 {
     jQuery('#modalAjax .modal-submit').prop("disabled", true);
-    jQuery('#modalAjax .loader').show();
 }
 
 function enableSubmit()
 {
-    jQuery('#modalAjax .loader').fadeOut();
     jQuery('#modalAjax .modal-submit').removeProp('disabled');
 }
 
 function ajaxModalHideSubmit()
 {
     jQuery('#modalAjax .modal-submit').hide();
+}
+
+function dismissLoaderAfterRender(showLoader)
+{
+    if (showLoader === false) {
+        jQuery('#modalAjax .loader').show();
+    } else {
+        jQuery('#modalAjax .loader').fadeOut();
+    }
 }
 
 /**

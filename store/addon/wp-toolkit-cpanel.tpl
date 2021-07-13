@@ -14,7 +14,8 @@
             {if $hasPleskWptk}
                 <p>
                     {lang key='store.addon.wptk.switchPlesk'}
-                    <a href="{fqdnRoutePath('store-addon', 'wordpress-toolkit-with-smart-updates')}">{lang key='clickHere'}</a>
+                    <a href="{fqdnRoutePath('store-addon', 'plesk-wordpress-toolkit-with-smart-updates')}"
+                        >{lang key='clickHere'}</a>
                 </p>
             {/if}
         </div>

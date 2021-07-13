@@ -11,7 +11,7 @@
             <button class="btn btn-success btn-cta" onclick="smoothScroll('#pricing')">
                 {lang key='store.addon.wptk.getItNow'}
             </button>
-            {if $hasPleskWptk}
+            {if $hasCpanelWptk}
                 <p>
                     {lang key='store.addon.wptk.switchCpanel'}
                     <a href="{fqdnRoutePath('store-addon', 'wp-toolkit-deluxe')}">{lang key='clickHere'}</a>
