@@ -16,12 +16,12 @@
 
             {include file="$template/includes/subheader.tpl" title=$LANG.sslserverinfo}
 
-            <p>{$LANG.sslserverinfodetails}</p>
+            {include file="$template/includes/alert.tpl" type="info" msg={lang key='sslserverinfodetails'}}
 
             <div class="form-group">
                 <label for="inputServerType">{$LANG.sslservertype}</label>
                 <select name="servertype" id="inputServerType" class="form-control">
-                    <option value="" selected>{$LANG.pleasechooseone}</option>
+                    <option value="" selected>{lang key='ssl.selectWebserver' serverType={lang key='sslservertype'}}</option>
                     {foreach from=$webservertypes key=webservertypeid item=webservertype}
                         <option value="{$webservertypeid}"{if $servertype eq $webservertypeid} selected{/if}>
                             {$webservertype}
@@ -52,7 +52,7 @@
 
             {include file="$template/includes/subheader.tpl" title=$LANG.ssladmininfo}
 
-            <p>{$LANG.ssladmininfodetails}</p>
+            {include file="$template/includes/alert.tpl" type="info" msg={lang key='ssladmininfodetails'}}
 
             <fieldset class="form-horizontal">
                 <div class="form-group">

@@ -12,7 +12,9 @@
 
     <form method="post" action="affiliates.php">
         <input type="hidden" name="activate" value="true" />
-        <p align="center"><input type="submit" value="{$LANG.affiliatesactivate}" class="btn btn-success" /></p>
+        <p align="center">
+            <input id="activateAffiliate" type="submit" value="{$LANG.affiliatesactivate}" class="btn btn-success" />
+        </p>
     </form>
 
 {else}

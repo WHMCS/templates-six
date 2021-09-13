@@ -7,6 +7,9 @@
 
 jQuery(document).ready(function() {
 
+    // Init Lightbox2
+    lightbox.init();
+
     // Language chooser popover
     jQuery('#languageChooser').popover({
         container: 'body',
@@ -451,9 +454,9 @@ jQuery(document).ready(function() {
                     parsedContent;
 
                 jQuery.ajax({
-                    url: 'clientarea.php',
+                    url: WHMCS.utils.getRouteUrl('/clientarea/message/preview'),
                     async: false,
-                    data: {token: csrfToken, action: 'parseMarkdown', content: originalContent},
+                    data: {token: csrfToken, content: originalContent},
                     dataType: 'json',
                     success: function (data) {
                         parsedContent = data;
@@ -813,6 +816,24 @@ jQuery(document).ready(function() {
             }
         );
         confirmationModal.modal('toggle');
+    });
+    jQuery('input[name="approval_method"]').on('ifChecked', function(event) {
+        var fileMethod = $('#containerApprovalMethodFile'),
+            emailMethod = $('#containerApprovalMethodEmail'),
+            dnsMethod = $('#containerApprovalMethodDns');
+        if (jQuery(this).attr('value') == 'file') {
+            fileMethod.show();
+            dnsMethod.hide();
+            emailMethod.hide();
+        } else if (jQuery(this).attr('value') == 'dns-txt-token') {
+            dnsMethod.show();
+            fileMethod.hide();
+            emailMethod.hide();
+        } else {
+            fileMethod.hide();
+            dnsMethod.hide();
+            emailMethod.show();
+        }
     });
 });
 

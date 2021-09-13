@@ -111,7 +111,7 @@
                 <div class="col-xl-10">
                     <div class="row screenshots-row">
                         <div class="col-md-6">
-                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-01-full.png" class="screenshot-thumb">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-01-full.png" class="screenshot-thumb" data-lightbox="wptoolkit">
                                 <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-01.png">
                                 <div class="overlay">
                                     <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
@@ -119,7 +119,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-02-full.png" class="screenshot-thumb">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-02-full.png" class="screenshot-thumb" data-lightbox="wptoolkit">
                                 <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-02.png">
                                 <div class="overlay">
                                     <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
@@ -127,7 +127,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-03-full.png" class="screenshot-thumb">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-03-full.png" class="screenshot-thumb" data-lightbox="wptoolkit">
                                 <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-03.png">
                                 <div class="overlay">
                                     <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
@@ -135,7 +135,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-04-full.png" class="screenshot-thumb">
+                            <a href="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-04-full.png" class="screenshot-thumb" data-lightbox="wptoolkit">
                                 <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/screen-04.png">
                                 <div class="overlay">
                                     <img src="{$WEB_ROOT}/assets/img/store/wp-toolkit/zoom.png">
@@ -143,18 +143,6 @@
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal lightbox-modal fade" id="wptkLightboxModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <img src="" class="lightbox-image">
                 </div>
             </div>
         </div>
@@ -370,29 +358,5 @@
         if (ssoServiceId) {
             $('.btn-add-to-cart[data-serviceid="' + ssoServiceId + '"]').click();
         }
-
-        // lightbox
-        jQuery('.screenshots a.screenshot-thumb').each(function() {
-            jQuery(this).attr('data-toggle', 'modal')
-                .attr('data-target', '#wptkLightboxModal');
-        });
-        jQuery('.screenshots a.screenshot-thumb').click(function(event) {
-            event.preventDefault();
-            $('<img>').attr({
-                src: jQuery(this).attr('href'),
-                class: 'lightbox-image'
-            }).load(function() {
-                var resizePercent = ($(window).width() < 768 ? 100 : 75);
-                jQuery('.lightbox-image').replaceWith(this);
-                jQuery('#wptkLightboxModal .modal-dialog').css({
-                    'max-width': (this.width * (resizePercent/100)),
-                    'width': 'initial'
-                });
-                jQuery('#wptkLightboxModal').modal('show');
-            });
-        });
-        jQuery('#wptkLightboxModal').on('hidden.bs.modal', function() {
-            jQuery('.lightbox-image').attr('src','');
-        });
     });
 </script>
