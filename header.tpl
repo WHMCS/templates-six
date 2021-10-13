@@ -185,7 +185,7 @@
                             </li>
                         {/if}
                         <li>
-                            <a id="btnOrderHosting" href="cart.php">
+                            <a id="btnOrderHosting" href="{$WEB_ROOT}/cart.php">
                                 <i class="far fa-hdd"></i>
                                 <p>
                                     {$LANG.orderhosting} <span>&raquo;</span>
