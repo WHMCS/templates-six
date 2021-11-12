@@ -47,11 +47,12 @@
                         <option value="TXT"{if $dnsrecord.type eq "TXT"} selected="selected"{/if}>{lang key="domainDns.txt"}</option>
                         <option value="URL"{if $dnsrecord.type eq "URL"} selected="selected"{/if}>{lang key="domainDns.url"}</option>
                         <option value="FRAME"{if $dnsrecord.type eq "FRAME"} selected="selected"{/if}>{lang key="domainDns.frame"}</option>
+                        <option value="SRV"{if $dnsrecord.type eq "SRV"} selected="selected"{/if}>SRV</option>
                         </select>
                     </td>
                     <td><input type="text" name="dnsrecordaddress[]" value="{$dnsrecord.address}" size="40" class="form-control" /></td>
                     <td>
-                        {if $dnsrecord.type eq "MX"}<input type="text" name="dnsrecordpriority[]" value="{$dnsrecord.priority}" size="2" class="form-control" />{else}<input type="hidden" name="dnsrecordpriority[]" value="N/A" />{$LANG.domainregnotavailable}{/if}
+                        {if $dnsrecord.type eq "MX" || $dnsrecord.type eq "SRV"}<input type="text" name="dnsrecordpriority[]" value="{$dnsrecord.priority}" size="2" class="form-control" />{else}<input type="hidden" name="dnsrecordpriority[]" value="N/A" />{$LANG.domainregnotavailable}{/if}
                     </td>
                 </tr>
                 {/foreach}
@@ -67,6 +68,7 @@
                             <option value="TXT">{lang key="domainDns.txt"}</option>
                             <option value="URL">{lang key="domainDns.url"}</option>
                             <option value="FRAME">{lang key="domainDns.frame"}</option>
+                            <option value="SRV">{lang key="domainDns.srv"}</option>
                         </select>
                     </td>
                     <td><input type="text" name="dnsrecordaddress[]" size="40" class="form-control" /></td>
