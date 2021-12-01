@@ -700,6 +700,10 @@ section#main-body {
     padding: 25px 15px 15px;
     border-bottom: 3px solid #f8f8f8;
 }
+.landing-page.ssl ul.ssl-certs-all li.featured {
+    background: #fff7cc;
+    border-radius: 0.25rem;
+}
 .landing-page.ssl ul.ssl-certs-all li:last-child {
     border-bottom: 0;
 }
@@ -812,6 +816,55 @@ section#main-body {
     height: 65px;
     text-align: center;
     overflow: hidden;
+}
+.landing-page.ssl .popular-plan {
+    margin-top:5px;
+    width:100%;
+    height:35px;
+    position:relative;
+}
+.landing-page.ssl .popular-plan .plan-container {
+    text-align: center;
+    position:absolute;
+    height:35px;
+    top:0;
+    left:-5%;
+    width:110%;
+    background:url(../img/shadow-left.png) no-repeat left bottom;
+    background-size:100% auto;
+}
+.landing-page.ssl .popular-plan .plan-container:before {
+}
+.landing-page.ssl .popular-plan .plan-container .txt-container {
+    padding:6px 0 0 0;
+    height:28px;
+    width:100%;
+    /* Old browsers */
+    background: #F7A566;
+    /* FF3.6+ */
+    background: -moz-linear-gradient(top,  #F7A566 0%, #F36900 100%);
+    /* Chrome,Safari4+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F7A566), color-stop(100%,#F36900));
+    /* Chrome10+,Safari5.1+ */
+    background: -webkit-linear-gradient(top,  #F7A566 0%,#F36900 100%);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top,  #F7A566 0%,#F36900 100%);
+    /* IE10+ */
+    background: -ms-linear-gradient(top,  #F7A566 0%,#F36900 100%);
+    /* W3C */
+    background: linear-gradient(to bottom,  #F7A566 0%,#F36900 100%);
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7A566', endColorstr='#F36900',GradientType=0);
+    color:#ffffff;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    -webkit-text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    -moz-text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -1px 10px 2px -7px rgba(0,0,0,0.18);
+    -moz-box-shadow: -1px 10px 2px -7px rgba(0,0,0,0.18);
+    box-shadow: -1px 10px 2px -7px rgba(0,0,0,0.18);
 }
 @media (max-width: 767px) {
     .landing-page.ssl .certificate-options h3 {
