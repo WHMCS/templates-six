@@ -17394,8 +17394,8 @@ function completeValidationComClientWorkflow()
 /*!
  * WHMCS Ajax Driven Modal Framework
  *
- * @copyright Copyright (c) WHMCS Limited 2005-2019
- * @license http://www.whmcs.com/license/ WHMCS Eula
+ * @copyright Copyright (c) WHMCS Limited 2005-2021
+ * @license https://www.whmcs.com/license/ WHMCS Eula
  */
 var ajaxModalSubmitEvents = [],
     ajaxModalPostSubmitEvents = [];
@@ -17485,7 +17485,7 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
     jQuery('#modalAjax .modal-body').html('');
 
     jQuery('#modalSkip').hide();
-    jQuery('#modalAjax .modal-submit').prop('disabled', true);
+    disableSubmit();
 
     // show modal
     jQuery('#modalAjax').modal({
@@ -17540,13 +17540,10 @@ function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel
 
 function submitIdAjaxModalClickEvent ()
 {
-    if (jQuery(this).hasClass('disabled')) {
-        return;
-    }
     var canContinue = true,
-        btn = jQuery(this);
-    btn.addClass('disabled');
-    jQuery('#modalAjax .loader').show();
+        loader = jQuery('#modalAjax .loader');
+    disableSubmit();
+    loader.show();
     if (ajaxModalSubmitEvents.length) {
         jQuery.each(ajaxModalSubmitEvents, function (index, value) {
             var fn = window[value];
@@ -17556,8 +17553,8 @@ function submitIdAjaxModalClickEvent ()
         });
     }
     if (!canContinue) {
-        btn.removeClass('disabled');
-        jQuery('#modalAjax .loader').hide();
+        enableSubmit();
+        loader.hide();
         return;
     }
     var modalForm = jQuery('#modalAjax').find('form');
@@ -17614,8 +17611,7 @@ function submitIdAjaxModalClickEvent ()
             jQuery(modalBody).html(genericErrorMsg);
         }
         jQuery('#modalAjax .loader').fadeOut();
-    }).always(function () {
-        btn.removeClass('disabled');
+        enableSubmit();
     });
 }
 
@@ -17712,7 +17708,7 @@ function updateAjaxModal(data) {
 // backwards compat for older dialog implementations
 
 function dialogSubmit() {
-    jQuery('#modalAjax .modal-submit').prop("disabled", true);
+    disableSubmit();
     jQuery('#modalAjax .loader').show();
     var postUrl = jQuery('#modalAjax').find('form').attr('action');
     WHMCS.http.jqClient.post(postUrl, jQuery('#modalAjax').find('form').serialize(),
@@ -17760,12 +17756,12 @@ function removeAjaxModalPostSubmitEvents(functionName) {
 
 function disableSubmit()
 {
-    jQuery('#modalAjax .modal-submit').prop("disabled", true);
+    jQuery('#modalAjax .modal-submit').prop('disabled', true).addClass('disabled');
 }
 
 function enableSubmit()
 {
-    jQuery('#modalAjax .modal-submit').removeProp('disabled');
+    jQuery('#modalAjax .modal-submit').prop('disabled', false).removeClass('disabled');
 }
 
 function ajaxModalHideSubmit()

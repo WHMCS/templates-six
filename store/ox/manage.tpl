@@ -34,7 +34,7 @@
     </button>
 </div>
 
-<table class="tableAccounts table">
+<table class="ox-table-accounts table">
     <thead>
         <tr>
             <th>{lang key='ox.emailAddress'}</th>
@@ -63,10 +63,10 @@
     <tr>
         <td>
             <span class="account"></span>@{$domain}<br/>
-            <i class="fas fa-chevron-right fa-xs"></i>
+            <i class="fas fa-chevron-right fa-xs fa-fw"></i>
             <span class="email-aliases">
-                        {lang key='ox.alias.emailAliases'}: <span class="alias-count"></span>
-                    </span>
+                {lang key='ox.alias.emailAliases'}: <span class="alias-count"></span>
+            </span>
         </td>
         <td><span class="limit"></span>GB</td>
         <td class="text-right">
@@ -109,21 +109,25 @@
         <td colspan="3">
             <table class="table">
                 <tr class="create-alias" data-alias="">
-                    <td colspan="2">
-                        <input type="text" name="alias">&nbsp;@{$domain}
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-primary btn-xs ox-create-alias">
-                               <span class="loader hidden">
-                                   <i class="far fa-sync-alt fa-spin" aria-hidden="true"></i>
-                               </span>
-                                <span class="create-string">
-                                   {lang key='ox.alias.createButton'}
-                               </span>
-                            </button>
+                    <td align="right">
+                        <div class="input-group input-group-xs">
+                            <input type="text" name="alias" class="form-control">
+                            <span class="input-group-addon">
+                                @{$domain}
+                            </span>
                         </div>
                     </td>
+                    <td>
+                        <button class="btn btn-primary btn-xs ox-create-alias">
+                            <span class="loader hidden">
+                                <i class="far fa-sync-alt fa-spin" aria-hidden="true"></i>
+                            </span>
+                            <span class="create-string">
+                                {lang key='ox.alias.createButton'}
+                            </span>
+                        </button>
+                    </td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
         </td>
@@ -593,7 +597,7 @@
     }
 
     function addAccountToTable(data) {
-        var table = jQuery('table.tableAccounts'),
+        var table = jQuery('table.ox-table-accounts'),
             clone = jQuery('tbody.cloneAccountsBody').clone();
 
         clone.attr('id', '');
@@ -613,7 +617,7 @@
     }
 
     function addAliasesToTable(data) {
-        var table = jQuery('table.tableAccounts'),
+        var table = jQuery('table.ox-table-accounts'),
             cloneTbody = jQuery('tbody.cloneAliasesBody').clone();
 
         if (typeof data.aliases !== 'undefined' && data.aliases.length > 0) {
@@ -645,17 +649,17 @@
     }
 
     function clearAccounts() {
-        jQuery('.tableAccounts tbody.account-entry').remove();
+        jQuery('.ox-table-accounts tbody.account-entry').remove();
     }
 
     function clearAliases() {
-        jQuery('.tableAccounts tbody.aliases-body').remove();
+        jQuery('.ox-table-accounts tbody.aliases-body').remove();
     }
 
     function updateAccountsDisplay() {
-        var trNoAccounts = jQuery('table.tableAccounts tbody tr.no-accounts'),
+        var trNoAccounts = jQuery('table.ox-table-accounts tbody tr.no-accounts'),
             accountsCount = jQuery('#accountCount').find('.number');
-        var count = jQuery('table.tableAccounts tbody.account-entry').length;
+        var count = jQuery('table.ox-table-accounts tbody.account-entry').length;
         if (count == 0) {
             trNoAccounts.removeClass('hidden');
         } else {

@@ -108,7 +108,7 @@
                     <div role="tabpanel" class="tab-pane" id="custom-domain">
                         <div class="row">
                             <div class="col-sm-8">
-                                <input type="text" class="form-control domain-input" placeholder="yourdomain.com" name="custom_domain" value="{$customDomain}">
+                                <input type="text" class="form-control domain-input" placeholder="example.com" name="custom_domain" value="{$customDomain}">
                             </div>
                             <div class="col-sm-4">
                                 <span class="domain-validation domain-input-validation"></span>

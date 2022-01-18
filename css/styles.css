@@ -3780,78 +3780,109 @@ form[data-role="json-form"] .has-error .tooltip.top .tooltip-arrow {
  * OX Email Management
  */
 
-.tableAccounts .dropdown-hamburger::after {
+.ox-table-accounts td {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+.ox-table-accounts .dropdown-hamburger::after {
     display: none;
 }
-.tableAccounts ul.dropdown-menu button.btn-sm {
+.ox-table-accounts ul.dropdown-menu button.btn-sm {
     border-radius: 0;
 }
-.tableAccounts .account-entry > tr:hover {
+.ox-table-accounts .account-entry > tr:hover {
     background-color: rgba(0,0,0,.05);
 }
-.tableAccounts .account-entry {
+.ox-table-accounts .account-entry {
     cursor: pointer;
 }
-.tableAccounts .alias-entry td:first-child,
-.tableAccounts .create-alias td:first-child {
+.ox-table-accounts .alias-entry td:first-child,
+.ox-table-accounts .create-alias td:first-child {
     font-size: .9em;
 }
-.tableAccounts .create-alias input {
-    border:0;
-    outline:0;
-    background:transparent;
-    border-bottom:thin solid #6c757d;
-    width:8em;
-}
-.tableAccounts .email-aliases {
+.ox-table-accounts .email-aliases {
     font-size: .9em;
     font-weight: bold;
 }
-.tableAccounts .aliases-body,
-.tableAccounts .aliases-body > tr > td {
+.ox-table-accounts .aliases-body,
+.ox-table-accounts .aliases-body > tr > td {
     border-top: 0;
 }
 
-.tableAccounts .list-group-item-danger {
+.ox-table-accounts .list-group-item-danger {
     color: #a94442;
     background-color: #f2dede;
 }
-.tableAccounts .list-group-item-danger:hover,
-.tableAccounts .list-group-item-danger:focus {
+.ox-table-accounts .list-group-item-danger:hover,
+.ox-table-accounts .list-group-item-danger:focus {
     color: #a94442;
     background-color: #ebcccc;
 }
 
-.tableAccounts .menu-sm {
+.ox-table-accounts .menu-sm {
     display: inline;
 }
-.tableAccounts .menu-md {
+.ox-table-accounts .menu-md {
     display: none;
 }
-.tableAccounts .menu-lg {
+.ox-table-accounts .menu-lg {
     display: none;
 }
 
+.ox-table-accounts .input-group {
+    width: 65%;
+}
+
+.input-group-xs + .form-control-feedback {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+.input-group-xs > .form-control,
+.input-group-xs > .input-group-addon,
+.input-group-xs > .input-group-btn > .btn {
+    height: 25px;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+select.input-group-xs > .form-control,
+select.input-group-xs > .input-group-addon,
+select.input-group-xs > .input-group-btn > .btn {
+    height: 30px;
+    line-height: 30px;
+}
+textarea.input-group-xs-sm > .form-control,
+textarea.input-group-xs > .input-group-addon,
+textarea.input-group-xs > .input-group-btn > .btn,
+select[multiple].input-group-xs > .form-control,
+select[multiple].input-group-xs > .input-group-addon,
+select[multiple].input-group-xs > .input-group-btn > .btn {
+    height: auto;
+}
+
 @media (min-width: 768px) {
-    .tableAccounts .menu-sm {
+    .ox-table-accounts .menu-sm {
         display: none;
     }
-    .tableAccounts .menu-md {
+    .ox-table-accounts .menu-md {
         display: inline;
     }
-    .tableAccounts .menu-lg {
+    .ox-table-accounts .menu-lg {
         display: none;
     }
 }
 
 @media (min-width: 992px) {
-    .tableAccounts .menu-sm {
+    .ox-table-accounts .menu-sm {
         display: none;
     }
-    .tableAccounts .menu-md {
+    .ox-table-accounts .menu-md {
         display: none;
     }
-    .tableAccounts .menu-lg {
+    .ox-table-accounts .menu-lg {
         display: inline;
     }
 }
