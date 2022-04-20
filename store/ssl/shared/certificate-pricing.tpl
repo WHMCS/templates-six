@@ -22,7 +22,9 @@
                             <li>{lang key='store.ssl.shared.siteSeal'}</li>
                             <li>{lang key='store.ssl.shared.freeReissues'}</li>
                             <li>{lang key='store.ssl.shared.browserSupport'}</li>
-                            <li>{lang key='store.ssl.shared.price'}</li>
+                            <li>{lang key='store.ssl.shared.oneYearPrice'}</li>
+                            <li>{lang key='store.ssl.shared.twoYearPrice'}</li>
+                            <li>{lang key='store.ssl.shared.threeYearPrice'}</li>
                         </ul>
                     </div>
                     {if count($certificates.$type) > 0}
@@ -40,9 +42,21 @@
                                     <li><i class="fas fa-check"></i></li>
                                     <li>99.9%</li>
                                     {if $product->pricing()->annual()}
-                                        <li class="price 1yr">{$product->pricing()->annual()->price()->toFull()}</li>
+                                        <li class="price 1yr">{$product->pricing()->annual()->yearlyPrice()}</li>
                                     {else}
                                         <li class="price 1yr na">-</li>
+                                    {/if}
+
+                                    {if $product->pricing()->biennial()}
+                                        <li class="price 2yr">{$product->pricing()->biennial()->yearlyPrice()}</li>
+                                    {else}
+                                        <li class="price 2yr na">-</li>
+                                    {/if}
+
+                                    {if $product->pricing()->triennial()}
+                                        <li class="price 3yr">{$product->pricing()->triennial()->yearlyPrice()}</li>
+                                    {else}
+                                        <li class="price 3yr na">-</li>
                                     {/if}
                                 </ul>
                                 <form method="post" action="{routePath('cart-order')}">

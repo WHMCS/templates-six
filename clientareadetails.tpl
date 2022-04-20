@@ -6,6 +6,12 @@
     {include file="$template/includes/alert.tpl" type="error" errorshtml=$errormessage}
 {/if}
 
+{if in_array('state', $optionalFields)}
+    <script>
+        var stateNotRequired = true;
+    </script>
+{/if}
+
 <script type="text/javascript" src="{$BASE_PATH_JS}/StatesDropdown.js"></script>
 
 <form method="post" action="?action=details" role="form">
