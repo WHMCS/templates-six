@@ -848,11 +848,38 @@ jQuery(document).ready(function() {
         if (element.is('.dropdown-toggle, .dropdown-menu, .caret')) {
             return true;
         }
-        if (element.hasClass('btn-service-sso')) {
+        if (element.hasClass('btn-custom-action')) {
+            event.stopPropagation();
             if (!element.data('active')) {
                 return false;
             }
-            window.open(element.data('href'));
+            element.attr('disabled', 'disabled').addClass('disabled');
+            jQuery('.loading', element).show();
+            WHMCS.http.jqClient.jsonPost({
+                url: WHMCS.utils.getRouteUrl(
+                    '/clientarea/service/' + element.data('serviceid') + '/custom-action/' + element.data('identifier')
+                ),
+                data: {
+                    'token': csrfToken
+                },
+                success: function(data) {
+                    if (data.success) {
+                        window.open(data.redirectTo);
+                    } else {
+                        window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_error=1');
+                    }
+                },
+                fail: function () {
+                    window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
+                },
+                always: function() {
+                    jQuery('.loading', element).hide();
+                    element.removeAttr('disabled').removeClass('disabled');
+                    if (element.hasClass('dropdown-item')) {
+                        element.closest('.dropdown-menu').removeClass('show');
+                    }
+                },
+            });
             return true;
         }
         window.location.href = element.closest('.div-service-item').data('href');
