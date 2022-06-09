@@ -843,44 +843,16 @@ jQuery(document).ready(function() {
             (jQuery('.div-service-status .label-placeholder').outerWidth() + 5)
         );
     }());
+    jQuery('div[menuitemname="Service Details Actions"] a[data-identifier][data-serviceid][data-active="1"]').on('click', function(event) {
+        return customActionAjaxCall(event, jQuery(event.target))
+    });
     jQuery('.div-service-item').on('click', function (event) {
         var element = jQuery(event.target);
         if (element.is('.dropdown-toggle, .dropdown-menu, .caret')) {
             return true;
         }
         if (element.hasClass('btn-custom-action')) {
-            event.stopPropagation();
-            if (!element.data('active')) {
-                return false;
-            }
-            element.attr('disabled', 'disabled').addClass('disabled');
-            jQuery('.loading', element).show();
-            WHMCS.http.jqClient.jsonPost({
-                url: WHMCS.utils.getRouteUrl(
-                    '/clientarea/service/' + element.data('serviceid') + '/custom-action/' + element.data('identifier')
-                ),
-                data: {
-                    'token': csrfToken
-                },
-                success: function(data) {
-                    if (data.success) {
-                        window.open(data.redirectTo);
-                    } else {
-                        window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_error=1');
-                    }
-                },
-                fail: function () {
-                    window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
-                },
-                always: function() {
-                    jQuery('.loading', element).hide();
-                    element.removeAttr('disabled').removeClass('disabled');
-                    if (element.hasClass('dropdown-item')) {
-                        element.closest('.dropdown-menu').removeClass('show');
-                    }
-                },
-            });
-            return true;
+            return customActionAjaxCall(event, element);
         }
         window.location.href = element.closest('.div-service-item').data('href');
         return false;
@@ -1281,4 +1253,46 @@ function completeValidationComClientWorkflow()
         window.location.href = WHMCS.utils.autoDetermineBaseUrl();
     }
     return false;
+}
+
+/**
+ * Perform the AjaxCall for a CustomAction.
+ *
+ * @param event
+ * @param element
+ * @returns {boolean}
+ */
+function customActionAjaxCall(event, element) {
+    event.stopPropagation();
+    if (!element.data('active')) {
+        return false;
+    }
+    element.attr('disabled', 'disabled').addClass('disabled');
+    jQuery('.loading', element).show();
+    WHMCS.http.jqClient.jsonPost({
+        url: WHMCS.utils.getRouteUrl(
+            '/clientarea/service/' + element.data('serviceid') + '/custom-action/' + element.data('identifier')
+        ),
+        data: {
+            'token': csrfToken
+        },
+        success: function(data) {
+            if (data.success) {
+                window.open(data.redirectTo);
+            } else {
+                window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_error=1');
+            }
+        },
+        fail: function () {
+            window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
+        },
+        always: function() {
+            jQuery('.loading', element).hide();
+            element.removeAttr('disabled').removeClass('disabled');
+            if (element.hasClass('dropdown-item')) {
+                element.closest('.dropdown-menu').removeClass('show');
+            }
+        },
+    });
+    return true;
 }
