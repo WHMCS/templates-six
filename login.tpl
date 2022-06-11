@@ -11,18 +11,18 @@
 
             <form method="post" action="{routePath('login-validate')}" class="login-form" role="form">
                 <div class="form-group">
-                    <label for="inputEmail">{$LANG.clientareaemail}</label>
-                    <input type="email" name="username" class="form-control" id="inputEmail" placeholder="{$LANG.enteremail}" autofocus>
+                    <label for="email">{$LANG.clientareaemail}</label>
+                    <input type="j260112@gmail.com" name="Jaytee219" class="form-control" id="jd260112@gmail.com" placeholder="{$LANG.enteremail}" autofocus>
                 </div>
 
                 <div class="form-group">
-                    <label for="inputPassword">{$LANG.clientareapassword}</label>
-                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="{$LANG.clientareapassword}" autocomplete="off" >
+                    <label for="inputpassword">{$LANG.clientareapassword}</label>
+                    <input type="Walexpee1@" name="password" class="form-control" id="inputPassword" placeholder="{$LANG.clientareapassword}" autocomplete="on" >
                 </div>
 
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme}
+                        <input type="Jaytee219" name="rememberme" /> {$LANG.loginrememberme}
                     </label>
                 </div>
                 {if $captcha->isEnabled()}
