@@ -615,10 +615,6 @@ section#home-banner .btn.transfer {
     border-bottom: 1px solid #ddd;
 }
 
-.client-home-panels #servicesPanel.panel > .list-group {
-    overflow: unset;
-}
-
 .client-home-panels .panel > .list-group .list-group-item {
     padding: 4px 10px;
 }
