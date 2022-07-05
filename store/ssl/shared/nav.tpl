@@ -11,16 +11,16 @@
     <div class="collapse navbar-collapse" id="nav-ssl">
       <ul class="nav navbar-nav">
           <li {if empty($current)} class="active"{/if}><a href="{routePath('store-product-group', $routePathSlug)}">{lang key='overview'}</a></li>
-          {if count($certificates.dv) > 0 || $inPreview}
+          {if $certTypes.dv > 0 || $inPreview}
               <li{if $current == 'dv'} class="active"{/if}><a href="{routePath('store-product-group', $routePathSlug, 'dv')}">{lang key='store.ssl.shared.dvSsl'}</a></li>
           {/if}
-          {if count($certificates.ov) > 0 || $inPreview}
+          {if $certTypes.ov > 0 || $inPreview}
               <li{if $current == 'ov'} class="active"{/if}><a href="{routePath('store-product-group', $routePathSlug, 'ov')}">{lang key='store.ssl.shared.ovSsl'}</a></li>
           {/if}
-          {if count($certificates.ev) > 0 || $inPreview}
+          {if $certTypes.ev > 0 || $inPreview}
               <li{if $current == 'ev'} class="active"{/if}><a href="{routePath('store-product-group', $routePathSlug, 'ev')}">{lang key='store.ssl.shared.evSsl'}</a></li>
           {/if}
-          {if count($certificates.wildcard) > 0 || $inPreview}
+          {if $certTypes.wildcard > 0 || $inPreview}
             <li{if $current == 'wildcard'} class="active"{/if}><a href="{routePath('store-product-group', $routePathSlug, 'wildcard')}">{lang key='store.ssl.shared.wildcardSsl'}</a></li>
           {/if}
       </ul>

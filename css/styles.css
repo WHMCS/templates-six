@@ -614,6 +614,7 @@ section#home-banner .btn.transfer {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
+
 .client-home-panels .panel > .list-group .list-group-item {
     padding: 4px 10px;
 }
@@ -765,6 +766,9 @@ section#home-banner .btn.transfer {
 }
 .panel.panel-accent-asbestos {
     border-top: 3px solid #7f8c8d;
+}
+.panel.panel-accent-brand-cpanel-orange {
+    border-top: 3px solid #ff6c2c;
 }
 
 /**
@@ -3034,6 +3038,16 @@ div.md-editor.active {
     background-color: #ff3377;
 }
 
+.promo-banner.cpanelseo {
+    border-top: 3px solid #ff6c2c;
+}
+.promo-banner.cpanelseo a {
+    color: #ff6c2c;
+}
+.promo-banner.cpanelseo .btn {
+    background-color: #ff6c2c;
+}
+
 .mc-panel-promo {
     font-size: 0.95em;
 }
@@ -3774,4 +3788,207 @@ form[data-role="json-form"] .has-error .tooltip.top .tooltip-arrow {
 
 .w-hidden {
     display: none;
+}
+
+/**
+ * OX Email Management
+ */
+
+.ox-table-accounts td {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+.ox-table-accounts .dropdown-hamburger::after {
+    display: none;
+}
+.ox-table-accounts ul.dropdown-menu button.btn-sm {
+    border-radius: 0;
+}
+.ox-table-accounts .account-entry > tr:hover {
+    background-color: rgba(0,0,0,.05);
+}
+.ox-table-accounts .account-entry {
+    cursor: pointer;
+}
+.ox-table-accounts .alias-entry td:first-child,
+.ox-table-accounts .create-alias td:first-child {
+    font-size: .9em;
+}
+.ox-table-accounts .email-aliases {
+    font-size: .9em;
+    font-weight: bold;
+}
+.ox-table-accounts .aliases-body,
+.ox-table-accounts .aliases-body > tr > td {
+    border-top: 0;
+}
+
+.ox-table-accounts .list-group-item-danger {
+    color: #a94442;
+    background-color: #f2dede;
+}
+.ox-table-accounts .list-group-item-danger:hover,
+.ox-table-accounts .list-group-item-danger:focus {
+    color: #a94442;
+    background-color: #ebcccc;
+}
+
+.ox-table-accounts .menu-sm {
+    display: inline;
+}
+.ox-table-accounts .menu-md {
+    display: none;
+}
+.ox-table-accounts .menu-lg {
+    display: none;
+}
+
+.ox-table-accounts .input-group {
+    width: 65%;
+}
+
+.input-group-xs + .form-control-feedback {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+.input-group-xs > .form-control,
+.input-group-xs > .input-group-addon,
+.input-group-xs > .input-group-btn > .btn {
+    height: 25px;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+select.input-group-xs > .form-control,
+select.input-group-xs > .input-group-addon,
+select.input-group-xs > .input-group-btn > .btn {
+    height: 30px;
+    line-height: 30px;
+}
+textarea.input-group-xs-sm > .form-control,
+textarea.input-group-xs > .input-group-addon,
+textarea.input-group-xs > .input-group-btn > .btn,
+select[multiple].input-group-xs > .form-control,
+select[multiple].input-group-xs > .input-group-addon,
+select[multiple].input-group-xs > .input-group-btn > .btn {
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .ox-table-accounts .menu-sm {
+        display: none;
+    }
+    .ox-table-accounts .menu-md {
+        display: inline;
+    }
+    .ox-table-accounts .menu-lg {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .ox-table-accounts .menu-sm {
+        display: none;
+    }
+    .ox-table-accounts .menu-md {
+        display: none;
+    }
+    .ox-table-accounts .menu-lg {
+        display: inline;
+    }
+}
+
+.div-service-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.div-service-status {
+    text-align: center;
+}
+.div-service-status .label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+    display: inline-block;
+    line-height: initial;
+    margin: 0;
+}
+.div-service-status .label-placeholder {
+    position: absolute;
+    visibility: hidden;
+}
+.div-service-status .label:not(.label-placeholder) {
+    width: 3rem;
+}
+.div-service-name {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.div-service-name > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.div-service-buttons {
+    margin-left: auto;
+}
+.div-service-buttons .disabled {
+    cursor: default;
+}
+.div-service-buttons .btn-group-secondary,
+.div-service-buttons .btn-view-details span:not(.sr-only) {
+    display: none;
+}
+.div-service-item .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.div-service-item .dropdown-menu li {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333333;
+    white-space: nowrap;
+}
+.div-service-item .dropdown-menu > li:hover,
+.div-service-item .dropdown-menu > li:focus {
+    color: #262626;
+    background-color: #f5f5f5;
+}
+.div-service-item .dropdown-menu > li:active {
+    color: #fff;
+    background-color: #337ab7;
+}
+.dropdown-menu li.disabled,
+.dropdown-menu li.disabled:hover,
+.dropdown-menu li.disabled:focus {
+    color: #777777;
+    cursor: default;
+    background-color: transparent;
+}
+@media (min-width: 768px) {
+    .div-service-status .label {
+        width: initial !important;
+    }
+    .div-service-buttons i,
+    .div-service-buttons .btn-group-primary {
+        display: none;
+    }
+    .div-service-buttons .btn-group-secondary {
+        display: inline-flex;
+    }
+    .div-service-buttons span:not(.sr-only):not(.caret) {
+        display: initial !important;
+    }
 }

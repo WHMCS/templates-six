@@ -1,4 +1,14 @@
+<div id="oxSuccess" class="alert alert-success hidden">
+    <i class="fas fa-check fa-fw"></i>
+    <span></span>
+</div>
+<div id="oxLoadError" class="alert alert-danger hidden">
+    <i class="fas fa-times fa-fw"></i>
+    <span></span>
+</div>
+
 <p>{lang key='ox.intro'}</p>
+<p>{lang key='ox.alias.intro'}</p>
 
 <p>
     <form action="{$upgradeUrl}" method="post">
@@ -24,36 +34,115 @@
     </button>
 </div>
 
-<div id="oxSuccess" class="alert alert-success hidden"></div>
-<div id="oxLoadError" class="alert alert-success hidden"></div>
-<table class="table table-striped">
+<table class="ox-table-accounts table">
     <thead>
         <tr>
-            <th width="30%">{lang key='ox.emailAddress'}</th>
-            <th width="20%">{lang key='ox.mailboxSize'}</th>
-            <th></th>
-        </tr>
-        <tr class="clone hidden" data-account-id="" data-account="" data-first-name="" data-last-name="" data-display-name="">
-            <td><span class="account"></span>@{$domain}</td>
-            <td><span class="limit"></span>GB</td>
-            <td>
-                <button class="btn btn-default btn-sm manage-account">{lang key='ox.manageAccount'}</button>
-                <button class="btn btn-default btn-sm set-ox-password">{lang key='ox.setPassword'}</button>
-                <button class="btn btn-danger btn-sm ox-delete">{lang key='ox.delete'}</button>
-            </td>
-        </tr>
-        <tr class="loading">
-            <td colspan="3">
-                <i class="fas fa-sync-alt fa-spin" aria-hidden="true"></i>
-                {lang key='loading'}
-            </td>
-        </tr>
-        <tr class="no-accounts hidden">
-            <td colspan="3">{lang key='ox.noAccounts'}</td>
+            <th>{lang key='ox.emailAddress'}</th>
+            <th width="25%">{lang key='ox.mailboxSize'}</th>
+            <th width="50%" class="invisible"></th>
         </tr>
     </thead>
-    <tbody id="tableBodyAccounts">
+    <tbody>
+    <tr class="loading">
+        <td colspan="3">
+            <i class="fas fa-sync-alt fa-spin" aria-hidden="true"></i>
+            {lang key='loading'}
+        </td>
+    </tr>
+    <tr class="no-accounts hidden">
+        <td colspan="3">{lang key='ox.noAccounts'}</td>
+    </tr>
     </tbody>
+    <tbody class="cloneAccountsBody hidden"
+           data-account-id=""
+           data-account=""
+           data-first-name=""
+           data-last-name=""
+           data-display-name=""
+    >
+    <tr>
+        <td>
+            <span class="account"></span>@{$domain}<br/>
+            <i class="fas fa-chevron-right fa-xs fa-fw"></i>
+            <span class="email-aliases">
+                {lang key='ox.alias.emailAliases'}: <span class="alias-count"></span>
+            </span>
+        </td>
+        <td><span class="limit"></span>GB</td>
+        <td class="text-right">
+            <div class="menu-sm">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-hamburger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#" class="manage-account">{lang key='ox.manageAccount'}</a></li>
+                        <li><a href="#" class="set-ox-password">{lang key='ox.setPassword'}</a></li>
+                        <li><a href="#" class="list-group-item-danger ox-delete">{lang key='ox.delete'}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="menu-md">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-default btn-sm manage-account">{lang key='ox.manageAccount'}</button>
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#" class="set-ox-password">{lang key='ox.setPassword'}</a></li>
+                        <li><a href="#" class="list-group-item-danger ox-delete">{lang key='ox.delete'}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="menu-lg">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-default btn-sm manage-account">{lang key='ox.manageAccount'}</button>
+                    <button class="btn btn-default btn-sm set-ox-password">{lang key='ox.setPassword'}</button>
+                    <button class="btn btn-danger btn-sm ox-delete">{lang key='ox.delete'}</button>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    <tbody class="cloneAliasesBody hidden" data-account-id="">
+    <tr>
+        <td colspan="3">
+            <table class="table">
+                <tr class="create-alias" data-alias="">
+                    <td align="right">
+                        <div class="input-group input-group-xs">
+                            <input type="text" name="alias" class="form-control">
+                            <span class="input-group-addon">
+                                @{$domain}
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-xs ox-create-alias">
+                            <span class="loader hidden">
+                                <i class="far fa-sync-alt fa-spin" aria-hidden="true"></i>
+                            </span>
+                            <span class="create-string">
+                                {lang key='ox.alias.createButton'}
+                            </span>
+                        </button>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+    <tr class="cloneAliasRow hidden"
+        data-alias=""
+    >
+        <td colspan="2"><span class="alias"></span>@{$domain}</td>
+        <td class="text-right">
+            <div class="btn-group" role="group">
+                <button class="btn btn-default btn-xs ox-delete-alias">{lang key='ox.delete'}</button>
+            </div>
+        </td>
+    </tr>
 </table>
 
 <ul class="nav nav-tabs nav-tabs-overflow">
@@ -188,7 +277,10 @@
                     </h4>
                 </div>
                 <div class="modal-body panel-body" id="modalSetPasswordBody">
-                    <div class="alert alert-danger modal-error hidden"></div>
+                    <div class="alert alert-danger modal-error hidden">
+                        <i class="fas fa-times fa-fw"></i>
+                        <span></span>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -283,7 +375,10 @@
                     </h4>
                 </div>
                 <div class="modal-body panel-body" id="modalSetPasswordBody">
-                    <div class="alert alert-danger modal-error hidden"></div>
+                    <div class="alert alert-danger modal-error hidden">
+                        <i class="fas fa-times fa-fw"></i>
+                        <span></span>
+                    </div>
                     <div class="form-group">
                         <label for="inputManageDisplayName">{lang key='ox.displayName'}</label>
                         <input id="inputManageDisplayName" type="text" autocomplete="off" class="form-control required" name="display">
@@ -328,7 +423,10 @@
                     </h4>
                 </div>
                 <div class="modal-body panel-body" id="modalSetPasswordBody">
-                    <div class="alert alert-danger modal-error hidden"></div>
+                    <div class="alert alert-danger modal-error hidden">
+                        <i class="fas fa-times fa-fw"></i>
+                        <span></span>
+                    </div>
                     <div class="form-group">
                         <label for="inputChangePassword">{lang key='clientareapassword'}</label>
                         <div class="input-group">
@@ -383,8 +481,49 @@
                     </h4>
                 </div>
                 <div class="modal-body panel-body" id="modalDeleteAccountBody">
-                    <div class="alert alert-danger modal-error hidden"></div>
-                    {lang key='ox.deleteAccountQuestion'}
+                    <div class="alert alert-danger modal-error hidden">
+                        <i class="fas fa-times fa-fw"></i>
+                        <span></span>
+                    </div>
+                    <span class="delete-question" aria-hidden="true">{lang key='ox.deleteAccountQuestion'}</span>
+                    <span class="delete-aliases-question" aria-hidden="true">{lang key='ox.deleteAccountWithAliasesQuestion'}</span>
+                </div>
+                <div class="modal-footer panel-footer">
+                    <div class="pull-left loader hidden">
+                        <i class="fas fa-sync-alt fa-spin"></i>
+                        {lang key='loading'}
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        {lang key='close'}
+                    </button>
+                    <button type="button" class="btn btn-danger ox-submit-button" id="btnDoDelete">
+                        {lang key='ox.delete'}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<form id="frmOxDeleteAlias" action="{$modifyAliasesUrl}" method="post">
+    <div class="modal fade" id="modalDeleteAlias">
+        <input type="hidden" value="" name="aliasAction">
+        <input type="hidden" value="" name="account">
+        <input type="hidden" value="" name="alias">
+        <input type="hidden" value="" name="aliases">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header panel-header bg-primary text-light">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{lang key='close'}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalDeleteAccountTitle">
+                        {lang key='ox.alias.deleteTitle' domain=$domain}
+                    </h4>
+                </div>
+                <div class="modal-body panel-body" id="modalDeleteAccountBody">
+                    <div class="alert alert-danger modal-error hidden">
+                        <i class="fas fa-times fa-fw"></i>
+                        <span></span>
+                    </div>
+                    {lang key='ox.alias.deleteQuestion'}
                 </div>
                 <div class="modal-footer panel-footer">
                     <div class="pull-left loader hidden">
@@ -403,28 +542,30 @@
     </div>
 </form>
 
-<script type="text/javascript" src="{$BASE_PATH_JS}/PasswordStrength.js"></script>
+<script src="{$BASE_PATH_JS}/PasswordStrength.js"></script>
 <script>
-    function loadAccounts(force)
-    {
-        var tableBody = jQuery('#tableBodyAccounts'),
-            trLoading = jQuery('tr.loading'),
+    function loadAccounts(force) {
+        var trLoading = jQuery('tr.loading'),
             divError = jQuery('#oxLoadError'),
             trNoAccounts = jQuery('tr.no-accounts');
 
         force = force || 0;
 
-        if (!divError.hasClass('hidden')) {
+        if (divError.is(':visible')) {
             divError.addClass('hidden');
         }
 
-        jQuery('#btnRefresh').addClass('disabled').prop('disabled', 'disabled')
-            .find('i').addClass('fa-spin');
+        jQuery('#btnRefresh').addClass('disabled')
+            .prop('disabled', 'disabled')
+            .find('i')
+            .addClass('fa-spin');
 
-        if (trLoading.hasClass('hidden')) {
+        clearAccounts();
+        clearAliases();
+        trNoAccounts.addClass('hidden');
+        if (trLoading.not(':visible')) {
             trLoading.removeClass('hidden');
         }
-        tableBody.html('');
         WHMCS.http.jqClient.jsonPost({
             url: '{$listAccountsUrl}',
             data: {
@@ -438,44 +579,104 @@
                     if (typeof data.accounts.length === "undefined" || data.accounts.length === 0) {
                         trNoAccounts.removeClass('hidden');
                     } else {
-                        jQuery.each(data.accounts, function (index, account) {
+                        jQuery.each(data.accounts, function(index, account) {
                             addAccountToTable(account);
+                            addAliasesToTable(account);
+                            updateAliasesDisplay(account.id);
                         });
                     }
-                    jQuery('#accountCount').find('.number').text(data.accounts.length);
                 }
             },
             always: function() {
                 trLoading.addClass('hidden');
-                if (jQuery('#tableBodyAccounts').find('tr').length === 0) {
-                    trNoAccounts.removeClass('hidden');
-                }
+                updateAccountsDisplay();
                 jQuery('#btnRefresh').removeClass('disabled').prop('disabled', false)
                     .find('i').removeClass('fa-spin');
             }
         });
     }
 
-    function addAccountToTable(data)
-    {
-        var tableBody = jQuery('#tableBodyAccounts'),
-            clone = jQuery('tr.clone').clone();
+    function addAccountToTable(data) {
+        var table = jQuery('table.ox-table-accounts'),
+            clone = jQuery('tbody.cloneAccountsBody').clone();
+
         clone.attr('id', '');
         clone.find('.account')
             .text(data.username);
         clone.find('.limit')
             .text(data.quota);
+        clone.find('.manage-aliases')
+            .attr('href', '{$manageAliasesUrl}&account=' + data.username);
         clone.attr('data-account-id', data.id)
             .attr('data-first-name', data.first_name)
             .attr('data-last-name', data.last_name)
             .attr('data-display-name', data.display_name)
             .attr('data-account', data.username + '@{$domain}');
-        clone.removeClass('clone hidden');
-        tableBody.append(clone);
+        clone.addClass('account-entry').removeClass('cloneAccountsBody hidden');
+        table.append(clone);
     }
 
-    function loadConfiguration(force)
-    {
+    function addAliasesToTable(data) {
+        var table = jQuery('table.ox-table-accounts'),
+            cloneTbody = jQuery('tbody.cloneAliasesBody').clone();
+
+        if (typeof data.aliases !== 'undefined' && data.aliases.length > 0) {
+            data.aliases.forEach(function(alias) {
+                var isPrimary = false;
+                if (data.username.localeCompare(alias, 'en', { sensitivity: 'base' }) === 0) {
+                    isPrimary = true;
+                }
+                addAliasTr(alias, cloneTbody.find('table'), isPrimary);
+            })
+        }
+
+        cloneTbody.attr('data-account-id', data.id).attr('id', 'tbodyAlias' + data.id);
+        cloneTbody.removeClass('cloneAliasesBody hidden').addClass('aliases-body hidden');
+        table.append(cloneTbody);
+    }
+
+    function addAliasTr(alias, cloneTbody, isPrimary = false) {
+        var cloneTr = jQuery('tr.cloneAliasRow').clone();
+
+        cloneTr.find('.alias')
+            .text(alias);
+        cloneTr.attr('data-alias', alias);
+        cloneTr.addClass('alias-entry').removeClass('cloneAliasRow');
+        if (isPrimary === false) {
+            cloneTr.removeClass('hidden');
+        }
+        cloneTbody.prepend(cloneTr);
+    }
+
+    function clearAccounts() {
+        jQuery('.ox-table-accounts tbody.account-entry').remove();
+    }
+
+    function clearAliases() {
+        jQuery('.ox-table-accounts tbody.aliases-body').remove();
+    }
+
+    function updateAccountsDisplay() {
+        var trNoAccounts = jQuery('table.ox-table-accounts tbody tr.no-accounts'),
+            accountsCount = jQuery('#accountCount').find('.number');
+        var count = jQuery('table.ox-table-accounts tbody.account-entry').length;
+        if (count == 0) {
+            trNoAccounts.removeClass('hidden');
+        } else {
+            trNoAccounts.addClass('hidden');
+        }
+        accountsCount.text(count);
+    }
+
+    function updateAliasesDisplay(accountId) {
+        var aliasesCount = jQuery('tbody.account-entry[data-account-id="' + accountId + '"] span.alias-count');
+        count = jQuery('tbody.aliases-body[data-account-id="' + accountId + '"] tr.alias-entry')
+            .not('.hidden')
+            .length;
+        aliasesCount.text(count);
+    }
+
+    function loadConfiguration(force) {
         var tabNames = ['Usage'];
         var tabs = [];
         tabNames.forEach(function(tabName) {
@@ -484,7 +685,7 @@
                 'header': jQuery('#tablePanel' + tabName + 'Head'),
             };
             tabs.push(tabSpec);
-            if (tabSpec.header.find('tr.loading').hasClass('hidden')) {
+            if (tabSpec.header.find('tr.loading').not(':visible')) {
                 tabSpec.header.find('tr.loading').removeClass('hidden');
             }
         });
@@ -543,6 +744,7 @@
         window.langPasswordWeak = "{lang key="pwstrengthweak"}";
         window.langPasswordModerate = "{lang key="pwstrengthmoderate"}";
         window.langPasswordStrong = "{lang key="pwstrengthstrong"}";
+
         jQuery("#inputPassword,#inputChangePassword").keyup(registerFormPasswordStrengthFeedback);
         jQuery('button.btn-add').width(function() {
             return jQuery(this).outerWidth(true);
@@ -560,54 +762,160 @@
             .on('click', '#btnAddAccount', function() {
                 jQuery('#modalAddAccount').modal('show');
             })
-            .on('click', '.manage-account', function() {
-                var tr = jQuery(this).closest('tr'),
-                    accountId = tr.data('account-id'),
-                    account = tr.data('account'),
+            .on('click', 'tbody.account-entry', function() {
+                var accountId = jQuery(this).data('account-id'),
+                    aliasesBody = jQuery('#tbodyAlias' + accountId);
+                if (aliasesBody.is(':visible')) {
+                    jQuery(this).find('i.fa-chevron-right').attr(
+                        'style',
+                        'transform: rotate(0deg); transition: .1s transform ease-in-out;',
+                    );
+                    aliasesBody.addClass('hidden');
+                } else {
+                    jQuery(this).find('i.fa-chevron-right').attr(
+                        'style',
+                        'transform: rotate(90deg); transition: .1s transform ease-in-out;',
+                    );
+                    aliasesBody.removeClass('hidden');
+                }
+            })
+            .on('click', '.manage-account', function(e) {
+                var tbody = jQuery(this).closest('tbody'),
+                    accountId = tbody.data('account-id'),
+                    account = tbody.data('account'),
                     modalManageAccount = jQuery('#modalManageAccount');
 
+                e.stopPropagation();
                 modalManageAccount.find('input[name="account"]').val(accountId);
                 modalManageAccount.find('span.email').text(account);
-                jQuery('#inputManageDisplayName').val(tr.attr('data-display-name'));
-                jQuery('#inputManageFirstName').val(tr.attr('data-first-name'));
-                jQuery('#inputManageLastName').val(tr.attr('data-last-name'));
+                jQuery('#inputManageDisplayName').val(tbody.attr('data-display-name'));
+                jQuery('#inputManageFirstName').val(tbody.attr('data-first-name'));
+                jQuery('#inputManageLastName').val(tbody.attr('data-last-name'));
                 modalManageAccount.modal('show');
             })
-            .on('click', '.set-ox-password', function() {
-                var accountId = jQuery(this).closest('tr').data('account-id'),
-                    account = jQuery(this).closest('tr').data('account'),
+            .on('click', '.set-ox-password', function(e) {
+                var accountId = jQuery(this).closest('tbody').data('account-id'),
+                    account = jQuery(this).closest('tbody').data('account'),
                     modalSetPassword = jQuery('#modalSetPassword');
 
+                e.stopPropagation();
                 modalSetPassword.find('input[name="account"]').val(accountId);
                 modalSetPassword.find('span.email').text(account);
                 modalSetPassword.modal('show');
             })
-            .on('click', '.ox-delete', function() {
-                var accountId = jQuery(this).closest('tr').data('account-id'),
-                    account = jQuery(this).closest('tr').data('account'),
-                    modalDeleteAccount = jQuery('#modalDeleteAccount');
+            .on('click', '.ox-delete', function(e) {
+                var accountId = jQuery(this).closest('tbody.account-entry').data('account-id'),
+                    account = jQuery(this).closest('tbody.account-entry').data('account'),
+                    modalDeleteAccount = jQuery('#modalDeleteAccount'),
+                    aliasCount = jQuery(this).closest('tbody.account-entry').find('span.alias-count').text(),
+                    deleteAliasesSpan = jQuery('span.delete-aliases-question'),
+                    deleteAccountSpan = jQuery('span.delete-question');
 
+                deleteAccountSpan.addClass('hidden');
+                deleteAliasesSpan.addClass('hidden');
+                if (aliasCount > 0) {
+                    deleteAliasesSpan.removeClass('hidden');
+                } else {
+                    deleteAccountSpan.removeClass('hidden');
+                }
+
+                e.stopPropagation();
                 modalDeleteAccount.find('input[name="account"]').val(accountId);
+                modalDeleteAccount.find('span.count').text(aliasCount);
                 modalDeleteAccount.find('span.email').text(account);
                 modalDeleteAccount.modal('show');
+            })
+            .on('click', '.ox-create-alias', function() {
+                var element = jQuery(this),
+                    oxError = jQuery('#oxLoadError'),
+                    oxSuccess = jQuery('#oxSuccess'),
+                    accountId = element.closest('tbody.aliases-body').data('account-id'),
+                    aliasTableTbody = element.closest('tbody'),
+                    alias = element.closest('tr.create-alias')
+                        .find('input[name="alias"]').val(),
+                    aliases = element.closest('tbody.aliases-body')
+                        .find('tr.alias-entry')
+                        .map(function(index, element) {
+                            return jQuery(element).data('alias') + '@{$domain}';
+                        }).get();
+
+                element.css('min-width', element.outerWidth());
+                element.find('span.create-string').addClass('hidden');
+                element.attr('disabled', 'disabled').addClass('disabled');
+                element.find('span.loader').removeClass('hidden');
+
+                if (typeof alias === 'undefined' && alias.length == 0) {
+                    return false;
+                }
+
+                aliases.push(alias + '@{$domain}');
+
+                WHMCS.http.jqClient.jsonPost({
+                    url: '{$modifyAliasesUrl}',
+                    data: {
+                        token: csrfToken,
+                        aliasAction: 'create',
+                        account: accountId,
+                        aliases: JSON.stringify(aliases),
+                    },
+                    success: function(data) {
+                        oxError.addClass('hidden').find('span').text('');
+                        oxSuccess.addClass('hidden').find('span').text('');
+
+                        if (data.success === true) {
+                            oxSuccess.find('span').text(data.successMessage);
+                            oxSuccess.removeClass('hidden');
+                            addAliasTr(
+                                alias,
+                                aliasTableTbody
+                            );
+                            element.closest('tr.create-alias')
+                                .find('input[name="alias"]')
+                                .val('');
+                        } else {
+                            oxError.find('span').text(data.failedMessage);
+                            oxError.removeClass('hidden');
+                        }
+                    },
+                    always: function() {
+                        element.find('span.loader').addClass('hidden');
+                        element.find('span.create-string').removeClass('hidden');
+                        element.removeAttr('disabled').removeClass('disabled');
+                        updateAliasesDisplay(accountId);
+                    }
+                });
+            })
+            .on('click', '.ox-delete-alias', function() {
+                var accountId = jQuery(this).closest('tbody.aliases-body').data('account-id'),
+                    alias = jQuery(this).closest('tr.alias-entry').data('alias'),
+                    aliases = jQuery(this).closest('tr.alias-entry')
+                        .siblings('tr.alias-entry')
+                        .map(function(index, element) {
+                            return jQuery(element).data('alias') + '@{$domain}';
+                        }).get(),
+                    modalDeleteAlias = jQuery('#modalDeleteAlias');
+
+                modalDeleteAlias.find('.modal-error').addClass('hidden').text(''),
+                    modalDeleteAlias.find('input[name="aliasAction"]').val('delete');
+                modalDeleteAlias.find('input[name="account"]').val(accountId);
+                modalDeleteAlias.find('input[name="alias"]').val(alias);
+                modalDeleteAlias.find('input[name="aliases"]').val(JSON.stringify(aliases));
+                modalDeleteAlias.find('span.alias').text(alias);
+                modalDeleteAlias.modal('show');
             })
             .on('click', '.ox-submit-button', function() {
                 var frm = jQuery(this).closest('form'),
                     formId = frm.attr('id'),
                     modal = frm.find('div.modal'),
                     formData = frm.serialize(),
+                    accountId = frm.find('input[name="account"]').val(),
                     oxError = modal.find('.modal-error'),
+                    oxLoadError = jQuery('#oxLoadError'),
                     oxSuccess = jQuery('#oxSuccess'),
-                    tableBody = jQuery('#tableBodyAccounts'),
-                    trNoAccounts = jQuery('tr.no-accounts'),
-                    accountCount = jQuery('#accountCount').find('.number'),
                     err = false;
 
-                oxError.addClass('hidden').text('');
-                oxSuccess.addClass('hidden');
-
                 frm.find('.form-group').removeClass('has-error');
-                frm.find('.field-error-msg').hide();
+                frm.find('.field-error-msg').addClass('hidden');
 
                 frm.find('.required').each(function() {
                     if (jQuery(this).val() === '') {
@@ -646,37 +954,46 @@
                         url: frm.attr('action'),
                         data: formData,
                         success: function(data) {
+                            oxError.addClass('hidden').find('span').text('');
+                            oxLoadError.addClass('hidden');
+                            oxSuccess.addClass('hidden');
                             if (data.success === true) {
-                                var accountId = frm.find('input[name="account"]').val();
-                                var tr = jQuery('tr[data-account-id="' + accountId + '"]');
-                                oxSuccess.text(data.successMessage).removeClass('hidden');
-                                if (formId === 'frmOxDeleteAccount') {
-                                    tr.slideUp().remove();
-                                } else if (formId === 'frmOxAddAccount') {
-                                    addAccountToTable(data);
-                                }
-                                if (formId === 'frmOxManageAccount') {
-                                    tr.attr('data-display-name', data.display_name);
-                                    tr.attr('data-first-name', data.first_name);
-                                    tr.attr('data-last-name', data.last_name);
+                                var tbody = jQuery('tbody[data-account-id="' + accountId + '"]');
+                                oxSuccess.find('span').text(data.successMessage);
+                                oxSuccess.removeClass('hidden');
+                                switch (formId) {
+                                    case 'frmOxDeleteAccount':
+                                        tbody.slideUp().remove();
+                                        break;
+                                    case 'frmOxAddAccount':
+                                        data.aliases = [data.username];
+                                        addAccountToTable(data);
+                                        addAliasesToTable(data);
+                                        updateAliasesDisplay(data.id);
+                                        break;
+                                    case 'frmOxManageAccount':
+                                        tbody.attr('data-display-name', data.display_name);
+                                        tbody.attr('data-first-name', data.first_name);
+                                        tbody.attr('data-last-name', data.last_name);
+                                        break;
+                                    case 'frmOxDeleteAlias':
+                                        var alias = frm.find('input[name="alias"]').val(),
+                                            tr = jQuery('tr.alias-entry[data-alias="' + alias + '"]');
+                                        tr.slideUp().remove();
+                                        break;
                                 }
                                 frm.find('input').not('[name="token"]').each(function() {
                                     jQuery(this).val('');
                                 });
                                 modal.modal('hide');
                             } else {
-                                oxError.text(data.failedMessage);
+                                oxError.find('span').text(data.failedMessage);
                                 oxError.removeClass('hidden');
                             }
                         },
                         always: function() {
-                            var count = tableBody.find('tr').length;
-                            if (count === 0) {
-                                trNoAccounts.removeClass('hidden');
-                            } else {
-                                trNoAccounts.addClass('hidden');
-                            }
-                            accountCount.text(count);
+                            updateAccountsDisplay();
+                            updateAliasesDisplay(accountId);
                             modal.find('.loader').addClass('hidden');
                         }
                     });

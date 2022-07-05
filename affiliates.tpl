@@ -3,7 +3,7 @@
     {include file="$template/includes/alert.tpl" type="danger" msg=$LANG.affiliatesdisabled textcenter=true}
 
 {else}
-
+    {include file="$template/includes/flashmessage.tpl"}
     <div class="row">
 
         <div class="col-sm-4">
@@ -64,7 +64,7 @@
         </div>
     {else}
         <p class="text-center">
-            <a href="{$smarty.server.PHP_SELF}?action=withdrawrequest" class="btn btn-lg btn-danger{if !$withdrawlevel}disabled" disabled="disabled{/if}">
+            <a href="{$smarty.server.PHP_SELF}?action=withdrawrequest" class="btn btn-lg btn-danger{if !$withdrawlevel} disabled" disabled="disabled{/if}">
                 <i class="fas fa-university"></i> {$LANG.affiliatesrequestwithdrawal}
             </a>
         </p>

@@ -3,8 +3,7 @@
         <h4>{lang key='markdown.emphasis'}</h4>
         <pre>
 **<strong>{lang key='markdown.bold'}</strong>**
-*<em>{lang key='markdown.italics'}</em>*
-~~<strike>{lang key='markdown.strikeThrough'}</strike>~~</pre>
+*<em>{lang key='markdown.italics'}</em>*</pre>
 
         <h4>{lang key='markdown.headers'}</h4>
         <pre>

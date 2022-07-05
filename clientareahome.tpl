@@ -74,7 +74,7 @@
 
 <div class="client-home-panels">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
 
             {function name=outputHomePanels}
                 <div menuItemName="{$item->getName()}" class="panel panel-default panel-accent-{$item->getExtra('color')}{if $item->getClass()} {$item->getClass()}{/if}"{if $item->getAttribute('id')} id="{$item->getAttribute('id')}"{/if}>
@@ -124,6 +124,16 @@
                     </div>
                 </div>
             {/function}
+
+            {foreach $panels as $item}
+                {if $item->getExtra('colspan')}
+                    {outputHomePanels}
+                    {assign "panels" $panels->removeChild($item->getName())}
+                {/if}
+            {/foreach}
+
+        </div>
+        <div class="col-sm-6">
 
             {foreach $panels as $item}
                 {if $item@iteration is odd}

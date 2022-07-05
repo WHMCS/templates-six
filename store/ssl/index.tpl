@@ -288,7 +288,8 @@
                                             </div>
                                             <div class="col-sm-3 col-sm-offset-1">
                                                 <div class="padded-cell price">
-                                                    <strong>{$product->pricing()->best()->price()->toFull()}</strong>
+                                                    {lang key='from'}<br>
+                                                    <strong>{$product->pricing()->best()->yearlyPrice()}</strong>
                                                 </div>
                                             </div>
                                             <div class="col-sm-2">
@@ -314,6 +315,36 @@
                 </div>
               </div>
             </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title expand" data-toggle="collapse" data-parent="#accordion" data-target="#collapseMultiYear">
+                        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                        {lang key='store.ssl.landingPage.multiYear.title'}
+                    </h4>
+                </div>
+                <div id="collapseMultiYear" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>{lang key='store.ssl.landingPage.multiYear.p1'}</p>
+                        <p>{lang key='store.ssl.landingPage.multiYear.p2'}</p>
+                        <p>{lang key='store.ssl.landingPage.multiYear.p3'}</p>
+                        <p>
+                            {lang key='store.ssl.landingPage.multiYear.p4'}
+                            <div class="text-center margin-10">
+                                <img alt="SSL certificate lifecycle" src="{$WEB_ROOT}/assets/img/marketconnect/symantec/multi-year-flow.png">
+                            </div>
+                        </p>
+                        <p>{lang key='store.ssl.landingPage.multiYear.p5'}</p>
+                        <h3>{lang key='store.ssl.landingPage.multiYear.benefits.title'}</h3>
+                        <ul>
+                            <li>{lang key='store.ssl.landingPage.multiYear.benefits.b1'}</li>
+                            <li>{lang key='store.ssl.landingPage.multiYear.benefits.b2'}</li>
+                            <li>{lang key='store.ssl.landingPage.multiYear.benefits.b3'}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <div class="panel">
               <div class="panel-heading">
                 <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseFaq" class="panel-title expand">
@@ -365,11 +396,11 @@
 <script>
 jQuery(document).ready(function() {
   jQuery(".expand").on( "click", function() {
-    $expand = jQuery(this).find(">:first-child");
-    if($expand.html() == '<i class="fas fa-chevron-right"></i>') {
-      $expand.html('<i class="fas fa-chevron-down"></i>');
+    var expand = jQuery(this).find(">:first-child i");
+    if(expand.hasClass('fa-chevron-right')) {
+        expand.removeClass('fa-chevron-right').addClass('fa-chevron-down');
     } else {
-      $expand.html('<i class="fas fa-chevron-right"></i>');
+        expand.removeClass('fa-chevron-down').addClass('fa-chevron-right');
     }
   });
   jQuery('p.help-me-choose').click(function(e) {
