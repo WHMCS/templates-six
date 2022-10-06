@@ -16168,8 +16168,9 @@ WHMCS.utils.validateBaseUrl();
 
 jQuery(document).ready(function() {
 
-    // Init Lightbox2
-    lightbox.init();
+    if (jQuery('#lightbox').length === 0) {
+        lightbox.init();
+    }
 
     // Language chooser popover
     jQuery('#languageChooser').popover({
