@@ -33,8 +33,11 @@ section#footer {
     margin: 0;
     padding: 0;
     text-align: center;
-    max-height: 100px;
     overflow: hidden;
+}
+
+.app-logo, .app-logo img {
+    max-height: 100px;
 }
 
 .content-padded {

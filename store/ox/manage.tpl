@@ -605,8 +605,6 @@
             .text(data.username);
         clone.find('.limit')
             .text(data.quota);
-        clone.find('.manage-aliases')
-            .attr('href', '{$manageAliasesUrl}&account=' + data.username);
         clone.attr('data-account-id', data.id)
             .attr('data-first-name', data.first_name)
             .attr('data-last-name', data.last_name)

@@ -14926,10 +14926,13 @@ toolTip: function () {
         return tip;
     };
 
-    this.hideTip = function (btn) {
+    this.hideTip = function (btn, timeout) {
+        if (!timeout) {
+            timeout = 2000;
+        }
         return setTimeout(function() {
             btn.data('bs.tooltip').hide()
-        }, 2000);
+        }, timeout);
     }
 },
 
@@ -16165,8 +16168,9 @@ WHMCS.utils.validateBaseUrl();
 
 jQuery(document).ready(function() {
 
-    // Init Lightbox2
-    lightbox.init();
+    if (jQuery('#lightbox').length === 0) {
+        lightbox.init();
+    }
 
     // Language chooser popover
     jQuery('#languageChooser').popover({
@@ -17005,7 +17009,23 @@ jQuery(document).ready(function() {
             'width',
             (jQuery('.div-service-status .label-placeholder').outerWidth() + 5)
         );
+        jQuery('div[menuitemname="Active Products/Services"] .list-group-item:visible')
+            .last()
+            .css('border-bottom', '1px solid #ddd');
     }());
+    jQuery('div[menuitemname="Active Products/Services"] .btn-view-more').on('click', function(event) {
+        var hiddenItems = jQuery('div[menuitemname="Active Products/Services"] .list-group-item:hidden');
+        var itemAmount = 8;
+        event.preventDefault();
+        hiddenItems.slice(0,itemAmount).css('display', 'block');
+        if ((hiddenItems.length - itemAmount) <= 0) {
+            jQuery(event.target).addClass('disabled').attr("aria-disabled", true);
+        }
+        jQuery('div[menuitemname="Active Products/Services"] .list-group-item:visible')
+            .css('border-bottom', '')
+            .last()
+            .css('border-bottom', '1px solid #ddd');
+    })
     jQuery('div[menuitemname="Service Details Actions"] a[data-identifier][data-serviceid][data-active="1"]').on('click', function(event) {
         return customActionAjaxCall(event, jQuery(event.target))
     });
@@ -40574,7 +40594,7 @@ jQuery(document).ready(function() {
                     initialCountry = 'us';
                 }
 
-                thisInput.before('<input id="populated' + inputName + 'CountryCode" type="hidden" name="contactdetails[' + inputName + '][Phone Country Code]" value="" />');
+                thisInput.before('<input id="populated' + inputName + 'CountryCode" class="' + inputName + 'customwhois" type="hidden" name="contactdetails[' + inputName + '][Phone Country Code]" value="" />');
                 thisInput.intlTelInput({
                     preferredCountries: [initialCountry, "us", "gb"].filter(function(value, index, self) {
                         return self.indexOf(value) === index;

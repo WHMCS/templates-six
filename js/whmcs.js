@@ -7,8 +7,9 @@
 
 jQuery(document).ready(function() {
 
-    // Init Lightbox2
-    lightbox.init();
+    if (jQuery('#lightbox').length === 0) {
+        lightbox.init();
+    }
 
     // Language chooser popover
     jQuery('#languageChooser').popover({
@@ -847,7 +848,23 @@ jQuery(document).ready(function() {
             'width',
             (jQuery('.div-service-status .label-placeholder').outerWidth() + 5)
         );
+        jQuery('div[menuitemname="Active Products/Services"] .list-group-item:visible')
+            .last()
+            .css('border-bottom', '1px solid #ddd');
     }());
+    jQuery('div[menuitemname="Active Products/Services"] .btn-view-more').on('click', function(event) {
+        var hiddenItems = jQuery('div[menuitemname="Active Products/Services"] .list-group-item:hidden');
+        var itemAmount = 8;
+        event.preventDefault();
+        hiddenItems.slice(0,itemAmount).css('display', 'block');
+        if ((hiddenItems.length - itemAmount) <= 0) {
+            jQuery(event.target).addClass('disabled').attr("aria-disabled", true);
+        }
+        jQuery('div[menuitemname="Active Products/Services"] .list-group-item:visible')
+            .css('border-bottom', '')
+            .last()
+            .css('border-bottom', '1px solid #ddd');
+    })
     jQuery('div[menuitemname="Service Details Actions"] a[data-identifier][data-serviceid][data-active="1"]').on('click', function(event) {
         return customActionAjaxCall(event, jQuery(event.target))
     });

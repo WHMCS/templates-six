@@ -10,7 +10,7 @@ $pdf->SetFont($pdfFont,'',13);
 $pdf->Cell(0,6,trim($companyaddress[0]),0,1,'R');
 $pdf->SetFont($pdfFont,'',9);
 for ( $i = 1; $i <= ((count($companyaddress)>6) ? count($companyaddress) : 6); $i += 1) {
-    $pdf->Cell(0,4,trim($companyaddress[$i]),0,1,'R');
+    $pdf->Cell(0, 4, trim($companyaddress[$i] ?? ''), 0, 1, 'R');
 }
 $pdf->Ln(5);
 
