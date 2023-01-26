@@ -1,3 +1,5 @@
+{include file="$template/includes/flashmessage.tpl"}
+
 <h2>{lang key="userManagement.managePermissions"}</h2>
 
 <p>{$user->email}</p>

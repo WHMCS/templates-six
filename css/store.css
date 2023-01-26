@@ -2857,3 +2857,419 @@ section#main-body {
     display: block;
     margin: 0 auto 20px;
 }
+
+.landing-page.nordvpn p {
+    font-weight: lighter;
+}
+.landing-page.nordvpn h1 {
+    font-weight: bold;
+}
+.landing-page.nordvpn h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.landing-page.nordvpn strong {
+    font-weight: bold;
+}
+.landing-page.nordvpn {
+    color:#043855;
+    font-family: sans-serif;
+}
+.landing-page.nordvpn .blue {
+    color:#4580ff;
+}
+.landing-page.nordvpn .line-break {
+    border-bottom: 1px #dce8f2 solid;
+    padding-top: 20px;
+}
+.landing-page.nordvpn .btn-get-nord,
+.landing-page.nordvpn .btn-get-monthly,
+.landing-page.nordvpn .btn-get-annually {
+    font-weight: 500;
+    font-size: 2rem;
+    padding: .8rem 4rem;
+    background: #4580ff;
+    color: white;
+    border: 0;
+}
+.landing-page.nordvpn .btn-get-deal {
+    padding: .8rem 1.5rem;
+    background: #f55368;
+}
+.landing-page.nordvpn .btn-get-monthly {
+    background: #1b325a;
+    margin-bottom: 2.5rem;
+}
+.landing-page.nordvpn .btn-get-annually {
+    background:#4580ff;
+}
+.landing-page.nordvpn .hero {
+    font-size: 1.25rem;
+}
+.landing-page.nordvpn .hero .hero-bg {
+    margin: 1.25rem 0;
+}
+.landing-page.nordvpn .hero h1 {
+    font-weight: bold;
+}
+.landing-page.nordvpn .hero h2 {
+    font-size: 1.75rem;
+}
+.landing-page.nordvpn .hero .guarantee {
+    margin: 1rem 0;
+    font-weight: bold;
+    font-size: 1.7rem;
+    color:#4580ff;
+    text-transform:uppercase;
+    padding-bottom: 25px;
+}
+.landing-page.nordvpn .hero,
+.landing-page.nordvpn .feature.world {
+    background:#0e1b33;
+    color:white;
+}
+.landing-page.nordvpn .feature {
+    padding:60px 0;
+    text-align: center;
+}
+.landing-page.nordvpn .feature.icon img,
+.landing-page.nordvpn .feature.threat img {
+    margin: 2rem 0;
+}
+.landing-page.nordvpn .feature.icon h1,
+.landing-page.nordvpn .feature.comparison h1,
+.landing-page.nordvpn .feature.threat h1,
+.landing-page.nordvpn .feature.use h1 {
+    margin: 2.5rem 0;
+}
+.landing-page.nordvpn .feature.pricing h1 {
+    margin: 4rem 0;
+}
+.landing-page.nordvpn .feature.icon h3,
+.landing-page.nordvpn .feature.use h3 {
+    margin-bottom: 1.4rem;
+}
+.landing-page.nordvpn .feature.icon .col-xs-3 {
+    padding: 0 3rem;
+}
+.landing-page.nordvpn .feature.device p,
+.landing-page.nordvpn .feature.security p,
+.landing-page.nordvpn .feature.use p {
+    margin-bottom: 2.5rem;
+}
+.landing-page.nordvpn .feature.device,
+.landing-page.nordvpn .feature.security,
+.landing-page.nordvpn .feature.faq {
+    text-align: left;
+}
+.landing-page.nordvpn .feature.comparison th,
+.landing-page.nordvpn .feature.comparison td {
+    padding: 1rem 0;
+    font-weight: lighter;
+}
+.landing-page.nordvpn .feature.comparison .comparison-note {
+    font-size: 1rem;
+    text-align: center;
+}
+.landing-page.nordvpn .feature.comparison .comparison-note a {
+    text-decoration: underline;
+}
+.landing-page.nordvpn .feature.world {
+    text-align: center;
+}
+.landing-page.nordvpn .feature.world h1 {
+    margin: 0 0 2.5rem;
+}
+.landing-page.nordvpn .feature.world .world-image {
+    max-width: initial;
+    margin: auto;
+    opacity: 33%;
+}
+.landing-page.nordvpn .feature.world .world-desc {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.landing-page.nordvpn .feature.world .world-image,
+.landing-page.nordvpn .feature.world .world-tagline,
+.landing-page.nordvpn .feature.world .world-data .col-xs-6 {
+    margin-bottom: 2rem;
+}
+.landing-page.nordvpn .feature.world .world-data p:first-of-type {
+    margin-bottom: 0.5rem;
+}
+.landing-page.nordvpn .feature.world .world-data p:nth-of-type(2) {
+    font-size: 3.25rem;
+    line-height: 3.25rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.landing-page.nordvpn .feature.world > p {
+    margin-bottom: 2.5rem
+}
+.landing-page.nordvpn .feature.logo {
+    background:#f2f2f2;
+}
+.landing-page.nordvpn .feature.logo img {
+    margin: 0.75rem 0;
+}
+.landing-page.nordvpn .feature.logo .row div {
+    height: 55px;
+}
+.landing-page.nordvpn .feature.security .row.h-100 {
+    margin: 4rem 0 8rem;
+}
+.landing-page.nordvpn .feature.security .row.h-100 p {
+    font-size: 1.4rem;
+}
+.landing-page.nordvpn .feature.use .row div {
+    padding-top: 0;
+}
+.landing-page.nordvpn .feature.use .row.headers div {
+    padding-top: 1.6rem;
+    padding-bottom: 0;
+}
+.landing-page.nordvpn .feature.use .col-xs-4 p {
+    text-align: left;
+}
+.landing-page.nordvpn .feature.threat .col-xs-4,
+.landing-page.nordvpn .feature.use .col-xs-4{
+    padding: 1.6rem 2rem;
+}
+.landing-page.nordvpn .feature.threat .col-xs-4 {
+    padding: 0 2rem;
+}
+.landing-page.nordvpn .feature.pricing .billing-cycle {
+    font-size: 2.5rem;
+    font-weight: lighter;
+}
+.landing-page.nordvpn .feature.pricing .billing-price {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: bold;
+}
+.landing-page.nordvpn .feature.pricing .billing-save,
+.landing-page.nordvpn .feature.faq h1 {
+    margin-bottom: 2.5rem;
+}
+.landing-page.nordvpn .feature.faq h1 {
+    margin: 5rem 0;
+}
+.landing-page.nordvpn .feature.faq .panel {
+    margin-bottom: 1.5rem;
+    border:0;
+    border-radius:0;
+}
+.landing-page.nordvpn .feature.faq .panel-heading {
+    padding: 0;
+    background:#1b325a;
+}
+.landing-page.nordvpn .feature.faq .panel-heading .btn {
+    padding: 0.5rem 2rem;
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+.landing-page.nordvpn .feature.faq .panel-heading .btn i {
+    align-self: center;
+}
+
+.landing-page.nordvpn .d-none {
+    display: none;
+}
+.landing-page.nordvpn .d-block {
+    display: block;
+}
+.landing-page.nordvpn .comparison {
+    text-align: center;
+}
+.landing-page.nordvpn .comparison .col-xs-2:first-of-type {
+    text-align: left;
+}
+.landing-page.nordvpn .comparison .col-xs-2 {
+    min-height: 4rem;
+    padding: 0 1rem;
+    border: 1px solid #e7e7e8;
+    border-bottom: none;
+}
+.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2 {
+    min-height: 1.5rem;
+}
+.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:not(:nth-of-type(2)),
+.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2){
+    border-bottom: 1px solid #e7e7e8;
+}
+.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:not(:nth-of-type(2)),
+.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:not(:nth-of-type(2)) {
+    border: none;
+}
+.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:nth-of-type(2),
+.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
+    border-top: none;
+}
+.landing-page.nordvpn .comparison .col-xs-2:first-of-type {
+    border-right: none;
+}
+.landing-page.nordvpn .comparison .col-xs-2:not(:first-of-type):not(:nth-of-type(2)) {
+    border-left: none;
+}
+.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:first-of-type {
+    border-top-left-radius: 4px;
+}
+.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:first-of-type {
+    border-bottom-left-radius: 4px;
+}
+.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:last-of-type {
+    border-top-right-radius: 4px;
+}
+.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:last-of-type {
+    border-bottom-right-radius: 4px;
+}
+.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:nth-of-type(2) {
+    border-radius: 4px 4px 0 0;
+}
+.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
+    border-radius: 0 0 4px 4px;
+}
+.landing-page.nordvpn .comparison .col-xs-2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.landing-page.nordvpn .comparison .col-xs-12 .col-xs-2:nth-of-type(2) {
+    border-left-color: #bed4fe;
+    border-right-color: #bed4fe;
+    background: #ecf3ff;
+}
+.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:nth-of-type(2) {
+    border-top-color: #bed4fe;
+}
+.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
+    border-bottom-color: #bed4fe;
+}
+.landing-page.nordvpn .comparison .col-xs-2 span {
+    width: 100%;
+}
+.landing-page.nordvpn .comparison .btn-get-deal {
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+}
+.landing-page.nordvpn .comparison-container {
+    overflow-x: auto;
+    margin-bottom: 2.5rem;
+}
+.landing-page.nordvpn .comparison-container > .row {
+    min-width: 1170px;
+}
+@media (max-width: 575px) {
+    .landing-page.nordvpn .feature.pricing h1 {
+        margin: 3.5rem 0;
+    }
+    .landing-page.nordvpn .hero h2 {
+        font-size: 1.5rem;
+    }
+    .landing-page.nordvpn .hero .guarantee {
+        font-size: 1.4rem;
+    }
+    .landing-page.nordvpn .feature.world .world-data p:nth-of-type(2) {
+        font-size: 3.75rem;
+        line-height: 3rem;
+    }
+    .landing-page.nordvpn .feature.security .row.h-100 p {
+        font-size: 1.25rem;
+    }
+    .landing-page.nordvpn .feature.security .row.h-100 {
+        margin-bottom: 2.5rem;
+    }
+    .landing-page.nordvpn .feature {
+        padding: 35px 0;
+    }
+    .landing-page.nordvpn .br-xs-space {
+        content: "";
+    }
+    .landing-page.nordvpn .br-xs-space:after {
+        content: " ";
+    }
+}
+@media (min-width: 576px) {
+    .landing-page.nordvpn .br-sm-reg {
+        content: initial;
+    }
+    .landing-page.nordvpn .br-sm-space {
+        content: "";
+    }
+    .landing-page.nordvpn .br-sm-space:after {
+        content: " ";
+    }
+}
+@media (min-width : 768px) {
+    .landing-page.nordvpn .br-md-reg {
+        content: initial;
+    }
+    .landing-page.nordvpn .br-md-space {
+        content: "";
+    }
+    .landing-page.nordvpn .br-md-space:after {
+        content: " ";
+    }
+    .landing-page.nordvpn .d-sm-block {
+        display: block;
+    }
+    .landing-page.nordvpn .d-sm-none {
+        display: none;
+    }
+}
+@media (min-width: 992px) {
+    .landing-page.nordvpn .feature.logo img,
+    .landing-page.nordvpn .feature.world .world-image {
+        margin: 0;
+    }
+    .landing-page.nordvpn .br-lg-reg {
+        content: initial;
+    }
+    .landing-page.nordvpn .br-lg-space {
+        content: "";
+    }
+    .landing-page.nordvpn .br-lg-space:after {
+        content: " ";
+    }
+    .landing-page.nordvpn .d-md-block {
+        display: block;
+    }
+    .landing-page.nordvpn .d-md-none {
+        display: none;
+    }
+}
+@media (min-width : 1200px) {
+    .landing-page.nordvpn .feature.world {
+        text-align: left;
+    }
+    .landing-page.nordvpn .feature.world .container > .row {
+        min-height: 470px;
+    }
+    .landing-page.nordvpn .feature.world .world-desc {
+        position: initial;
+    }
+    .landing-page.nordvpn .feature.world .world-image {
+        position: absolute;
+        top: 0;
+        right: 2rem;
+        opacity: 100%;
+    }
+    .landing-page.nordvpn .br-xl-reg {
+        content: initial;
+    }
+    .landing-page.nordvpn .br-xl-space {
+        content: "";
+    }
+    .landing-page.nordvpn .br-xl-space:after {
+        content: " ";
+    }
+    .landing-page.nordvpn .d-lg-block {
+        display: block;
+    }
+    .landing-page.nordvpn .d-lg-none {
+        display: none;
+    }
+}
