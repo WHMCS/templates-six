@@ -26,6 +26,8 @@
                                     <label class="label label-default">{lang key='clientareaexpired'}</label>
                                 {elseif $sslProduct->addon->nextDueDateProperties['daysTillExpiry'] < 60}
                                     <label class="label label-danger">{lang key='expiringsoon'}</label>
+                                {else}
+                                    {if $sslProduct->wasInstantIssuanceAttempted() && $sslProduct->wasInstantIssuanceSuccessful()}&nbsp;<i class="fas fa-bolt" title="{lang key='sslinstantissuancebenefit'}">{/if}
                                 {/if}
                             {/if}
                         </td>
