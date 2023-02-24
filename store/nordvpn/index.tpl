@@ -474,7 +474,11 @@
                     {foreach $pricings[$plan->id] as $pricing}
                         <div class="{if $pricing@total == 1}col-sm-4 col-sm-offset-4{elseif $pricing@total == 2}col-sm-6{elseif $pricing@total == 2}col-sm-6{elseif $pricing@total == 3}col-md-4 col-sm-4{elseif $pricing@total == 4}col-xl-3 col-sm-6{elseif $pricing@total == 5}col-md-4 col-sm-6{else}col-lg-3 col-sm-4{/if}">
                             <span class="billing-cycle">
-                                {lang key="{$pricing->cycle()|@ucfirst}"}
+                                {if $inPreview}
+                                    -
+                                {else}
+                                    {lang key="{$pricing->cycle()|@ucfirst}"}
+                                {/if}
                             </span>
                             <p class="billing-price">
                                 {if $inPreview}
@@ -486,8 +490,7 @@
                             <p class="billing-save">
                                 {if $inPreview}
                                     -
-                                {/if}
-                                {if $pricing->calculatePercentageDifference($highestMonthlyPrice) > 0}
+                                {elseif $pricing->calculatePercentageDifference($highestMonthlyPrice) > 0}
                                     {lang key="store.nordvpn.features.pricing.save" amount=$pricing->calculatePercentageDifference($highestMonthlyPrice)}
                                 {else}
                                     &nbsp;
@@ -499,10 +502,10 @@
                                     <input type="hidden" name="pid" value="{$plan->id}">
                                     {if !$inPreview}
                                         <input type="hidden" name="billingcycle" value="{$pricing->cycle()}">
+                                        <button class="btn btn-default btn-get-{$pricing->cycle()}" type="submit">
+                                            {lang key="store.nordvpn.features.pricing.get"}
+                                        </button>
                                     {/if}
-                                    <button class="btn btn-default btn-get-{$pricing->cycle()}" type="submit">
-                                        {lang key="store.nordvpn.features.pricing.get"}
-                                    </button>
                                 </form>
                             </div>
                         </div>
