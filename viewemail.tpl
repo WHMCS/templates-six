@@ -11,7 +11,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="popup-header-padding"><i class='far fa-envelope'>&nbsp;</i>{$subject}</h2>
-            {if count($attachments) > 0}
+            {if is_array($attachments) && count($attachments) > 0}
                 <div class="popup-header-padding">
                     {foreach $attachments as $attachedFile}
                         <i class="fal fa-paperclip"></i> {$attachedFile}{if !$attachedFile@last}<br>{/if}

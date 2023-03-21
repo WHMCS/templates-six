@@ -1,4 +1,4 @@
-<link href="{assetPath file='store.css'}" rel="stylesheet">
+<link href="{assetPath file='store.css'}?v={$versionHash}" rel="stylesheet">
 
 <div class="landing-page bg-white nordvpn">
 

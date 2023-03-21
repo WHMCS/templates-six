@@ -770,6 +770,9 @@ section#home-banner .btn.transfer {
 .panel.panel-accent-brand-cpanel-orange {
     border-top: 3px solid #ff6c2c;
 }
+.panel.panel-accent-brand-xovinow-blue {
+    border-top: 3px solid #10069F;
+}
 
 /**
  * -------------------------
@@ -3045,14 +3048,24 @@ div.md-editor.active {
     background-color: #ff3377;
 }
 
-.promo-banner.cpanelseo {
-    border-top: 3px solid #ff6c2c;
+.promo-banner.xovinow {
+    border-top: 3px solid #10069F;
 }
-.promo-banner.cpanelseo a {
-    color: #ff6c2c;
+.promo-banner.xovinow a {
+    color: #10069F;
 }
-.promo-banner.cpanelseo .btn {
-    background-color: #ff6c2c;
+.promo-banner.xovinow .btn {
+    background-color: #10069F;
+}
+
+.promo-banner.threesixtymonitoring {
+    border-top: 3px solid #ce3b56;
+}
+.promo-banner.threesixtymonitoring .btn {
+    background-color: #ce3b56;
+}
+.promo-banner.threesixtymonitoring a {
+    color: #ce3b56;
 }
 
 .mc-panel-promo {
@@ -3093,6 +3106,56 @@ div.md-editor.active {
 }
 .panel-mc-sso small {
     display: block;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] {
+    border-top: solid 3px #ce3b56;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .panel-body {
+    max-height: initial;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-metrics-row > div:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-metric {
+    margin-top: 20px;
+    font-size: 40px;
+    line-height: 1;
+    color: #902a6d;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-title {
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-highlight {
+    margin-top: 4px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #902a6d;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-highlight-servers,
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-highlight-monitors,
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-highlight-alerts {
+    margin-top: 4px;
+    height: 2px;
+    border-radius: 2px;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-highlight-servers {
+    background-color: #902a6d;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-highlight-monitors {
+    background-color: #af3362;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .threesixtymonitoring-highlight-alerts {
+    background-color: #ce3b56;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] form,
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] small {
+    text-align: center;
+}
+.client-home-panels div[menuitemname="ThreesixtymonitoringLogin"] .btn {
+    width: 100%;
 }
 
 /**
