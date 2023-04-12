@@ -6,6 +6,10 @@
     {include file="$template/includes/alert.tpl" type="error" msg=$error}
 {/if}
 
+{if isset($KeyDnsActive) and $KeyDnsActive === false}
+    {include file="$template/includes/alert.tpl" type="warning" msg="This zone is not active because your domain has not the correct nameservers configured.<br>Please set your nameservers to: {$KeyDnsNameservers}"}
+{/if}
+
 {if $external}
 
     <br />
