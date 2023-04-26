@@ -571,7 +571,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q1"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqOne" aria-expanded="false" aria-controls="websiteFaqOne"></i>
                             </div>
                             <div id="websiteFaqOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingOne" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -586,7 +586,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q3"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqThree" aria-expanded="false" aria-controls="websiteFaqThree"></i>
                             </div>
                             <div id="websiteFaqThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingThree" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -601,7 +601,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q5"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqFive" aria-expanded="false" aria-controls="websiteFaqFive"></i>
                             </div>
                             <div id="websiteFaqFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingFive" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -616,7 +616,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q7"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqSeven" aria-expanded="false" aria-controls="websiteFaqSeven"></i>
                             </div>
                             <div id="websiteFaqSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingSeven" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -631,7 +631,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q9"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqNine" aria-expanded="false" aria-controls="websiteFaqNine"></i>
                             </div>
                             <div id="websiteFaqNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingNine" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -646,7 +646,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q2"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqTwo" aria-expanded="false" aria-controls="websiteFaqTwo"></i>
                             </div>
                             <div id="websiteFaqTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingTwo" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -661,7 +661,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q4"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqFour" aria-expanded="false" aria-controls="websiteFaqFour"></i>
                             </div>
                             <div id="websiteFaqFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingFour" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -676,7 +676,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q6"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqSix" aria-expanded="false" aria-controls="websiteFaqSix"></i>
                             </div>
                             <div id="websiteFaqSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingSix" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -691,7 +691,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q8"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#websiteFaqEight" aria-expanded="false" aria-controls="websiteFaqEight"></i>
                             </div>
                             <div id="websiteFaqEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="websiteFaqHeadingEight" data-parent="#websiteFaqAccordion">
                                 <div class="panel-body">
@@ -1186,7 +1186,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q1"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqOne" aria-expanded="false" aria-controls="serverFaqOne"></i>
                             </div>
                             <div id="serverFaqOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingOne" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1201,7 +1201,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q3"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqThree" aria-expanded="false" aria-controls="serverFaqThree"></i>
                             </div>
                             <div id="serverFaqThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingThree" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1216,7 +1216,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q5"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqFive" aria-expanded="false" aria-controls="serverFaqFive"></i>
                             </div>
                             <div id="serverFaqFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingFive" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1231,7 +1231,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q7"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqSeven" aria-expanded="false" aria-controls="serverFaqSeven"></i>
                             </div>
                             <div id="serverFaqSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingSeven" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1246,7 +1246,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q9"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqNine" aria-expanded="false" aria-controls="serverFaqNine"></i>
                             </div>
                             <div id="serverFaqNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingNine" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1261,7 +1261,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q11"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqEleven" aria-expanded="false" aria-controls="serverFaqEleven"></i>
                             </div>
                             <div id="serverFaqEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingEleven" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1276,7 +1276,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q2"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqTwo" aria-expanded="false" aria-controls="serverFaqTwo"></i>
                             </div>
                             <div id="serverFaqTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingTwo" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1291,7 +1291,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q4"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqFour" aria-expanded="false" aria-controls="serverFaqFour"></i>
                             </div>
                             <div id="serverFaqFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingFour" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1306,7 +1306,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q6"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqSix" aria-expanded="false" aria-controls="serverFaqSix"></i>
                             </div>
                             <div id="serverFaqSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingSix" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1321,7 +1321,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q8"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqEight" aria-expanded="false" aria-controls="serverFaqEight"></i>
                             </div>
                             <div id="serverFaqEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingEight" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1336,7 +1336,7 @@
                                         {lang key="store.threesixtymonitoring.faq.q10"}
                                     </a>
                                 </h5>
-                                <i class="fal fa-plus"></i>
+                                <i class="fal fa-plus collapsed" data-toggle="collapse" href="#serverFaqTen" aria-expanded="false" aria-controls="serverFaqTen"></i>
                             </div>
                             <div id="serverFaqTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="serverFaqHeadingTen" data-parent="#serverFaqAccordion">
                                 <div class="panel-body">
@@ -1353,7 +1353,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTestResultsTitle">{lang key="store.threesixtymonitoring.modal.title"} <span class="span-modal-results"></span></h5>
+                    <h5 class="modal-title pull-left" id="modalTestResultsTitle">{lang key="store.threesixtymonitoring.modal.title"} <span class="span-modal-results"></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="{lang key="close"}">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
                     </button>
@@ -1488,7 +1488,7 @@
 
                         if (metricData && isHostUp) {
                             if (dataType === 'time') {
-                                metricData.value = metricData.value + ' S';
+                                metricData.value = metricData.value + ' {lang key="dateTime.symbol.second"}';
                             }
                         } else if (!isHostUp && dataType === 'time') {
                             metricData = {
@@ -1516,7 +1516,7 @@
 
             return false;
         });
-        jQuery('.btn-link').on('click', function() {
+        jQuery('.section-faq .btn-link, .section-faq i').on('click', function() {
             var isExpanded = jQuery(this).attr('aria-expanded');
             var toggleIcon = jQuery(this).closest('div').find('i');
             var allCards = jQuery(this).closest('section').find('i');
@@ -1546,10 +1546,16 @@
             var element = jQuery(this);
 
             event.preventDefault();
-            if (element.attr('id') == 'pills-website-tab') {
+            if (
+                element.attr('id') == 'pills-website-tab'
+                && jQuery('.section-header .tab-website').is(':hidden')
+            ) {
                 jQuery('.section-header .tab-server').hide();
                 jQuery('.section-header .tab-website').fadeToggle();
-            } else {
+            } else if (
+                element.attr('id') == 'pills-server-tab'
+                && jQuery('.section-header .tab-server').is(':hidden')
+            ) {
                 jQuery('.section-header .tab-website').hide();
                 jQuery('.section-header .tab-server').fadeToggle();
             }

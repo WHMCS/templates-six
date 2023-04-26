@@ -3313,6 +3313,9 @@ section#main-body {
 .landing-page.threesixtymonitoring .section-features {
     padding: 120px 0;
 }
+.landing-page.threesixtymonitoring .section-features .tab-content {
+    padding-bottom: 16px;
+}
 .landing-page.threesixtymonitoring .section-notifications,
 .landing-page.threesixtymonitoring .section-monitoring,
 .landing-page.threesixtymonitoring .section-features .row-features {
@@ -3398,10 +3401,12 @@ section#main-body {
     margin-bottom: 4px;
 }
 .landing-page.threesixtymonitoring .modal-results .div-results > div:nth-child(2) {
-    text-transform: uppercase;
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 12px;
+}
+.landing-page.threesixtymonitoring .modal-results .div-results [data-metric="host_status"] {
+    text-transform: uppercase;
 }
 .landing-page.threesixtymonitoring .modal-results .row-legend i {
     margin: 0 16px;
@@ -3661,6 +3666,7 @@ section#main-body {
 .landing-page.threesixtymonitoring .section-faq .fa-plus,
 .landing-page.threesixtymonitoring .section-faq .fa-minus {
     color: #2ea2e2;
+    cursor: pointer;
 }
 .landing-page.threesixtymonitoring .d-none {
     display: none;

@@ -477,7 +477,7 @@
                                 {if $inPreview}
                                     -
                                 {else}
-                                    {lang key="{$pricing->cycle()|@ucfirst}"}
+                                    {lang key="orderpaymentterm{$pricing->cycle()}"}
                                 {/if}
                             </span>
                             <p class="billing-price">
