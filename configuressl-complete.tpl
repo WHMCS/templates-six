@@ -61,7 +61,7 @@
                 <label for="fileName" class="control-label col-md-4 col-form-label">{lang key='ssl.url'}</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" id="fileName"
-                           value="http://&lt;domain&gt;/{$authData->filePath()}" readonly/>
+                           value="http://{$domain}/{$authData->filePath()}" readonly/>
                 </div>
             </div>
             <div class="form-group">

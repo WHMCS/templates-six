@@ -34,7 +34,7 @@
                             data-active="{$buttonDatum['active']}"
                             {if !$buttonDatum['active']}disabled="disabled"{/if}
                         >
-                            <span class="loading hidden w-hidden">
+                            <span class="loading" style="display: none;">
                                 <i class="fas fa-spinner fa-spin"></i>
                             </span>
                             {$buttonDatum['display']}
@@ -50,7 +50,7 @@
                             data-active="{$primaryServiceBtn['active']}"
                             {if !$primaryServiceBtn['active']}disabled="disabled"{/if}
                     >
-                        <span class="loading hidden w-hidden">
+                        <span class="loading" style="display: none;">
                             <i class="fas fa-spinner fa-spin"></i>
                         </span>
                         {$primaryServiceBtn['display']}
@@ -73,7 +73,7 @@
                                         data-active="{$secondaryButton['active']}"
                                         {if !$secondaryButton['active']}disabled="disabled"{/if}
                                     >
-                                        <span class="loading hidden w-hidden">
+                                        <span class="loading" style="display: none;">
                                             <i class="fas fa-spinner fa-spin"></i>
                                         </span>
                                         {$secondaryButton['display']}

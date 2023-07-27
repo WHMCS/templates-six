@@ -166,7 +166,7 @@
                 {if $renew}
                     <li>
                         <a href="{routePath('domain-renewal', $domain)}">
-                            {$LANG.renewYourDomain}
+                            {lang key='domainrenew'}
                         </a>
                     </li>
                 {/if}

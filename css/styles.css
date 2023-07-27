@@ -987,6 +987,9 @@ div.product-details div.product-icon {
     line-height: 1em;
     font-size: 60px;
 }
+.product-actions-wrapper > div:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
 @media (max-width: 767px) {
     div.product-details div.product-icon {
         font-size: 30px;
@@ -1902,6 +1905,14 @@ div.sidebar .list-group-item-selected .badge {
 
 .sidebar.sidebar-secondary {
     clear: left;
+}
+.sidebar-menu-item-wrapper {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+}
+.sidebar-menu-item-label {
+    margin-right: auto;
 }
 
 @media (max-width: 991px) {
@@ -4052,14 +4063,14 @@ div[menuitemname='Active Products/Services'] .btn-view-more.disabled {
     .div-service-status .label {
         width: initial !important;
     }
-    .div-service-buttons i,
+    .div-service-buttons i:not(.fa-spinner),
     .div-service-buttons .btn-group-primary {
         display: none;
     }
     .div-service-buttons .btn-group-secondary {
         display: inline-flex;
     }
-    .div-service-buttons span:not(.sr-only):not(.caret) {
+    .div-service-buttons span:not(.sr-only):not(.caret):not(.loading) {
         display: initial !important;
     }
 }

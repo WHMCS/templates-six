@@ -1,5 +1,6 @@
 <!-- Styling -->
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Raleway:400,700" rel="stylesheet">
+{\WHMCS\View\Asset::fontCssInclude('open-sans-family.css')}
+{\WHMCS\View\Asset::fontCssInclude('raleway-family.css')}
 <link href="{assetPath file='all.min.css'}?v={$versionHash}" rel="stylesheet">
 <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
 {assetExists file="custom.css"}

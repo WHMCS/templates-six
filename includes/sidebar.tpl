@@ -34,9 +34,9 @@
                            {/if}
                            id="{$childItem->getId()}"
                         >
-                            {if is_array($customActionData)}<span class="loading hidden w-hidden" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>{/if}
                             {if $childItem->hasBadge()}<span class="badge">{$childItem->getBadge()}</span>{/if}
-                            {if $childItem->hasIcon()}<i class="{$childItem->getIcon()}"></i>&nbsp;{/if}
+                            {if is_array($customActionData)}<span class="loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>{/if}
+                            {if $childItem->hasIcon()}<i class="{$childItem->getIcon()} sidebar-menu-item-icon"></i>{/if}
                             {$childItem->getLabel()}
                         </a>
                     {else}
