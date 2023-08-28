@@ -6,6 +6,8 @@ if (file_exists(ROOTDIR . '/assets/img/logo.png')) {
     $logoFilename = 'logo.png';
 } elseif (file_exists(ROOTDIR . '/assets/img/logo.jpg')) {
     $logoFilename = 'logo.jpg';
+} elseif (file_exists(ROOTDIR . '/assets/img/logo.jpeg')) {
+    $logoFilename = 'logo.jpeg';
 }
 $pdf->Image(ROOTDIR . '/assets/img/' . $logoFilename, 15, 25, 75);
 
