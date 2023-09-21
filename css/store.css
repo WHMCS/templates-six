@@ -3498,6 +3498,7 @@ section#main-body {
 }
 .landing-page.threesixtymonitoring .row-features img {
     margin: 32px 0;
+    width: 7.5rem;
 }
 .landing-page.threesixtymonitoring .row-features p {
     margin-bottom: 32px;
