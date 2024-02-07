@@ -52,6 +52,7 @@
             {$LANG.pleasewait}
         </div>
     </div>
+    <div id="paymentGatewayInput"></div>
     <div class="fieldgroup-creditcard{if $editMode && !$payMethod->isCreditCard() || $paymentMethodType == 'bankacct' || $remoteUpdate} hidden{/if}">
         <div class="cc-details">
             <div class="form-group">
@@ -375,18 +376,25 @@ jQuery(document).ready(function() {
         }
     });
 
+    var whmcsPaymentModuleMetadata = {
+        _source: 'payment-method-add',
+    };
+    var paymentInitSingleton = new Map;
     jQuery('input[name="type"]').on('ifChecked', function(e) {
+        var element = jQuery(this);
+        var module = element.data('gateway');
+        WHMCS.payment.event.gatewayUnselected(whmcsPaymentModuleMetadata);
         jQuery('.fieldgroup-creditcard').hide();
         jQuery('.fieldgroup-bankaccount').hide();
         jQuery('.fieldgroup-remoteinput').hide();
         jQuery('.fieldgroup-auxfields').hide();
         jQuery('.fieldgroup-loading').removeClass('hidden').show();
         jQuery('#tokenGatewayAssistedOutput').html('');
-        if (jQuery(this).data('tokenised') === true) {
-            jQuery('#inputPaymentMethod').val(jQuery(this).data('gateway'));
+        if (element.data('tokenised') === true) {
+            jQuery('#inputPaymentMethod').val(module);
             WHMCS.http.jqClient.jsonPost({
                 url: "{routePath('account-paymentmethods-inittoken')}",
-                data: 'gateway=' + jQuery(this).data('gateway'),
+                data: 'gateway=' + module,
                 success: function(response) {
                     jQuery('.fieldgroup-loading').hide();
                     if (response.remoteInputForm) {
@@ -397,6 +405,12 @@ jQuery(document).ready(function() {
                     } else if (response.assistedOutput) {
                         jQuery('.fieldgroup-creditcard').removeClass('hidden').show('fast', function() {
                             jQuery('#tokenGatewayAssistedOutput').html(response.assistedOutput);
+                            if (!paymentInitSingleton.has(module)) {
+                                WHMCS.payment.event.gatewayInit(whmcsPaymentModuleMetadata, module, element);
+                                WHMCS.payment.event.gatewayOptionInit(whmcsPaymentModuleMetadata, module, element);
+                                paymentInitSingleton.set(module, true);
+                            }
+                            WHMCS.payment.event.gatewaySelected(whmcsPaymentModuleMetadata, module, element);
                         });
                         jQuery('.fieldgroup-auxfields').show();
                     } else if (response.gatewayType === 'Bank') {
@@ -409,7 +423,7 @@ jQuery(document).ready(function() {
                     }
                 },
             });
-        } else if (jQuery(this).val() === 'bankacct') {
+        } else if (element.val() === 'bankacct') {
             jQuery('.fieldgroup-loading').hide();
             jQuery('.fieldgroup-bankaccount').removeClass('hidden').show();
             jQuery('.fieldgroup-auxfields').show();

@@ -22,18 +22,23 @@
 
                 <div class="alert alert-danger text-center gateway-errors w-hidden"></div>
 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">
-                        {lang key='paymentmethod'}
-                    </label>
-                    <div class="col-sm-8">
-                        {include file="$template/payment/$cardOrBank/select.tpl"}
+                <div id="paymentGatewayInput">
+                    <div class="cc-payment-form">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">
+                                {lang key='paymentmethod'}
+                            </label>
+                            <div class="col-sm-8">
+                                {include file="$template/payment/$cardOrBank/select.tpl"}
+                            </div>
+                        </div>
+
+                        {if !$hasRemoteInput}
+                            {include file="$template/payment/$cardOrBank/inputs.tpl"}
+                        {/if}
                     </div>
                 </div>
 
-                {if !$hasRemoteInput}
-                    {include file="$template/payment/$cardOrBank/inputs.tpl"}
-                {/if}
                 <div id="btnSubmitContainer" class="form-group submit-container">
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-lg margin-top-5" id="btnSubmit" value="{lang key='submitpayment'}">
@@ -60,6 +65,18 @@
     <script>
     jQuery(document).ready(function() {
         jQuery('#inputCardCvv, #inputCardNumber').filter(':visible').first().focus();
+        WHMCS.payment.event.gatewayInit({
+            _source: 'invoice-pay',
+        }, '{$gateway|addslashes}');
+        jQuery('#frmPayment').on('submit', function() {
+            WHMCS.payment.event.checkoutFormSubmit(
+                {
+                    _source: 'invoice-pay',
+                },
+                '{$gateway|addslashes}',
+                jQuery(this)
+            );
+        });
     });
     </script>
 {/if}
