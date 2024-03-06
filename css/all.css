@@ -9916,6 +9916,17 @@ div.three-column-grid > div > label {
     cursor: pointer;
 }
 
+#payMethodList tr {
+    font-size: smaller;
+}
+#payMethodList tr td:nth-child(2),
+#payMethodList tr td:nth-child(3) {
+    max-width: 15em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .iframe-input-container {
     height: 34px;
 }

@@ -68,10 +68,11 @@
         WHMCS.payment.event.gatewayInit({
             _source: 'invoice-pay',
         }, '{$gateway|addslashes}');
-        jQuery('#frmPayment').on('submit', function() {
+        jQuery('#frmPayment').on('submit.paymentjs', function(e) {
             WHMCS.payment.event.checkoutFormSubmit(
                 {
                     _source: 'invoice-pay',
+                    event: e,
                 },
                 '{$gateway|addslashes}',
                 jQuery(this)

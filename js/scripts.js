@@ -15366,6 +15366,32 @@ var recaptchaLoadComplete = false,
     }
 })({
 
+internal: function () {
+
+    this.isRenderSource = function (source) {
+        return [
+            'checkout',
+            'invoice-pay',
+            'admin-payment-method-add',
+            'admin-payment-method-edit',
+            'payment-method-add',
+            'payment-method-edit',
+        ].includes(source);
+    }
+
+    this.reportUnknownSource = function (source) {
+        if (!WHMCS.payment.internal.isRenderSource(source)) {
+            WHMCS.payment.internal.logError('unknown source: ' + source);
+            return true;
+        }
+        return false;
+    }
+
+    this.logError = function (error) {
+        console.error('[WHMCS.payment] ' + error);
+    }
+},
+
 handler: function () {
     this.make = function (moduleName) {
         function Handler(moduleName) {
@@ -15398,6 +15424,11 @@ handler: function () {
             this.onCheckoutFormSubmit = function (fn, options = {}) {
                 var eventOptions = {...WHMCS.payment.register.defaultEventOpts(), ...options};
                 WHMCS.payment.register.onCheckoutFormSubmit(this.module, fn, eventOptions);
+                return this;
+            }
+            this.onAddPayMethodFormSubmit = function (fn, options = {}) {
+                var eventOptions = {...WHMCS.payment.register.defaultEventOpts(), ...options};
+                WHMCS.payment.register.onAddPayMethodFormSubmit(this.module, fn, eventOptions);
                 return this;
             }
 
@@ -15488,6 +15519,17 @@ register: function () {
         return this;
     }
 
+    this.onAddPayMethodFormSubmit = function (module, fn, options) {
+        if (!this.isFunction('register.onAddPayMethodFormSubmit', fn)) return this;
+        this.registerForEvent(
+            WHMCS.payment.event.observersAddPayMethodFormSubmit,
+            module,
+            fn,
+            options
+        )
+        return this;
+    }
+
     this.defaultEventOpts = function () {
         return {
             priority: 100,
@@ -15521,6 +15563,7 @@ event: function () {
     this.observersGatewaySelected = new Map;
     this.observersGatewayUnselected = new Map;
     this.observersCheckoutFormSubmit = new Map;
+    this.observersAddPayMethodFormSubmit = new Map;
     this.previouslySelected = null;
 
     this.gatewayInit = function (metadata, module) {
@@ -15577,6 +15620,16 @@ event: function () {
         );
     }
 
+    this.addPayMethodFormSubmit = function (metadata, module, formElement) {
+        this.notifyEvent(
+            'addPayMethodFormSubmit',
+            this.observersAddPayMethodFormSubmit,
+            module,
+            metadata,
+            formElement
+        );
+    }
+
     this.notifyEvent = function (eventName, observersMap, module, metadata, formElement) {
         if (!observersMap.has(module)) {
             return;
@@ -15597,6 +15650,49 @@ event: function () {
     this.notifyOrdered = function (observersMap, fn) {
         (new Map([...observersMap.entries()].sort())).forEach(fn);
     }
+},
+
+query: function () {
+
+    this.isGatewaySelected = function (module) {
+        return (
+            WHMCS.payment.event.previouslySelected != null
+            && WHMCS.payment.event.previouslySelected.module == module
+        );
+    }
+
+},
+
+behavior: function () {
+
+    this.disableDefaultCardValidation = function (source) {
+        if (source == 'invoice-pay') {
+            if (typeof validateCreditCardInput === 'function') {
+                jQuery('#frmPayment').off('submit', validateCreditCardInput);
+            }
+        } else if (source == 'checkout') {
+            if (typeof validateCheckoutCreditCardInput === 'function') {
+                jQuery('#frmCheckout').off('submit', validateCheckoutCreditCardInput);
+            }
+        } else {
+            WHMCS.payment.internal.reportUnknownSource(source);
+        }
+    }
+
+    this.enableDefaultCardValidation = function (source) {
+        if (source == 'invoice-pay') {
+            if (typeof validateCreditCardInput === 'function') {
+                jQuery('#frmPayment').on('submit', validateCreditCardInput);
+            }
+        } else if (source == 'checkout') {
+            if (typeof validateCheckoutCreditCardInput === 'function') {
+                jQuery('#frmCheckout').on('submit', validateCheckoutCreditCardInput);
+            }
+        } else {
+            WHMCS.payment.internal.reportUnknownSource(source);
+        }
+    }
+
 },
 
 display: function () {
@@ -15628,7 +15724,7 @@ display: function () {
     }
 
     this.error = function (errorMessage) {
-        jQuery('.gateway-errors').text(errorMessage);
+        jQuery('.gateway-errors').html(errorMessage);
         return this;
     }
 
@@ -15648,13 +15744,52 @@ display: function () {
         return this;
     }
 
+    this.submitReset = function (source) {
+        if (source == 'invoice-pay') {
+            this.invoiceSubmitReset();
+        } else if (source == 'checkout') {
+            this.checkoutSubmitReset();
+        } else {
+            WHMCS.payment.internal.reportUnknownSource(source);
+        }
+    };
+
+    this.invoiceSubmitReset = function () {
+        let btnSubmit = jQuery('#btnSubmit').prop('disabled', false)
+            .removeClass('disabled');
+        btnSubmit.find('.click-text').hide();
+        btnSubmit.find('.pay-text').show();
+    }
+
     this.checkoutSubmitReset = function () {
         jQuery('#btnCompleteOrder').removeClass('disabled')
             .removeClass('disable-on-click')
             .removeClass('spinner-on-click')
             .addClass('disable-on-click spinner-on-click')
-            .find('i.fas').removeAttr('class')
-            .addClass('fas fa-arrow-circle-right');
+            .prop('disabled', false)
+            .find('i.fas')
+                .removeAttr('class')
+                .addClass('fas fa-arrow-circle-right');
+    }
+
+    this.submitDisable = function (source) {
+        if (source == 'invoice-pay') {
+            this.invoiceSubmitDisable();
+        } else if (source == 'checkout') {
+            this.checkoutSubmitDisable();
+        } else {
+            WHMCS.payment.internal.reportUnknownSource(source);
+        }
+    };
+
+    this.invoiceSubmitDisable = function () {
+        jQuery('#btnSubmit').addClass('disabled')
+            .prop('disabled', true);
+    }
+
+    this.checkoutSubmitDisable = function () {
+        jQuery('#btnCompleteOrder').addClass('disabled')
+            .prop('disabled', true);
     }
 },
 
