@@ -1312,6 +1312,9 @@ function customActionAjaxCall(event, element) {
         fail: function () {
             window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
         },
+        error: function () {
+            window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
+        },
         always: function() {
             loadingIcon.hide();
             standardIcon.show();
