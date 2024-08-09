@@ -42,6 +42,21 @@
                     {/foreach}
                 </ul>
             </div>
+            {foreach $accentPrimaryServiceBtns as $accentPrimaryServiceBtn}
+                <div class="btn-group btn-group-sm btn-group-secondary" role="group">
+                    <button class="btn btn-primary btn-sm btn-custom-action{if !$accentPrimaryServiceBtn['active']} disabled{/if}"
+                            data-serviceid="{$accentPrimaryServiceBtn['serviceid']}"
+                            data-identifier="{$accentPrimaryServiceBtn['identifier']}"
+                            data-active="{$accentPrimaryServiceBtn['active']}"
+                            {if !$accentPrimaryServiceBtn['active']}disabled="disabled"{/if}
+                    >
+                        <span class="loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                        {$accentPrimaryServiceBtn['display']}
+                    </button>
+                </div>
+            {/foreach}
             {if $primaryServiceBtn}
                 <div class="btn-group btn-group-sm btn-group-secondary" role="group">
                     <button class="btn btn-default btn-sm btn-custom-action{if !$primaryServiceBtn['active']} disabled{/if}"

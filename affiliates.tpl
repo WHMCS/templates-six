@@ -63,11 +63,14 @@
             <p>{$LANG.affiliateswithdrawalrequestsuccessful}</p>
         </div>
     {else}
-        <p class="text-center">
-            <a href="{$smarty.server.PHP_SELF}?action=withdrawrequest" class="btn btn-lg btn-danger{if !$withdrawlevel} disabled" disabled="disabled{/if}">
-                <i class="fas fa-university"></i> {$LANG.affiliatesrequestwithdrawal}
-            </a>
-        </p>
+        <div class="text-center">
+            <form method="POST" action="{$smarty.server.PHP_SELF}">
+                <input type="hidden" name="action" value="withdrawrequest" />
+                <button type="submit" class="btn btn-lg btn-danger{if !$withdrawlevel} disabled" disabled="disabled{/if}">
+                    <i class="fas fa-university"></i> {$LANG.affiliatesrequestwithdrawal}
+                </button>
+            </form>
+        </div>
         {if !$withdrawlevel}
             <p class="text-muted text-center">{lang key="affiliateWithdrawalSummary" amountForWithdrawal=$affiliatePayoutMinimum}</p>
         {/if}
