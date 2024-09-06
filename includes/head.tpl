@@ -20,9 +20,8 @@
         locale = '{if !empty($mdeLocale)}{$mdeLocale}{else}en{/if}',
         saved = '{lang|addslashes key="markdown.saved"}',
         saving = '{lang|addslashes key="markdown.saving"}',
-        whmcsBaseUrl = "{\WHMCS\Utility\Environment\WebHelper::getBaseUrl()}",
-        requiredText = '{lang|addslashes key="orderForm.required"}',
-        recaptchaSiteKey = "{if $captcha}{$captcha->recaptcha->getSiteKey()}{/if}";
+        whmcsBaseUrl = "{\WHMCS\Utility\Environment\WebHelper::getBaseUrl()}";
+    {if $captcha}{$captcha->getPageJs()}{/if}
 </script>
 <script src="{assetPath file='scripts.min.js'}?v={$versionHash}"></script>
 

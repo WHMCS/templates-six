@@ -12968,3 +12968,32 @@ body:after {
         background-size: 240px 24px;
     }
 }
+.captcha-overlay-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.captcha-overlay-badge-hidden {
+    display: none;
+}
+
+.captcha-overlay-badge img {
+    width: 60px;
+    height: auto;
+}
+
+.captcha-overlay-popup {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    z-index: 9998;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}

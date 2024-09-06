@@ -12,7 +12,7 @@
 
 </head>
 <body data-phone-cc-input="{$phoneNumberInputStyle}">
-
+{if $captcha}{$captcha->getMarkup()}{/if}
 {$headeroutput}
 
 <section id="header">
