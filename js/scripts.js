@@ -14598,30 +14598,30 @@ jqClient: function () {
      */
     this.jsonPost = function (options) {
         options = options || {};
-        this.post(options.url, options.data, function(response) {
-            if (response.warning) {
-                console.log('[WHMCS] Warning: ' + response.warning);
+        this.post(options.url, options.data, function(jsonResponse, httpStatusText, jqXHR) {
+            if (jsonResponse.warning) {
+                console.log('[WHMCS] Warning: ' + jsonResponse.warning);
                 if (typeof options.warning === 'function') {
-                    options.warning(response.warning);
+                    options.warning(jsonResponse.warning, jsonResponse, jqXHR);
                 }
-            } else if (response.error) {
-                console.log('[WHMCS] Error: ' + response.error);
+            } else if (jsonResponse.error) {
+                console.log('[WHMCS] Error: ' + jsonResponse.error);
                 if (typeof options.error === 'function') {
-                    options.error(response.error);
+                    options.error(jsonResponse.error, jsonResponse, jqXHR);
                 }
-            } else {
-                if (typeof options.success === 'function') {
-                    options.success(response);
-                }
+            } else if (typeof options.success === 'function') {
+                options.success(jsonResponse, jqXHR);
             }
-        }, 'json').fail(function(xhr, errorMsg){
-            console.log('[WHMCS] Fail: ' + errorMsg);
+        }, 'json')
+        .fail(function(jqXHR, jqResponseType, httpStatusText){
+            console.log('[WHMCS] Fail: ' + jqResponseType);
             if (typeof options.fail === 'function') {
-                options.fail(errorMsg, xhr);
+                options.fail(jqResponseType, jqXHR.responseJSON, jqXHR);
             }
-        }).always(function() {
+        })
+        .always(function(jqXHR, jqResponseType, httpStatusText) {
             if (typeof options.always === 'function') {
-                options.always();
+                options.always(jqXHR);
             }
         });
     };

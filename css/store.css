@@ -144,9 +144,17 @@ section#main-body {
     text-align: center;
     border-bottom: 1px solid #eee;
 }
+
 @media (min-width: 992px) {
+    #nav-ssl {
+        white-space: nowrap;
+    }
+    .landing-page .navbar .navbar-nav {
+        display: flex;
+        justify-content: space-between;
+    }
     .landing-page .navbar .navbar-nav > li {
-        width: 25%;
+        flex: 1;
     }
     .landing-page .navbar .navbar-nav > li > a {
         border-left: 1px solid #ccc;
@@ -395,12 +403,6 @@ section#main-body {
     margin-top: 0;
 }
 
-@media (min-width: 992px) {
-    .landing-page.ssl .navbar .navbar-nav > li {
-        width: 20%;
-    }
-}
-
 .landing-page.ssl .content-block h1,
 .landing-page.ssl .content-block h2,
 .landing-page.ssl .content-block h3,
@@ -419,46 +421,102 @@ section#main-body {
 .landing-page.ssl .validation-levels h3 {
     margin: 0;
     line-height: 100px;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 2em;
     color: #eee;
 }
+
 .landing-page.ssl .validation-levels .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100% !important;
     margin: 0 0 20px 0;
-    padding: 30px;
+    padding: 30px 40px;
+    color: #432448;
     background-color: #fff;
     border-radius: 4px;
 }
 .landing-page.ssl .validation-levels .item h4 {
-    margin: 0;
     font-size: 1.4em;
-    font-weight: 300;
+    font-weight: bold;
+}
+
+.landing-page.ssl .validation-levels .item .logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 .landing-page.ssl .validation-levels .item img {
-    margin: 20px 0;
-    max-width: 100%;
+    max-width: 220px;
 }
-.landing-page.ssl .validation-levels .item span {
-    display: block;
-    font-size: 1.2em;
-}
+
 .landing-page.ssl .validation-levels .item p {
-    margin: 10px 0;
-    color: #555;
+    text-align: left;
+    margin: 0;
 }
+
+.landing-page.ssl .validation-levels .item .logo-wrapper span {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.landing-page.ssl .validation-levels .item p span {
+    font-weight: bold;
+}
+
+.landing-page.ssl .validation-levels .item p:not(:has(span)) {
+    font-weight: bold;
+}
+
+.landing-page.ssl .validation-levels .item .item-features {
+    list-style: none;
+    font-weight: normal;
+    text-align: left;
+    padding-left: 0;
+    width: 100%;
+}
+
+.landing-page.ssl .validation-levels .item .item-features li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.landing-page.ssl .validation-levels .item .item-features li span {
+    font-weight: normal;
+}
+
+.landing-page.ssl .validation-levels .item .item-features li img {
+    width: 24px;
+}
+
 .landing-page.ssl .validation-levels .item .btn {
-    padding: 6px 20px;
-    background-color: #989898;
+    padding: 4px 20px;
+    background-color: #327ba7;
     color: #eee;
+    width: 110px;
+    border-radius: 8px;
+    font-size: 1.4em;
+    font-weight: bold;
 }
 .landing-page.ssl p.help-me-choose {
-    margin-bottom: 20px;
-    line-height: 50px;
+    margin-bottom: 0;
+    color: #fff;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
 }
 .landing-page.ssl p.help-me-choose a,
 .landing-page.ssl a.help-me-choose {
-    font-size: 1.3em;
+    font-size: 1em;
     color: #fff;
+    text-decoration: underline;
 }
 
 .landing-page.ssl .standout {
@@ -562,6 +620,13 @@ section#main-body {
     float: left;
     max-width: 200px;
     padding-right: 40px;
+}
+
+@media (min-width: 992px) {
+    .landing-page.ssl .validation-levels .row {
+        display: flex;
+        justify-content: space-around;
+    }
 }
 
 @media (max-width: 1199px) {
@@ -3745,4 +3810,49 @@ section#main-body {
     .landing-page.threesixtymonitoring .d-lg-block {
         display: block
     }
+}
+
+.landing-page.ssl .secure-wildcard p {
+   margin-top: 28px;
+    margin-bottom: 0;
+}
+
+.landing-page.ssl .secure-wildcard h2,
+.landing-page.ssl .secure-wildcard h4 {
+    font-weight: bold;
+}
+
+.landing-page.ssl .secure-wildcard ul {
+    padding-left:0;
+    margin-top:0;
+}
+
+.landing-page.ssl .secure-wildcard ul li {
+    list-style-position: inside;
+}
+
+.landing-page.ssl .secure-wildcard ul li::marker {
+    content: "\00FC     ";
+}
+
+.landing-page.ssl .secure-wildcard .quote-section {
+    padding-top:70px;
+}
+
+.landing-page.ssl .secure-wildcard .quote-section img {
+    margin:10px 0;
+}
+.landing-page.ssl .secure-wildcard .quote-section p {
+    margin-bottom:28px;
+}
+
+.landing-page.ssl .secure-wildcard .quote-section a {
+    display: inline-block;
+    margin-top: 28px;
+}
+
+.landing-page.ssl .secure-wildcard q.google-quote {
+    font-size: 28px;
+    font-weight: bolder;
+    font-style: italic;
 }
