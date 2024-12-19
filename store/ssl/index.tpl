@@ -203,12 +203,12 @@
 
             <div class="panel">
                 <div class="panel-heading">
-                <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseHelpMeChoose" class="panel-title expand">
-                   <span class="arrow"><i class="fas fa-chevron-down"></i></span>
-                  <a href="#">{lang key="store.ssl.landingPage.help.title"}</a>
-                </h4>
-              </div>
-              <div id="collapseHelpMeChoose" class="panel-collapse collapse in">
+                    <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseHelpMeChoose" class="panel-title expand">
+                       <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                      <a href="#">{lang key="store.ssl.landingPage.help.title"}</a>
+                    </h4>
+                </div>
+                <div id="collapseHelpMeChoose" class="panel-collapse collapse in">
                 <div class="panel-body">
 
                     <p>{lang key="store.ssl.landingPage.help.guide"}</p>
@@ -271,13 +271,13 @@
               </div>
             </div>
             <div class="panel">
-              <div class="panel-heading">
+                <div class="panel-heading">
                 <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseAllCerts" class="panel-title expand">
                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
                   <a href="#">{lang key="store.ssl.landingPage.viewAll"}</a>
                 </h4>
               </div>
-              <div id="collapseAllCerts" class="panel-collapse collapse">
+                <div id="collapseAllCerts" class="panel-collapse collapse">
                 <div class="panel-body">
 
                     {include file="$template/store/ssl/shared/currency-chooser.tpl"}
@@ -325,7 +325,7 @@
             <div class="panel">
                 <div class="panel-heading">
                     <h4 class="panel-title expand" data-toggle="collapse" data-parent="#accordion" data-target="#collapseMultiYear">
-                        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
                         {lang key='store.ssl.landingPage.multiYear.title'}
                     </h4>
                 </div>
@@ -352,13 +352,13 @@
             </div>
 
             <div class="panel">
-              <div class="panel-heading">
+                <div class="panel-heading">
                 <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseFaq" class="panel-title expand">
                     <span class="arrow"><i class="fas fa-chevron-right"></i></span>
                   <a href="#">{lang key="store.ssl.landingPage.faq.title"}</a>
                 </h4>
               </div>
-              <div id="collapseFaq" class="panel-collapse collapse">
+                <div id="collapseFaq" class="panel-collapse collapse">
                 <div class="panel-body">
 
                     <h4>{lang key="store.ssl.landingPage.faq.q1"}</h4>
@@ -401,12 +401,9 @@
 
 <script>
 jQuery(document).ready(function() {
-    jQuery(".card-header[data-toggle='collapse']").on("click", function() {
+    jQuery(".panel-heading .panel-title[data-toggle='collapse']").on("click", function() {
         const expand = jQuery(this).find('span.arrow:first-child i');
         if (expand.hasClass('fa-chevron-right')) {
-            jQuery('.card-header span.arrow i')
-                .removeClass('fa-chevron-down')
-                .addClass('fa-chevron-right');
             expand.removeClass('fa-chevron-right').addClass('fa-chevron-down');
         } else {
             expand.removeClass('fa-chevron-down').addClass('fa-chevron-right');
@@ -418,10 +415,6 @@ jQuery(document).ready(function() {
 
         if (targetSection.length) {
             jQuery('.collapse.show').collapse('hide');
-
-            jQuery('.card-header span.arrow i')
-                .removeClass('fa-chevron-down')
-                .addClass('fa-chevron-right');
 
             targetSection.collapse('show');
 

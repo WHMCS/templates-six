@@ -3823,16 +3823,12 @@ section#main-body {
 }
 
 .landing-page.ssl .secure-wildcard ul {
-    padding-left:0;
-    margin-top:0;
+    padding-left: 0;
+    margin-top: 8px;
 }
 
 .landing-page.ssl .secure-wildcard ul li {
     list-style-position: inside;
-}
-
-.landing-page.ssl .secure-wildcard ul li::marker {
-    content: "\00FC     ";
 }
 
 .landing-page.ssl .secure-wildcard .quote-section {

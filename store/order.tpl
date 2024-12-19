@@ -167,6 +167,7 @@
                     {/if}
                     <form method="post" action="{routePath('cart-order')}">
                         <input type="hidden" name="pid" value="{$upsellProduct->id}">
+                        <input type="hidden" name="upsell" value="1">
                         <button type="submit" class="btn btn-success">
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
                                 <span class="span-upsell span-upsell-{$pricing->cycle()}">
