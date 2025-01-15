@@ -418,7 +418,7 @@ jQuery(document).ready(function() {
 
             targetSection.collapse('show');
 
-            targetSection.prev('.card-header')
+            targetSection.prev('.panel-heading')
                 .find('span.arrow i')
                 .removeClass('fa-chevron-right')
                 .addClass('fa-chevron-down');
