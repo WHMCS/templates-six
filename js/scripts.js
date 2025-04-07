@@ -14191,7 +14191,26 @@ function elementOutOfViewPort(element) {
     out.any = out.top || out.left || out.bottom || out.right;
 
     return out.any;
-};
+}
+
+function showCheckoutError(errorMessage, container = null) {
+    jQuery('.alert-danger').hide();
+
+    const selectors = [
+        '.checkout-error-feedback',
+        '#existingLoginMessage',
+        '.gateway-errors',
+        '.assisted-cc-input-feedback'
+    ];
+
+    if (!container) {
+        container = jQuery(selectors.join(', ')).first();
+    }
+
+    if (container.length) {
+        container.html(errorMessage).slideDown('fast');
+    }
+}
 
 /**
  * WHMCS authentication module
@@ -14481,7 +14500,140 @@ registration: function () {
     };
 
     return this;
-}});
+},
+
+tokenProcessor: function () {
+    this.hostOrigin = window.location.origin;
+    this.postForm = null;
+
+    /**
+     * @return Object A jQuery instance of auto-POST form
+     */
+    this.getAutoPostForm = function () {
+        if (!this.postForm) {
+            this.postForm = jQuery('<form>')
+                .attr('id', 'whmcsAutoPostForm')
+                .attr('target', '_self')
+                .attr('method', 'POST')
+                .append(
+                    jQuery('<input>')
+                        .attr('type', 'hidden')
+                        .attr('name', 'token')
+                        .attr('value', csrfToken)
+                );
+
+            jQuery('body').append(this.postForm);
+        }
+
+        return this.postForm;
+    },
+
+    /**
+     * @param {URL} url
+     * @return boolean
+     */
+    this.isSameOrigin = function (url) {
+        return url.origin && (url.origin === this.hostOrigin);
+    },
+
+    /**
+     * @param {URL} url
+     * @return boolean
+     */
+    this.isClientModopCustom = function (url) {
+        if (!url.pathname || !url.pathname.match(/\/clientarea.php$/)) {
+            return false;
+        }
+
+        if (!url.searchParams || (url.searchParams.get('modop') !== 'custom')) {
+            return false;
+        }
+
+        return true;
+    },
+
+    /**
+     * Normalizes a string URL by converting it to a URL object and appending origin as necessary
+     *
+     * @param {string} urlString
+     * @return URL
+     */
+    this.getFqUrl = function(urlString) {
+        try {
+            if (!urlString.match(/[a-z]+:\/\//i)) {
+                // URLs without origin will not parse
+                urlString = `${this.hostOrigin}${urlString}`;
+            }
+
+            return url = new URL(urlString);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    /**
+     * @param {URL|string} url
+     * @return boolean
+     */
+    this.isUrlEligibleForToken = function (url) {
+        if (typeof url === 'string') {
+            url = this.getFqUrl(url);
+
+            if (!url) {
+                return false;
+            }
+        }
+
+        if ((typeof url !== 'object')) {
+            return false;
+        }
+
+        if (!this.isSameOrigin(url)) {
+            return false;
+        }
+
+        return this.isClientModopCustom(url);
+    },
+
+    /**
+     * @param {string} urlString
+     * @param {string|null} target
+     * @return void
+     */
+    this.submitUrlViaPost = function (urlString, target) {
+        jQuery(this.getAutoPostForm())
+            .attr('target', target || '_self')
+            .attr('action', urlString)
+            .submit();
+    };
+
+    /**
+     * @return void
+     */
+    this.processTokenSubmitters = function () {
+        jQuery('a').each((index, link) => {
+            const urlString = jQuery(link).attr('href');
+
+            if (!urlString) {
+                return;
+            }
+
+            if (!this.isUrlEligibleForToken(urlString)) {
+                return;
+            }
+
+            if (!jQuery(link).data('whmcs-tokenized')) {
+                jQuery(link).data('whmcs-tokenized', true);
+
+                jQuery(link).on('click', (e) => {
+                    e.preventDefault();
+                    this.submitUrlViaPost(urlString, jQuery(link).attr('target'));
+                });
+            }
+        });
+    }
+}
+});
 
 /**
  * WHMCS HTTP module
@@ -15128,7 +15280,210 @@ effects: function () {
             });
         });
     };
+},
+/*
+<script>WHMCS.ui.markdownEditor.register()</script>
+<someTag id="someTag-node"
+    class="container-markdown-editor editor-tagging local-storage"
+    data-locale="de"
+    data-local-storage-id="someTag-node-session-1234"
+    data-fetch-preview-url="https://x.local/mde/preview"
+    data-fetch-help-url="https://x.local/mde/help"
+    data-tagging-url="url-to-handle-tagging"
+    />
+NOTE: elements without IDs will not be initialized via `register` or `getEditorById`
+to ensure no target node is reinitialized within a previously initialized node.
+ */
+markdownEditor: function () {
+    this.editors = {};
+    this.counters = {};
+    this.register = function () {
+        let self = this;
+        jQuery('.container-markdown-editor')
+            .each(function (i, el) {
+                el = jQuery(el);
+                if (typeof el.attr('id') === "undefined") {
+                    console.debug('Element has no id', el);
+                    return;
+                }
+                self.getEditorById(el.attr('id'));
+                self.withTagging(el);
+            });
+    };
+    this.withTagging = function(el) {
+        if (!el.is('.editor-tagging')) {
+            return;
+        }
+        el.atwho({
+            at: "@",
+            displayTpl: "<li class=\"mention-list\">${gravatar} ${username} - ${name} (${email})</li>",
+            insertTpl: mentionsFormat,
+            data: el.data('tagging-url'),
+            limit: 5
+        });
+    }
+    this.getEditorById = function(id) {
+        let self = this;
+        let el = jQuery('#' + id);
+        if (typeof self.editors[id] === 'undefined') {
+            self.editors[id] = self.init(el);
+        }
 
+        return self.editors[id];
+    };
+    this.init = function (element) {
+        let self = this;
+        let elementId = element.attr('id');
+        let footerId = elementId + '-footer';
+        let footerIdRef = '#' + footerId;
+        let footerNode ='<div id="'
+            + footerId
+            + '" class="markdown-editor-status"></div>';
+        let locale = (typeof element.data('locale') === 'undefined')
+            ? 'en'
+            : element.data('locale');
+        let localStorageId = element.data('localStorageId');
+        let csrf_token = csrfToken;
+        let fetchPreviewUrl = element.data('fetchPreviewUrl');
+        self.counters[elementId] = 0;
+
+        element.markdown(
+            {
+                footer: footerNode,
+                autofocus: false,
+                savable: false,
+                resize: 'vertical',
+                iconlibrary: 'glyph',
+                language: locale,
+                onShow: function(e){
+                    let content = '',
+                        save_enabled = false;
+                    if(typeof(Storage) !== "undefined") {
+                        // Code for localStorage/sessionStorage.
+                        content = localStorage.getItem(localStorageId);
+                        save_enabled = true;
+                        if (content && typeof(content) !== "undefined") {
+                            e.setContent(content);
+                        }
+                    }
+                    jQuery(footerIdRef).html(
+                        self.parseMdeFooter(content, save_enabled, 'saved')
+                    );
+                },
+                onChange: function(e){
+                    let content = e.getContent(),
+                        save_enabled = false;
+                        elementId = e.$element.attr('id');
+                    if(typeof(Storage) !== "undefined") {
+                        self.counters[elementId] = 3;
+                        save_enabled = true;
+                        localStorage.setItem(localStorageId, content);
+                        self.doCountdown(elementId);
+                    }
+                    jQuery(footerIdRef).html(
+                        self.parseMdeFooter(content, save_enabled)
+                    );
+                },
+                onPreview: function(e){
+                    let originalContent = e.getContent(),
+                        parsedContent;
+
+                    jQuery.ajax({
+                        url: fetchPreviewUrl,
+                        async: false,
+                        data: {
+                            token: csrf_token,
+                            action: 'parseMarkdown',
+                            content: originalContent
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            parsedContent = data;
+                        },
+                        method: 'POST'
+                    });
+
+                    return parsedContent.body ? parsedContent.body : '';
+                },
+                additionalButtons: [
+                    [{
+                        name: "groupCustom",
+                        data: [{
+                            name: "cmdHelp",
+                            title: "Help",
+                            hotkey: "Ctrl+F1",
+                            btnClass: "btn open-modal",
+                            icon: {
+                                glyph: 'fas fa-question-circle',
+                                fa: 'fas fa-question-circle',
+                                'fa-3': 'icon-question-sign'
+                            },
+                            callback: function(e) {
+                                e.$editor.removeClass("md-fullscreen-mode");
+                            }
+                        }]
+                    }]
+                ],
+                hiddenButtons: [
+                    'cmdImage'
+                ],
+            }
+        );
+
+        self.addEventHelpModal(element);
+
+        return element;
+    };
+    this.parseMdeFooter = function(content, auto_save, saveText) {
+        if (typeof saveText == 'undefined') {
+            saveText = 'autosaving';
+        }
+        let pattern = /[^\s]+/g,
+            m = [],
+            word_count = 0,
+            line_count = 0;
+        if (content) {
+            m = content.match(pattern);
+            line_count = content.split(/\\r\\n|\\r|\\n/).length;
+        }
+        if (m) {
+            for(let i = 0; i < m.length; i++) {
+                if(m[i].charCodeAt(0) >= 0x4E00) {
+                    word_count += m[i].length;
+                } else {
+                    word_count += 1;
+                }
+            }
+        }
+        return '<div class="smallfont">lines: ' + line_count
+            + '&nbsp;&nbsp;&nbsp;words: ' + word_count + ''
+            + (auto_save
+                    ? '&nbsp;&nbsp;&nbsp;<span class="markdown-save">' + saveText + '</span>'
+                    : ''
+            )
+            + '</div>';
+    };
+    this.doCountdown = function(elementId) {
+        let self = this;
+        if (self.counters[elementId] >= 0) {
+            if (self.counters[elementId] === 0) {
+                jQuery("span.markdown-save").html('saved');
+            }
+            self.counters[elementId]--;
+            setTimeout(function (id) {
+                self.doCountdown(id)},
+                1000,
+                elementId
+            );
+        }
+    };
+    this.addEventHelpModal = function(element) {
+        element.parent().find('button[data-handler="bootstrap-markdown-cmdHelp"]')
+            .attr('data-modal-title', 'Markdown Guide')
+            .attr('data-modal-size', 'modal-lg')
+            .attr('href', element.data('fetchHelpUrl'));
+        return this;
+    };
 }
 });
 
@@ -15192,22 +15547,29 @@ function () {
         });
     };
 
-    this.reloadCaptcha = function (element)
-    {
+    this.reloadCaptcha = (captchaElement) => {
         if (typeof grecaptcha !== 'undefined') {
+            recaptchaValidationComplete = false;
             grecaptcha.reset();
-        } else {
-            if (!element) {
-                element = jQuery('#inputCaptchaImage');
-            }
 
-            var src = jQuery(element).data('src');
-            jQuery(element).attr('src', src + '?nocache=' + (new Date()).getTime());
+            WHMCS.recaptcha.restoreDefaultCallback();
 
-            var userInput = jQuery('#inputCaptcha');
-            if (userInput.length) {
-                userInput.val('');
-            }
+            return;
+        }
+
+        if (!captchaElement) {
+            captchaElement = jQuery('#inputCaptchaImage');
+        }
+
+        const captchaInput = jQuery('#inputCaptcha');
+
+        if (captchaElement.length) {
+            captchaElement.attr(
+                'src',
+                whmcsBaseUrl + '/includes/verifyimage.php?nocache=' + new Date().getTime()
+            );
+
+            captchaInput.val('');
         }
     };
 
@@ -15384,6 +15746,38 @@ var recaptchaLoadComplete = false,
             }
             recaptchaLoadComplete = true;
         };
+
+        this.setupCallback = (callback) => {
+            if (typeof callback !== 'function') {
+                return;
+            }
+
+            jQuery('.g-recaptcha').each(function(i, el) {
+                const idToUse = jQuery(el).attr('id').substring(1);
+                const originalCallbackName = idToUse + 'Callback';
+                const backupCallbackName = originalCallbackName + 'Original';
+
+
+                if (typeof window[backupCallbackName] === 'undefined') {
+                    window[backupCallbackName] = window[originalCallbackName];
+                }
+
+                window[originalCallbackName] = callback;
+            });
+        }
+
+        this.restoreDefaultCallback = () => {
+            jQuery('.g-recaptcha').each(function(i, el) {
+                const idToUse = jQuery(el).attr('id').substring(1);
+                const originalCallbackName = idToUse + 'Callback';
+                const backupCallbackName = originalCallbackName + 'Original';
+
+                if (typeof window[backupCallbackName] !== 'undefined') {
+                    window[originalCallbackName] = window[backupCallbackName];
+                    delete window[backupCallbackName];
+                }
+            });
+        }
 
         return this;
     });
@@ -15770,11 +16164,23 @@ display: function () {
         return this;
     }
 
-    this.errorShow = function (errorMessage) {
+    this.errorShow = (errorMessage, source = 'invoice-pay') => {
         let gatewayErrorsContainer = jQuery('.gateway-errors');
-        if (gatewayErrorsContainer.length == 0) return;
-        this.error(errorMessage);
-        gatewayErrorsContainer.slideDown()
+
+        if (source === 'checkout' && typeof showCheckoutError === 'function') {
+            // standardized function to show checkout error
+            showCheckoutError(errorMessage, gatewayErrorsContainer);
+        }
+
+        if (source === 'invoice-pay') {
+            if (gatewayErrorsContainer.length === 0) {
+                return this;
+            }
+
+            this.error(errorMessage);
+            gatewayErrorsContainer.slideDown();
+        }
+
         return this;
     }
 
@@ -17515,6 +17921,14 @@ jQuery(document).ready(function() {
         window.location.href = element.closest('.div-service-item').data('href');
         return false;
     });
+
+    try {
+        if (typeof WHMCS.client.tokenProcessor === 'object') {
+            WHMCS.client.tokenProcessor.processTokenSubmitters();
+        }
+    } catch (e) {
+        // do nothing
+    }
 });
 
 /**
@@ -17644,6 +18058,15 @@ function addRenewalToCart(renewalID, selfThis) {
  * @param {domElement} select The dropdown triggering the event
  */
 function selectChangeNavigate(select) {
+    const url = $(select).val();
+
+    if (typeof WHMCS.client.tokenProcessor === 'object') {
+        if (WHMCS.client.tokenProcessor.isUrlEligibleForToken(url)) {
+            WHMCS.client.tokenProcessor.submitUrlViaPost(url);
+            return;
+        }
+    }
+
     window.location.href = $(select).val();
 }
 

@@ -11645,7 +11645,9 @@ form[data-role="json-form"] .has-error .tooltip.top .tooltip-arrow {
 .cc-number-field.dankort {
     background-image: url(../../../assets/img/payment/dankort.png);
 }
-
+.cc-number-field.troy {
+    background-image: url(../../../assets/img/payment/troy.png);
+}
 /**
  * Usage Billing
  */

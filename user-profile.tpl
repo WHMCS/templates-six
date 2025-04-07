@@ -69,6 +69,20 @@
                     {if in_array('email', $uneditableFields)}disabled="disabled"{/if}
                 >
             </div>
+
+            {if !in_array('email', $uneditableFields)}
+                <div class="form-group">
+                    <label for="emailChangePasswordConfirmation" class="control-label">
+                        {lang key='existingpassword'}
+                    </label>
+                    <input
+                        type="password"
+                        name="existing_password"
+                        id="emailChangePasswordConfirmation"
+                        class="form-control"
+                    >
+                </div>
+            {/if}
         </div>
     </div>
     <div class="form-group">
