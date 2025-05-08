@@ -427,14 +427,13 @@ section#main-body {
 }
 
 .landing-page.ssl .validation-levels .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 15% 15% 10% 30% auto;
+    row-gap: 20px;
     height: 100% !important;
     margin: 0 0 20px 0;
-    padding: 30px 40px;
+    padding: 30px 30px;
     color: #432448;
     background-color: #fff;
     border-radius: 4px;
@@ -442,6 +441,7 @@ section#main-body {
 .landing-page.ssl .validation-levels .item h4 {
     font-size: 1.4em;
     font-weight: bold;
+    grid-row: 1;
 }
 
 .landing-page.ssl .validation-levels .item .logo-wrapper {
@@ -450,6 +450,7 @@ section#main-body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    grid-row: 2;
 }
 .landing-page.ssl .validation-levels .item img {
     max-width: 220px;
@@ -458,6 +459,14 @@ section#main-body {
 .landing-page.ssl .validation-levels .item p {
     text-align: left;
     margin: 0;
+}
+
+.landing-page.ssl .validation-levels .item p .first{
+    grid-row: 3;
+}
+
+.landing-page.ssl .validation-levels .item p .second{
+    grid-row: 4;
 }
 
 .landing-page.ssl .validation-levels .item .logo-wrapper span {
@@ -479,6 +488,7 @@ section#main-body {
     text-align: left;
     padding-left: 0;
     width: 100%;
+    grid-row: 5;
 }
 
 .landing-page.ssl .validation-levels .item .item-features li {
@@ -503,6 +513,7 @@ section#main-body {
     border-radius: 8px;
     font-size: 1.4em;
     font-weight: bold;
+    grid-row: 6;
 }
 .landing-page.ssl p.help-me-choose {
     margin-bottom: 0;

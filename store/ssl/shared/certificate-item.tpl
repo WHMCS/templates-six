@@ -5,8 +5,8 @@
             <img src="{$WEB_ROOT}/{$logo}">
             <span>{$certificate->name}</span>
         </div>
-        <p>{lang key=$description}</p>
-        <p><span>{lang key="store.ssl.landingPage.recommendedFor"}:</span> {lang key=$recommendedFor}</p>
+        <p class="first">{lang key=$description}</p>
+        <p class="second"><span>{lang key="store.ssl.landingPage.recommendedFor"}:</span> {lang key=$recommendedFor}</p>
         <ul class="item-features">
             {foreach from=$features item=feature}
                 <li>
