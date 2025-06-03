@@ -14481,6 +14481,159 @@ registration: function () {
     };
 
     return this;
+},
+
+tokenProcessor: function () {
+this.hostOrigin = window.location.origin;
+this.postForm = null;
+
+/**
+ * @return Object A jQuery instance of auto-POST form
+ */
+this.getAutoPostForm = function () {
+    if (!this.postForm) {
+        this.postForm = jQuery('<form>')
+            .attr('id', 'whmcsAutoPostForm')
+            .attr('target', '_self')
+            .attr('method', 'POST')
+            .append(
+                jQuery('<input>')
+                    .attr('type', 'hidden')
+                    .attr('name', 'token')
+                    .attr('value', csrfToken)
+            );
+
+        jQuery('body').append(this.postForm);
+    }
+
+    return this.postForm;
+},
+
+    /**
+     * @param {URL} url
+     * @return boolean
+     */
+    this.isSameOrigin = function (url) {
+        return url.origin && (url.origin === this.hostOrigin);
+    },
+
+    /**
+     * @param {URL} url
+     * @return boolean
+     */
+    this.isClientModopCustom = function (url) {
+        if (!url.pathname || !url.pathname.match(/\/clientarea.php$/)) {
+            return false;
+        }
+
+        if (!url.searchParams || (url.searchParams.get('modop') !== 'custom')) {
+            return false;
+        }
+
+        return true;
+    },
+
+    /**
+     * Normalizes a string URL by converting it to a URL object and appending origin as necessary
+     *
+     * @param {string} urlString
+     * @return URL
+     */
+    this.getFqUrl = function(urlString) {
+            try {
+            if (!urlString.match(/[a-z]+:\/\//i)) {
+                // URLs without origin will not parse
+
+                if (urlString.indexOf('/') !== 0) {
+                    const whmcsPath = window.location.pathname.split('/').slice(0, -1).join('/');
+
+                    urlString = `${whmcsPath}/${urlString}`;
+                }
+
+                urlString = `${this.hostOrigin}${urlString}`;
+            }
+
+            return url = new URL(urlString);
+        } catch (e) {
+            return null;
+        }
+    }
+
+/**
+ * @param {URL|string} url
+ * @return boolean
+ */
+this.isUrlEligibleForToken = function (url) {
+    if (typeof url === 'string') {
+        url = this.getFqUrl(url);
+
+        if (!url) {
+            return false;
+        }
+    }
+
+    if ((typeof url !== 'object')) {
+        return false;
+    }
+
+    if (!this.isSameOrigin(url)) {
+        return false;
+    }
+
+    return this.isClientModopCustom(url);
+},
+
+    /**
+     * @param {string} urlString
+     * @param {string|null} target
+     * @return void
+     */
+    this.submitUrlViaPost = function (urlString, target) {
+        jQuery(this.getAutoPostForm())
+            .attr('target', target || '_self')
+            .attr('action', urlString)
+            .submit();
+    };
+
+/**
+ * @return void
+ */
+this.processTokenSubmitters = function () {
+    jQuery('a').each((index, link) => {
+        const urlString = jQuery(link).attr('href');
+
+        if (!urlString) {
+            return;
+        }
+
+        if (!this.isUrlEligibleForToken(urlString)) {
+            return;
+        }
+
+        if (!jQuery(link).data('whmcs-tokenized')) {
+            jQuery(link).data('whmcs-tokenized', true);
+
+            jQuery(link).attr('href', '#');
+
+            jQuery(link).on('click', (e) => {
+                let target = jQuery(link).attr('target');
+
+                if (e.metaKey || e.ctrlKey) {
+                    target = '_blank';
+                }
+
+                e.preventDefault();
+                this.submitUrlViaPost(urlString, target);
+            });
+
+            jQuery(link).on('contextmenu', (e) => {
+                e.preventDefault();
+                return false;
+            });
+        }
+    });
+}
+
 }});
 
 /**
@@ -17515,6 +17668,14 @@ jQuery(document).ready(function() {
         window.location.href = element.closest('.div-service-item').data('href');
         return false;
     });
+
+    try {
+        if (typeof WHMCS.client.tokenProcessor === 'object') {
+            WHMCS.client.tokenProcessor.processTokenSubmitters();
+        }
+    } catch (e) {
+        // do nothing
+    }
 });
 
 /**
@@ -17644,6 +17805,15 @@ function addRenewalToCart(renewalID, selfThis) {
  * @param {domElement} select The dropdown triggering the event
  */
 function selectChangeNavigate(select) {
+    const url = $(select).val();
+
+    if (typeof WHMCS.client.tokenProcessor === 'object') {
+        if (WHMCS.client.tokenProcessor.isUrlEligibleForToken(url)) {
+            WHMCS.client.tokenProcessor.submitUrlViaPost(url);
+            return;
+        }
+    }
+
     window.location.href = $(select).val();
 }
 
