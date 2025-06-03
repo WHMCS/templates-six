@@ -683,6 +683,13 @@
     }
 
     @media (max-width: 768px) {
+        .social-bee .hero h2 {
+            width: 100%;
+            font-size: 28px;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+
         .social-bee .action-buttons {
             gap: 0;
             flex-wrap: wrap;

@@ -599,9 +599,31 @@ section#home-banner .btn.transfer {
 }
 .client-home-panels .panel > .panel-body {
     padding: 0;
-    max-height: 170px;
     overflow: auto;
 }
+
+.client-home-panels #registerDomainPanel .panel-body .input-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.client-home-panels #registerDomainPanel .panel-body .input-group .form-control {
+    flex: 1 1 40%;
+    min-width: 0;
+    width: auto;
+}
+
+.client-home-panels #registerDomainPanel .panel-body .input-group-btn {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    width: auto;
+}
+
+.client-home-panels #registerDomainPanel .panel-body .input-group-btn input {
+    flex: 1 1 auto;
+}
+
 .client-home-panels .panel > .panel-footer {
     border-top: 0;
 }
@@ -2388,6 +2410,19 @@ tr.masspay-total td {
  */
 .recaptcha-container {
     display: inline-block;
+}
+
+.google-recaptcha-align {
+    padding-top: 20px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+@media (max-width: 768px) {
+    .google-recaptcha-align {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 
 #google-recaptcha-domainchecker {

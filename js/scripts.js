@@ -14562,6 +14562,13 @@ tokenProcessor: function () {
         try {
             if (!urlString.match(/[a-z]+:\/\//i)) {
                 // URLs without origin will not parse
+
+                if (urlString.indexOf('/') !== 0) {
+                    const whmcsPath = window.location.pathname.split('/').slice(0, -1).join('/');
+
+                    urlString = `${whmcsPath}/${urlString}`;
+                }
+
                 urlString = `${this.hostOrigin}${urlString}`;
             }
 
@@ -14625,9 +14632,22 @@ tokenProcessor: function () {
             if (!jQuery(link).data('whmcs-tokenized')) {
                 jQuery(link).data('whmcs-tokenized', true);
 
+                jQuery(link).attr('href', '#');
+
                 jQuery(link).on('click', (e) => {
+                    let target = jQuery(link).attr('target');
+
+                    if (e.metaKey || e.ctrlKey) {
+                        target = '_blank';
+                    }
+
                     e.preventDefault();
-                    this.submitUrlViaPost(urlString, jQuery(link).attr('target'));
+                    this.submitUrlViaPost(urlString, target);
+                });
+
+                jQuery(link).on('contextmenu', (e) => {
+                    e.preventDefault();
+                    return false;
                 });
             }
         });

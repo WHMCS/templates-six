@@ -429,7 +429,7 @@ section#main-body {
 .landing-page.ssl .validation-levels .item {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10% 15% 15% 10% 30% auto;
+    grid-template-rows: 4fr 5fr 4fr 4fr 10fr auto;
     row-gap: 20px;
     height: 100% !important;
     margin: 0 0 20px 0;
