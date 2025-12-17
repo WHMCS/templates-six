@@ -142,9 +142,18 @@
                 <form method="post" action="domainchecker.php" id="frmDomainHomepage">
                     <input type="hidden" name="transfer" />
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                            <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" autocapitalize="none" data-toggle="tooltip" data-placement="left" data-trigger="manual" title="{lang key='orderForm.required'}" />
+                        <div class="{if $showAdvancedSearchOptions}col-lg-6 col-lg-offset-3 {/if}col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                            <div class="input-group input-group-lg{if $showAdvancedSearchOptions} advanced-input{/if}">
+                                {if $showAdvancedSearchOptions}
+                                    <textarea name="message"
+                                              id="message"
+                                              title="{lang key='domainSearch.domainOrAiPrompt'}"
+                                              data-placement="left"
+                                              data-trigger="manual"
+                                              placeholder="{lang key='domainSearch.domainOrAiInstruction'}"></textarea>
+                                {else}
+                                    <input type="text" class="form-control" name="domain" placeholder="{$LANG.exampledomain}" autocapitalize="none" data-toggle="tooltip" data-placement="left" data-trigger="manual" title="{lang key='orderForm.required'}" />
+                                {/if}
                                 <span class="input-group-btn">
                                     {if $registerdomainenabled}
                                         <input type="submit" class="btn search{$captcha->getButtonClass($captchaForm)}" value="{$LANG.search}" id="btnDomainSearch" />
@@ -153,6 +162,23 @@
                                         <input type="submit" id="btnTransfer" class="btn transfer{$captcha->getButtonClass($captchaForm)}" value="{$LANG.domainstransfer}" />
                                     {/if}
                                 </span>
+                                {if $showAdvancedSearchOptions}
+                                    <span class="input-group input-group-lg{if $showAdvancedSearchOptions} advanced-input{/if}">
+                                        <select name="tlds[]" class="multiselect multiselect-filter" multiple="multiple" data-placeholder="{lang key='domainSearch.tlds'}" data-min-selection="1">
+                                            {foreach $tlds as $tld}
+                                                <option{if in_array($tld, $selectedTlds)} selected {if count($selectedTlds) <= 1}disabled="disabled"{/if}{/if} value="{$tld}">{$tld}</option>
+                                            {/foreach}
+                                        </select>
+                                        <select name="maxLength" class="multiselect" data-placeholder="{lang key='domainSearch.maxLength'}">
+                                            {foreach $searchLengths as $len}
+                                                <option value="{$len}" {if $maxLength === $len}selected{/if}>{$len}</option>
+                                            {/foreach}
+                                        </select>
+                                        <label>
+                                            <input type="checkbox" class="no-icheck" name="filter" {if $safeSearchSelected}checked{/if}> {lang key="domainSearch.safeSearch"}
+                                        </label>
+                                    </span>
+                                {/if}
                             </div>
                         </div>
                     </div>
@@ -213,6 +239,38 @@
             </div>
         </div>
     </div>
+{/if}
+
+{if $showAdvancedSearchOptions}
+    <script>
+        $(document).ready(function() {
+            jQuery('#frmDomainHomepage .multiselect').each(function () {
+                const enableFiltering = $(this).hasClass('multiselect-filter');
+                const minSelection = jQuery(this).data('min-selection');
+                $(this).multiselect({
+                    onChange: function (element) {
+                        const closestSelect = element.closest('select');
+                        const selectedOptions = closestSelect.find('option:selected');
+                        if (minSelection === undefined) {
+                            return;
+                        }
+                        const atMinOptions = selectedOptions.length <= minSelection;
+                        const targetOptions = atMinOptions ? selectedOptions : closestSelect.find('option');
+                        targetOptions.each(function () {
+                            const inputElement = jQuery('input[value="' + jQuery(this).val() + '"]');
+                            inputElement.prop('disabled', atMinOptions ? 'disabled' : false);
+                        });
+                    },
+                    buttonText: function(options, select) {
+                        return select.data('placeholder');
+                    },
+                    maxHeight: 200,
+                    includeFilterClearBtn: false,
+                    enableCaseInsensitiveFiltering: enableFiltering,
+                });
+            })
+        });
+    </script>
 {/if}
 
 {include file="$template/includes/validateuser.tpl"}

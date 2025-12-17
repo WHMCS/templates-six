@@ -7,7 +7,12 @@
     <title>{$companyname} - {$pagetitle}</title>
 
     <link href="{assetPath file='all.min.css'}?v={$versionHash}" rel="stylesheet">
-    <link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-solid.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-regular.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-light.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-brands.min.css" rel="stylesheet">
+    <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-duotone.min.css" rel="stylesheet">
     <link href="{assetPath file='invoice.css'}" rel="stylesheet">
     <script>var whmcsBaseUrl = "{$WEB_ROOT}";</script>
     <script src="{assetPath file='scripts.min.js'}?v={$versionHash}"></script>
@@ -68,7 +73,10 @@
 
             <hr>
 
-            {if $paymentSuccessAwaitingNotification}
+            {* custom alert that can be provided by the hooks (ClientAreaPageViewInvoice for example) *}
+            {if isset($customAlert) && is_array($customAlert)}
+                {include file="$template/includes/panel.tpl" type=$customAlert.type|escape headerTitle=$customAlert.title|escape bodyContent=$customAlert.message|escape bodyTextCenter=true}
+            {elseif $paymentSuccessAwaitingNotification}
                 {include file="$template/includes/panel.tpl" type="success" headerTitle=$LANG.success bodyContent=$LANG.invoicePaymentSuccessAwaitingNotify bodyTextCenter=true}
             {elseif $paymentSuccess}
                 {include file="$template/includes/panel.tpl" type="success" headerTitle=$LANG.success bodyContent=$LANG.invoicepaymentsuccessconfirmation bodyTextCenter=true}
@@ -204,12 +212,8 @@
                                     </tr>
                                 {/if}
                                 <tr>
-                                    <td class="total-row text-right"><strong>{$LANG.invoicescredit}</strong></td>
-                                    <td class="total-row text-center">{$credit}</td>
-                                </tr>
-                                <tr>
                                     <td class="total-row text-right"><strong>{$LANG.invoicestotal}</strong></td>
-                                    <td class="total-row text-center">{$total}</td>
+                                    <td class="total-row text-center">{$invoiceamount}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -221,38 +225,69 @@
                 <p>* {$LANG.invoicestaxindicator}</p>
             {/if}
 
-            <div class="transactions-container small-text">
-                <div class="table-responsive">
-                    <table class="table table-condensed">
-                        <thead>
+            <hr />
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>{$LANG.billing.ledger.title}</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive transactions-container">
+                        <table class="table table-condensed">
+                            <thead>
                             <tr>
-                                <td class="text-center"><strong>{$LANG.invoicestransdate}</strong></td>
-                                <td class="text-center"><strong>{$LANG.invoicestransgateway}</strong></td>
-                                <td class="text-center"><strong>{$LANG.invoicestransid}</strong></td>
+                                <td class="text-center"><strong>{$LANG.billing.ledger.date}</strong></td>
+                                <td class="text-center"><strong>{$LANG.billing.ledger.type}</strong></td>
+                                <td class="text-center"><strong>{$LANG.billing.ledger.reference}</strong></td>
                                 <td class="text-center"><strong>{$LANG.invoicestransamount}</strong></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {foreach from=$transactions item=transaction}
+                            </thead>
+                            <tbody>
+                            {foreach $transactions as $transaction}
                                 <tr>
                                     <td class="text-center">{$transaction.date}</td>
-                                    <td class="text-center">{$transaction.gateway}</td>
-                                    <td class="text-center">{$transaction.transid}</td>
+                                    <td class="text-center">
+                                        {if $transaction.gateway}
+                                            {$transaction.gateway} &mdash;
+                                        {/if}
+                                        {$transaction.typeLabel}
+                                    </td>
+                                    <td class="text-center">
+                                        {if $transaction.referenceHref}
+                                        <a href="{$transaction.referenceHref}" target="_blank">
+                                            {/if}
+                                            {if $transaction.isCreditNote}
+                                                {$LANG.billing.creditnote}
+                                            {elseif $transaction.isDebitNote}
+                                                {$LANG.billing.debitnote}
+                                            {/if}
+                                            {$transaction.referenceId|truncate:24:"...":false:true}
+                                            {if $transaction.referenceHref}
+                                        </a>
+                                        {/if}
+                                    </td>
                                     <td class="text-center">{$transaction.amount}</td>
                                 </tr>
-                            {foreachelse}
+                                {foreachelse}
                                 <tr>
                                     <td class="text-center" colspan="4">{$LANG.invoicestransnonefound}</td>
                                 </tr>
                             {/foreach}
                             <tr>
-                                <td class="text-right" colspan="3"><strong>{$LANG.invoicesbalance}</strong></td>
-                                <td class="text-center">{$balance}</td>
+                                <td class="total-row text-right" colspan="3"><strong>{$LANG.invoicesbalance}</strong></td>
+                                <td class="total-row text-center">{$balance}</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            {if isset($invoiceQrHtml) && !empty($invoiceQrHtml)}
+                <div class="invoice-qr-wrapper mt-3 mb-4">
+                    {$invoiceQrHtml}
+                </div>
+            {/if}
 
             <div class="pull-right btn-group btn-group-sm hidden-print">
                 <a href="javascript:window.print()" class="btn btn-default"><i class="fas fa-print"></i> {$LANG.print}</a>

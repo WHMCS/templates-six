@@ -353,6 +353,14 @@ section#main-body {
     .landing-page .standout-features p {
         margin: 0 20px 50px;
     }
+
+    .landing-page.marketgoo .embed-responsive {
+        padding-bottom: 60%;
+    }
+
+    .landing-page.marketgoo .video-banner {
+        min-height: auto;
+    }
 }
 
 .landing-page .features {

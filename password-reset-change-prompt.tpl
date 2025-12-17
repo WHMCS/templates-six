@@ -18,7 +18,7 @@
 
     <div class="form-group">
         <label class="control-label">{$LANG.pwstrength}</label>
-        {include file="$template/includes/pwstrength.tpl"}
+        {include file="$template/includes/pwstrength.tpl" maximumPasswordLength=$maximumPasswordLength}
     </div>
 
     <div class="form-group">

@@ -104,6 +104,13 @@ if ($customfields) {
 }
 $pdf->Ln(10);
 
+# QR Code
+if (!empty($invoiceQrHtml)) {
+    $pdf->SetXY(15, $pdf->GetY() - 40);
+    $pdf->writeHTML($invoiceQrHtml, true, false, false, false, '');
+    $pdf->Ln(5);
+}
+
 # Invoice Items
 $tblhtml = '<table width="100%" bgcolor="#ccc" cellspacing="1" cellpadding="2" border="0">
     <tr height="30" bgcolor="#efefef" style="font-weight:bold;text-align:center;">
@@ -138,12 +145,8 @@ if ($taxname2) {
 }
 $tblhtml .= '
     <tr height="30" bgcolor="#efefef" style="font-weight:bold;">
-        <td align="right">' . Lang::trans('invoicescredit') . '</td>
-        <td align="center">' . $credit . '</td>
-    </tr>
-    <tr height="30" bgcolor="#efefef" style="font-weight:bold;">
         <td align="right">' . Lang::trans('invoicestotal') . '</td>
-        <td align="center">' . $total . '</td>
+        <td align="center">' . $invoiceamount . '</td>
     </tr>
 </table>';
 
@@ -153,7 +156,7 @@ $pdf->Ln(5);
 
 # Transactions
 $pdf->SetFont($pdfFont, 'B', 12);
-$pdf->Cell(0, 4, Lang::trans('invoicestransactions'), 0, 1);
+$pdf->Cell(0, 4, Lang::trans('billing.ledger.title'), 0, 1);
 
 $pdf->Ln(5);
 
@@ -161,9 +164,9 @@ $pdf->SetFont($pdfFont, '', 9);
 
 $tblhtml = '<table width="100%" bgcolor="#ccc" cellspacing="1" cellpadding="2" border="0">
     <tr height="30" bgcolor="#efefef" style="font-weight:bold;text-align:center;">
-        <td width="25%">' . Lang::trans('invoicestransdate') . '</td>
-        <td width="25%">' . Lang::trans('invoicestransgateway') . '</td>
-        <td width="30%">' . Lang::trans('invoicestransid') . '</td>
+        <td width="15%">' . Lang::trans('billing.ledger.date') . '</td>
+        <td width="30%">' . Lang::trans('billing.ledger.type') . '</td>
+        <td width="35%">' . Lang::trans('billing.ledger.reference') . '</td>
         <td width="20%">' . Lang::trans('invoicestransamount') . '</td>
     </tr>';
 
@@ -174,11 +177,30 @@ if (!count($transactions)) {
     </tr>';
 } else {
     foreach ($transactions AS $trans) {
+        $reference = $trans['referenceId'];
+
+        if ($trans['isCreditNote']) {
+            $reference = Lang::trans('billing.creditnote') . ' ' . $reference;
+        } elseif ($trans['isDebitNote']) {
+            $reference = Lang::trans('billing.debitnote') . ' ' . $reference;
+        } elseif ($reference) {
+            $maxLength = 36;
+            if (strlen($reference) > $maxLength) {
+                $ellipsis = '...';
+                $half = floor(($maxLength - strlen($ellipsis)) / 2);
+                $reference = substr($reference, 0, $half)
+                    . $ellipsis
+                    . substr($reference, -$half, $half);
+            }
+        }
+
+        $reference = trim($reference);
+
         $tblhtml .= '
         <tr bgcolor="#fff">
             <td align="center">' . $trans['date'] . '</td>
-            <td align="center">' . $trans['gateway'] . '</td>
-            <td align="center">' . $trans['transid'] . '</td>
+            <td align="center">' . ($trans['gateway'] ? $trans['gateway'] . ' &mdash; ' : '') . $trans['typeLabel'] . '</td>
+            <td align="center">' . $reference . '</td>
             <td align="center">' . $trans['amount'] . '</td>
         </tr>';
     }

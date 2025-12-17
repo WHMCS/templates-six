@@ -45,20 +45,23 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="block">
-                        <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/1-signup.svg">
-                        <span>1. {lang key="store.marketgoo.features.1"}</span>
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/1-get-seo-plan.svg">
+                        <span>{lang key="store.marketgoo.features.1"}</span>
+                        <p>{lang key="store.marketgoo.featuresdetail.1"}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="block">
-                        <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/2-get-seo-plan.svg">
-                        <span>2. {lang key="store.marketgoo.features.2"}</span>
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/2-follow-instructions.svg">
+                        <span>{lang key="store.marketgoo.features.2"}</span>
+                        <p>{lang key="store.marketgoo.featuresdetail.2"}</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="block">
-                        <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/3-follow-instructions.svg">
-                        <span>3. {lang key="store.marketgoo.features.3"}</span>
+                        <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/3-monthly-report.svg">
+                        <span>{lang key="store.marketgoo.features.3"}</span>
+                        <p>{lang key="store.marketgoo.featuresdetail.3"}</p>
                     </div>
                 </div>
             </div>
@@ -69,18 +72,25 @@
         <div class="container">
             <div class="feature-wrapper">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="block">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/4-start-improving.svg">
-                            <span>4. {lang key="store.marketgoo.features.4"}</span>
+                            <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/4-track-monitor.svg">
+                            <span>{lang key="store.marketgoo.features.4"}</span>
                             <p>{lang key="store.marketgoo.featuresdetail.4"}</p>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="block">
-                            <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/5-track-monitor.svg">
-                            <span>5. {lang key="store.marketgoo.features.5"}</span>
+                            <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/5-individual-optimization.svg">
+                            <span>{lang key="store.marketgoo.features.5"}</span>
                             <p>{lang key="store.marketgoo.featuresdetail.5"}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="block">
+                            <img src="{$WEB_ROOT}/assets/img/marketconnect/marketgoo/6-easy-keyword.svg">
+                            <span>{lang key="store.marketgoo.features.6"}</span>
+                            <p>{lang key="store.marketgoo.featuresdetail.6"}</p>
                         </div>
                     </div>
                 </div>
@@ -91,7 +101,7 @@
     <div class="content-block" id="features">
         <div class="container">
             {if count($plans) > 0}
-                <div class="visible-xs">
+                <div class="d-none">
                     <form method="post" action="">
                         <select name="currency" class="form-control" onchange="submit()">
                             <option>{lang key="changeCurrency"} ({$activeCurrency.prefix} {$activeCurrency.code})</option>
@@ -239,7 +249,7 @@
         <div class="container">
             <h3 class="text-center">{lang key="store.marketgoo.faqs.title"}</h3>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="faq">
                         <h4>{lang key="store.marketgoo.faqs.q1"}</h4>
                         <p>{lang key="store.marketgoo.faqs.a1"}</p>
@@ -248,16 +258,22 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="faq">
                         <h4>{lang key="store.marketgoo.faqs.q2"}</h4>
                         <p>{lang key="store.marketgoo.faqs.a2"}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="faq">
                         <h4>{lang key="store.marketgoo.faqs.q3"}</h4>
                         <p>{lang key="store.marketgoo.faqs.a3"}</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="faq">
+                        <h4>{lang key="store.marketgoo.faqs.q4"}</h4>
+                        <p>{lang key="store.marketgoo.faqs.a4"}</p>
                     </div>
                 </div>
             </div>

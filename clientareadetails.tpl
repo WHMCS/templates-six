@@ -131,6 +131,24 @@
             {/if}
 
         </div>
+
+        {if $accountDetailsExtraFields}
+            <div class="col-sm-12">
+                <h3 class="section-title">{lang key='orderForm.additionalInformation'}</h3>
+                <div class="row">
+                    {foreach $accountDetailsExtraFields as $field}
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label"
+                                       for="{$field.name}">{$field.label|escape}{if $field.required} *{/if}</label>
+                                {$field.input}
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+            </div>
+        {/if}
+
         {if $emailPreferencesEnabled}
             <div class="col-sm-12">
                 <div class="form-group">

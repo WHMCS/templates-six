@@ -7,9 +7,9 @@
 </div>
 
 {if file_exists("templates/$template/includes/alert.tpl")}
-    {include file="$template/includes/alert.tpl" type="info" msg="{$LANG.passwordtips}"}
+    {include file="$template/includes/alert.tpl" type="info" msg="{lang key=passwordtips maximum_length=$maximumPasswordLength}"}
 {elseif file_exists("templates/six/includes/alert.tpl")}
-    {include file="six/includes/alert.tpl" type="info" msg="{$LANG.passwordtips}"}
+    {include file="six/includes/alert.tpl" type="info" msg="{lang key=passwordtips maximum_length=$maximumPasswordLength}"}
 {/if}
 
 <script type="text/javascript">
@@ -41,12 +41,13 @@ jQuery("#inputNewPassword1").keyup(function() {
     var pwstrength=((pwlength*10)-20)+(numeric*10)+(numsymbols*15)+(upper*10);
     if (pwstrength < 0) pwstrength = 0;
     if (pwstrength > 100) pwstrength = 100;
+    var maximumPasswordLength = {$maximumPasswordLength};
 
     $newPassword1.removeClass('has-error has-warning has-success');
     jQuery("#inputNewPassword1").next('.form-control-feedback').removeClass('glyphicon-remove glyphicon-warning-sign glyphicon-ok');
     jQuery("#passwordStrengthBar .progress-bar").removeClass("progress-bar-danger progress-bar-warning progress-bar-success").css("width", pwstrength + "%").attr('aria-valuenow', pwstrength);
     jQuery("#passwordStrengthBar .progress-bar .sr-only").html('{lang|addslashes key='pwstrengthrating'}: ' + pwstrength + '%');
-    if (pwstrength < pwStrengthErrorThreshold) {
+    if ((pwstrength < pwStrengthErrorThreshold) || pw.length > maximumPasswordLength) {
         $newPassword1.addClass('has-error');
         jQuery("#inputNewPassword1").next('.form-control-feedback').addClass('glyphicon-remove');
         jQuery("#passwordStrengthBar .progress-bar").addClass("progress-bar-danger");
@@ -66,6 +67,7 @@ function validatePassword2() {
     var password1 = jQuery("#inputNewPassword1").val();
     var password2 = jQuery("#inputNewPassword2").val();
     var $newPassword2 = jQuery("#newPassword2");
+    var maximumPasswordLength = {$maximumPasswordLength};
 
     if (password2 && password1 !== password2) {
         $newPassword2.removeClass('has-success')
@@ -74,7 +76,7 @@ function validatePassword2() {
         jQuery("#inputNewPassword2Msg").html('<p class="help-block" id="nonMatchingPasswordResult">{$LANG.pwdoesnotmatch|escape}</p>');
         {if !isset($noDisable)}jQuery('input[type="submit"]').attr('disabled', 'disabled');{/if}
     } else {
-        if (password2) {
+        if (password2 && password1.length <= maximumPasswordLength) {
             $newPassword2.removeClass('has-error')
                 .addClass('has-success');
             jQuery("#inputNewPassword2").next('.form-control-feedback').removeClass('glyphicon-remove').addClass('glyphicon-ok');

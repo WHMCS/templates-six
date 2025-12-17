@@ -13,7 +13,7 @@
         <div class="col-sm-5">
             <input type="password" class="form-control" name="newpw" id="inputNewPassword1" autocomplete="off" />
             <span class="form-control-feedback glyphicon"></span>
-            {include file="$template/includes/pwstrength.tpl"}
+            {include file="$template/includes/pwstrength.tpl" maximumPasswordLength=$maximumPasswordLength}
         </div>
         <div class="col-sm-3">
             <button type="button" class="btn btn-default generate-password" data-targetfields="inputNewPassword1,inputNewPassword2">

@@ -1,6 +1,12 @@
 <div class="container">
     <div class="store-order-container">
 
+        {if $configValidationMessage}
+            <div class="alert alert-danger" role="alert">
+                {$configValidationMessage}
+            </div>
+        {/if}
+
         <form method="post" action="{routePath('cart-order-addtocart')}" id="frmAddToCart">
             <input type="hidden" name="pid" value="{$product->id}">
             <input type="hidden" name="domain_type" value="" id="inputDomainType">
@@ -17,7 +23,9 @@
                         <h4>{lang key='store.choosePaymentTerm'}</h4>
                         <select name="billingcycle" class="form-control">
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
-                                <option value="{$pricing->cycle()}"{if $requestedCycle == $pricing->cycle()} selected{/if}>
+                                <option value="{$pricing->cycle()}"
+                                        {if (isset($orderFormData.billingcycle) && $orderFormData.billingcycle == $pricing->cycle()) || (!isset($orderFormData.billingcycle) && $requestedCycle == $pricing->cycle())} selected{/if}
+                                >
                                     {if $pricing->isRecurring()}
                                         {if $pricing->isYearly()}
                                             {$pricing->cycleInYears()} - {$pricing->yearlyPrice()}
@@ -64,7 +72,7 @@
                                     <div class="col-sm-8">
                                         <select class="form-control" name="existing_domain">
                                             {foreach $domains as $domain}
-                                                <option value="{$domain}"{if $domain == $selectedDomain} selected="selected"{/if}>
+                                                <option value="{$domain}"{if (isset($orderFormData.existing_domain) && $orderFormData.existing_domain == $domain) || (!isset($orderFormData.existing_domain) && $domain == $selectedDomain)} selected="selected"{/if}>
                                                     {$domain}
                                                 </option>
                                             {/foreach}
@@ -87,14 +95,14 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     <div style="display:inline-block;width:47%;">
-                                        <input type="text" class="form-control subdomain-input" name="sub_domain" placeholder="Your desired subdomain"></div>
+                                        <input type="text" class="form-control subdomain-input" name="sub_domain" placeholder="Your desired subdomain" value="{if isset($orderFormData.sub_domain)}{$orderFormData.sub_domain}{/if}"></div>
                                     <div style="display:inline-block;width:2%;text-align:center;">
                                         .
                                     </div>
                                     <div style="display:inline-block;width:47%;">
                                         <select class="form-control" name="existing_sld_for_subdomain" id="existing_sld_for_subdomain">
                                             {foreach $domains as $domain}
-                                                <option value="{$domain}">{$domain}</option>
+                                                <option value="{$domain}"{if isset($orderFormData.existing_sld_for_subdomain) && $orderFormData.existing_sld_for_subdomain == $domain} selected{/if}>{$domain}</option>
                                             {/foreach}
                                         </select>
                                     </div>
@@ -108,7 +116,7 @@
                     <div role="tabpanel" class="tab-pane" id="custom-domain">
                         <div class="row">
                             <div class="col-sm-8">
-                                <input type="text" class="form-control domain-input" placeholder="example.com" name="custom_domain" value="{$customDomain}">
+                                <input type="text" class="form-control domain-input" placeholder="example.com" name="custom_domain" value="{if isset($orderFormData.custom_domain)}{$orderFormData.custom_domain}{else}{$customDomain}{/if}">
                             </div>
                             <div class="col-sm-4">
                                 <span class="domain-validation domain-input-validation"></span>
@@ -121,6 +129,42 @@
                     </div>
                 {/if}
             </div>
+
+            {if $configurationFields && count($configurationFields) > 0}
+                <div class="card">
+                    <div class="card-body">
+                        {foreach $configurationFields as $field}
+                            {if $field.type != 'domain'}
+                            <div class="form-group mb-3">
+                                <label for="config_{$field.name}" class="form-label">
+                                    {$field.label}
+                                    {if $field.required}<span class="text-danger">*</span>{/if}
+                                </label>
+
+                                {if $field.type == 'select'}
+                                    {include file="$template/store/config-fields/select.tpl" field=$field}
+                                {elseif $field.type == 'textarea'}
+                                    {include file="$template/store/config-fields/textarea.tpl" field=$field}
+                                {elseif $field.type == 'boolean'}
+                                    {include file="$template/store/config-fields/boolean.tpl" field=$field}
+                                {else}
+                                    {include file="$template/store/config-fields/input.tpl" field=$field}
+                                {/if}
+
+                                {if $configFieldErrors && $configFieldErrors[$field.name]}
+                                    <div class="alert alert-danger mt-1">
+                                        {foreach $configFieldErrors[$field.name] as $error}
+                                            {$error}<br>
+                                        {/foreach}
+                                    </div>
+                                {/if}
+                            </div>
+                            {/if}
+                        {/foreach}
+                    </div>
+                </div>
+            {/if}
+
             <div class="row">
                 <div class="col-sm-5">
                      <a href="javascript:history.go(-1)" class="btn btn-default">
@@ -262,8 +306,11 @@ jQuery(document).ready(function(){
         });
     {/if}
 
-    jQuery('.store-domain-tabs li').removeClass('active');
-    jQuery('.store-domain-tabs li:first-child a').click();
+    {if !isset($orderFormData.domain_type)}
+        jQuery('.store-domain-tabs li').removeClass('active');
+        jQuery('.store-domain-tabs li:first-child a').click();
+    {/if}
+
     {if !$loggedin && $requireDomain}
         jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
     {/if}
@@ -274,9 +321,15 @@ jQuery(document).ready(function(){
     });
     updateUpsellDetailsOnBillingCycleChange(jQuery('.payment-term').find('option:selected').val());
 
-    {if $customDomain}
-        jQuery('#tabCustomDomainControl').click();
-        jQuery('.store-order-container .domain-input').trigger('keyup');
+    {if $customDomain || (isset($orderFormData.domain_type, $orderFormData.custom_domain) && $orderFormData.domain_type == 'custom-domain')}
+        jQuery('#tabCustomDomainControl').one('shown.bs.tab', function() {
+            jQuery('.store-order-container .domain-input').trigger('keyup');
+        }).click();
+    {/if}
+    {if isset($orderFormData.sub_domain, $orderFormData.domain_type) && $orderFormData.domain_type == 'sub-domain'}
+        jQuery('.store-domain-tabs a[href="#sub-domain"]').one('shown.bs.tab', function() {
+            jQuery('.store-order-container .subdomain-input').trigger('keyup');
+        }).click();
     {/if}
 });
 

@@ -2,7 +2,12 @@
 {\WHMCS\View\Asset::fontCssInclude('open-sans-family.css')}
 {\WHMCS\View\Asset::fontCssInclude('raleway-family.css')}
 <link href="{assetPath file='all.min.css'}?v={$versionHash}" rel="stylesheet">
-<link href="{$WEB_ROOT}/assets/css/fontawesome-all.min.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/assets/fonts/css/fontawesome.min.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-solid.min.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-regular.min.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-light.min.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-brands.min.css" rel="stylesheet">
+<link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-duotone.min.css" rel="stylesheet">
 {assetExists file="custom.css"}
 <link href="{$__assetPath__}" rel="stylesheet">
 {/assetExists}

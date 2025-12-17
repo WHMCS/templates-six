@@ -192,6 +192,21 @@
                 {/if}
             </div>
             {/if}
+
+            {if isset($accountDetailsExtraFields) && !empty($accountDetailsExtraFields)}
+                <div class="sub-heading">
+                    <span>{lang key='orderForm.additionalInformation'}</span>
+                </div>
+                <div class="row">
+                    {foreach $accountDetailsExtraFields as $field}
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {$field.input}
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+            {/if}
         </div>
         <div id="containerNewUserSecurity" {if $remote_auth_prelinked && !$securityquestions } class="hidden"{/if}>
 
