@@ -153,7 +153,7 @@
                             <input type="hidden" name="applycredit" value="true" />
                             {$LANG.invoiceaddcreditdesc1} <strong>{$totalcredit}</strong>. {$LANG.invoiceaddcreditdesc2}. {$LANG.invoiceaddcreditamount}:
                             <div class="row">
-                                <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+                                <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
                                     <div class="input-group">
                                         <input type="text" name="creditamount" value="{$creditamount}" class="form-control" />
                                         <span class="input-group-btn">
