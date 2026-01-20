@@ -37,7 +37,7 @@
                     <ul class="plan-features">
                         {foreach $service['features'] as $feature => $value}
                             <li class="feature-item">
-                                {if is_bool($value) === true}
+                                {if is_bool($value)}
                                     {$feature}:
                                     {if $value === true}
                                         <i class="fas fa-check feature-check" aria-hidden="true"></i>
@@ -61,11 +61,11 @@
                 </div>
             {/foreach}
             {else}
-            <td class="service-link">
+            <div class="service-link">
                 <a href="{$WEB_ROOT}/contact.php" class="btn btn-info">
                     {lang key="learnmore"}
                 </a>
-            </td>
+            </div>
         </div>
         {/if}
     </div>

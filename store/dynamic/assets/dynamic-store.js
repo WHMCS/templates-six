@@ -50,19 +50,22 @@ document.addEventListener('DOMContentLoaded', function () {
 function openVideoPopup() {
     const popup = document.getElementById('videoPopup');
     const video = document.getElementById('popupVideo');
-    video.play();
-    popup.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    if (popup && video) {
+        video.play();
+        popup.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeVideoPopup() {
     const popup = document.getElementById('videoPopup');
     const video = document.getElementById('popupVideo');
-
-    video.pause();
-    video.currentTime = 0;
-    popup.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    if (popup && video) {
+        video.pause();
+        video.currentTime = 0;
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 }
 
 // Close popup when clicking outside the video

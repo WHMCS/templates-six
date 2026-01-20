@@ -132,7 +132,7 @@
 
         </div>
 
-        {if $accountDetailsExtraFields}
+        {if !empty($accountDetailsExtraFields)}
             <div class="col-sm-12">
                 <h3 class="section-title">{lang key='orderForm.additionalInformation'}</h3>
                 <div class="row">

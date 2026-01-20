@@ -35,7 +35,7 @@
                     <td>
                         <a href="viewticket.php?tid={$ticket.tid}&amp;c={$ticket.c}" class="border-left">
                             <span class="ticket-number">#{$ticket.tid}</span>
-                            <span class="ticket-subject{if $ticket.unread} unread{/if}">{$ticket.subject}</span>
+                            <span class="ticket-subject{if $ticket.unread} unread{/if}">{$ticket.subject|escape}</span>
                         </a>
                     </td>
                     <td>

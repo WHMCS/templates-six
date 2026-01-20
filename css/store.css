@@ -2941,23 +2941,32 @@ section#main-body {
     display: block;
     margin: 0 auto 20px;
 }
-
+.landing-page.nordvpn {
+    background-color: white;
+    color: black;
+    font-family: sans-serif;
+}
 .landing-page.nordvpn p {
     font-weight: lighter;
+    font-size: 1.8rem;
 }
 .landing-page.nordvpn h1 {
+    font-size: 3.4rem;
     font-weight: bold;
 }
 .landing-page.nordvpn h3 {
-    font-size: 1.4rem;
+    font-size: 2.2rem;
     font-weight: bold;
+}
+.landing-page.nordvpn .hero {
+    color: black;
 }
 .landing-page.nordvpn strong {
     font-weight: bold;
 }
-.landing-page.nordvpn {
-    color:#043855;
-    font-family: sans-serif;
+.landing-page.nordvpn .row {
+    display: flex;
+    flex-wrap: wrap;
 }
 .landing-page.nordvpn .blue {
     color:#4580ff;
@@ -2972,59 +2981,73 @@ section#main-body {
     font-weight: 500;
     font-size: 2rem;
     padding: .8rem 4rem;
-    background: #4580ff;
+    background: #404040;
     color: white;
     border: 0;
+    border-radius: 99px;
 }
-.landing-page.nordvpn .btn-get-deal {
-    padding: .8rem 1.5rem;
-    background: #f55368;
+.landing-page.nordvpn .btn-get-nord, .landing-page.nordvpn .btn-get-deal {
+    background: #ea0101;
+    font-size: 1.6rem;
+    padding: 1.5rem 3rem;
 }
 .landing-page.nordvpn .btn-get-monthly {
-    background: #1b325a;
+    background: #444;
     margin-bottom: 2.5rem;
 }
 .landing-page.nordvpn .btn-get-annually {
-    background:#4580ff;
+    background: #6c757d;
 }
 .landing-page.nordvpn .hero {
-    font-size: 1.25rem;
+    text-align: left;
+}
+.landing-page.nordvpn .hero .row {
+    align-items: center;
 }
 .landing-page.nordvpn .hero .hero-bg {
     margin: 1.25rem 0;
 }
-.landing-page.nordvpn .hero h1 {
-    font-weight: bold;
-}
-.landing-page.nordvpn .hero h2 {
-    font-size: 1.75rem;
-}
+
 .landing-page.nordvpn .hero .guarantee {
     margin: 1rem 0;
-    font-weight: bold;
-    font-size: 1.7rem;
-    color:#4580ff;
-    text-transform:uppercase;
     padding-bottom: 25px;
+    font-size: 1.5rem;
 }
-.landing-page.nordvpn .hero,
-.landing-page.nordvpn .feature.world {
-    background:#0e1b33;
-    color:white;
-}
-.landing-page.nordvpn .feature {
-    padding:60px 0;
+.landing-page.nordvpn .hero .available {
     text-align: center;
 }
-.landing-page.nordvpn .feature.icon img,
-.landing-page.nordvpn .feature.threat img {
+.landing-page.nordvpn .hero .available .divider {
+    align-items: center;
+    margin: 6rem 0 3rem;
+}
+.landing-page.nordvpn .hero .available .divider .line {
+    flex-grow: 1;
+    height: 2px;
+    background: #e1e1e1;
+}
+.landing-page.nordvpn .hero .available .divider p {
+    font-size: 1.5rem;
+    flex-grow: 1;
+    margin: 0;
+}
+.landing-page.nordvpn .hero .available img {
+    filter: invert(1);
+}
+.landing-page.nordvpn .feature {
+    padding:60px 0 0 0;
+    text-align: center;
+}
+.landing-page.nordvpn .feature.icon img {
     margin: 2rem 0;
 }
 .landing-page.nordvpn .feature.icon h1,
 .landing-page.nordvpn .feature.comparison h1,
 .landing-page.nordvpn .feature.threat h1,
 .landing-page.nordvpn .feature.use h1 {
-    margin: 2.5rem 0;
+    margin: 4rem 0;
+}
+.landing-page.nordvpn .feature.icon h1{
+    text-align: center;
 }
 .landing-page.nordvpn .feature.pricing h1 {
     margin: 4rem 0;
@@ -3032,6 +3055,7 @@ section#main-body {
 .landing-page.nordvpn .feature.icon h3,
 .landing-page.nordvpn .feature.use h3 {
     margin-bottom: 1.4rem;
+    font-size: 2.2rem;
 }
 .landing-page.nordvpn .feature.icon .col-xs-3 {
     padding: 0 3rem;
@@ -3046,17 +3070,20 @@ section#main-body {
 .landing-page.nordvpn .feature.faq {
     text-align: left;
 }
+
+.landing-page.nordvpn .feature.device .centered-row-responsive div,
+.landing-page.nordvpn .feature.security .centered-row-responsive div
+{
+    flex: 1;
+}
 .landing-page.nordvpn .feature.comparison th,
 .landing-page.nordvpn .feature.comparison td {
     padding: 1rem 0;
     font-weight: lighter;
 }
 .landing-page.nordvpn .feature.comparison .comparison-note {
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-align: center;
-}
-.landing-page.nordvpn .feature.comparison .comparison-note a {
-    text-decoration: underline;
 }
 .landing-page.nordvpn .feature.world {
     text-align: center;
@@ -3065,16 +3092,9 @@ section#main-body {
     margin: 0 0 2.5rem;
 }
 .landing-page.nordvpn .feature.world .world-image {
-    max-width: initial;
-    margin: auto;
-    opacity: 33%;
+    margin-bottom: 4rem;
+    width: 70%;
 }
-.landing-page.nordvpn .feature.world .world-desc {
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-.landing-page.nordvpn .feature.world .world-image,
 .landing-page.nordvpn .feature.world .world-tagline,
 .landing-page.nordvpn .feature.world .world-data .col-xs-6 {
     margin-bottom: 2rem;
@@ -3083,13 +3103,16 @@ section#main-body {
     margin-bottom: 0.5rem;
 }
 .landing-page.nordvpn .feature.world .world-data p:nth-of-type(2) {
-    font-size: 3.25rem;
-    line-height: 3.25rem;
+    font-size: 5rem;
+    line-height: 5rem;
     font-weight: bold;
     margin-bottom: 0;
 }
 .landing-page.nordvpn .feature.world > p {
     margin-bottom: 2.5rem
+}
+.landing-page.nordvpn .feature.world .world-data img {
+    height: 80px;
 }
 .landing-page.nordvpn .feature.logo {
     background:#f2f2f2;
@@ -3100,11 +3123,20 @@ section#main-body {
 .landing-page.nordvpn .feature.logo .row div {
     height: 55px;
 }
-.landing-page.nordvpn .feature.security .row.h-100 {
-    margin: 4rem 0 8rem;
+.landing-page.nordvpn .feature.icon .container .row.keep-data-safe-container {
+    gap: 2.4rem;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
 }
-.landing-page.nordvpn .feature.security .row.h-100 p {
-    font-size: 1.4rem;
+.keep-data-safe-card {
+    border: 2px solid #f4f4f4;
+    border-radius: 12px;
+    padding: 1.6rem;
+    width: 100%;
+}
+.keep-data-safe-card img {
+    width: 100%;
 }
 .landing-page.nordvpn .feature.use .row div {
     padding-top: 0;
@@ -3122,6 +3154,32 @@ section#main-body {
 }
 .landing-page.nordvpn .feature.threat .col-xs-4 {
     padding: 0 2rem;
+}
+.landing-page.nordvpn .feature.threat .title-div {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.landing-page.nordvpn .feature.threat .threats-div {
+    gap: 2.4rem;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+}
+.landing-page.nordvpn .feature.threat .threats-div .col-xs-10 {
+    border: 2px solid #f4f4f4;
+    border-radius: 12px;
+    padding: 1.6rem;
+    width: 100%;
+}
+.landing-page.nordvpn .feature.threat img {
+    margin: 0 0 1.5rem 0;
+    width: 100%;
+}
+.landing-page.nordvpn .feature.threat p {
+    margin: 0;
+}
+.landing-page.nordvpn .feature.pricing .row {
+    justify-content: center;
 }
 .landing-page.nordvpn .feature.pricing .billing-cycle {
     font-size: 2.5rem;
@@ -3142,23 +3200,31 @@ section#main-body {
 .landing-page.nordvpn .feature.faq .panel {
     margin-bottom: 1.5rem;
     border:0;
-    border-radius:0;
+    border-radius: 1rem;
 }
 .landing-page.nordvpn .feature.faq .panel-heading {
+    background: #444;
+    border-radius: 1rem;
     padding: 0;
-    background:#1b325a;
 }
 .landing-page.nordvpn .feature.faq .panel-heading .btn {
-    padding: 0.5rem 2rem;
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
     color:white;
     display: flex;
     justify-content: space-between;
     text-decoration: none;
+    border-radius: 1rem;
+    border: 1px solid #404040;
+}
+.landing-page.nordvpn .feature.faq .panel-heading .btn.btn-link.btn-block.text-left:focus,
+.landing-page.nordvpn .feature.faq .panel-heading .btn.btn-link.btn-block.text-left:active{
+    border: 1px solid #404040;
+    outline: none;
 }
 .landing-page.nordvpn .feature.faq .panel-heading .btn i {
     align-self: center;
 }
-
 .landing-page.nordvpn .d-none {
     display: none;
 }
@@ -3168,53 +3234,23 @@ section#main-body {
 .landing-page.nordvpn .comparison {
     text-align: center;
 }
+.landing-page.nordvpn .comparison span {
+    font-size: 1.6rem;
+}
 .landing-page.nordvpn .comparison .col-xs-2:first-of-type {
     text-align: left;
 }
 .landing-page.nordvpn .comparison .col-xs-2 {
-    min-height: 4rem;
+    min-height: 6rem;
     padding: 0 1rem;
-    border: 1px solid #e7e7e8;
     border-bottom: none;
+}
+.landing-page.nordvpn .comparison .col-xs-12:nth-child(odd):not(:first-child):not(:last-child) {
+    background-color: #f1f2f3;
+    border-radius: 12px;
 }
 .landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2 {
     min-height: 1.5rem;
-}
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:not(:nth-of-type(2)),
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2){
-    border-bottom: 1px solid #e7e7e8;
-}
-.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:not(:nth-of-type(2)),
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:not(:nth-of-type(2)) {
-    border: none;
-}
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:nth-of-type(2),
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
-    border-top: none;
-}
-.landing-page.nordvpn .comparison .col-xs-2:first-of-type {
-    border-right: none;
-}
-.landing-page.nordvpn .comparison .col-xs-2:not(:first-of-type):not(:nth-of-type(2)) {
-    border-left: none;
-}
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:first-of-type {
-    border-top-left-radius: 4px;
-}
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:first-of-type {
-    border-bottom-left-radius: 4px;
-}
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:last-of-type {
-    border-top-right-radius: 4px;
-}
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:last-of-type {
-    border-bottom-right-radius: 4px;
-}
-.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:nth-of-type(2) {
-    border-radius: 4px 4px 0 0;
-}
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
-    border-radius: 0 0 4px 4px;
 }
 .landing-page.nordvpn .comparison .col-xs-2 {
     display: flex;
@@ -3222,46 +3258,59 @@ section#main-body {
     flex-wrap: wrap;
 }
 .landing-page.nordvpn .comparison .col-xs-12 .col-xs-2:nth-of-type(2) {
-    border-left-color: #bed4fe;
-    border-right-color: #bed4fe;
+    border-left: 1px solid #4e86ff;
+    border-right: 1px solid #4e86ff;
     background: #ecf3ff;
 }
 .landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:nth-of-type(2) {
-    border-top-color: #bed4fe;
+    border-top: 1px solid #4e86ff;
+    border-radius: 12px 12px 0 0;
 }
 .landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
-    border-bottom-color: #bed4fe;
+    border-bottom: 1px solid #4e86ff;
+    border-radius: 0 0 12px 12px;
 }
 .landing-page.nordvpn .comparison .col-xs-2 span {
     width: 100%;
 }
 .landing-page.nordvpn .comparison .btn-get-deal {
     font-size: 1.5rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.8rem 2rem;
 }
 .landing-page.nordvpn .comparison-container {
     overflow-x: auto;
     margin-bottom: 2.5rem;
 }
 .landing-page.nordvpn .comparison-container > .row {
-    min-width: 1170px;
+    min-width: 1110px;
+}
+.custom-flex-wrap {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 1.6rem;
 }
 @media (max-width: 575px) {
+    .landing-page.nordvpn h1 {
+        font-size: 3rem;
+    }
+    .landing-page.nordvpn h3 {
+        font-size: 2rem;
+    }
+    .landing-page.nordvpn p {
+        font-size: 1.6rem;
+    }
+    .landing-page.nordvpn .hero .guarantee,
+    .landing-page.nordvpn .hero .available .divider p,
+    .landing-page.nordvpn .feature.comparison .comparison-note {
+        font-size: 1.3rem;
+    }
+    .landing-page.nordvpn .feature.comparison,
+    .landing-page.nordvpn .feature.world {
+        padding: 0 1.5rem;
+    }
+
     .landing-page.nordvpn .feature.pricing h1 {
         margin: 3.5rem 0;
-    }
-    .landing-page.nordvpn .hero h2 {
-        font-size: 1.5rem;
-    }
-    .landing-page.nordvpn .hero .guarantee {
-        font-size: 1.4rem;
-    }
-    .landing-page.nordvpn .feature.world .world-data p:nth-of-type(2) {
-        font-size: 3.75rem;
-        line-height: 3rem;
-    }
-    .landing-page.nordvpn .feature.security .row.h-100 p {
-        font-size: 1.25rem;
     }
     .landing-page.nordvpn .feature.security .row.h-100 {
         margin-bottom: 2.5rem;
@@ -3277,6 +3326,9 @@ section#main-body {
     }
 }
 @media (min-width: 576px) {
+    .landing-page.nordvpn {
+        padding: 0 15px;
+    }
     .landing-page.nordvpn .br-sm-reg {
         content: initial;
     }
@@ -3303,10 +3355,18 @@ section#main-body {
     .landing-page.nordvpn .d-sm-none {
         display: none;
     }
+    .landing-page.nordvpn .feature.threat .threats-div,
+    .landing-page.nordvpn .feature.icon .container .row.keep-data-safe-container {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .landing-page.nordvpn .feature.threat .threats-div .col-xs-10,
+    .keep-data-safe-card {
+        flex: 0 0 calc((100% - 7.2rem) / 3);
+    }
 }
 @media (min-width: 992px) {
-    .landing-page.nordvpn .feature.logo img,
-    .landing-page.nordvpn .feature.world .world-image {
+    .landing-page.nordvpn .feature.logo img {
         margin: 0;
     }
     .landing-page.nordvpn .br-lg-reg {
@@ -3324,23 +3384,28 @@ section#main-body {
     .landing-page.nordvpn .d-md-none {
         display: none;
     }
-}
-@media (min-width : 1200px) {
+    .big-screen-text-left {
+        text-align: left;
+    }
+    .custom-flex-wrap {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .landing-page.nordvpn .feature.icon .col-10 {
+        width: 33.33333333%;
+    }
     .landing-page.nordvpn .feature.world {
         text-align: left;
     }
-    .landing-page.nordvpn .feature.world .container > .row {
-        min-height: 470px;
-    }
-    .landing-page.nordvpn .feature.world .world-desc {
-        position: initial;
+    .landing-page.nordvpn .feature.world .centered-row-responsive {
+        flex-direction: row-reverse;
     }
     .landing-page.nordvpn .feature.world .world-image {
-        position: absolute;
-        top: 0;
-        right: 2rem;
-        opacity: 100%;
+        margin: 0;
+        width: 45%;
     }
+}
+@media (min-width : 1200px) {
     .landing-page.nordvpn .br-xl-reg {
         content: initial;
     }
@@ -3831,6 +3896,18 @@ section#main-body {
     }
 }
 
+.centered-row-responsive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (min-width: 992px) {
+    .centered-row-responsive {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}
 .landing-page.ssl .secure-wildcard p {
    margin-top: 28px;
     margin-bottom: 0;
