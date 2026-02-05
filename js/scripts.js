@@ -14450,6 +14450,41 @@ provider: function () {
         });
     };
 
+    var sdkSourcePatterns = [];
+    var sdkErrorHandlerRegistered = false;
+
+    /**
+     * Register a targeted error handler for sign-in SDK scripts.
+     * Only displays sign-in errors when errors originate from the specified sources.
+     *
+     * @param {string[]} sourcePatterns - Array of URL patterns to match against error source
+     */
+    this.registerSdkErrorHandler = function (sourcePatterns) {
+        var self = this;
+
+        for (var i = 0; i < sourcePatterns.length; i++) {
+            if (sdkSourcePatterns.indexOf(sourcePatterns[i]) === -1) {
+                sdkSourcePatterns.push(sourcePatterns[i]);
+            }
+        }
+
+        if (sdkErrorHandlerRegistered) {
+            return;
+        }
+        sdkErrorHandlerRegistered = true;
+
+        window.addEventListener('error', function (event) {
+            var source = event.filename || '';
+            for (var j = 0; j < sdkSourcePatterns.length; j++) {
+                if (source.indexOf(sdkSourcePatterns[j]) !== -1) {
+                    self.displayError();
+                    return true;
+                }
+            }
+            return false;
+        });
+    };
+
     return this;
 }});
 
