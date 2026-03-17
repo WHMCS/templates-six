@@ -46,13 +46,19 @@
             {if $credit}
                 <tr class="masspay-total">
                     <td class="text-right">{$LANG.invoicescredit}:</td>
-                    <td>{$credit}</td>
+                    <td>-{$credit}</td>
                 </tr>
             {/if}
             {if $partialpayments}
                 <tr class="masspay-total">
                     <td class="text-right">{$LANG.invoicespartialpayments}:</td>
-                    <td>{$partialpayments}</td>
+                    <td>-{$partialpayments}</td>
+                </tr>
+            {/if}
+            {if $invoiceadjustments}
+                <tr class="masspay-total">
+                    <td class="text-right">{$LANG.invoicesadjustments}:</td>
+                    <td>{$invoiceadjustments}</td>
                 </tr>
             {/if}
             <tr class="masspay-total">
