@@ -20,6 +20,9 @@
     </div>
 
     <form method="post" action="#" role="form">
+        <input type="hidden" name="token" value="{$token}" />
+        <input type="hidden" name="request_hash" value="{$request_hash}" />
+        <input type="hidden" name="oauth_token" value="{$oauthToken}" />
         {foreach $requestedAuthorizations as $auth}
             <input type="hidden" name="authz[]" value="{$auth}" />
         {/foreach}

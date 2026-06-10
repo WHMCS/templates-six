@@ -31,7 +31,7 @@
                 {if $loggedin}
                     <form method="post" action="{$issuerurl}oauth/authorize.php" id="frmLogout">
                         <input type="hidden" name="logout" value="1"/>
-                        <input type="hidden" name="request_hash" value="{$request_hash}"/>
+                        <input type="hidden" name="request_hash" value="{$request_hash|escape:'html'}"/>
                         <p>
                             {lang key='oauth.currentlyLoggedInAs' firstName=$userInfo.firstName lastName=$userInfo.lastName}{if $userInfo.clientName} ({$userInfo.clientName}){/if}.
                             <a href="#" onclick="jQuery('#frmLogout').submit()">{lang key='oauth.notYou'}</a>
@@ -40,7 +40,7 @@
                 {/if}
                 <form method="post" action="{$issuerurl}oauth/authorize.php" id="frmCancelLogin">
                     <input type="hidden" name="return_to_app" value="1"/>
-                    <input type="hidden" name="request_hash" value="{$request_hash}"/>
+                    <input type="hidden" name="request_hash" value="{$request_hash|escape:'html'}"/>
                     <button type="submit" class="btn btn-default">
                         {lang key='oauth.returnToApp' appName=$appName}
                     </button>
