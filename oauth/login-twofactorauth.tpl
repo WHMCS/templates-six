@@ -50,5 +50,5 @@
 
 <form method="post" action="{$issuerurl}oauth/authorize.php" id="frmCancelLogin">
     <input type="hidden" name="login_declined" value="yes"/>
-    <input type="hidden" name="request_hash" value="{$request_hash}"/>
+    <input type="hidden" name="request_hash" value="{$request_hash|escape:'html'}"/>
 </form>
