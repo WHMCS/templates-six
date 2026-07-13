@@ -6,6 +6,13 @@
 
     <div class="providerLinkingFeedback"></div>
 
+    {if $remote_auth_prelinked}
+    <div class="alert alert-warning" role="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        {lang key='remoteAuthn.oneTimeAuthRequired'}
+    </div>
+    {/if}
+
     <div class="row">
         <div class="col-sm-{if $linkableProviders}7{else}12{/if}">
 
