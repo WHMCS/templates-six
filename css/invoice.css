@@ -87,13 +87,13 @@ body {
 .unpaid {
     color: #cc0000;
 }
-.paid {
+.paid, .issued {
     color: #779500;
 }
 .refunded {
     color: #224488;
 }
-.cancelled {
+.cancelled, .closed {
     color: #888;
 }
 .collections {

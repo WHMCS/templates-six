@@ -56,6 +56,6 @@
 <div id="inputDescriptionContainer" class="form-group cc-details{if !$addingNewCard} hidden{/if}">
     <label for="inputDescription" class="col-sm-4 control-label">{$LANG.paymentMethods.cardDescription}</label>
     <div class="col-sm-6">
-        <input type="text" class="form-control" id="inputDescription" name="ccdescription" autocomplete="off" value="" placeholder="{lang key='paymentMethods.descriptionInput'} {$LANG.paymentMethodsManage.optional}" />
+        <input type="text" class="form-control" id="inputDescription" name="ccdescription" autocomplete="off" value="" placeholder="{$LANG.paymentMethodsManage.optional}" />
     </div>
 </div>

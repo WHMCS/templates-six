@@ -220,7 +220,7 @@
                         <label for="inputNewPassword1" class="field-icon">
                             <i class="fas fa-lock"></i>
                         </label>
-                        <input type="password" name="password" id="inputNewPassword1" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" class="field" placeholder="{$LANG.clientareapassword}" autocomplete="off"{if $remote_auth_prelinked} value="{$password}"{/if}>
+                        <input type="password" name="password" id="inputNewPassword1" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" data-min-length="{$minimumPasswordLength}" data-max-length="{$maximumPasswordLength}" data-requires-numeric="{if $passwordRequiresNumeric}1{else}0{/if}" data-requires-alphabetic="{if $passwordRequiresAlphabetic}1{else}0{/if}" class="field" placeholder="{$LANG.clientareapassword}" autocomplete="off"{if $remote_auth_prelinked} value="{$password}"{/if}>
                     </div>
                 </div>
                 <div class="col-sm-6">

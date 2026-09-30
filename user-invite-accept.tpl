@@ -79,7 +79,7 @@
                                 <div class="form-group has-feedback">
                                     <label for="inputPassword">{lang key="loginpassword"}</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" name="password" id="inputPassword" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" placeholder="{lang key="loginpassword"}" autocomplete="off" />
+                                        <input type="password" class="form-control" name="password" id="inputPassword" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" data-min-length="{$minimumPasswordLength}" data-max-length="{$maximumPasswordLength}" data-requires-numeric="{if $passwordRequiresNumeric}1{else}0{/if}" data-requires-alphabetic="{if $passwordRequiresAlphabetic}1{else}0{/if}" placeholder="{lang key="loginpassword"}" autocomplete="off" />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default generate-password" data-targetfields="inputPassword">
                                                 {lang key="generatePassword.btnShort"}

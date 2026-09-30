@@ -1,4 +1,4 @@
-{include file="$template/includes/tablelist.tpl" tableName="InvoicesList" filterColumn="4"}
+{include file="$template/includes/tablelist.tpl" tableName="InvoicesList" filterColumn="5"}
 <script type="text/javascript">
     jQuery(document).ready( function ()
     {
@@ -14,7 +14,7 @@
         {elseif $orderby == 'total'}
             table.order(3, '{$sort}');
         {elseif $orderby == 'status'}
-            table.order(4, '{$sort}');
+            table.order(5, '{$sort}');
         {/if}
         table.draw();
         jQuery('#tableLoading').addClass('hidden');
@@ -29,6 +29,7 @@
                 <th>{$LANG.invoicesdatecreated}</th>
                 <th>{$LANG.invoicesdatedue}</th>
                 <th>{$LANG.invoicestotal}</th>
+                <th>{lang key='invoicesbalance'}</th>
                 <th>{$LANG.invoicesstatus}</th>
                 <th class="responsive-edit-button" style="display: none;"></th>
             </tr>
@@ -40,6 +41,7 @@
                     <td><span class="hidden">{$invoice.normalisedDateCreated}</span>{$invoice.datecreated}</td>
                     <td><span class="hidden">{$invoice.normalisedDateDue}</span>{$invoice.datedue}</td>
                     <td data-order="{$invoice.totalnum}">{$invoice.total}</td>
+                    <td data-order="{$invoice.balanceNumber}">{$invoice.balance}</td>
                     <td><span class="label status status-{$invoice.statusClass}">{$invoice.status}</span></td>
                     <td class="responsive-edit-button" style="display: none;">
                         <a href="viewinvoice.php?id={$invoice.id}" class="btn btn-block btn-info">

@@ -1,7 +1,11 @@
 <div class="video-section">
     <div class="video-header">
-        <h1>{$config->title}</h1>
-        <p>{$config->subtitle}</p>
+        {if $config->title}
+            <h1>{$config->title}</h1>
+        {/if}
+        {if $config->subtitle}
+            <p>{$config->subtitle}</p>
+        {/if}
     </div>
 
     <div class="video-container" {if not $config->isInline}onclick="openVideoPopup()"{/if}>
