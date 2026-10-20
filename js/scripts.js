@@ -17064,6 +17064,39 @@ function () {
         return status ? status.toLowerCase().replace(/\s/g, '-') : '';
     };
 
+    /**
+     * The length bounds the password generator's length field carries.
+     *
+     * Read off the field rather than held here so that the floor is whatever minimum password
+     * length the server rendered into the markup. A pair of constants in this file would be a
+     * second, independent copy of the policy's numbers and would go stale the moment an
+     * administrator raised the configured minimum, which is exactly how this check came to reject
+     * only what an obsolete floor rejected.
+     *
+     * A bound the field does not carry at all, or carries with no leading digits, comes back null;
+     * a caller treats that as unbounded rather than substituting a number of its own, because a
+     * guessed bound is what this reads the markup to avoid.
+     *
+     * That is parseInt's numeric-prefix parsing and not validation: "16.5" and "16junk" both read
+     * as 16, and only a value with nothing numeric at the front - "", "abc", an absent attribute -
+     * is rejected. Nothing checks these attributes for well-formedness, so the guarantee is the
+     * server's: it writes an integer taken from the password policy, which is why parsing loosely
+     * is enough here rather than something to be tightened.
+     *
+     * @param field The length input, as a selector or element jQuery accepts
+     *
+     * @return {{minimum: ?number, maximum: ?number}}
+     */
+    this.getPasswordLengthBounds = function(field) {
+        var read = function(attribute) {
+            var bound = parseInt(jQuery(field).attr(attribute), 10);
+
+            return isNaN(bound) ? null : bound;
+        };
+
+        return {minimum: read('min'), maximum: read('max')};
+    };
+
     this.generatePassword = function(len) {
         var self = this;
         var charset = this.getPasswordCharacterSet();
@@ -17536,16 +17569,29 @@ jQuery(document).ready(function() {
             .data('targetfields', jQuery(this).data('targetfields'))
             .modal('show');
     });
+    // A refusal must not outlive the value that caused it: clearing the field raises the error,
+    // and without this it stayed on screen while the corrected length was typed underneath it.
+    jQuery('#inputGeneratePasswordLength').on('input', function() {
+        jQuery('#generatePwLengthError').addClass('hidden').hide();
+    });
     jQuery('#frmGeneratePassword').submit(function(e) {
         e.preventDefault();
-        var length = parseInt(jQuery('#inputGeneratePasswordLength').val(), 10);
+        var lengthField = jQuery('#inputGeneratePasswordLength'),
+            bounds = WHMCS.utils.getPasswordLengthBounds(lengthField),
+            length = parseInt(lengthField.val(), 10);
 
-        // Check length
-        if (length < 12 || length > 64) {
+        // Check length against the bounds the field carries, which the server sets from the
+        // configured minimum password length - not against a floor hardcoded here, which
+        // would let the generator offer a password the policy then rejects.
+        if (isNaN(length)
+            || (bounds.minimum !== null && length < bounds.minimum)
+            || (bounds.maximum !== null && length > bounds.maximum)
+        ) {
             jQuery('#generatePwLengthError').removeClass('hidden').show();
             return;
         }
 
+        jQuery('#generatePwLengthError').addClass('hidden').hide();
         jQuery('#inputGeneratePasswordOutput').val(WHMCS.utils.generatePassword(length));
     });
     jQuery('#btnGeneratePasswordInsert')

@@ -34,7 +34,7 @@
             {foreach from=$billingnotes item=note}
                 <tr onclick="clickableSafeRedirect(event, '{$note.viewUrl}', true)">
                     <td><a href="{$note.viewUrl}">{$note.id}</a></td>
-                    <td>{$note.total}</td>
+                    <td data-order="{$note.normalisedTotal}">{$note.total}</td>
                     <td><span class="hidden">{$note.normalisedDateIssued}</span>{$note.dateIssued}</td>
                     <td><span>{$note.status}</span></td>
                     <td><span>{$note.noteType}</span></td>

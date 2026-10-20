@@ -243,6 +243,13 @@ jQuery(document).ready(function(){
 
     jQuery('.store-order-container .subdomain-input').keyup(function() {
         delay(function(){
+          {if $domainOptional}
+          if (!jQuery('.subdomain-input').val()) {
+              jQuery('.subdomain-validation').html('').removeClass('ok');
+              jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
+              return;
+          }
+          {/if}
           jQuery('.subdomain-validation').html('<i class="fas fa-spinner fa-spin"></i> Validating...').removeClass('ok');
 
           jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
@@ -250,6 +257,11 @@ jQuery(document).ready(function(){
           var domainName = jQuery('.subdomain-input').val() + '.' + jQuery('#existing_sld_for_subdomain').val();
 
           WHMCS.http.jqClient.post('{routePath('cart-order-validate')}', 'domain=' + domainName, function(data) {
+              {if $domainOptional}
+              if (!jQuery('.subdomain-input').val()) {
+                  return;
+              }
+              {/if}
               if (data.valid) {
                   jQuery('.subdomain-validation').html('<i class="fas fa-check"></i> Valid').addClass('ok');
                   jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
@@ -271,9 +283,21 @@ jQuery(document).ready(function(){
 
     jQuery('.store-order-container .domain-input').keyup(function() {
         delay2(function(){
+          {if $domainOptional}
+          if (!jQuery('.domain-input').val()) {
+              jQuery('.domain-input-validation').html('').removeClass('ok');
+              jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
+              return;
+          }
+          {/if}
           jQuery('.domain-input-validation').html('<i class="fas fa-spinner fa-spin"></i> Validating...').removeClass('ok');
           jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
           WHMCS.http.jqClient.post('{routePath('cart-order-validate')}', 'domain=' + jQuery('.domain-input').val(), function(data) {
+            {if $domainOptional}
+            if (!jQuery('.domain-input').val()) {
+                return;
+            }
+            {/if}
             if (data.valid) {
                 jQuery('.domain-input-validation').html('<i class="fas fa-check"></i> Valid').addClass('ok');
                 jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
@@ -287,11 +311,22 @@ jQuery(document).ready(function(){
         jQuery('.store-domain-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var tab = jQuery(e.target).attr('aria-controls');
             jQuery('#inputDomainType').val(tab);
+            {if $domainOptional}
+                // All tab inputs are posted, so a value left on an inactive tab must not be submitted.
+                if (tab != 'custom-domain') {
+                    jQuery('.domain-input').val('');
+                    jQuery('.domain-input-validation').html('').removeClass('ok');
+                }
+                if (tab != 'sub-domain') {
+                    jQuery('.subdomain-input').val('');
+                    jQuery('.subdomain-validation').html('').removeClass('ok');
+                }
+            {/if}
             if (tab == 'custom-domain' || tab == 'sub-domain') {
                 var validationBlockSelector = tab == 'custom-domain' ? '.domain-input-validation' : '.subdomain-validation';
                 var validationHtml = jQuery(validationBlockSelector).html();
 
-                if (validationHtml == '<i class="fas fa-check"></i> Valid') {
+                if (validationHtml == '<i class="fas fa-check"></i> Valid'{if $domainOptional} || !jQuery(tab == 'custom-domain' ? '.domain-input' : '.subdomain-input').val(){/if}) {
                     jQuery('#frmAddToCart button[type="submit"]').removeProp('disabled');
                 } else {
                     jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
@@ -311,7 +346,7 @@ jQuery(document).ready(function(){
         jQuery('.store-domain-tabs li:first-child a').click();
     {/if}
 
-    {if !$loggedin && $requireDomain}
+    {if !$loggedin && $requireDomain && !$domainOptional}
         jQuery('#frmAddToCart button[type="submit"]').prop('disabled', true);
     {/if}
 

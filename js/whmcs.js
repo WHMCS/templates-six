@@ -379,16 +379,29 @@ jQuery(document).ready(function() {
             .data('targetfields', jQuery(this).data('targetfields'))
             .modal('show');
     });
+    // A refusal must not outlive the value that caused it: clearing the field raises the error,
+    // and without this it stayed on screen while the corrected length was typed underneath it.
+    jQuery('#inputGeneratePasswordLength').on('input', function() {
+        jQuery('#generatePwLengthError').addClass('hidden').hide();
+    });
     jQuery('#frmGeneratePassword').submit(function(e) {
         e.preventDefault();
-        var length = parseInt(jQuery('#inputGeneratePasswordLength').val(), 10);
+        var lengthField = jQuery('#inputGeneratePasswordLength'),
+            bounds = WHMCS.utils.getPasswordLengthBounds(lengthField),
+            length = parseInt(lengthField.val(), 10);
 
-        // Check length
-        if (length < 12 || length > 64) {
+        // Check length against the bounds the field carries, which the server sets from the
+        // configured minimum password length - not against a floor hardcoded here, which
+        // would let the generator offer a password the policy then rejects.
+        if (isNaN(length)
+            || (bounds.minimum !== null && length < bounds.minimum)
+            || (bounds.maximum !== null && length > bounds.maximum)
+        ) {
             jQuery('#generatePwLengthError').removeClass('hidden').show();
             return;
         }
 
+        jQuery('#generatePwLengthError').addClass('hidden').hide();
         jQuery('#inputGeneratePasswordOutput').val(WHMCS.utils.generatePassword(length));
     });
     jQuery('#btnGeneratePasswordInsert')
